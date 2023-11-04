@@ -11,13 +11,13 @@ namespace Vyvojaky
 {
     internal class Podminky
     {   
-        Podminky(int prom1, int prom2, string operatory) 
+        public Podminky() 
         {
-            porovnani(prom1, prom2, operatory);
+        
 
         }
 
-        public void porovnani(int prom1, int prom2, string operatory) 
+        public void porovnani(int prom1, int prom2, string operatory, TextBox console) 
         {
             
             switch (operatory)
@@ -25,49 +25,71 @@ namespace Vyvojaky
                 case ">":
                     if (prom1 > prom2)
                     {
-
+                        console.Text += "true" + "\r\n" + ">";
+                    }
+                    else
+                    {
+                        console.Text += "false" + "\r\n" + ">";
                     }
                     break;
                 case "<":
                     if (prom1 < prom2)
                     {
-
+                        console.Text += "true" + "\r\n" + ">";
+                    }
+                    else
+                    {
+                        console.Text += "false" + "\r\n" + ">";
                     }
                     break;
                 case ">=":
                     if (prom1 >= prom2)
                     {
-
+                        console.Text += "true" + "\r\n" + ">";
+                    }
+                    else
+                    {
+                        console.Text += "false" + "\r\n" + ">";
                     }
                     break;
                 case "<=":
                     if (prom1 <= prom2)
                     {
-
+                        console.Text += "true" + "\r\n" + ">";
+                    }
+                    else
+                    {
+                        console.Text += "false" + "\r\n" + ">";
                     }
                     break;
                 case "==":
                     if (prom1 == prom2)
                     {
-
+                        console.Text += "true" + "\r\n" + ">";
+                    }
+                    else
+                    {
+                        console.Text += "false" + "\r\n" + ">";
                     }
                     break;
                 case "!=":
                     if (prom1 != prom2)
                     {
-                        
+                        console.Text += "true" + "\r\n" + ">";
+                    }
+                    else
+                    {
+                        console.Text += "false" + "\r\n" + ">"; 
                     }
                     break;
                 default:
+                    console.Text += "Zadán chybný operátor" + "\r\n" + ">";
                     break;
 
             }
         }
 
 
-        public Podminky(string nazev) 
-        { 
-            
-        }
+        
     }
 }

@@ -15,6 +15,8 @@ namespace Vyvojaky
         public formHlavniProTvorbu()
         {
             InitializeComponent();
+            panelInformaci.Show();
+            panelPodminky.Hide();
         }
 
         /*Zacatek strip menu item metod*/
@@ -82,6 +84,7 @@ namespace Vyvojaky
 
         //Objekt pro manipulaci se vsemi promennymi
         Promenne promenne = new Promenne();
+        Podminky podminky = new Podminky();
 
         //Bool pro kontrolu zaskrtnuti typu nove promenne
         bool typChecked = false;
@@ -136,6 +139,75 @@ namespace Vyvojaky
             {
                 btPridat.Enabled = false;
             }
+        }
+
+        private void itemPromenne_Click(object sender, EventArgs e)
+        {
+            menuPanely.Text = itemPromenne.Text;
+            panelInformaci.Show();
+            panelPodminky.Hide();
+
+
+        }
+
+        private void itemPodminky_Click(object sender, EventArgs e)
+        {
+            menuPanely.Text = itemPodminky.Text;
+            panelPodminky.Show();
+
+        }
+
+        private void btPodminka_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int prom1 = Convert.ToInt32(tbPromenna1.Text);
+                int prom2 = Convert.ToInt32(tbPromenna2.Text);
+                string oper = operatory.Text;
+                podminky.porovnani(prom1, prom2, oper, tbConsole);
+                tbPromenna1.Text = "";
+                tbPromenna2.Text = "";
+                operatory.Text = "operátory";
+            }
+            catch (Exception)
+            {
+                tbConsole.Text += "Error" + "\r\n" + ">";
+                tbPromenna1.Text = "";
+                tbPromenna2.Text = "";
+                operatory.Text = "operátory";
+            }
+
+
+        }
+
+        private void itemVetsi_Click(object sender, EventArgs e)
+        {
+            operatory.Text = itemVetsi.ToString();
+        }
+
+        private void itemMensi_Click(object sender, EventArgs e)
+        {
+            operatory.Text = itemMensi.Text;
+        }
+
+        private void itemMensiRovno_Click(object sender, EventArgs e)
+        {
+            operatory.Text = itemMensiRovno.Text;
+        }
+
+        private void itemVetsiRovno_Click(object sender, EventArgs e)
+        {
+            operatory.Text = itemVetsiRovno.Text;
+        }
+
+        private void itemRovnost_Click(object sender, EventArgs e)
+        {
+            operatory.Text = itemRovnost.Text;
+        }
+
+        private void itemNerovnost_Click(object sender, EventArgs e)
+        {
+            operatory.Text = itemNerovnost.Text;
         }
 
 
