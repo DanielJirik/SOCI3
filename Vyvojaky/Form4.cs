@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -84,7 +85,7 @@ namespace Vyvojaky
 
         //Objekt pro manipulaci se vsemi promennymi
         Promenne promenne = new Promenne();
-        Podminky podminky = new Podminky();
+
 
         //Bool pro kontrolu zaskrtnuti typu nove promenne
         bool typChecked = false;
@@ -141,6 +142,11 @@ namespace Vyvojaky
             }
         }
 
+        //objekt podminky + obec.promenne
+        Podminky podminky = new Podminky();
+
+
+        //přepínání mezi panely
         private void itemPromenne_Click(object sender, EventArgs e)
         {
             menuPanely.Text = itemPromenne.Text;
@@ -157,14 +163,36 @@ namespace Vyvojaky
 
         }
 
+        //
+
+        //tlačítko pro spuštění podmínky
         private void btPodminka_Click(object sender, EventArgs e)
         {
+            List<string> nazvy = promenne.pouziteNazvy;
+            Dictionary<string, Int16> inty16 = promenne.Int16V;
             try
             {
-                int prom1 = Convert.ToInt32(tbPromenna1.Text);
-                int prom2 = Convert.ToInt32(tbPromenna2.Text);
+                Int16 value1 = 0;
+                Int16 value2 = 0;
+                string prom1 = tbPromenna1.Text;
+                string prom2 = tbPromenna2.Text;
+
                 string oper = operatory.Text;
-                podminky.porovnani(prom1, prom2, oper, tbConsole);
+                (prom1, prom2) = podminky.hledani(prom1, prom2, nazvy, inty16, tbConsole);
+
+
+                //tbConsole.Text += prom2;
+                if (Int16.TryParse(prom1, out value1) && Int16.TryParse(prom2, out value2))
+                {
+                    value1 = Convert.ToInt16(prom1);
+                    value2 = Convert.ToInt16(prom2);
+                    podminky.porovnani(value1, value2, oper, tbConsole);
+                }
+                else
+                {
+                    podminky.porovnaniProString(prom1, prom2, oper, tbConsole);
+                }
+
                 tbPromenna1.Text = "";
                 tbPromenna2.Text = "";
                 operatory.Text = "operátory";
@@ -179,7 +207,9 @@ namespace Vyvojaky
 
 
         }
+        //
 
+        //itemy z menuStripu pro operatory
         private void itemVetsi_Click(object sender, EventArgs e)
         {
             operatory.Text = itemVetsi.ToString();
@@ -209,7 +239,7 @@ namespace Vyvojaky
         {
             operatory.Text = itemNerovnost.Text;
         }
-
+        //
 
         /*TO DO*/
         /*
