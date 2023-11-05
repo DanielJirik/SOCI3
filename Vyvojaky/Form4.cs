@@ -20,76 +20,12 @@ namespace Vyvojaky
             panelPodminky.Hide();
         }
 
-        /*Zacatek strip menu item metod*/
-        private void int16ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            menuTypy.Text = int16ToolStripMenuItem.ToString();
-            typPromenne = menuTypy.Text;
-            typChecked = true;
-        }
-
-        private void int32ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            menuTypy.Text = int32ToolStripMenuItem.ToString();
-            typPromenne = menuTypy.Text;
-            typChecked = true;
-        }
-
-        private void int64ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            menuTypy.Text = int64ToolStripMenuItem.ToString();
-            typPromenne = menuTypy.Text;
-            typChecked = true;
-        }
-
-        private void floatToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            menuTypy.Text = floatToolStripMenuItem.ToString();
-            typPromenne = menuTypy.Text;
-            typChecked = true;
-        }
-
-        private void doubleToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            menuTypy.Text = doubleToolStripMenuItem.ToString();
-            typPromenne = menuTypy.Text;
-            typChecked = true;
-        }
-
-        private void boolToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            menuTypy.Text = boolToolStripMenuItem.ToString();
-            typPromenne = menuTypy.Text;
-            typChecked = true;
-        }
-
-        private void stringToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            menuTypy.Text = stringToolStripMenuItem.ToString();
-            typPromenne = menuTypy.Text;
-            typChecked = true;
-        }
-
-        private void charToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            menuTypy.Text = charToolStripMenuItem.ToString();
-            typPromenne = menuTypy.Text;
-            typChecked = true;
-        }
-        /*Konecstrip menu item metod*/
-
-
 
         //Pro ulozeni typu a nazvu promenne
-        string typPromenne, nazevPromenne;
+        string nazevPromenne;
 
         //Objekt pro manipulaci se vsemi promennymi
         Promenne promenne = new Promenne();
-
-
-        //Bool pro kontrolu zaskrtnuti typu nove promenne
-        bool typChecked = false;
-
 
 
 
@@ -100,14 +36,11 @@ namespace Vyvojaky
 
 
             //Prida promennou do dictionary
-            promenne.VytvoritPromennou(typPromenne, nazevPromenne, tbHodnota.Text, tbConsole);
+            promenne.VytvoritPromennou(nazevPromenne, tbHodnota.Text, tbConsole);
 
             //Resetuje zadane udaje
-            typPromenne = "";
-            menuTypy.Text = "Typy";
             tbNazevPromenne.Text = "";
             tbHodnota.Text = "";
-            typChecked = false;
         }
 
         //Metoda pro kontrolu duplikatu
@@ -118,9 +51,7 @@ namespace Vyvojaky
             foreach (string nazev in promenne.pouziteNazvy)
             {
                 if (nazevPromenne == nazev)
-                {
                     return false;
-                }
             }
 
             return true;
@@ -129,10 +60,10 @@ namespace Vyvojaky
         //Main timer tick method
         private void mainTimer_Tick(object sender, EventArgs e)
         {
-            //Zkontroluje, jestli ma nazev promenne alespon jeden znak a je vybrany typ promenne
+            //Zkontroluje, jestli ma nazev promenne alespon jeden znak
             //a zaroven nazev promenne jeste neexistuje
 
-            if (tbNazevPromenne.Text.Length > 0 && tbHodnota.Text.Length > 0 && typChecked && KontrolaNazvu())
+            if (tbNazevPromenne.Text.Length > 0 && tbHodnota.Text.Length > 0 && KontrolaNazvu())
             {
                 btPridat.Enabled = true;
             }
