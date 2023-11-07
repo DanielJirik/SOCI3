@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.Design;
 
 namespace Vyvojaky
 {
@@ -18,36 +19,49 @@ namespace Vyvojaky
             InitializeComponent();
             panelInformaci.Show();
             panelPodminky.Hide();
+
+            promenne.Setup(panelPracovni);
         }
-
-
-        //Pro ulozeni typu a nazvu promenne
-        string nazevPromenne;
 
         //Objekt pro manipulaci se vsemi promennymi
         Promenne promenne = new Promenne();
 
+        /*Vytvorereni nove promenne*/
+        string nazevPromenne = "";
+        string hodnotaPromenne = "";
 
-
-        private void btPridat_Click(object sender, EventArgs e)
+        private void tbPromenna_TextChanged(object sender, EventArgs e)
         {
-            //Prida nazev do pouzitych nazvu
-            promenne.pouziteNazvy.Add(nazevPromenne);
+            try
+            {
+                string prikaz = tbPromenna.Text.Trim();
 
+                nazevPromenne = prikaz.Split("=")[0];
+                hodnotaPromenne = prikaz.Split("=")[1];
+            }
+            catch (Exception)
+            {
 
-            //Prida promennou do dictionary
-            promenne.VytvoritPromennou(nazevPromenne, tbHodnota.Text, tbConsole);
+            }
+        }
 
-            //Resetuje zadane udaje
-            tbNazevPromenne.Text = "";
-            tbHodnota.Text = "";
+        private void tbPromenna_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter && KontrolaNazvu())
+            {
+                //Prida nazev do pouzitych nazvu
+                promenne.pouziteNazvy.Add(nazevPromenne);
+
+                promenne.VytvoritPromennou(nazevPromenne, hodnotaPromenne, tbConsole);
+                tbPromenna.Text = "";
+                nazevPromenne = "";
+                hodnotaPromenne = "";
+            }
         }
 
         //Metoda pro kontrolu duplikatu
         bool KontrolaNazvu()
         {
-            nazevPromenne = tbNazevPromenne.Text;
-
             foreach (string nazev in promenne.pouziteNazvy)
             {
                 if (nazevPromenne == nazev)
@@ -57,21 +71,8 @@ namespace Vyvojaky
             return true;
         }
 
-        //Main timer tick method
-        private void mainTimer_Tick(object sender, EventArgs e)
-        {
-            //Zkontroluje, jestli ma nazev promenne alespon jeden znak
-            //a zaroven nazev promenne jeste neexistuje
 
-            if (tbNazevPromenne.Text.Length > 0 && tbHodnota.Text.Length > 0 && KontrolaNazvu())
-            {
-                btPridat.Enabled = true;
-            }
-            else
-            {
-                btPridat.Enabled = false;
-            }
-        }
+
 
         //objekt podminky + obec.promenne
         Podminky podminky = new Podminky();
@@ -100,7 +101,7 @@ namespace Vyvojaky
         private void btPodminka_Click(object sender, EventArgs e)
         {
             List<string> nazvy = promenne.pouziteNazvy;
-            Dictionary<string, Int16> inty16 = promenne.Int16V;
+            Dictionary<string, Int16> inty16 = Promenne.Int16V;
             try
             {
                 Int16 value1 = 0;
@@ -170,6 +171,11 @@ namespace Vyvojaky
         {
             operatory.Text = itemNerovnost.Text;
         }
+
+
+
+
+
         //
 
         /*TO DO*/
