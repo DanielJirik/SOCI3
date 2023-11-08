@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
@@ -29,40 +30,47 @@ namespace Vyvojaky
         /*Vytvorereni nove promenne*/
         string nazevPromenne = "";
         string hodnotaPromenne = "";
-
-        private void tbPromenna_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                string prikaz = tbPromenna.Text.Trim();
-
-                nazevPromenne = prikaz.Split("=")[0];
-                hodnotaPromenne = prikaz.Split("=")[1];
-            }
-            catch (Exception)
-            {
-
-            }
-        }
+        bool legitPrikaz;
 
         private void tbPromenna_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter && KontrolaNazvu())
             {
-                //Prida nazev do pouzitych nazvu
-                promenne.pouziteNazvy.Add(nazevPromenne);
+                string prikaz = "";
+                try
+                {
+                    prikaz = tbPromenna.Text;
+                    Regex.Replace(prikaz, @"\s+", "");
 
-                promenne.VytvoritPromennou(nazevPromenne, hodnotaPromenne, tbConsole);
-                tbPromenna.Text = "";
-                nazevPromenne = "";
-                hodnotaPromenne = "";
+                    nazevPromenne = prikaz.Split("=")[0].Trim();
+                    hodnotaPromenne = prikaz.Split("=")[1].Trim();
+
+                    legitPrikaz = true;
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Něco je špatně.");
+                }
+
+                if (legitPrikaz)
+                {
+                    //Prida nazev do pouzitych nazvu
+                    Promenne.pouziteNazvy.Add(nazevPromenne);
+
+                    promenne.VytvoritPromennou(nazevPromenne, hodnotaPromenne, tbConsole);
+                    tbPromenna.Text = "";
+                    nazevPromenne = "";
+                    hodnotaPromenne = "";
+
+                    legitPrikaz = false;
+                }
             }
         }
 
         //Metoda pro kontrolu duplikatu
         bool KontrolaNazvu()
         {
-            foreach (string nazev in promenne.pouziteNazvy)
+            foreach (string nazev in Promenne.pouziteNazvy)
             {
                 if (nazevPromenne == nazev)
                     return false;
@@ -100,7 +108,7 @@ namespace Vyvojaky
         //tlačítko pro spuštění podmínky
         private void btPodminka_Click(object sender, EventArgs e)
         {
-            List<string> nazvy = promenne.pouziteNazvy;
+            List<string> nazvy = Promenne.pouziteNazvy;
             Dictionary<string, Int16> inty16 = Promenne.Int16V;
             try
             {

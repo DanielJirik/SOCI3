@@ -21,7 +21,7 @@ namespace Vyvojaky
         public static Dictionary<string, string> StringV = new Dictionary<string, string>();
         public static Dictionary<string, char> CharV = new Dictionary<string, char>();
 
-        public List<string> pouziteNazvy = new List<string>();
+        public static List<string> pouziteNazvy = new List<string>();
 
         private Panel pracPanel;
 

@@ -21,16 +21,19 @@ namespace Vyvojaky
 
             VytvoritBlock();
         }
-        
+
+        //
+        private PictureBox pb = new PictureBox();
+
         private void VytvoritBlock()
         {
-            PictureBox pb = new PictureBox();
-
+            //PB
             pb.Width = 120;
             pb.Height = 50;
             pb.Location = new Point(Random.Shared.Next(0, pracPanel.Width - pb.Width), Random.Shared.Next(0, pracPanel.Height - pb.Height));
             pb.BackColor = Color.White;
 
+            //LB
             Label popis = new Label();
             popis.ForeColor = Color.Black;
             popis.BackColor = pb.BackColor;
@@ -39,10 +42,48 @@ namespace Vyvojaky
             popis.Location = new Point(0, 0);
             popis.Text = typ + " " + nazev + " = " + hodnota;
             
+            //INIT
             pracPanel.Controls.Add(pb);
-            pb.Controls.Add(popis);            
+            pb.Controls.Add(popis);
+
+            //Drag and Drop event handlers
+            pb.MouseDown += new MouseEventHandler(MouseDown);
+            pb.MouseUp += new MouseEventHandler(MouseUp);
+            pb.MouseMove += new MouseEventHandler(MouseMove);
+
+            //
         }
 
-        /*PRIDAT DRAG AND DROP*/
+        //Drag and drop vars1
+        private bool dragging;
+        private int xPos, yPos;
+
+        //Drag and Drop methods
+        private void MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                dragging = true;
+                xPos = e.X; yPos = e.Y;
+            }
+        }
+
+        private void MouseUp(object sender, MouseEventArgs e)
+        {
+            dragging = false;
+        }
+
+        private void MouseMove(object sender, MouseEventArgs e)
+        {
+            if(dragging
+                && this.pb.Left != 0 && this.pb.Left < pracPanel.Width - this.pb.Width 
+                && this.pb.Top != 0 && this.pb.Top < pracPanel.Height - this.pb.Height)
+            {
+                this.pb.Top = e.Y + this.pb.Top - yPos;
+                this.pb.Left = e.X + this.pb.Left - xPos;                
+            }
+        }
+
+        //
     }
 }

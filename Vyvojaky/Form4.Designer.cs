@@ -236,7 +236,6 @@ namespace Vyvojaky
             tbPromenna.Name = "tbPromenna";
             tbPromenna.Size = new Size(246, 23);
             tbPromenna.TabIndex = 8;
-            tbPromenna.TextChanged += tbPromenna_TextChanged;
             tbPromenna.KeyDown += tbPromenna_KeyDown;
             // 
             // panelConsole
