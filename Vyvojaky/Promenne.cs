@@ -23,6 +23,8 @@ namespace Vyvojaky
 
         public static List<string> pouziteNazvy = new List<string>();
 
+        public static string typ = "";
+
         private Panel pracPanel;
 
         public Promenne()
@@ -36,7 +38,6 @@ namespace Vyvojaky
 
         public void VytvoritPromennou(string nazev, string hodnota, TextBox tbVystupConsole)
         {
-            string typ = "";
 
             Int16 a;
             Int32 b;

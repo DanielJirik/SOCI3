@@ -1,3 +1,5 @@
+using System.Security.Cryptography.X509Certificates;
+
 namespace Vyvojaky
 {
     internal static class Program
@@ -11,7 +13,7 @@ namespace Vyvojaky
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new formUvitaci());
+            Application.Run(new formUvitaci());            
         }
     }
 }

@@ -22,6 +22,8 @@ namespace Vyvojaky
             panelPodminky.Hide();
 
             promenne.Setup(panelPracovni);
+
+            lvPromenne.HideSelection = false;
         }
 
         //Objekt pro manipulaci se vsemi promennymi
@@ -58,6 +60,10 @@ namespace Vyvojaky
                     Promenne.pouziteNazvy.Add(nazevPromenne);
 
                     promenne.VytvoritPromennou(nazevPromenne, hodnotaPromenne, tbConsole);
+
+                    lvPromenne.Items.Add(nazevPromenne + " > " + Promenne.typ);
+                    Promenne.typ = "";
+
                     tbPromenna.Text = "";
                     nazevPromenne = "";
                     hodnotaPromenne = "";
@@ -66,6 +72,94 @@ namespace Vyvojaky
                 }
             }
         }
+
+
+        //Hledani promenne v listu
+        private void tbNajitPromennou_TextChanged(object sender, EventArgs e)
+        {
+            ListViewItem item;
+
+            if ((item = lvPromenne.FindItemWithText(tbNajitPromennou.Text)) != null)
+            {
+                lvPromenne.Items[item.Index].Selected = true;
+                lvPromenne.Select();
+            }
+        }
+
+        //Ovládání panelu vlastností
+        private void lvPromenne_Click(object sender, EventArgs e)
+        {
+            if (lvPromenne.SelectedItems.Count > 0)
+            {
+                ListViewItem item = lvPromenne.SelectedItems[0];
+                string[] itemSplit = item.Text.Split(">");
+                string key = itemSplit[0].Trim();
+
+                lbNazevP.Text = "Název: " + itemSplit[0];
+                lbTypP.Text = "Datový typ: " + itemSplit[1];
+
+                string hodnota = "";
+                switch (itemSplit[1].Trim())
+                {
+                    case "Int16":
+                        hodnota = Convert.ToString(Promenne.Int16V[key]);
+                        break;
+                    case "Int32":
+                        hodnota = Convert.ToString(Promenne.Int32V[key]);
+                        break;
+                    case "Int64":
+                        hodnota = Convert.ToString(Promenne.Int64V[key]);
+                        break;
+                    case "Float":
+                        hodnota = Convert.ToString(Promenne.FloatV[key]);
+                        break;
+                    case "Double":
+                        hodnota = Convert.ToString(Promenne.DoubleV[key]);
+                        break;
+                    case "Bool":
+                        hodnota = Convert.ToString(Promenne.BoolV[key]);
+                        break;
+                    case "Char":
+                        hodnota = Convert.ToString(Promenne.CharV[key]);
+                        break;
+                    case "String":
+                        hodnota = Promenne.StringV[key];
+                        break;
+                    default:
+                        break;
+                }
+
+                lbHodnotaP.Text = "Hodnota: " + hodnota;
+            }
+        }
+
+        //Presune hledany block doleva nahoru
+        private void btNajitP_Click(object sender, EventArgs e)
+        {            
+            DialogResult result = MessageBox.Show("Skutečně si přejete přesunout tento block do levého horního rohu plochy?", "Upozornění", MessageBoxButtons.YesNo);
+
+            if (result == DialogResult.Yes)
+            {
+                try
+                {
+                    foreach (PictureBox pb in panelPracovni.Controls)
+                    {
+                        foreach (Label lb in pb.Controls)
+                        {
+                            if (lb.Tag == "popis" && lb.Text.Split(">")[1].Trim().Split("=")[0].Trim() == lbNazevP.Text.Split(":")[1].Trim())
+                            {
+                                pb.Location = new Point(0, 0);
+                            }
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Něco se nepodařilo.");                    
+                }
+            }
+        }
+
 
         //Metoda pro kontrolu duplikatu
         bool KontrolaNazvu()
@@ -179,6 +273,9 @@ namespace Vyvojaky
         {
             operatory.Text = itemNerovnost.Text;
         }
+
+
+
 
 
 

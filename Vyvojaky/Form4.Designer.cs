@@ -28,6 +28,10 @@ namespace Vyvojaky
         /// </summary>
         private void InitializeComponent()
         {
+            ListViewGroup listViewGroup1 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
+            ListViewGroup listViewGroup2 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
+            ListViewGroup listViewGroup3 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
+            ListViewGroup listViewGroup4 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
             panelPracovni = new Panel();
             panelPodminky = new Panel();
             btPodminka = new Button();
@@ -45,6 +49,9 @@ namespace Vyvojaky
             itemRovnost = new ToolStripMenuItem();
             itemNerovnost = new ToolStripMenuItem();
             panelInformaci = new Panel();
+            tbNajitPromennou = new TextBox();
+            lbVytvorene = new Label();
+            lvPromenne = new ListView();
             lbPriklady = new Label();
             lbPromenna = new Label();
             tbPromenna = new TextBox();
@@ -54,11 +61,17 @@ namespace Vyvojaky
             menuPanely = new ToolStripMenuItem();
             itemPromenne = new ToolStripMenuItem();
             itemPodminky = new ToolStripMenuItem();
+            panelVlastnosti = new Panel();
+            btNajitP = new Button();
+            lbTypP = new Label();
+            lbHodnotaP = new Label();
+            lbNazevP = new Label();
             panelPodminky.SuspendLayout();
             menuStrip2.SuspendLayout();
             panelInformaci.SuspendLayout();
             panelConsole.SuspendLayout();
             menuStrip1.SuspendLayout();
+            panelVlastnosti.SuspendLayout();
             SuspendLayout();
             // 
             // panelPracovni
@@ -204,6 +217,9 @@ namespace Vyvojaky
             // panelInformaci
             // 
             panelInformaci.BackColor = Color.Gray;
+            panelInformaci.Controls.Add(tbNajitPromennou);
+            panelInformaci.Controls.Add(lbVytvorene);
+            panelInformaci.Controls.Add(lvPromenne);
             panelInformaci.Controls.Add(lbPriklady);
             panelInformaci.Controls.Add(lbPromenna);
             panelInformaci.Controls.Add(tbPromenna);
@@ -212,10 +228,48 @@ namespace Vyvojaky
             panelInformaci.Size = new Size(252, 361);
             panelInformaci.TabIndex = 2;
             // 
+            // tbNajitPromennou
+            // 
+            tbNajitPromennou.Location = new Point(3, 134);
+            tbNajitPromennou.Name = "tbNajitPromennou";
+            tbNajitPromennou.Size = new Size(246, 23);
+            tbNajitPromennou.TabIndex = 13;
+            tbNajitPromennou.TextChanged += tbNajitPromennou_TextChanged;
+            // 
+            // lbVytvorene
+            // 
+            lbVytvorene.AutoSize = true;
+            lbVytvorene.Location = new Point(3, 116);
+            lbVytvorene.Name = "lbVytvorene";
+            lbVytvorene.Size = new Size(118, 15);
+            lbVytvorene.TabIndex = 12;
+            lbVytvorene.Text = "Vytvoøené promìnné";
+            // 
+            // lvPromenne
+            // 
+            lvPromenne.BorderStyle = BorderStyle.FixedSingle;
+            lvPromenne.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            listViewGroup1.Header = "ListViewGroup";
+            listViewGroup1.Name = "test";
+            listViewGroup2.Header = "ListViewGroup";
+            listViewGroup2.Name = "test1";
+            listViewGroup3.Header = "ListViewGroup";
+            listViewGroup3.Name = "test2";
+            listViewGroup4.Header = "ListViewGroup";
+            listViewGroup4.Name = "test3";
+            lvPromenne.Groups.AddRange(new ListViewGroup[] { listViewGroup1, listViewGroup2, listViewGroup3, listViewGroup4 });
+            lvPromenne.Location = new Point(3, 159);
+            lvPromenne.Name = "lvPromenne";
+            lvPromenne.Size = new Size(246, 199);
+            lvPromenne.TabIndex = 11;
+            lvPromenne.UseCompatibleStateImageBehavior = false;
+            lvPromenne.View = View.List;
+            lvPromenne.Click += lvPromenne_Click;
+            // 
             // lbPriklady
             // 
             lbPriklady.AutoSize = true;
-            lbPriklady.Location = new Point(3, 75);
+            lbPriklady.Location = new Point(3, 60);
             lbPriklady.Name = "lbPriklady";
             lbPriklady.Size = new Size(217, 15);
             lbPriklady.TabIndex = 10;
@@ -226,9 +280,9 @@ namespace Vyvojaky
             lbPromenna.AutoSize = true;
             lbPromenna.Location = new Point(3, 16);
             lbPromenna.Name = "lbPromenna";
-            lbPromenna.Size = new Size(62, 15);
+            lbPromenna.Size = new Size(93, 15);
             lbPromenna.TabIndex = 9;
-            lbPromenna.Text = "Promìnná";
+            lbPromenna.Text = "Nová promìnná";
             // 
             // tbPromenna
             // 
@@ -297,12 +351,62 @@ namespace Vyvojaky
             itemPodminky.Text = "Podmínky";
             itemPodminky.Click += itemPodminky_Click;
             // 
+            // panelVlastnosti
+            // 
+            panelVlastnosti.BackColor = Color.Gray;
+            panelVlastnosti.Controls.Add(btNajitP);
+            panelVlastnosti.Controls.Add(lbTypP);
+            panelVlastnosti.Controls.Add(lbHodnotaP);
+            panelVlastnosti.Controls.Add(lbNazevP);
+            panelVlastnosti.Location = new Point(538, 411);
+            panelVlastnosti.Name = "panelVlastnosti";
+            panelVlastnosti.Size = new Size(560, 83);
+            panelVlastnosti.TabIndex = 5;
+            // 
+            // btNajitP
+            // 
+            btNajitP.Location = new Point(461, 5);
+            btNajitP.Name = "btNajitP";
+            btNajitP.Size = new Size(96, 23);
+            btNajitP.TabIndex = 3;
+            btNajitP.Text = "Najít na ploše";
+            btNajitP.UseVisualStyleBackColor = true;
+            btNajitP.Click += btNajitP_Click;
+            // 
+            // lbTypP
+            // 
+            lbTypP.AutoSize = true;
+            lbTypP.Location = new Point(3, 53);
+            lbTypP.Name = "lbTypP";
+            lbTypP.Size = new Size(70, 15);
+            lbTypP.TabIndex = 2;
+            lbTypP.Text = "Datový typ: ";
+            // 
+            // lbHodnotaP
+            // 
+            lbHodnotaP.AutoSize = true;
+            lbHodnotaP.Location = new Point(3, 29);
+            lbHodnotaP.Name = "lbHodnotaP";
+            lbHodnotaP.Size = new Size(60, 15);
+            lbHodnotaP.TabIndex = 1;
+            lbHodnotaP.Text = "Hodnota: ";
+            // 
+            // lbNazevP
+            // 
+            lbNazevP.AutoSize = true;
+            lbNazevP.Location = new Point(3, 5);
+            lbNazevP.Name = "lbNazevP";
+            lbNazevP.Size = new Size(45, 15);
+            lbNazevP.TabIndex = 0;
+            lbNazevP.Text = "Název: ";
+            // 
             // formHlavniProTvorbu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(64, 64, 64);
             ClientSize = new Size(1110, 497);
+            Controls.Add(panelVlastnosti);
             Controls.Add(panelPodminky);
             Controls.Add(panelConsole);
             Controls.Add(panelInformaci);
@@ -322,6 +426,8 @@ namespace Vyvojaky
             panelConsole.PerformLayout();
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
+            panelVlastnosti.ResumeLayout(false);
+            panelVlastnosti.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -353,5 +459,13 @@ namespace Vyvojaky
         private TextBox tbPromenna;
         private Label lbPriklady;
         private Label lbPromenna;
+        private Label lbVytvorene;
+        private ListView lvPromenne;
+        private TextBox tbNajitPromennou;
+        private Panel panelVlastnosti;
+        private Label lbNazevP;
+        private Label lbHodnotaP;
+        private Label lbTypP;
+        private Button btNajitP;
     }
 }

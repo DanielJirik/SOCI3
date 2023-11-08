@@ -23,7 +23,8 @@ namespace Vyvojaky
         }
 
         //
-        private PictureBox pb = new PictureBox();
+        public PictureBox pb = new PictureBox();
+        public Label popis = new Label();
 
         private void VytvoritBlock()
         {
@@ -34,15 +35,15 @@ namespace Vyvojaky
             pb.BackColor = Color.White;
 
             //LB
-            Label popis = new Label();
             popis.ForeColor = Color.Black;
             popis.BackColor = pb.BackColor;
             popis.Font = new Font("Arial",10F, FontStyle.Regular, GraphicsUnit.Point, ((Byte)(0)));
             popis.AutoSize = true;
             popis.Location = new Point(0, 0);
-            popis.Text = typ + " " + nazev + " = " + hodnota;
-            
-            //INIT
+            popis.Text = typ + " > " + nazev + " = " + hodnota;
+            popis.Tag = "popis";
+
+            //INIT                        
             pracPanel.Controls.Add(pb);
             pb.Controls.Add(popis);
 
@@ -75,12 +76,9 @@ namespace Vyvojaky
 
         private void MouseMove(object sender, MouseEventArgs e)
         {
-            if(dragging
-                && this.pb.Left != 0 && this.pb.Left < pracPanel.Width - this.pb.Width 
-                && this.pb.Top != 0 && this.pb.Top < pracPanel.Height - this.pb.Height)
-            {
+            if(dragging){
                 this.pb.Top = e.Y + this.pb.Top - yPos;
-                this.pb.Left = e.X + this.pb.Left - xPos;                
+                this.pb.Left = e.X + this.pb.Left - xPos;
             }
         }
 
