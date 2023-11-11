@@ -57,21 +57,24 @@ namespace Vyvojaky
             tbPromenna = new TextBox();
             panelConsole = new Panel();
             tbConsole = new TextBox();
-            menuStrip1 = new MenuStrip();
-            menuPanely = new ToolStripMenuItem();
-            itemPromenne = new ToolStripMenuItem();
-            itemPodminky = new ToolStripMenuItem();
             panelVlastnosti = new Panel();
             btNajitP = new Button();
             lbTypP = new Label();
             lbHodnotaP = new Label();
             lbNazevP = new Label();
+            menuMain = new MenuStrip();
+            menuPanely = new ToolStripMenuItem();
+            itemVars = new ToolStripMenuItem();
+            itemIfs = new ToolStripMenuItem();
+            menuSoubor = new ToolStripMenuItem();
+            itemSave = new ToolStripMenuItem();
+            itemOpen = new ToolStripMenuItem();
             panelPodminky.SuspendLayout();
             menuStrip2.SuspendLayout();
             panelInformaci.SuspendLayout();
             panelConsole.SuspendLayout();
-            menuStrip1.SuspendLayout();
             panelVlastnosti.SuspendLayout();
+            menuMain.SuspendLayout();
             SuspendLayout();
             // 
             // panelPracovni
@@ -94,7 +97,7 @@ namespace Vyvojaky
             panelPodminky.Controls.Add(lbOperator);
             panelPodminky.Controls.Add(lbPromenna1);
             panelPodminky.Controls.Add(menuStrip2);
-            panelPodminky.Location = new Point(12, 38);
+            panelPodminky.Location = new Point(10, 38);
             panelPodminky.Name = "panelPodminky";
             panelPodminky.Size = new Size(252, 361);
             panelPodminky.TabIndex = 3;
@@ -318,39 +321,6 @@ namespace Vyvojaky
             tbConsole.TabStop = false;
             tbConsole.Text = ">";
             // 
-            // menuStrip1
-            // 
-            menuStrip1.Dock = DockStyle.None;
-            menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { menuPanely });
-            menuStrip1.Location = new Point(12, 7);
-            menuStrip1.Name = "menuStrip1";
-            menuStrip1.Padding = new Padding(5, 2, 0, 2);
-            menuStrip1.Size = new Size(61, 24);
-            menuStrip1.TabIndex = 4;
-            menuStrip1.Text = "menuStrip1";
-            // 
-            // menuPanely
-            // 
-            menuPanely.DropDownItems.AddRange(new ToolStripItem[] { itemPromenne, itemPodminky });
-            menuPanely.Name = "menuPanely";
-            menuPanely.Size = new Size(54, 20);
-            menuPanely.Text = "Panely";
-            // 
-            // itemPromenne
-            // 
-            itemPromenne.Name = "itemPromenne";
-            itemPromenne.Size = new Size(129, 22);
-            itemPromenne.Text = "Promìnné";
-            itemPromenne.Click += itemPromenne_Click;
-            // 
-            // itemPodminky
-            // 
-            itemPodminky.Name = "itemPodminky";
-            itemPodminky.Size = new Size(129, 22);
-            itemPodminky.Text = "Podmínky";
-            itemPodminky.Click += itemPodminky_Click;
-            // 
             // panelVlastnosti
             // 
             panelVlastnosti.BackColor = Color.Gray;
@@ -400,6 +370,55 @@ namespace Vyvojaky
             lbNazevP.TabIndex = 0;
             lbNazevP.Text = "Název: ";
             // 
+            // menuMain
+            // 
+            menuMain.Items.AddRange(new ToolStripItem[] { menuSoubor, menuPanely });
+            menuMain.Location = new Point(0, 0);
+            menuMain.Name = "menuMain";
+            menuMain.Size = new Size(1110, 24);
+            menuMain.TabIndex = 6;
+            menuMain.Text = "menuStrip1";
+            // 
+            // menuPanely
+            // 
+            menuPanely.DropDownItems.AddRange(new ToolStripItem[] { itemVars, itemIfs });
+            menuPanely.Name = "menuPanely";
+            menuPanely.Size = new Size(54, 20);
+            menuPanely.Text = "Panely";
+            // 
+            // itemVars
+            // 
+            itemVars.Name = "itemVars";
+            itemVars.Size = new Size(129, 22);
+            itemVars.Text = "Promìnné";
+            itemVars.Click += itemVars_Click;
+            // 
+            // itemIfs
+            // 
+            itemIfs.Name = "itemIfs";
+            itemIfs.Size = new Size(129, 22);
+            itemIfs.Text = "Podmínky";
+            itemIfs.Click += itemIfs_Click;
+            // 
+            // menuSoubor
+            // 
+            menuSoubor.DropDownItems.AddRange(new ToolStripItem[] { itemSave, itemOpen });
+            menuSoubor.Name = "menuSoubor";
+            menuSoubor.Size = new Size(57, 20);
+            menuSoubor.Text = "Soubor";
+            // 
+            // itemSave
+            // 
+            itemSave.Name = "itemSave";
+            itemSave.Size = new Size(180, 22);
+            itemSave.Text = "Uložit";
+            // 
+            // itemOpen
+            // 
+            itemOpen.Name = "itemOpen";
+            itemOpen.Size = new Size(180, 22);
+            itemOpen.Text = "Otevøít";
+            // 
             // formHlavniProTvorbu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -411,8 +430,8 @@ namespace Vyvojaky
             Controls.Add(panelConsole);
             Controls.Add(panelInformaci);
             Controls.Add(panelPracovni);
-            Controls.Add(menuStrip1);
-            MainMenuStrip = menuStrip1;
+            Controls.Add(menuMain);
+            MainMenuStrip = menuMain;
             Margin = new Padding(3, 2, 3, 2);
             Name = "formHlavniProTvorbu";
             Text = "Tvorba";
@@ -424,10 +443,10 @@ namespace Vyvojaky
             panelInformaci.PerformLayout();
             panelConsole.ResumeLayout(false);
             panelConsole.PerformLayout();
-            menuStrip1.ResumeLayout(false);
-            menuStrip1.PerformLayout();
             panelVlastnosti.ResumeLayout(false);
             panelVlastnosti.PerformLayout();
+            menuMain.ResumeLayout(false);
+            menuMain.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -437,10 +456,6 @@ namespace Vyvojaky
         private Panel panelInformaci;
         private Panel panelConsole;
         private TextBox tbConsole;
-        private MenuStrip menuStrip1;
-        private ToolStripMenuItem menuPanely;
-        private ToolStripMenuItem itemPromenne;
-        private ToolStripMenuItem itemPodminky;
         private Panel panelPodminky;
         private TextBox tbPromenna2;
         private TextBox tbPromenna1;
@@ -467,5 +482,12 @@ namespace Vyvojaky
         private Label lbHodnotaP;
         private Label lbTypP;
         private Button btNajitP;
+        private MenuStrip menuMain;
+        private ToolStripMenuItem menuPanely;
+        private ToolStripMenuItem itemVars;
+        private ToolStripMenuItem itemIfs;
+        private ToolStripMenuItem menuSoubor;
+        private ToolStripMenuItem itemSave;
+        private ToolStripMenuItem itemOpen;
     }
 }

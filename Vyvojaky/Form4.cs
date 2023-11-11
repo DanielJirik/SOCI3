@@ -26,6 +26,22 @@ namespace Vyvojaky
             lvPromenne.HideSelection = false;
         }
 
+        ////Přepínání mezi panely
+        private void itemVars_Click(object sender, EventArgs e)
+        {
+            panelInformaci.Show();
+            panelPodminky.Hide();
+        }
+
+        private void itemIfs_Click(object sender, EventArgs e)
+        {
+            panelPodminky.Show();
+            panelInformaci.Hide();
+        }
+
+
+        //
+
         //Objekt pro manipulaci se vsemi promennymi
         Promenne promenne = new Promenne();
 
@@ -180,25 +196,6 @@ namespace Vyvojaky
         Podminky podminky = new Podminky();
 
 
-        //přepínání mezi panely
-        private void itemPromenne_Click(object sender, EventArgs e)
-        {
-            menuPanely.Text = itemPromenne.Text;
-            panelInformaci.Show();
-            panelPodminky.Hide();
-
-
-        }
-
-        private void itemPodminky_Click(object sender, EventArgs e)
-        {
-            menuPanely.Text = itemPodminky.Text;
-            panelPodminky.Show();
-
-        }
-
-        //
-
         //tlačítko pro spuštění podmínky
         private void btPodminka_Click(object sender, EventArgs e)
         {
@@ -273,6 +270,8 @@ namespace Vyvojaky
         {
             operatory.Text = itemNerovnost.Text;
         }
+
+
 
 
 

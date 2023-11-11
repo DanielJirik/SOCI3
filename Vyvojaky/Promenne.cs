@@ -100,7 +100,8 @@ namespace Vyvojaky
 
 
             //TEST BLOCKU
-            Block block = new Block(typ, nazev, hodnota, pracPanel);
+            Block block = new Block(pracPanel);
+            block.BlockVar(typ, nazev, hodnota);
         }
     }
 }
