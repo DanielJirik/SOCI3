@@ -63,12 +63,12 @@ namespace Vyvojaky
             lbHodnotaP = new Label();
             lbNazevP = new Label();
             menuMain = new MenuStrip();
-            menuPanely = new ToolStripMenuItem();
-            itemVars = new ToolStripMenuItem();
-            itemIfs = new ToolStripMenuItem();
             menuSoubor = new ToolStripMenuItem();
             itemSave = new ToolStripMenuItem();
             itemOpen = new ToolStripMenuItem();
+            menuPanely = new ToolStripMenuItem();
+            itemVars = new ToolStripMenuItem();
+            itemIfs = new ToolStripMenuItem();
             panelPodminky.SuspendLayout();
             menuStrip2.SuspendLayout();
             panelInformaci.SuspendLayout();
@@ -79,6 +79,7 @@ namespace Vyvojaky
             // 
             // panelPracovni
             // 
+            panelPracovni.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panelPracovni.AutoScroll = true;
             panelPracovni.BackColor = Color.Gray;
             panelPracovni.Location = new Point(268, 38);
@@ -89,6 +90,7 @@ namespace Vyvojaky
             // 
             // panelPodminky
             // 
+            panelPodminky.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panelPodminky.BackColor = Color.Gray;
             panelPodminky.Controls.Add(btPodminka);
             panelPodminky.Controls.Add(tbPromenna2);
@@ -219,6 +221,7 @@ namespace Vyvojaky
             // 
             // panelInformaci
             // 
+            panelInformaci.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             panelInformaci.BackColor = Color.Gray;
             panelInformaci.Controls.Add(tbNajitPromennou);
             panelInformaci.Controls.Add(lbVytvorene);
@@ -307,6 +310,7 @@ namespace Vyvojaky
             // 
             // tbConsole
             // 
+            tbConsole.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             tbConsole.BackColor = Color.Black;
             tbConsole.Font = new Font("Arial", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             tbConsole.ForeColor = Color.White;
@@ -323,6 +327,7 @@ namespace Vyvojaky
             // 
             // panelVlastnosti
             // 
+            panelVlastnosti.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panelVlastnosti.BackColor = Color.Gray;
             panelVlastnosti.Controls.Add(btNajitP);
             panelVlastnosti.Controls.Add(lbTypP);
@@ -379,6 +384,25 @@ namespace Vyvojaky
             menuMain.TabIndex = 6;
             menuMain.Text = "menuStrip1";
             // 
+            // menuSoubor
+            // 
+            menuSoubor.DropDownItems.AddRange(new ToolStripItem[] { itemSave, itemOpen });
+            menuSoubor.Name = "menuSoubor";
+            menuSoubor.Size = new Size(57, 20);
+            menuSoubor.Text = "Soubor";
+            // 
+            // itemSave
+            // 
+            itemSave.Name = "itemSave";
+            itemSave.Size = new Size(110, 22);
+            itemSave.Text = "Uložit";
+            // 
+            // itemOpen
+            // 
+            itemOpen.Name = "itemOpen";
+            itemOpen.Size = new Size(110, 22);
+            itemOpen.Text = "Otevøít";
+            // 
             // menuPanely
             // 
             menuPanely.DropDownItems.AddRange(new ToolStripItem[] { itemVars, itemIfs });
@@ -400,25 +424,6 @@ namespace Vyvojaky
             itemIfs.Text = "Podmínky";
             itemIfs.Click += itemIfs_Click;
             // 
-            // menuSoubor
-            // 
-            menuSoubor.DropDownItems.AddRange(new ToolStripItem[] { itemSave, itemOpen });
-            menuSoubor.Name = "menuSoubor";
-            menuSoubor.Size = new Size(57, 20);
-            menuSoubor.Text = "Soubor";
-            // 
-            // itemSave
-            // 
-            itemSave.Name = "itemSave";
-            itemSave.Size = new Size(180, 22);
-            itemSave.Text = "Uložit";
-            // 
-            // itemOpen
-            // 
-            itemOpen.Name = "itemOpen";
-            itemOpen.Size = new Size(180, 22);
-            itemOpen.Text = "Otevøít";
-            // 
             // formHlavniProTvorbu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -426,15 +431,16 @@ namespace Vyvojaky
             BackColor = Color.FromArgb(64, 64, 64);
             ClientSize = new Size(1110, 497);
             Controls.Add(panelVlastnosti);
-            Controls.Add(panelPodminky);
             Controls.Add(panelConsole);
-            Controls.Add(panelInformaci);
             Controls.Add(panelPracovni);
             Controls.Add(menuMain);
+            Controls.Add(panelInformaci);
+            Controls.Add(panelPodminky);
             MainMenuStrip = menuMain;
             Margin = new Padding(3, 2, 3, 2);
             Name = "formHlavniProTvorbu";
             Text = "Tvorba";
+            FormClosing += formHlavniProTvorbu_FormClosing;
             panelPodminky.ResumeLayout(false);
             panelPodminky.PerformLayout();
             menuStrip2.ResumeLayout(false);

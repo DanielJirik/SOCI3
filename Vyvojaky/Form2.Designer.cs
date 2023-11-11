@@ -38,26 +38,28 @@
             lbNazev.AutoSize = true;
             lbNazev.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
             lbNazev.ForeColor = Color.Black;
-            lbNazev.Location = new Point(99, 123);
+            lbNazev.Location = new Point(87, 92);
             lbNazev.Name = "lbNazev";
-            lbNazev.Size = new Size(233, 41);
+            lbNazev.Size = new Size(187, 32);
             lbNazev.TabIndex = 0;
             lbNazev.Text = "Název souboru: ";
             // 
             // tbVstupNazevSouboru
             // 
             tbVstupNazevSouboru.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            tbVstupNazevSouboru.Location = new Point(338, 128);
+            tbVstupNazevSouboru.Location = new Point(296, 96);
+            tbVstupNazevSouboru.Margin = new Padding(3, 2, 3, 2);
             tbVstupNazevSouboru.Name = "tbVstupNazevSouboru";
-            tbVstupNazevSouboru.Size = new Size(260, 38);
+            tbVstupNazevSouboru.Size = new Size(228, 32);
             tbVstupNazevSouboru.TabIndex = 1;
             // 
             // btVytvorit
             // 
             btVytvorit.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            btVytvorit.Location = new Point(338, 183);
+            btVytvorit.Location = new Point(296, 137);
+            btVytvorit.Margin = new Padding(3, 2, 3, 2);
             btVytvorit.Name = "btVytvorit";
-            btVytvorit.Size = new Size(260, 45);
+            btVytvorit.Size = new Size(228, 34);
             btVytvorit.TabIndex = 2;
             btVytvorit.Text = "Vytvořit nový soubor";
             btVytvorit.UseVisualStyleBackColor = true;
@@ -65,15 +67,17 @@
             // 
             // formNovySoubor
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(0, 192, 192);
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(700, 338);
             Controls.Add(btVytvorit);
             Controls.Add(tbVstupNazevSouboru);
             Controls.Add(lbNazev);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "formNovySoubor";
             Text = "Nový soubor";
+            FormClosing += formNovySoubor_FormClosing;
             ResumeLayout(false);
             PerformLayout();
         }

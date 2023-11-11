@@ -21,6 +21,12 @@ namespace Vyvojaky
         {
             Form tvorba = new formHlavniProTvorbu();
             tvorba.Show();
+            this.Close();
+        }
+
+        private void formNovySoubor_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Environment.Exit(0);
         }
     }
 }

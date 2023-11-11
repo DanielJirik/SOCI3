@@ -272,6 +272,21 @@ namespace Vyvojaky
         }
 
 
+        //Nastane před zavřením formu
+        private void formHlavniProTvorbu_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Skutečně chcete odejít?", "Pozor", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                Environment.Exit(0);
+            }
+            else
+            {
+                e.Cancel = true;
+            }
+        }
+
+
 
 
 
