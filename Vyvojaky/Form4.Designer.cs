@@ -94,7 +94,7 @@ namespace Vyvojaky
             panelPodminky.Controls.Add(lbOperator);
             panelPodminky.Controls.Add(lbPromenna1);
             panelPodminky.Controls.Add(menuStrip2);
-            panelPodminky.Location = new Point(268, 38);
+            panelPodminky.Location = new Point(12, 38);
             panelPodminky.Name = "panelPodminky";
             panelPodminky.Size = new Size(252, 361);
             panelPodminky.TabIndex = 3;

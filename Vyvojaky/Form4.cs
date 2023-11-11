@@ -36,12 +36,12 @@ namespace Vyvojaky
 
         private void tbPromenna_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter && KontrolaNazvu())
+            string prikaz = tbPromenna.Text;
+
+            if (e.KeyCode == Keys.Enter && KontrolaNazvu(prikaz.Split("=")[0].Trim()))
             {
-                string prikaz = "";
                 try
                 {
-                    prikaz = tbPromenna.Text;
                     Regex.Replace(prikaz, @"\s+", "");
 
                     nazevPromenne = prikaz.Split("=")[0].Trim();
@@ -135,7 +135,7 @@ namespace Vyvojaky
 
         //Presune hledany block doleva nahoru
         private void btNajitP_Click(object sender, EventArgs e)
-        {            
+        {
             DialogResult result = MessageBox.Show("Skutečně si přejete přesunout tento block do levého horního rohu plochy?", "Upozornění", MessageBoxButtons.YesNo);
 
             if (result == DialogResult.Yes)
@@ -155,14 +155,14 @@ namespace Vyvojaky
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show("Něco se nepodařilo.");                    
+                    MessageBox.Show("Něco se nepodařilo.");
                 }
             }
         }
 
 
         //Metoda pro kontrolu duplikatu
-        bool KontrolaNazvu()
+        bool KontrolaNazvu(string nazevPromenne)
         {
             foreach (string nazev in Promenne.pouziteNazvy)
             {
