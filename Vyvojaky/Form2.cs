@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -26,7 +26,8 @@ namespace Vyvojaky
 
         private void formNovySoubor_FormClosing(object sender, FormClosingEventArgs e)
         {
-
+            if (!formHlavniProTvorbu.MainIsOpen)
+                Environment.Exit(0);
         }
     }
 }
