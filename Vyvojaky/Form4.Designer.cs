@@ -35,7 +35,7 @@ namespace Vyvojaky
             panelPracovni = new Panel();
             panelPodminky = new Panel();
             btPridatPodminku = new Button();
-            tbPromenna1 = new TextBox();
+            tbPodminka = new TextBox();
             lbPodminka = new Label();
             panelInformaci = new Panel();
             tbNajitPromennou = new TextBox();
@@ -80,7 +80,7 @@ namespace Vyvojaky
             panelPodminky.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panelPodminky.BackColor = Color.Gray;
             panelPodminky.Controls.Add(btPridatPodminku);
-            panelPodminky.Controls.Add(tbPromenna1);
+            panelPodminky.Controls.Add(tbPodminka);
             panelPodminky.Controls.Add(lbPodminka);
             panelPodminky.Location = new Point(11, 51);
             panelPodminky.Margin = new Padding(3, 4, 3, 4);
@@ -96,14 +96,14 @@ namespace Vyvojaky
             btPridatPodminku.TabIndex = 6;
             btPridatPodminku.Text = "Pøidat podmínku";
             btPridatPodminku.UseVisualStyleBackColor = true;
-            btPridatPodminku.Click += btPodminka_Click;
+            btPridatPodminku.Click += btPridaniPodminky_Click;
             // 
-            // tbPromenna1
+            // tbPodminka
             // 
-            tbPromenna1.Location = new Point(39, 69);
-            tbPromenna1.Name = "tbPromenna1";
-            tbPromenna1.Size = new Size(175, 27);
-            tbPromenna1.TabIndex = 3;
+            tbPodminka.Location = new Point(39, 69);
+            tbPodminka.Name = "tbPodminka";
+            tbPodminka.Size = new Size(175, 27);
+            tbPodminka.TabIndex = 3;
             // 
             // lbPodminka
             // 
@@ -124,7 +124,7 @@ namespace Vyvojaky
             panelInformaci.Controls.Add(lbPriklady);
             panelInformaci.Controls.Add(lbPromenna);
             panelInformaci.Controls.Add(tbPromenna);
-            panelInformaci.Location = new Point(12, 51);
+            panelInformaci.Location = new Point(10, 51);
             panelInformaci.Margin = new Padding(3, 4, 3, 4);
             panelInformaci.Name = "panelInformaci";
             panelInformaci.Size = new Size(288, 481);
@@ -362,7 +362,7 @@ namespace Vyvojaky
         private TextBox tbConsole;
         private Panel panelPodminky;
         private TextBox tbPromenna2;
-        private TextBox tbPromenna1;
+        private TextBox tbPodminka;
         private Label lbPromenna2;
         private Label lbOperator;
         private Label lbPodminka;

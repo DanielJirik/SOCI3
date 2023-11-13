@@ -18,6 +18,16 @@ namespace Vyvojaky
 
         }
 
+        public Podminky(string name) 
+        { 
+            
+        }
+
+        public void vytvoreniPodminky() 
+        { 
+            
+        }
+
         public void porovnani(int prom1, int prom2, string operatory, TextBox console) 
         {
             

@@ -197,79 +197,57 @@ namespace Vyvojaky
 
 
         //tlačítko pro spuštění podmínky
-        private void btPodminka_Click(object sender, EventArgs e)
+        private void btPridaniPodminky_Click(object sender, EventArgs e)
         {
-            List<string> nazvy = Promenne.pouziteNazvy;
-            Dictionary<string, Int16> inty16 = Promenne.Int16V;
             try
             {
-                Int16 value1 = 0;
-                Int16 value2 = 0;
-                string prom1 = tbPromenna1.Text;
-                string prom2 = tbPromenna2.Text;
-
-                string oper = operatory.Text;
-                (prom1, prom2) = podminky.hledani(prom1, prom2, nazvy, inty16, tbConsole);
-
-
-                //tbConsole.Text += prom2;
-                if (Int16.TryParse(prom1, out value1) && Int16.TryParse(prom2, out value2))
-                {
-                    value1 = Convert.ToInt16(prom1);
-                    value2 = Convert.ToInt16(prom2);
-                    podminky.porovnani(value1, value2, oper, tbConsole);
-                }
-                else
-                {
-                    podminky.porovnaniProString(prom1, prom2, oper, tbConsole);
-                }
-
-                tbPromenna1.Text = "";
-                tbPromenna2.Text = "";
-                operatory.Text = "operátory";
+                string text = tbPodminka.Text.Trim();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                tbConsole.Text += "Error" + "\r\n" + ">";
-                tbPromenna1.Text = "";
-                tbPromenna2.Text = "";
-                operatory.Text = "operátory";
+
+                MessageBox.Show("Error: " + ex);
             }
+            //List<string> nazvy = Promenne.pouziteNazvy;
+            //Dictionary<string, Int16> inty16 = Promenne.Int16V;
+            //try
+            //{
+            //    Int16 value1 = 0;
+            //    Int16 value2 = 0;
+            //    string prom1 = tbPromenna1.Text;
+            //    string prom2 = tbPromenna2.Text;
+
+            //    string oper = operatory.Text;
+            //    (prom1, prom2) = podminky.hledani(prom1, prom2, nazvy, inty16, tbConsole);
+
+
+            //    //tbConsole.Text += prom2;
+            //    if (Int16.TryParse(prom1, out value1) && Int16.TryParse(prom2, out value2))
+            //    {
+            //        value1 = Convert.ToInt16(prom1);
+            //        value2 = Convert.ToInt16(prom2);
+            //        podminky.porovnani(value1, value2, oper, tbConsole);
+            //    }
+            //    else
+            //    {
+            //        podminky.porovnaniProString(prom1, prom2, oper, tbConsole);
+            //    }
+
+            //    tbPromenna1.Text = "";
+            //    tbPromenna2.Text = "";
+            //    operatory.Text = "operátory";
+            //}
+            //catch (Exception)
+            //{
+            //    tbConsole.Text += "Error" + "\r\n" + ">";
+            //    tbPromenna1.Text = "";
+            //    tbPromenna2.Text = "";
+            //    operatory.Text = "operátory";
+            //}
 
 
         }
         //
-
-        //itemy z menuStripu pro operatory
-        private void itemVetsi_Click(object sender, EventArgs e)
-        {
-            operatory.Text = itemVetsi.ToString();
-        }
-
-        private void itemMensi_Click(object sender, EventArgs e)
-        {
-            operatory.Text = itemMensi.Text;
-        }
-
-        private void itemMensiRovno_Click(object sender, EventArgs e)
-        {
-            operatory.Text = itemMensiRovno.Text;
-        }
-
-        private void itemVetsiRovno_Click(object sender, EventArgs e)
-        {
-            operatory.Text = itemVetsiRovno.Text;
-        }
-
-        private void itemRovnost_Click(object sender, EventArgs e)
-        {
-            operatory.Text = itemRovnost.Text;
-        }
-
-        private void itemNerovnost_Click(object sender, EventArgs e)
-        {
-            operatory.Text = itemNerovnost.Text;
-        }
 
 
         //Nastane před zavřením formu
