@@ -24,6 +24,8 @@ namespace Vyvojaky
             promenne.Setup(panelPracovni);
 
             lvPromenne.HideSelection = false;
+
+            MainIsOpen = true;
         }
 
         ////Přepínání mezi panely
@@ -273,11 +275,13 @@ namespace Vyvojaky
 
 
         //Nastane před zavřením formu
+        public static bool MainIsOpen;
         private void formHlavniProTvorbu_FormClosing(object sender, FormClosingEventArgs e)
         {
             DialogResult result = MessageBox.Show("Skutečně chcete odejít?", "Pozor", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
+                MainIsOpen = false;
                 Environment.Exit(0);
             }
             else
