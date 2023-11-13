@@ -28,26 +28,15 @@ namespace Vyvojaky
         /// </summary>
         private void InitializeComponent()
         {
-            ListViewGroup listViewGroup1 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
-            ListViewGroup listViewGroup2 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
-            ListViewGroup listViewGroup3 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
-            ListViewGroup listViewGroup4 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
+            ListViewGroup listViewGroup5 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
+            ListViewGroup listViewGroup6 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
+            ListViewGroup listViewGroup7 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
+            ListViewGroup listViewGroup8 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
             panelPracovni = new Panel();
             panelPodminky = new Panel();
-            btPodminka = new Button();
-            tbPromenna2 = new TextBox();
+            btPridatPodminku = new Button();
             tbPromenna1 = new TextBox();
-            lbPromenna2 = new Label();
-            lbOperator = new Label();
-            lbPromenna1 = new Label();
-            menuStrip2 = new MenuStrip();
-            operatory = new ToolStripMenuItem();
-            itemVetsi = new ToolStripMenuItem();
-            itemMensi = new ToolStripMenuItem();
-            itemMensiRovno = new ToolStripMenuItem();
-            itemVetsiRovno = new ToolStripMenuItem();
-            itemRovnost = new ToolStripMenuItem();
-            itemNerovnost = new ToolStripMenuItem();
+            lbPodminka = new Label();
             panelInformaci = new Panel();
             tbNajitPromennou = new TextBox();
             lbVytvorene = new Label();
@@ -70,7 +59,6 @@ namespace Vyvojaky
             itemVars = new ToolStripMenuItem();
             itemIfs = new ToolStripMenuItem();
             panelPodminky.SuspendLayout();
-            menuStrip2.SuspendLayout();
             panelInformaci.SuspendLayout();
             panelConsole.SuspendLayout();
             panelVlastnosti.SuspendLayout();
@@ -82,142 +70,49 @@ namespace Vyvojaky
             panelPracovni.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panelPracovni.AutoScroll = true;
             panelPracovni.BackColor = Color.Gray;
-            panelPracovni.Location = new Point(268, 38);
-            panelPracovni.Margin = new Padding(3, 2, 3, 2);
+            panelPracovni.Location = new Point(306, 51);
             panelPracovni.Name = "panelPracovni";
-            panelPracovni.Size = new Size(832, 361);
+            panelPracovni.Size = new Size(951, 481);
             panelPracovni.TabIndex = 1;
             // 
             // panelPodminky
             // 
             panelPodminky.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panelPodminky.BackColor = Color.Gray;
-            panelPodminky.Controls.Add(btPodminka);
-            panelPodminky.Controls.Add(tbPromenna2);
+            panelPodminky.Controls.Add(btPridatPodminku);
             panelPodminky.Controls.Add(tbPromenna1);
-            panelPodminky.Controls.Add(lbPromenna2);
-            panelPodminky.Controls.Add(lbOperator);
-            panelPodminky.Controls.Add(lbPromenna1);
-            panelPodminky.Controls.Add(menuStrip2);
-            panelPodminky.Location = new Point(10, 38);
+            panelPodminky.Controls.Add(lbPodminka);
+            panelPodminky.Location = new Point(11, 51);
+            panelPodminky.Margin = new Padding(3, 4, 3, 4);
             panelPodminky.Name = "panelPodminky";
-            panelPodminky.Size = new Size(252, 361);
+            panelPodminky.Size = new Size(288, 481);
             panelPodminky.TabIndex = 3;
             // 
-            // btPodminka
+            // btPridatPodminku
             // 
-            btPodminka.Location = new Point(30, 191);
-            btPodminka.Margin = new Padding(3, 2, 3, 2);
-            btPodminka.Name = "btPodminka";
-            btPodminka.Size = new Size(160, 22);
-            btPodminka.TabIndex = 6;
-            btPodminka.Text = "Spustit Podminku";
-            btPodminka.UseVisualStyleBackColor = true;
-            btPodminka.Click += btPodminka_Click;
-            // 
-            // tbPromenna2
-            // 
-            tbPromenna2.Location = new Point(34, 159);
-            tbPromenna2.Margin = new Padding(3, 2, 3, 2);
-            tbPromenna2.Name = "tbPromenna2";
-            tbPromenna2.Size = new Size(154, 23);
-            tbPromenna2.TabIndex = 4;
+            btPridatPodminku.Location = new Point(39, 113);
+            btPridatPodminku.Name = "btPridatPodminku";
+            btPridatPodminku.Size = new Size(183, 29);
+            btPridatPodminku.TabIndex = 6;
+            btPridatPodminku.Text = "Pøidat podmínku";
+            btPridatPodminku.UseVisualStyleBackColor = true;
+            btPridatPodminku.Click += btPodminka_Click;
             // 
             // tbPromenna1
             // 
-            tbPromenna1.Location = new Point(34, 52);
-            tbPromenna1.Margin = new Padding(3, 2, 3, 2);
+            tbPromenna1.Location = new Point(39, 69);
             tbPromenna1.Name = "tbPromenna1";
-            tbPromenna1.Size = new Size(154, 23);
+            tbPromenna1.Size = new Size(175, 27);
             tbPromenna1.TabIndex = 3;
             // 
-            // lbPromenna2
+            // lbPodminka
             // 
-            lbPromenna2.AutoSize = true;
-            lbPromenna2.Location = new Point(30, 142);
-            lbPromenna2.Name = "lbPromenna2";
-            lbPromenna2.Size = new Size(147, 15);
-            lbPromenna2.TabIndex = 2;
-            lbPromenna2.Text = "Druhá promìnná/hodnota";
-            // 
-            // lbOperator
-            // 
-            lbOperator.AutoSize = true;
-            lbOperator.Location = new Point(34, 88);
-            lbOperator.Name = "lbOperator";
-            lbOperator.Size = new Size(57, 15);
-            lbOperator.TabIndex = 1;
-            lbOperator.Text = "Operátor:";
-            // 
-            // lbPromenna1
-            // 
-            lbPromenna1.AutoSize = true;
-            lbPromenna1.Location = new Point(34, 35);
-            lbPromenna1.Name = "lbPromenna1";
-            lbPromenna1.Size = new Size(145, 15);
-            lbPromenna1.TabIndex = 0;
-            lbPromenna1.Text = "První promìnná/hodnota:";
-            // 
-            // menuStrip2
-            // 
-            menuStrip2.Dock = DockStyle.None;
-            menuStrip2.ImageScalingSize = new Size(20, 20);
-            menuStrip2.Items.AddRange(new ToolStripItem[] { operatory });
-            menuStrip2.Location = new Point(34, 113);
-            menuStrip2.Name = "menuStrip2";
-            menuStrip2.Padding = new Padding(5, 2, 0, 2);
-            menuStrip2.Size = new Size(79, 24);
-            menuStrip2.TabIndex = 5;
-            menuStrip2.Text = "menuStrip2";
-            // 
-            // operatory
-            // 
-            operatory.DropDownItems.AddRange(new ToolStripItem[] { itemVetsi, itemMensi, itemMensiRovno, itemVetsiRovno, itemRovnost, itemNerovnost });
-            operatory.Name = "operatory";
-            operatory.Size = new Size(72, 20);
-            operatory.Text = "Operátory";
-            // 
-            // itemVetsi
-            // 
-            itemVetsi.Name = "itemVetsi";
-            itemVetsi.Size = new Size(90, 22);
-            itemVetsi.Text = ">";
-            itemVetsi.Click += itemVetsi_Click;
-            // 
-            // itemMensi
-            // 
-            itemMensi.Name = "itemMensi";
-            itemMensi.Size = new Size(90, 22);
-            itemMensi.Text = "<";
-            itemMensi.Click += itemMensi_Click;
-            // 
-            // itemMensiRovno
-            // 
-            itemMensiRovno.Name = "itemMensiRovno";
-            itemMensiRovno.Size = new Size(90, 22);
-            itemMensiRovno.Text = "<=";
-            itemMensiRovno.Click += itemMensiRovno_Click;
-            // 
-            // itemVetsiRovno
-            // 
-            itemVetsiRovno.Name = "itemVetsiRovno";
-            itemVetsiRovno.Size = new Size(90, 22);
-            itemVetsiRovno.Text = ">=";
-            itemVetsiRovno.Click += itemVetsiRovno_Click;
-            // 
-            // itemRovnost
-            // 
-            itemRovnost.Name = "itemRovnost";
-            itemRovnost.Size = new Size(90, 22);
-            itemRovnost.Text = "==";
-            itemRovnost.Click += itemRovnost_Click;
-            // 
-            // itemNerovnost
-            // 
-            itemNerovnost.Name = "itemNerovnost";
-            itemNerovnost.Size = new Size(90, 22);
-            itemNerovnost.Text = "!=";
-            itemNerovnost.Click += itemNerovnost_Click;
+            lbPodminka.AutoSize = true;
+            lbPodminka.Location = new Point(39, 47);
+            lbPodminka.Name = "lbPodminka";
+            lbPodminka.Size = new Size(74, 20);
+            lbPodminka.TabIndex = 0;
+            lbPodminka.Text = "Podminka";
             // 
             // panelInformaci
             // 
@@ -229,25 +124,27 @@ namespace Vyvojaky
             panelInformaci.Controls.Add(lbPriklady);
             panelInformaci.Controls.Add(lbPromenna);
             panelInformaci.Controls.Add(tbPromenna);
-            panelInformaci.Location = new Point(10, 38);
+            panelInformaci.Location = new Point(12, 51);
+            panelInformaci.Margin = new Padding(3, 4, 3, 4);
             panelInformaci.Name = "panelInformaci";
-            panelInformaci.Size = new Size(252, 361);
+            panelInformaci.Size = new Size(288, 481);
             panelInformaci.TabIndex = 2;
             // 
             // tbNajitPromennou
             // 
-            tbNajitPromennou.Location = new Point(3, 134);
+            tbNajitPromennou.Location = new Point(3, 179);
+            tbNajitPromennou.Margin = new Padding(3, 4, 3, 4);
             tbNajitPromennou.Name = "tbNajitPromennou";
-            tbNajitPromennou.Size = new Size(246, 23);
+            tbNajitPromennou.Size = new Size(281, 27);
             tbNajitPromennou.TabIndex = 13;
             tbNajitPromennou.TextChanged += tbNajitPromennou_TextChanged;
             // 
             // lbVytvorene
             // 
             lbVytvorene.AutoSize = true;
-            lbVytvorene.Location = new Point(3, 116);
+            lbVytvorene.Location = new Point(3, 155);
             lbVytvorene.Name = "lbVytvorene";
-            lbVytvorene.Size = new Size(118, 15);
+            lbVytvorene.Size = new Size(147, 20);
             lbVytvorene.TabIndex = 12;
             lbVytvorene.Text = "Vytvoøené promìnné";
             // 
@@ -255,18 +152,19 @@ namespace Vyvojaky
             // 
             lvPromenne.BorderStyle = BorderStyle.FixedSingle;
             lvPromenne.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            listViewGroup1.Header = "ListViewGroup";
-            listViewGroup1.Name = "test";
-            listViewGroup2.Header = "ListViewGroup";
-            listViewGroup2.Name = "test1";
-            listViewGroup3.Header = "ListViewGroup";
-            listViewGroup3.Name = "test2";
-            listViewGroup4.Header = "ListViewGroup";
-            listViewGroup4.Name = "test3";
-            lvPromenne.Groups.AddRange(new ListViewGroup[] { listViewGroup1, listViewGroup2, listViewGroup3, listViewGroup4 });
-            lvPromenne.Location = new Point(3, 159);
+            listViewGroup5.Header = "ListViewGroup";
+            listViewGroup5.Name = "test";
+            listViewGroup6.Header = "ListViewGroup";
+            listViewGroup6.Name = "test1";
+            listViewGroup7.Header = "ListViewGroup";
+            listViewGroup7.Name = "test2";
+            listViewGroup8.Header = "ListViewGroup";
+            listViewGroup8.Name = "test3";
+            lvPromenne.Groups.AddRange(new ListViewGroup[] { listViewGroup5, listViewGroup6, listViewGroup7, listViewGroup8 });
+            lvPromenne.Location = new Point(3, 212);
+            lvPromenne.Margin = new Padding(3, 4, 3, 4);
             lvPromenne.Name = "lvPromenne";
-            lvPromenne.Size = new Size(246, 199);
+            lvPromenne.Size = new Size(281, 265);
             lvPromenne.TabIndex = 11;
             lvPromenne.UseCompatibleStateImageBehavior = false;
             lvPromenne.View = View.List;
@@ -275,26 +173,27 @@ namespace Vyvojaky
             // lbPriklady
             // 
             lbPriklady.AutoSize = true;
-            lbPriklady.Location = new Point(3, 60);
+            lbPriklady.Location = new Point(3, 80);
             lbPriklady.Name = "lbPriklady";
-            lbPriklady.Size = new Size(217, 15);
+            lbPriklady.Size = new Size(273, 20);
             lbPriklady.TabIndex = 10;
             lbPriklady.Text = "Pøíklady: a = 5, b = 3.14, jmeno = Aneta ";
             // 
             // lbPromenna
             // 
             lbPromenna.AutoSize = true;
-            lbPromenna.Location = new Point(3, 16);
+            lbPromenna.Location = new Point(3, 21);
             lbPromenna.Name = "lbPromenna";
-            lbPromenna.Size = new Size(93, 15);
+            lbPromenna.Size = new Size(116, 20);
             lbPromenna.TabIndex = 9;
             lbPromenna.Text = "Nová promìnná";
             // 
             // tbPromenna
             // 
-            tbPromenna.Location = new Point(3, 34);
+            tbPromenna.Location = new Point(3, 45);
+            tbPromenna.Margin = new Padding(3, 4, 3, 4);
             tbPromenna.Name = "tbPromenna";
-            tbPromenna.Size = new Size(246, 23);
+            tbPromenna.Size = new Size(281, 27);
             tbPromenna.TabIndex = 8;
             tbPromenna.KeyDown += tbPromenna_KeyDown;
             // 
@@ -302,10 +201,9 @@ namespace Vyvojaky
             // 
             panelConsole.BackColor = Color.White;
             panelConsole.Controls.Add(tbConsole);
-            panelConsole.Location = new Point(10, 409);
-            panelConsole.Margin = new Padding(3, 2, 3, 2);
+            panelConsole.Location = new Point(11, 545);
             panelConsole.Name = "panelConsole";
-            panelConsole.Size = new Size(522, 85);
+            panelConsole.Size = new Size(597, 113);
             panelConsole.TabIndex = 3;
             // 
             // tbConsole
@@ -314,13 +212,12 @@ namespace Vyvojaky
             tbConsole.BackColor = Color.Black;
             tbConsole.Font = new Font("Arial", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             tbConsole.ForeColor = Color.White;
-            tbConsole.Location = new Point(3, 2);
-            tbConsole.Margin = new Padding(3, 2, 3, 2);
+            tbConsole.Location = new Point(3, 3);
             tbConsole.Multiline = true;
             tbConsole.Name = "tbConsole";
             tbConsole.ReadOnly = true;
             tbConsole.ScrollBars = ScrollBars.Vertical;
-            tbConsole.Size = new Size(518, 81);
+            tbConsole.Size = new Size(591, 107);
             tbConsole.TabIndex = 0;
             tbConsole.TabStop = false;
             tbConsole.Text = ">";
@@ -333,16 +230,18 @@ namespace Vyvojaky
             panelVlastnosti.Controls.Add(lbTypP);
             panelVlastnosti.Controls.Add(lbHodnotaP);
             panelVlastnosti.Controls.Add(lbNazevP);
-            panelVlastnosti.Location = new Point(538, 411);
+            panelVlastnosti.Location = new Point(615, 548);
+            panelVlastnosti.Margin = new Padding(3, 4, 3, 4);
             panelVlastnosti.Name = "panelVlastnosti";
-            panelVlastnosti.Size = new Size(560, 83);
+            panelVlastnosti.Size = new Size(640, 111);
             panelVlastnosti.TabIndex = 5;
             // 
             // btNajitP
             // 
-            btNajitP.Location = new Point(461, 5);
+            btNajitP.Location = new Point(527, 7);
+            btNajitP.Margin = new Padding(3, 4, 3, 4);
             btNajitP.Name = "btNajitP";
-            btNajitP.Size = new Size(96, 23);
+            btNajitP.Size = new Size(110, 31);
             btNajitP.TabIndex = 3;
             btNajitP.Text = "Najít na ploše";
             btNajitP.UseVisualStyleBackColor = true;
@@ -351,36 +250,38 @@ namespace Vyvojaky
             // lbTypP
             // 
             lbTypP.AutoSize = true;
-            lbTypP.Location = new Point(3, 53);
+            lbTypP.Location = new Point(3, 71);
             lbTypP.Name = "lbTypP";
-            lbTypP.Size = new Size(70, 15);
+            lbTypP.Size = new Size(88, 20);
             lbTypP.TabIndex = 2;
             lbTypP.Text = "Datový typ: ";
             // 
             // lbHodnotaP
             // 
             lbHodnotaP.AutoSize = true;
-            lbHodnotaP.Location = new Point(3, 29);
+            lbHodnotaP.Location = new Point(3, 39);
             lbHodnotaP.Name = "lbHodnotaP";
-            lbHodnotaP.Size = new Size(60, 15);
+            lbHodnotaP.Size = new Size(75, 20);
             lbHodnotaP.TabIndex = 1;
             lbHodnotaP.Text = "Hodnota: ";
             // 
             // lbNazevP
             // 
             lbNazevP.AutoSize = true;
-            lbNazevP.Location = new Point(3, 5);
+            lbNazevP.Location = new Point(3, 7);
             lbNazevP.Name = "lbNazevP";
-            lbNazevP.Size = new Size(45, 15);
+            lbNazevP.Size = new Size(57, 20);
             lbNazevP.TabIndex = 0;
             lbNazevP.Text = "Název: ";
             // 
             // menuMain
             // 
+            menuMain.ImageScalingSize = new Size(20, 20);
             menuMain.Items.AddRange(new ToolStripItem[] { menuSoubor, menuPanely });
             menuMain.Location = new Point(0, 0);
             menuMain.Name = "menuMain";
-            menuMain.Size = new Size(1110, 24);
+            menuMain.Padding = new Padding(7, 3, 0, 3);
+            menuMain.Size = new Size(1269, 30);
             menuMain.TabIndex = 6;
             menuMain.Text = "menuStrip1";
             // 
@@ -388,48 +289,48 @@ namespace Vyvojaky
             // 
             menuSoubor.DropDownItems.AddRange(new ToolStripItem[] { itemSave, itemOpen });
             menuSoubor.Name = "menuSoubor";
-            menuSoubor.Size = new Size(57, 20);
+            menuSoubor.Size = new Size(71, 24);
             menuSoubor.Text = "Soubor";
             // 
             // itemSave
             // 
             itemSave.Name = "itemSave";
-            itemSave.Size = new Size(110, 22);
+            itemSave.Size = new Size(137, 26);
             itemSave.Text = "Uložit";
             // 
             // itemOpen
             // 
             itemOpen.Name = "itemOpen";
-            itemOpen.Size = new Size(110, 22);
+            itemOpen.Size = new Size(137, 26);
             itemOpen.Text = "Otevøít";
             // 
             // menuPanely
             // 
             menuPanely.DropDownItems.AddRange(new ToolStripItem[] { itemVars, itemIfs });
             menuPanely.Name = "menuPanely";
-            menuPanely.Size = new Size(54, 20);
+            menuPanely.Size = new Size(65, 24);
             menuPanely.Text = "Panely";
             // 
             // itemVars
             // 
             itemVars.Name = "itemVars";
-            itemVars.Size = new Size(129, 22);
+            itemVars.Size = new Size(159, 26);
             itemVars.Text = "Promìnné";
             itemVars.Click += itemVars_Click;
             // 
             // itemIfs
             // 
             itemIfs.Name = "itemIfs";
-            itemIfs.Size = new Size(129, 22);
+            itemIfs.Size = new Size(159, 26);
             itemIfs.Text = "Podmínky";
             itemIfs.Click += itemIfs_Click;
             // 
             // formHlavniProTvorbu
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(64, 64, 64);
-            ClientSize = new Size(1110, 497);
+            ClientSize = new Size(1269, 663);
             Controls.Add(panelVlastnosti);
             Controls.Add(panelConsole);
             Controls.Add(panelPracovni);
@@ -437,14 +338,11 @@ namespace Vyvojaky
             Controls.Add(panelInformaci);
             Controls.Add(panelPodminky);
             MainMenuStrip = menuMain;
-            Margin = new Padding(3, 2, 3, 2);
             Name = "formHlavniProTvorbu";
             Text = "Tvorba";
             FormClosing += formHlavniProTvorbu_FormClosing;
             panelPodminky.ResumeLayout(false);
             panelPodminky.PerformLayout();
-            menuStrip2.ResumeLayout(false);
-            menuStrip2.PerformLayout();
             panelInformaci.ResumeLayout(false);
             panelInformaci.PerformLayout();
             panelConsole.ResumeLayout(false);
@@ -467,7 +365,7 @@ namespace Vyvojaky
         private TextBox tbPromenna1;
         private Label lbPromenna2;
         private Label lbOperator;
-        private Label lbPromenna1;
+        private Label lbPodminka;
         private MenuStrip menuStrip2;
         private ToolStripMenuItem operatory;
         private ToolStripMenuItem itemVetsi;
@@ -475,7 +373,7 @@ namespace Vyvojaky
         private ToolStripMenuItem itemMensiRovno;
         private ToolStripMenuItem itemVetsiRovno;
         private ToolStripMenuItem itemRovnost;
-        private Button btPodminka;
+        private Button btPridatPodminku;
         private ToolStripMenuItem itemNerovnost;
         private TextBox tbPromenna;
         private Label lbPriklady;
