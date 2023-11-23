@@ -73,15 +73,18 @@ namespace Vyvojaky
                 }
 
                 if (legitPrikaz)
-                {
-                    //Prida nazev do pouzitych nazvu
-                    Promenne.pouziteNazvy.Add(nazevPromenne);
-
+                {                    
                     promenne.VytvoritPromennou(nazevPromenne, hodnotaPromenne, tbConsole);
 
-                    lvPromenne.Items.Add(nazevPromenne + " > " + Promenne.typ);
-                    Promenne.typ = "";
+                    if (Promenne.isValid)
+                    {
+                        //Prida nazev do pouzitych nazvu
+                        Promenne.pouziteNazvy.Add(nazevPromenne);
 
+                        lvPromenne.Items.Add(nazevPromenne + " = " + Promenne.hodnota);
+                    }
+
+                    Promenne.typ = "";
                     tbPromenna.Text = "";
                     nazevPromenne = "";
                     hodnotaPromenne = "";
@@ -109,45 +112,51 @@ namespace Vyvojaky
         {
             if (lvPromenne.SelectedItems.Count > 0)
             {
+                
+
                 ListViewItem item = lvPromenne.SelectedItems[0];
-                string[] itemSplit = item.Text.Split(">");
-                string key = itemSplit[0].Trim();
+                string[] itemSplit = item.Text.Split(" = ");
 
                 lbNazevP.Text = "Název: " + itemSplit[0];
-                lbTypP.Text = "Datový typ: " + itemSplit[1];
+                lbHodnotaP.Text = "Hodnota: " + itemSplit[1];
 
-                string hodnota = "";
-                switch (itemSplit[1].Trim())
+                string typP = "";
+                string key = itemSplit[0].Trim();
+
+                if (Promenne.Int16V.ContainsKey(key))
                 {
-                    case "Int16":
-                        hodnota = Convert.ToString(Promenne.Int16V[key]);
-                        break;
-                    case "Int32":
-                        hodnota = Convert.ToString(Promenne.Int32V[key]);
-                        break;
-                    case "Int64":
-                        hodnota = Convert.ToString(Promenne.Int64V[key]);
-                        break;
-                    case "Float":
-                        hodnota = Convert.ToString(Promenne.FloatV[key]);
-                        break;
-                    case "Double":
-                        hodnota = Convert.ToString(Promenne.DoubleV[key]);
-                        break;
-                    case "Bool":
-                        hodnota = Convert.ToString(Promenne.BoolV[key]);
-                        break;
-                    case "Char":
-                        hodnota = Convert.ToString(Promenne.CharV[key]);
-                        break;
-                    case "String":
-                        hodnota = Promenne.StringV[key];
-                        break;
-                    default:
-                        break;
+                    typP = "Int16";
+                }
+                else if (Promenne.Int32V.ContainsKey(key))
+                {
+                    typP = "Int32";
+                }
+                else if (Promenne.Int64V.ContainsKey(key))
+                {
+                    typP = "Int64";
+                }
+                else if (Promenne.FloatV.ContainsKey(key))
+                {
+                    typP = "Float";
+                }
+                else if(Promenne.DoubleV.ContainsKey(key))
+                {
+                    typP = "Double";
+                }
+                else if (Promenne.BoolV.ContainsKey(key))
+                {
+                    typP = "Bool";
+                }
+                else if (Promenne.StringV.ContainsKey(key))
+                {
+                    typP = "String";
+                }
+                else if (Promenne.CharV.ContainsKey(key))
+                {
+                    typP = "Char";
                 }
 
-                lbHodnotaP.Text = "Hodnota: " + hodnota;
+                lbTypP.Text = "Datový typ: " + typP;
             }
         }
 
