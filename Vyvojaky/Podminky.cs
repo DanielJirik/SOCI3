@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
 using Microsoft.CSharp;
@@ -11,162 +12,157 @@ using Microsoft.CSharp;
 namespace Vyvojaky
 {
     internal class Podminky
-    {   
+    {
         public Podminky() 
         {
-        
-
-        }
-
-        public void porovnani(int prom1, int prom2, string operatory, TextBox console) 
-        {
             
-            switch (operatory)
-            {
-                case ">":
-                    if (prom1 > prom2)
-                    {
-                        console.Text += "Podminka -->true" + "\r\n" + ">";
-                    }
-                    else
-                    {
-                        console.Text += "Podminka -->false" + "\r\n" + ">";
-                    }
-                    break;
-                case "<":
-                    if (prom1 < prom2)
-                    {
-                        console.Text += "Podminka -->true" + "\r\n" + ">";
-                    }
-                    else
-                    {
-                        console.Text += "Podminka -->false" + "\r\n" + ">";
-                    }
-                    break;
-                case ">=":
-                    if (prom1 >= prom2)
-                    {
-                        console.Text += "Podminka -->true" + "\r\n" + ">";
-                    }
-                    else
-                    {
-                        console.Text += "Podminka -->false" + "\r\n" + ">";
-                    }
-                    break;
-                case "<=":
-                    if (prom1 <= prom2)
-                    {
-                        console.Text += "Podminka -->true" + "\r\n" + ">";
-                    }
-                    else
-                    {
-                        console.Text += "Podminka -->false" + "\r\n" + ">";
-                    }
-                    break;
-                case "==":
-                    if (prom1 == prom2)
-                    {
-                        console.Text += "Podminka -->true" + "\r\n" + ">";
-                    }
-                    else
-                    {
-                        console.Text += "Podminka -->false" + "\r\n" + ">";
-                    }
-                    break;
-                case "!=":
-                    if (prom1 != prom2)
-                    {
-                        console.Text += "Podminka -->true" + "\r\n" + ">";
-                    }
-                    else
-                    {
-                        console.Text += "Podminka -->false" + "\r\n" + ">"; 
-                    }
-                    break;
-                default:
-                    console.Text += "*Zadán chybný operátor" + "\r\n" + ">";
-                    break;
-
-            }
         }
 
-        public void porovnaniProString(string prom1, string prom2, string operatory, TextBox console)
+        string opr = "";
+        public bool isTrue(string prikaz)
         {
-            switch (operatory)
+            //př. příkazu: a > b, a == b, a <= b
+
+            string a, b;
+
+            try
             {
-                case "==":
-                    if (prom1 == prom2)
+                for (int i = 0; i < prikaz.Length; i++)
+                {
+                    char c = prikaz[i];
+
+                    if (c == '>' || c == '<' || c == '=')
                     {
-                        console.Text += "true" + "\r\n" + ">";
+                        if (prikaz[i + 1] == '=')
+                            { opr = c.ToString() + "="; break; }
+                        else
+                            opr = c.ToString();
+                    }
+                }
+                
+                a = prikaz.Split(opr)[0].Trim();
+                b = prikaz.Split(opr)[1].Trim();
+
+                string varTypeA = "";
+                string varTypeB = "";
+
+                if ((varTypeA = Promenne.FindVar(a)) != "")
+                {
+                    switch (varTypeA)
+                    {
+                        case "Int16":
+                            a = Promenne.Int16V[a].ToString();
+                            break;
+                        case "Int32":
+                            a = Promenne.Int32V[a].ToString();
+                            break;
+                        case "Int64":
+                            a = Promenne.Int64V[a].ToString();
+                            break;
+                        case "Float":
+                            a = Promenne.FloatV[a].ToString();
+                            break;
+                        case "Double":
+                            a = Promenne.DoubleV[a].ToString();
+                            break;
+                        case "Bool":
+                            a = Promenne.BoolV[a].ToString();
+                            break;
+                        case "String":
+                            a = '"' + Promenne.StringV[a].ToString() + '"';
+                            break;
+                        case "Char":
+                            a = "'" + Promenne.CharV[a].ToString() + "'";
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                if ((varTypeB = Promenne.FindVar(b)) != "")
+                {
+                    switch (varTypeB)
+                    {
+                        case "Int16":
+                            b = Promenne.Int16V[b].ToString();
+                            break;
+                        case "Int32":
+                            b = Promenne.Int32V[b].ToString();
+                            break;
+                        case "Int64":
+                            b = Promenne.Int64V[b].ToString();
+                            break;
+                        case "Float":
+                            b = Promenne.FloatV[b].ToString();
+                            break;
+                        case "Double":
+                            b = Promenne.DoubleV[b].ToString();
+                            break;
+                        case "Bool":
+                            b = Promenne.BoolV[b].ToString();
+                            break;
+                        case "String":
+                            b = '"' + Promenne.StringV[b].ToString() + '"';
+                            break;
+                        case "Char":
+                            b = "'" + Promenne.CharV[b].ToString() + "'";
+                            break;
+                        default:
+                            break;
+                    }
+                }
+
+                    if (((a[0] == '"' && a[a.Length - 1] == '"') && (b[0] == '"' && b[b.Length - 1] == '"')) //Je string nebo char (zároveň není instance)
+                    || ((a[0] == Convert.ToChar("'") && a[a.Length - 1] == Convert.ToChar("'")) && (b[0] == Convert.ToChar("'") && b[b.Length - 1] == Convert.ToChar("'"))))
+                {
+                    if (opr == "==" && a == b)
+                    {
+                        return true;
                     }
                     else
                     {
-                        console.Text += "false" + "\r\n" + ">";
+                        return false;
                     }
-                    break;
-                case "!=":
-                    if (prom1 != prom2)
+                }
+                else //Není string nebo char
+                {
+                    double _a = Convert.ToDouble(a);
+                    double _b = Convert.ToDouble(b);
+
+                    switch (opr)
                     {
-                        console.Text += "true" + "\r\n" + ">";
+                        case ">":
+                            if (_a > _b)
+                                return true;
+                            break;
+                        case "<":
+                            if (_a < _b)
+                                return true;
+                            break;
+                        case "==":
+                            if (_a == _b)
+                                return true;
+                            break;
+                        case ">=":
+                            if (_a >= _b)
+                                return true;
+                            break;
+                        case "<=":
+                            if (_a <= _b)
+                                return true;
+                            break;
+                        default:
+                            break;
                     }
-                    else
-                    {
-                        console.Text += "false" + "\r\n" + ">";
-                    }
-                    break;
-                default:
-                    console.Text += "Zadán chybný operátor" + "\r\n" + ">";
-                    break;
+                }
+
             }
+            catch (Exception)
+            {
+                MessageBox.Show("Něco je špatně.");
+            }
+
+            //Jakýkoliv jiný případ
+            return false;
         }
-
-        public (string, string) hledani(string text1, string text2, List<string> nazvy, Dictionary<string, Int16> inty16, TextBox console) 
-        {
-            Int16 value = 0;
-            string valueS1 = "";
-            string valueS2 = "";
-            if (nazvy.Contains(text1))
-            {
-                
-                if (inty16.ContainsKey(text1))
-                {
-                    inty16.TryGetValue(text1, out value);
-                    valueS1 = value.ToString();
-                }
-                else
-                {
-                    valueS1 = text1;
-                }
-                
-                
-            }
-            else
-            {
-                valueS1 = text1.ToString();
-            }
-
-            if (nazvy.Contains(text2))
-            {
-                if (inty16.ContainsKey(text2))
-                {
-                    inty16.TryGetValue(text2, out value);
-                    valueS2 = value.ToString();
-                }
-                else
-                {
-                    valueS2 = text2;
-                }
-                
-            }
-            else
-            {
-                valueS2 = text2.ToString();
-            }
-
-            return (valueS1, valueS2);
-        }
-
-
-        
     }
 }

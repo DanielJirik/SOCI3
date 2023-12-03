@@ -149,7 +149,6 @@ namespace Vyvojaky
         {
             if (hodnota[0] == '"' && hodnota[hodnota.Length - 1] == '"' && hodnota.Length >= 3)
                 return true;
-                //hodnota = Regex.Replace(hodnota, '"'.ToString(), "");
             return false;
         }
 
@@ -161,5 +160,45 @@ namespace Vyvojaky
 
             return false;
         }
+
+        //Metoda pro nalezení proměnné v Dictionaries
+        public static string FindVar(string key)
+        {
+            if (Promenne.Int16V.ContainsKey(key))
+            {
+                return "Int16";
+            }
+            else if (Promenne.Int32V.ContainsKey(key))
+            {
+                return "Int32";
+            }
+            else if (Promenne.Int64V.ContainsKey(key))
+            {
+                return "Int64";
+            }
+            else if (Promenne.FloatV.ContainsKey(key))
+            {
+                return "Float";
+            }
+            else if (Promenne.DoubleV.ContainsKey(key))
+            {
+                return "Double";
+            }
+            else if (Promenne.BoolV.ContainsKey(key))
+            {
+                return "Bool";
+            }
+            else if (Promenne.StringV.ContainsKey(key))
+            {
+                return "String";
+            }
+            else if (Promenne.CharV.ContainsKey(key))
+            {
+                return "Char";
+            }
+
+            return "";
+        }
+
     }
 }
