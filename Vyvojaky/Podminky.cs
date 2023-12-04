@@ -31,7 +31,7 @@ namespace Vyvojaky
                 {
                     char c = prikaz[i];
 
-                    if (c == '>' || c == '<' || c == '=')
+                    if (c == '>' || c == '<' || c == '=' || c == '!')
                     {
                         if (prikaz[i + 1] == '=')
                             { opr = c.ToString() + "="; break; }
@@ -114,44 +114,67 @@ namespace Vyvojaky
                     if (((a[0] == '"' && a[a.Length - 1] == '"') && (b[0] == '"' && b[b.Length - 1] == '"')) //Je string nebo char (zároveň není instance)
                     || ((a[0] == Convert.ToChar("'") && a[a.Length - 1] == Convert.ToChar("'")) && (b[0] == Convert.ToChar("'") && b[b.Length - 1] == Convert.ToChar("'"))))
                 {
-                    if (opr == "==" && a == b)
+
+                    switch (opr)
                     {
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
+                        case "==":
+                            if (a == b) return true;
+                            break;
+                        case "!=":
+                            if (a != b) return true;
+                            break;
+                        default:
+                            break;
                     }
                 }
                 else //Není string nebo char
                 {
-                    double _a = Convert.ToDouble(a);
-                    double _b = Convert.ToDouble(b);
-
-                    switch (opr)
+                    if (a == "True" || a == "true" || b == "True" || b == "true"
+                        || a == "False" || a == "false" || b == "False" || b == "false")
                     {
-                        case ">":
-                            if (_a > _b)
-                                return true;
-                            break;
-                        case "<":
-                            if (_a < _b)
-                                return true;
-                            break;
-                        case "==":
-                            if (_a == _b)
-                                return true;
-                            break;
-                        case ">=":
-                            if (_a >= _b)
-                                return true;
-                            break;
-                        case "<=":
-                            if (_a <= _b)
-                                return true;
-                            break;
-                        default:
-                            break;
+                        bool _a = Convert.ToBoolean(a);
+                        bool _b = Convert.ToBoolean(b);
+
+                        switch (opr)
+                        {
+                            case "==":
+                                if (_a == _b) return true;
+                                break;
+                            case "!=":
+                                if (_a != _b) return true;
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        double _a = Convert.ToDouble(a);
+                        double _b = Convert.ToDouble(b);
+
+                        switch (opr)
+                        {
+                            case ">":
+                                if (_a > _b) return true;
+                                break;
+                            case "<":
+                                if (_a < _b) return true;
+                                break;
+                            case "==":
+                                if (_a == _b) return true;
+                                break;
+                            case "!=":
+                                if (_a != _b) return true;
+                                break;
+                            case ">=":
+                                if (_a >= _b) return true;
+                                break;
+                            case "<=":
+                                if (_a <= _b) return true;
+                                break;
+                            default:
+                                break;
+                        }
                     }
                 }
 

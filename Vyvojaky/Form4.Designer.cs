@@ -28,10 +28,10 @@ namespace Vyvojaky
         /// </summary>
         private void InitializeComponent()
         {
-            ListViewGroup listViewGroup9 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
-            ListViewGroup listViewGroup10 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
-            ListViewGroup listViewGroup11 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
-            ListViewGroup listViewGroup12 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
+            ListViewGroup listViewGroup1 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
+            ListViewGroup listViewGroup2 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
+            ListViewGroup listViewGroup3 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
+            ListViewGroup listViewGroup4 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
             panelPracovni = new Panel();
             panelPodminky = new Panel();
             tbPodminka = new TextBox();
@@ -139,15 +139,15 @@ namespace Vyvojaky
             // 
             lvPromenne.BorderStyle = BorderStyle.FixedSingle;
             lvPromenne.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            listViewGroup9.Header = "ListViewGroup";
-            listViewGroup9.Name = "test";
-            listViewGroup10.Header = "ListViewGroup";
-            listViewGroup10.Name = "test1";
-            listViewGroup11.Header = "ListViewGroup";
-            listViewGroup11.Name = "test2";
-            listViewGroup12.Header = "ListViewGroup";
-            listViewGroup12.Name = "test3";
-            lvPromenne.Groups.AddRange(new ListViewGroup[] { listViewGroup9, listViewGroup10, listViewGroup11, listViewGroup12 });
+            listViewGroup1.Header = "ListViewGroup";
+            listViewGroup1.Name = "test";
+            listViewGroup2.Header = "ListViewGroup";
+            listViewGroup2.Name = "test1";
+            listViewGroup3.Header = "ListViewGroup";
+            listViewGroup3.Name = "test2";
+            listViewGroup4.Header = "ListViewGroup";
+            listViewGroup4.Name = "test3";
+            lvPromenne.Groups.AddRange(new ListViewGroup[] { listViewGroup1, listViewGroup2, listViewGroup3, listViewGroup4 });
             lvPromenne.Location = new Point(3, 159);
             lvPromenne.Name = "lvPromenne";
             lvPromenne.Size = new Size(246, 199);

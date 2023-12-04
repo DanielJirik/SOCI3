@@ -28,6 +28,7 @@ namespace Vyvojaky
             MainIsOpen = true;
         }
 
+
         ////Přepínání mezi panely
         private void itemVars_Click(object sender, EventArgs e)
         {
@@ -175,12 +176,15 @@ namespace Vyvojaky
         //Metoda pro kontrolu duplikatu
         bool KontrolaNazvu(string nazevPromenne)
         {
+            bool used = false;
             foreach (string nazev in Promenne.pouziteNazvy)
             {
                 if (nazevPromenne == nazev)
-                    return false;
+                    used = true;
             }
 
+            if (Keywords.Check(nazevPromenne) || used)
+                return false;
             return true;
         }
 

@@ -37,11 +37,7 @@ namespace Vyvojaky
 
             //INIT                        
             Block.pracPanel.Controls.Add(pb);
-            pb.Controls.Add(popis);
-
-
-
-
+            pb.Controls.Add(popis);            
         }
 
         //Drag and drop vars
