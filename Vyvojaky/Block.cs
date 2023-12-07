@@ -23,5 +23,10 @@ namespace Vyvojaky
             BlockVar blockVar = new BlockVar(typ, nazev, hodnota);
         }
 
+        public void BlockCon(string prikaz)
+        {
+            BlockCon blockCon = new BlockCon(prikaz);
+        }
+
     }
 }

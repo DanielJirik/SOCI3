@@ -13,12 +13,15 @@ namespace Vyvojaky
 {
     internal class Podminky
     {
-        public Podminky() 
+        Panel pracPanel;
+        public void Setup(Panel _pracPanel)
         {
-            
+            pracPanel = _pracPanel;
         }
 
         string opr = "";
+        bool cond = false;
+
         public bool isTrue(string prikaz)
         {
             //př. příkazu: a > b, a == b, a <= b
@@ -118,10 +121,10 @@ namespace Vyvojaky
                     switch (opr)
                     {
                         case "==":
-                            if (a == b) return true;
+                            if (a == b) cond = true;
                             break;
                         case "!=":
-                            if (a != b) return true;
+                            if (a != b) cond = true;
                             break;
                         default:
                             break;
@@ -138,10 +141,10 @@ namespace Vyvojaky
                         switch (opr)
                         {
                             case "==":
-                                if (_a == _b) return true;
+                                if (_a == _b) cond = true;
                                 break;
                             case "!=":
-                                if (_a != _b) return true;
+                                if (_a != _b) cond = true;
                                 break;
                             default:
                                 break;
@@ -155,37 +158,38 @@ namespace Vyvojaky
                         switch (opr)
                         {
                             case ">":
-                                if (_a > _b) return true;
+                                if (_a > _b) cond = true;
                                 break;
                             case "<":
-                                if (_a < _b) return true;
+                                if (_a < _b) cond = true;
                                 break;
                             case "==":
-                                if (_a == _b) return true;
+                                if (_a == _b) cond = true;
                                 break;
                             case "!=":
-                                if (_a != _b) return true;
+                                if (_a != _b) cond = true;
                                 break;
                             case ">=":
-                                if (_a >= _b) return true;
+                                if (_a >= _b) cond = true;
                                 break;
                             case "<=":
-                                if (_a <= _b) return true;
+                                if (_a <= _b) cond = true;
                                 break;
                             default:
                                 break;
                         }
                     }
                 }
-
             }
             catch (Exception)
             {
                 MessageBox.Show("Něco je špatně.");
             }
 
+            Block block = new Block(pracPanel);
+            block.BlockCon(prikaz);
             //Jakýkoliv jiný případ
-            return false;
+            return cond;
         }
     }
 }

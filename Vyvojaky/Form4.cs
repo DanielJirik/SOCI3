@@ -22,6 +22,7 @@ namespace Vyvojaky
             panelPodminky.Hide();
 
             promenne.Setup(panelPracovni);
+            podminky.Setup(panelPracovni);
 
             lvPromenne.HideSelection = false;
 
@@ -58,7 +59,7 @@ namespace Vyvojaky
 
             if (e.KeyCode == Keys.Enter)
             {
-                tbConsole.Text += podminky.isTrue(prikaz); //vrati false/true
+                tbConsole.Text += podminky.isTrue(prikaz) + Environment.NewLine + ">"; //vrati false/true
             }
         }
 

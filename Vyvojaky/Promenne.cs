@@ -28,10 +28,6 @@ namespace Vyvojaky
 
         private Panel pracPanel;
 
-        public Promenne()
-        {
-        }
-
         public void Setup(Panel _pracPanel)
         {
             pracPanel = _pracPanel;
