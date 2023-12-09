@@ -46,73 +46,10 @@ namespace Vyvojaky
                 a = prikaz.Split(opr)[0].Trim();
                 b = prikaz.Split(opr)[1].Trim();
 
-                string varTypeA = "";
-                string varTypeB = "";
-
-                if ((varTypeA = Promenne.FindVar(a)) != "")
-                {
-                    switch (varTypeA)
-                    {
-                        case "Int16":
-                            a = Promenne.Int16V[a].ToString();
-                            break;
-                        case "Int32":
-                            a = Promenne.Int32V[a].ToString();
-                            break;
-                        case "Int64":
-                            a = Promenne.Int64V[a].ToString();
-                            break;
-                        case "Float":
-                            a = Promenne.FloatV[a].ToString();
-                            break;
-                        case "Double":
-                            a = Promenne.DoubleV[a].ToString();
-                            break;
-                        case "Bool":
-                            a = Promenne.BoolV[a].ToString();
-                            break;
-                        case "String":
-                            a = '"' + Promenne.StringV[a].ToString() + '"';
-                            break;
-                        case "Char":
-                            a = "'" + Promenne.CharV[a].ToString() + "'";
-                            break;
-                        default:
-                            break;
-                    }
-                }
-                if ((varTypeB = Promenne.FindVar(b)) != "")
-                {
-                    switch (varTypeB)
-                    {
-                        case "Int16":
-                            b = Promenne.Int16V[b].ToString();
-                            break;
-                        case "Int32":
-                            b = Promenne.Int32V[b].ToString();
-                            break;
-                        case "Int64":
-                            b = Promenne.Int64V[b].ToString();
-                            break;
-                        case "Float":
-                            b = Promenne.FloatV[b].ToString();
-                            break;
-                        case "Double":
-                            b = Promenne.DoubleV[b].ToString();
-                            break;
-                        case "Bool":
-                            b = Promenne.BoolV[b].ToString();
-                            break;
-                        case "String":
-                            b = '"' + Promenne.StringV[b].ToString() + '"';
-                            break;
-                        case "Char":
-                            b = "'" + Promenne.CharV[b].ToString() + "'";
-                            break;
-                        default:
-                            break;
-                    }
-                }
+                if (Promenne.FindVar(a) != "")
+                    a = Promenne.FindVar(a);
+                if (Promenne.FindVar(b) != "")
+                    b = Promenne.FindVar(b);
 
                     if (((a[0] == '"' && a[a.Length - 1] == '"') && (b[0] == '"' && b[b.Length - 1] == '"')) //Je string nebo char (zároveň není instance)
                     || ((a[0] == Convert.ToChar("'") && a[a.Length - 1] == Convert.ToChar("'")) && (b[0] == Convert.ToChar("'") && b[b.Length - 1] == Convert.ToChar("'"))))
