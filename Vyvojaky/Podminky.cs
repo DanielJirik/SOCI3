@@ -46,10 +46,10 @@ namespace Vyvojaky
                 a = prikaz.Split(opr)[0].Trim();
                 b = prikaz.Split(opr)[1].Trim();
 
-                if (Promenne.FindVar(a) != "")
-                    a = Promenne.FindVar(a);
-                if (Promenne.FindVar(b) != "")
-                    b = Promenne.FindVar(b);
+                if (Promenne.FindVar(a, "value") != null)
+                    a = Promenne.FindVar(a, "value");
+                if (Promenne.FindVar(b, "value") != null)
+                    b = Promenne.FindVar(b, "value");
 
                     if (((a[0] == '"' && a[a.Length - 1] == '"') && (b[0] == '"' && b[b.Length - 1] == '"')) //Je string nebo char (zároveň není instance)
                     || ((a[0] == Convert.ToChar("'") && a[a.Length - 1] == Convert.ToChar("'")) && (b[0] == Convert.ToChar("'") && b[b.Length - 1] == Convert.ToChar("'"))))

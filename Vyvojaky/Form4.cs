@@ -140,7 +140,7 @@ namespace Vyvojaky
                 string typP = "";
                 string key = itemSplit[0].Trim();
 
-                typP = Promenne.FindVar(key);
+                typP = Promenne.FindVar(key, "value");
 
                 lbTypP.Text = "Datový typ: " + typP;
             }
