@@ -14,7 +14,7 @@ namespace Vyvojaky
     {
         //int16, int32, int64, float, double, bool, string, char
 
-        enum Type
+        public enum Type
         {
             Int,
             Float,
@@ -44,13 +44,13 @@ namespace Vyvojaky
 
         //Metoda na třídění výrazu
         static Type splitLock;
-        static List<string> SplitCommand(string command)
+        public static List<string> SplitCommand(string command)
         {
             List<string> _sequence = new List<string>();
             string arg = "";
             foreach (char ch in command)
             {
-                if (ch != ' ')
+                if (ch != ' ' && splitLock != Type.String)
                 {
                     if ((ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '(' || ch == ')') && arg != "")
                     {
@@ -61,11 +61,11 @@ namespace Vyvojaky
                     else
                         arg += ch;
                 }
-                else if(splitLock == Type.String)
+                else
                 {
                     if ((ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '(' || ch == ')') && arg != "")
                     {
-                        _sequence.Add(arg);
+                        _sequence.Add(arg.Trim());
                         _sequence.Add(ch.ToString());
                         arg = "";
                     }
@@ -73,7 +73,7 @@ namespace Vyvojaky
                         arg += ch;
                 }
             }
-            _sequence.Add(arg); //Přidání posledního členu
+            _sequence.Add(arg.Trim()); //Přidání posledního členu
             return _sequence;
         }
 
@@ -88,7 +88,7 @@ namespace Vyvojaky
         }
 
         //Metoda na řešení výrazu
-        static string SolveSequence(List<string> s)
+        public static string SolveSequence(List<string> s)
         {
             int value = 0;
             float valueF = 0.0f;

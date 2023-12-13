@@ -27,6 +27,7 @@ namespace Vyvojaky
             //př. příkazu: a > b, a == b, a <= b
 
             string a, b;
+            List<string> conSequence = new List<string>();
 
             try
             {
@@ -43,8 +44,18 @@ namespace Vyvojaky
                     }
                 }
                 
+                //Převede část příkazu na sekvenci, tu následně vyřeší jako výraz
                 a = prikaz.Split(opr)[0].Trim();
+                conSequence = Promenne.SplitCommand(a);
+                string temp = "";
+                if ((temp = Promenne.SumString(a)) != null) { a = '"' + temp + '"'; }
+                else if (conSequence.Count > 2) { a = Promenne.SolveSequence(conSequence); }
+
                 b = prikaz.Split(opr)[1].Trim();
+                conSequence = Promenne.SplitCommand(b);
+                if ((temp = Promenne.SumString(b)) != null) { b = '"' + temp + '"'; }
+                else if (conSequence.Count > 2) { b = Promenne.SolveSequence(conSequence); }
+
 
                 if (Promenne.FindVar(a, "value") != null)
                     a = Promenne.FindVar(a, "value");
