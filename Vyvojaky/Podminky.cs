@@ -19,11 +19,12 @@ namespace Vyvojaky
             pracPanel = _pracPanel;
         }
 
-        string opr = "";
-        bool cond = false;
 
         public bool isTrue(string prikaz)
         {
+            string opr = "";
+            bool cond = false;
+
             //př. příkazu: a > b, a == b, a <= b
 
             string a, b;
@@ -43,17 +44,19 @@ namespace Vyvojaky
                             opr = c.ToString();
                     }
                 }
-                
+
                 //Převede část příkazu na sekvenci, tu následně vyřeší jako výraz
+                int result;
+
                 a = prikaz.Split(opr)[0].Trim();
                 conSequence = Promenne.SplitCommand(a);
                 string temp = "";
-                if ((temp = Promenne.SumString(a)) != null) { a = '"' + temp + '"'; }
+                if ((temp = Promenne.SumString(a)) != null && int.TryParse(temp, out result) == false) { a = '"' + temp + '"'; }
                 else if (conSequence.Count > 2) { a = Promenne.SolveSequence(conSequence); }
 
                 b = prikaz.Split(opr)[1].Trim();
                 conSequence = Promenne.SplitCommand(b);
-                if ((temp = Promenne.SumString(b)) != null) { b = '"' + temp + '"'; }
+                if ((temp = Promenne.SumString(b)) != null && int.TryParse(temp, out result) == false) { b = '"' + temp + '"'; }
                 else if (conSequence.Count > 2) { b = Promenne.SolveSequence(conSequence); }
 
 
