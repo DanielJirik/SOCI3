@@ -96,7 +96,7 @@ namespace Vyvojaky
                     if (Promenne.isValid)
                     {
                         //Prida nazev do pouzitych nazvu
-                        Promenne.pouziteNazvy.Add(nazevPromenne);
+                        Promenne.usedNames.Add(nazevPromenne);
 
                         lvPromenne.Items.Add(nazevPromenne + " = " + Promenne.hodnota);
                     }
@@ -178,7 +178,7 @@ namespace Vyvojaky
         bool KontrolaNazvu(string nazevPromenne)
         {
             bool used = false;
-            foreach (string nazev in Promenne.pouziteNazvy)
+            foreach (string nazev in Promenne.usedNames)
             {
                 if (nazevPromenne == nazev)
                     used = true;

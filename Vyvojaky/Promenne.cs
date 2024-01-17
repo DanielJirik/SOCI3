@@ -4,8 +4,10 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.Eventing.Reader;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Vyvojaky
@@ -31,58 +33,106 @@ namespace Vyvojaky
         public static Dictionary<string, string> StringV = new Dictionary<string, string>();
         public static Dictionary<string, char> CharV = new Dictionary<string, char>();
 
-        public static List<string> pouziteNazvy = new List<string>();
+        public static List<string> usedNames = new List<string>();
 
         public static string typ = "";
 
-        private Panel pracPanel;
+        private Panel mainPanel;
 
-        public void Setup(Panel _pracPanel)
+        public void Setup(Panel _mainPanel)
         {
-            pracPanel = _pracPanel;
+            mainPanel = _mainPanel;
         }
 
         //Metoda na třídění výrazu
-        static Type splitLock;
         public static List<string> SplitCommand(string command)
         {
-            List<string> _sequence = new List<string>();
+            List<string> seq = new List<string>();
+
             string arg = "";
-            foreach (char ch in command)
+            for (int i = 0; i < command.Length; i++)
             {
-                if (ch != ' ' && splitLock != Type.String)
+                char c = command[i];
+                if ((c == '+' || c == '-' || c == '*' || c == '/') && arg != "")
                 {
-                    if ((ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '(' || ch == ')') && arg != "")
-                    {
-                        _sequence.Add(arg);
-                        _sequence.Add(ch.ToString());
-                        arg = "";
-                    }
-                    else
-                        arg += ch;
+                    seq.Add(arg.Trim());
+                    seq.Add(c.ToString());
+                    arg = "";
+                }
+                else if (c == '(' || c == ')' || c == '[' || c == ']' || c == '{' || c == '}')
+                {
+                    seq.Add(c.ToString());
                 }
                 else
+                    arg += c;
+
+            }
+            seq.Add(arg.Trim());
+            return seq;
+        }
+
+        //Validity of brackets
+        static bool BalancedBrackets(List<string> seq)
+        {
+            Vector2 b1 = new Vector2(0, 0);
+            Vector2 b2 = new Vector2(0, 0);
+            Vector2 b3 = new Vector2(0, 0);
+
+            foreach (string x in seq)
+            {
+                switch (x)
                 {
-                    if ((ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '(' || ch == ')') && arg != "")
-                    {
-                        _sequence.Add(arg.Trim());
-                        _sequence.Add(ch.ToString());
-                        arg = "";
-                    }
-                    else
-                        arg += ch;
+                    case "(":
+                        b1.X++;
+                        break;
+                    case "[":
+                        b2.X++;
+                        break;
+                    case "{":
+                        b3.X++;
+                        break;
+                    case ")":
+                        b1.Y++;
+                        break;
+                    case "]":
+                        b2.Y++;
+                        break;
+                    case "}":
+                        b3.Y++;
+                        break;
+                    default:
+                        break;
                 }
             }
-            _sequence.Add(arg.Trim()); //Přidání posledního členu
-            return _sequence;
+
+            if (b1.X == b1.Y && b2.X == b2.Y && b3.X == b3.Y)
+                return true;
+            return false;
         }
+
 
         //Metoda na zjednodušení tříděného výrazu
         static List<string> SimplifySequence(List<string> s)
         {
             List<string> _sequence = new List<string>();
+            List<int> openedIndexes = new List<int>();
+            List<int> closedIndexes = new List<int>();
 
-            //řešení závorek
+            //Checking if valid
+            if (!BalancedBrackets(s))
+                return null;
+
+            //Counting indexes of brackets
+            foreach (string x in s)
+            {
+                if (x == "(" || x == "[" || x == "{")
+                    openedIndexes.Add(s.IndexOf(x));
+                else if (x == ")" || x == "]" || x == "}")
+                    closedIndexes.Add(s.IndexOf(x));
+            }
+
+            //Solving individual brackets
+
 
             return _sequence;
         }
@@ -296,7 +346,7 @@ namespace Vyvojaky
         private void CreateBlock(string nazev, string hodnota)
         {
             //BLOCK
-            Block block = new Block(pracPanel);
+            Block block = new Block(mainPanel);
             block.BlockVar(typ, nazev, hodnota);
         }
 
@@ -322,9 +372,7 @@ namespace Vyvojaky
             bool isString = false;
 
             List<string> s = new List<string>();
-            splitLock = Type.String;
             s = SplitCommand(hodnota);
-            splitLock = Type.Int;
 
             for (int i = 0; i <= s.Count - 1; i++)
             {

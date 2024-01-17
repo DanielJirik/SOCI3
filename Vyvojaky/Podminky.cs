@@ -13,14 +13,14 @@ namespace Vyvojaky
 {
     internal class Podminky
     {
-        Panel pracPanel;
-        public void Setup(Panel _pracPanel)
+        Panel mainPanel;
+        public void Setup(Panel _mainPanel)
         {
-            pracPanel = _pracPanel;
+            mainPanel = _mainPanel;
         }
 
 
-        public bool isTrue(string prikaz)
+        public bool isTrue(string command)
         {
             string opr = "";
             bool cond = false;
@@ -32,13 +32,13 @@ namespace Vyvojaky
 
             try
             {
-                for (int i = 0; i < prikaz.Length; i++)
+                for (int i = 0; i < command.Length; i++)
                 {
-                    char c = prikaz[i];
+                    char c = command[i];
 
                     if (c == '>' || c == '<' || c == '=' || c == '!')
                     {
-                        if (prikaz[i + 1] == '=')
+                        if (command[i + 1] == '=')
                             { opr = c.ToString() + "="; break; }
                         else
                             opr = c.ToString();
@@ -48,13 +48,13 @@ namespace Vyvojaky
                 //Převede část příkazu na sekvenci, tu následně vyřeší jako výraz
                 int result;
 
-                a = prikaz.Split(opr)[0].Trim();
+                a = command.Split(opr)[0].Trim();
                 conSequence = Promenne.SplitCommand(a);
                 string temp = "";
                 if ((temp = Promenne.SumString(a)) != null && int.TryParse(temp, out result) == false) { a = '"' + temp + '"'; }
                 else if (conSequence.Count > 2) { a = Promenne.SolveSequence(conSequence); }
 
-                b = prikaz.Split(opr)[1].Trim();
+                b = command.Split(opr)[1].Trim();
                 conSequence = Promenne.SplitCommand(b);
                 if ((temp = Promenne.SumString(b)) != null && int.TryParse(temp, out result) == false) { b = '"' + temp + '"'; }
                 else if (conSequence.Count > 2) { b = Promenne.SolveSequence(conSequence); }
@@ -137,8 +137,8 @@ namespace Vyvojaky
                 MessageBox.Show("Něco je špatně.");
             }
 
-            Block block = new Block(pracPanel);
-            block.BlockCon(prikaz);
+            Block block = new Block(mainPanel);
+            block.BlockCon(command);
             //Jakýkoliv jiný případ
             return cond;
         }
