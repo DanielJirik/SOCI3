@@ -34,9 +34,8 @@ namespace Vyvojaky
             ListViewGroup listViewGroup8 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
             panelPracovni = new Panel();
             panelPodminky = new Panel();
-            btPridatPodminku = new Button();
             tbPodminka = new TextBox();
-            lbPodminka = new Label();
+            lbPromenna1 = new Label();
             panelInformaci = new Panel();
             tbNajitPromennou = new TextBox();
             lbVytvorene = new Label();
@@ -79,40 +78,29 @@ namespace Vyvojaky
             // 
             panelPodminky.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panelPodminky.BackColor = Color.Gray;
-            panelPodminky.Controls.Add(btPridatPodminku);
             panelPodminky.Controls.Add(tbPodminka);
-            panelPodminky.Controls.Add(lbPodminka);
-            panelPodminky.Location = new Point(11, 51);
-            panelPodminky.Margin = new Padding(3, 4, 3, 4);
+            panelPodminky.Controls.Add(lbPromenna1);
+            panelPodminky.Location = new Point(10, 38);
             panelPodminky.Name = "panelPodminky";
             panelPodminky.Size = new Size(288, 481);
             panelPodminky.TabIndex = 3;
             // 
-            // btPridatPodminku
-            // 
-            btPridatPodminku.Location = new Point(39, 113);
-            btPridatPodminku.Name = "btPridatPodminku";
-            btPridatPodminku.Size = new Size(183, 29);
-            btPridatPodminku.TabIndex = 6;
-            btPridatPodminku.Text = "Pøidat podmínku";
-            btPridatPodminku.UseVisualStyleBackColor = true;
-            btPridatPodminku.Click += btPridaniPodminky_Click;
-            // 
             // tbPodminka
             // 
-            tbPodminka.Location = new Point(39, 69);
+            tbPodminka.Location = new Point(34, 60);
             tbPodminka.Name = "tbPodminka";
-            tbPodminka.Size = new Size(175, 27);
-            tbPodminka.TabIndex = 3;
+            tbPodminka.Size = new Size(145, 23);
+            tbPodminka.TabIndex = 1;
+            tbPodminka.KeyDown += tbPodminka_KeyDown;
             // 
-            // lbPodminka
+            // lbPromenna1
             // 
-            lbPodminka.AutoSize = true;
-            lbPodminka.Location = new Point(39, 47);
-            lbPodminka.Name = "lbPodminka";
-            lbPodminka.Size = new Size(74, 20);
-            lbPodminka.TabIndex = 0;
-            lbPodminka.Text = "Podminka";
+            lbPromenna1.AutoSize = true;
+            lbPromenna1.Location = new Point(34, 35);
+            lbPromenna1.Name = "lbPromenna1";
+            lbPromenna1.Size = new Size(145, 15);
+            lbPromenna1.TabIndex = 0;
+            lbPromenna1.Text = "Prvnï¿½ promï¿½nnï¿½/hodnota:";
             // 
             // panelInformaci
             // 
@@ -146,7 +134,7 @@ namespace Vyvojaky
             lbVytvorene.Name = "lbVytvorene";
             lbVytvorene.Size = new Size(147, 20);
             lbVytvorene.TabIndex = 12;
-            lbVytvorene.Text = "Vytvoøené promìnné";
+            lbVytvorene.Text = "Vytvoï¿½enï¿½ promï¿½nnï¿½";
             // 
             // lvPromenne
             // 
@@ -177,7 +165,7 @@ namespace Vyvojaky
             lbPriklady.Name = "lbPriklady";
             lbPriklady.Size = new Size(273, 20);
             lbPriklady.TabIndex = 10;
-            lbPriklady.Text = "Pøíklady: a = 5, b = 3.14, jmeno = Aneta ";
+            lbPriklady.Text = "Pï¿½ï¿½klady: a = 5, b = 3.14, jmeno = Aneta ";
             // 
             // lbPromenna
             // 
@@ -186,7 +174,7 @@ namespace Vyvojaky
             lbPromenna.Name = "lbPromenna";
             lbPromenna.Size = new Size(116, 20);
             lbPromenna.TabIndex = 9;
-            lbPromenna.Text = "Nová promìnná";
+            lbPromenna.Text = "Novï¿½ promï¿½nnï¿½";
             // 
             // tbPromenna
             // 
@@ -243,7 +231,7 @@ namespace Vyvojaky
             btNajitP.Name = "btNajitP";
             btNajitP.Size = new Size(110, 31);
             btNajitP.TabIndex = 3;
-            btNajitP.Text = "Najít na ploše";
+            btNajitP.Text = "Najï¿½t na ploï¿½e";
             btNajitP.UseVisualStyleBackColor = true;
             btNajitP.Click += btNajitP_Click;
             // 
@@ -254,7 +242,7 @@ namespace Vyvojaky
             lbTypP.Name = "lbTypP";
             lbTypP.Size = new Size(88, 20);
             lbTypP.TabIndex = 2;
-            lbTypP.Text = "Datový typ: ";
+            lbTypP.Text = "Datovï¿½ typ: ";
             // 
             // lbHodnotaP
             // 
@@ -272,7 +260,7 @@ namespace Vyvojaky
             lbNazevP.Name = "lbNazevP";
             lbNazevP.Size = new Size(57, 20);
             lbNazevP.TabIndex = 0;
-            lbNazevP.Text = "Název: ";
+            lbNazevP.Text = "Nï¿½zev: ";
             // 
             // menuMain
             // 
@@ -296,13 +284,13 @@ namespace Vyvojaky
             // 
             itemSave.Name = "itemSave";
             itemSave.Size = new Size(137, 26);
-            itemSave.Text = "Uložit";
+            itemSave.Text = "Uloï¿½it";
             // 
             // itemOpen
             // 
             itemOpen.Name = "itemOpen";
             itemOpen.Size = new Size(137, 26);
-            itemOpen.Text = "Otevøít";
+            itemOpen.Text = "Otevï¿½ï¿½t";
             // 
             // menuPanely
             // 
@@ -315,14 +303,14 @@ namespace Vyvojaky
             // 
             itemVars.Name = "itemVars";
             itemVars.Size = new Size(159, 26);
-            itemVars.Text = "Promìnné";
+            itemVars.Text = "Promï¿½nnï¿½";
             itemVars.Click += itemVars_Click;
             // 
             // itemIfs
             // 
             itemIfs.Name = "itemIfs";
             itemIfs.Size = new Size(159, 26);
-            itemIfs.Text = "Podmínky";
+            itemIfs.Text = "Podmï¿½nky";
             itemIfs.Click += itemIfs_Click;
             // 
             // formHlavniProTvorbu
@@ -361,20 +349,7 @@ namespace Vyvojaky
         private Panel panelConsole;
         private TextBox tbConsole;
         private Panel panelPodminky;
-        private TextBox tbPromenna2;
-        private TextBox tbPodminka;
-        private Label lbPromenna2;
-        private Label lbOperator;
-        private Label lbPodminka;
-        private MenuStrip menuStrip2;
-        private ToolStripMenuItem operatory;
-        private ToolStripMenuItem itemVetsi;
-        private ToolStripMenuItem itemMensi;
-        private ToolStripMenuItem itemMensiRovno;
-        private ToolStripMenuItem itemVetsiRovno;
-        private ToolStripMenuItem itemRovnost;
-        private Button btPridatPodminku;
-        private ToolStripMenuItem itemNerovnost;
+        private Label lbPromenna1;
         private TextBox tbPromenna;
         private Label lbPriklady;
         private Label lbPromenna;
@@ -393,5 +368,6 @@ namespace Vyvojaky
         private ToolStripMenuItem menuSoubor;
         private ToolStripMenuItem itemSave;
         private ToolStripMenuItem itemOpen;
+        private TextBox tbPodminka;
     }
 }

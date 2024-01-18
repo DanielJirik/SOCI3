@@ -1,19 +1,11 @@
-﻿using Microsoft.VisualBasic.Devices;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Vyvojaky
+﻿namespace Vyvojaky
 {
-    internal class BlockVar
+    internal class BlockCon
     {
         public PictureBox pb = new PictureBox();
         public Label popis = new Label();
 
-        public BlockVar(string typ, string nazev, string hodnota)
+        public BlockCon(string podminka)
         {
             //LB
             popis.ForeColor = Color.Black;
@@ -21,7 +13,7 @@ namespace Vyvojaky
             popis.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point, ((Byte)(0)));
             popis.AutoSize = true;
             popis.Location = new Point(0, 0);
-            popis.Text = typ + " > " + nazev + " = " + hodnota;
+            popis.Text = podminka;
             popis.Tag = "popis";
 
             //PB
@@ -37,7 +29,7 @@ namespace Vyvojaky
 
             //INIT                        
             Block.pracPanel.Controls.Add(pb);
-            pb.Controls.Add(popis);            
+            pb.Controls.Add(popis);
         }
 
         //Drag and drop vars
@@ -67,5 +59,6 @@ namespace Vyvojaky
                 this.pb.Left = e.X + this.pb.Left - xPos;
             }
         }
+
     }
 }

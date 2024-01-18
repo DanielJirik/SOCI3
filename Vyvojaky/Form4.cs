@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -22,11 +22,13 @@ namespace Vyvojaky
             panelPodminky.Hide();
 
             promenne.Setup(panelPracovni);
+            podminky.Setup(panelPracovni);
 
             lvPromenne.HideSelection = false;
 
             MainIsOpen = true;
         }
+
 
         ////Přepínání mezi panely
         private void itemVars_Click(object sender, EventArgs e)
@@ -46,6 +48,21 @@ namespace Vyvojaky
 
         //Objekt pro manipulaci se vsemi promennymi
         Promenne promenne = new Promenne();
+
+        //objekt podminky + obec.promenne
+        Podminky podminky = new Podminky();
+
+        //Podminky
+        private void tbPodminka_KeyDown(object sender, KeyEventArgs e)
+        {
+            string prikaz = tbPodminka.Text;
+
+            if (e.KeyCode == Keys.Enter)
+            {
+                tbConsole.Text += podminky.isTrue(prikaz) + Environment.NewLine + ">"; //vrati false/true
+            }
+        }
+
 
         /*Vytvorereni nove promenne*/
         string nazevPromenne = "";
@@ -73,15 +90,18 @@ namespace Vyvojaky
                 }
 
                 if (legitPrikaz)
-                {
-                    //Prida nazev do pouzitych nazvu
-                    Promenne.pouziteNazvy.Add(nazevPromenne);
-
+                {                    
                     promenne.VytvoritPromennou(nazevPromenne, hodnotaPromenne, tbConsole);
 
-                    lvPromenne.Items.Add(nazevPromenne + " > " + Promenne.typ);
-                    Promenne.typ = "";
+                    if (Promenne.isValid)
+                    {
+                        //Prida nazev do pouzitych nazvu
+                        Promenne.usedNames.Add(nazevPromenne);
 
+                        lvPromenne.Items.Add(nazevPromenne + " = " + Promenne.hodnota);
+                    }
+
+                    Promenne.typ = "";
                     tbPromenna.Text = "";
                     nazevPromenne = "";
                     hodnotaPromenne = "";
@@ -109,45 +129,20 @@ namespace Vyvojaky
         {
             if (lvPromenne.SelectedItems.Count > 0)
             {
+                
+
                 ListViewItem item = lvPromenne.SelectedItems[0];
-                string[] itemSplit = item.Text.Split(">");
-                string key = itemSplit[0].Trim();
+                string[] itemSplit = item.Text.Split(" = ");
 
                 lbNazevP.Text = "Název: " + itemSplit[0];
-                lbTypP.Text = "Datový typ: " + itemSplit[1];
+                lbHodnotaP.Text = "Hodnota: " + itemSplit[1];
 
-                string hodnota = "";
-                switch (itemSplit[1].Trim())
-                {
-                    case "Int16":
-                        hodnota = Convert.ToString(Promenne.Int16V[key]);
-                        break;
-                    case "Int32":
-                        hodnota = Convert.ToString(Promenne.Int32V[key]);
-                        break;
-                    case "Int64":
-                        hodnota = Convert.ToString(Promenne.Int64V[key]);
-                        break;
-                    case "Float":
-                        hodnota = Convert.ToString(Promenne.FloatV[key]);
-                        break;
-                    case "Double":
-                        hodnota = Convert.ToString(Promenne.DoubleV[key]);
-                        break;
-                    case "Bool":
-                        hodnota = Convert.ToString(Promenne.BoolV[key]);
-                        break;
-                    case "Char":
-                        hodnota = Convert.ToString(Promenne.CharV[key]);
-                        break;
-                    case "String":
-                        hodnota = Promenne.StringV[key];
-                        break;
-                    default:
-                        break;
-                }
+                string typP = "";
+                string key = itemSplit[0].Trim();
 
-                lbHodnotaP.Text = "Hodnota: " + hodnota;
+                typP = Promenne.FindVar(key, "value");
+
+                lbTypP.Text = "Datový typ: " + typP;
             }
         }
 
@@ -182,74 +177,17 @@ namespace Vyvojaky
         //Metoda pro kontrolu duplikatu
         bool KontrolaNazvu(string nazevPromenne)
         {
-            foreach (string nazev in Promenne.pouziteNazvy)
+            bool used = false;
+            foreach (string nazev in Promenne.usedNames)
             {
                 if (nazevPromenne == nazev)
-                    return false;
+                    used = true;
             }
 
+            if (Keywords.Check(nazevPromenne) || used)
+                return false;
             return true;
         }
-
-
-
-
-        //objekt podminky + obec.promenne
-        Podminky podminky = new Podminky();
-
-
-        //tlačítko pro spuštění podmínky
-        private void btPridaniPodminky_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                string text = tbPodminka.Text.Trim();
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show("Error: " + ex);
-            }
-            //List<string> nazvy = Promenne.pouziteNazvy;
-            //Dictionary<string, Int16> inty16 = Promenne.Int16V;
-            //try
-            //{
-            //    Int16 value1 = 0;
-            //    Int16 value2 = 0;
-            //    string prom1 = tbPromenna1.Text;
-            //    string prom2 = tbPromenna2.Text;
-
-            //    string oper = operatory.Text;
-            //    (prom1, prom2) = podminky.hledani(prom1, prom2, nazvy, inty16, tbConsole);
-
-
-            //    //tbConsole.Text += prom2;
-            //    if (Int16.TryParse(prom1, out value1) && Int16.TryParse(prom2, out value2))
-            //    {
-            //        value1 = Convert.ToInt16(prom1);
-            //        value2 = Convert.ToInt16(prom2);
-            //        podminky.porovnani(value1, value2, oper, tbConsole);
-            //    }
-            //    else
-            //    {
-            //        podminky.porovnaniProString(prom1, prom2, oper, tbConsole);
-            //    }
-
-            //    tbPromenna1.Text = "";
-            //    tbPromenna2.Text = "";
-            //    operatory.Text = "operátory";
-            //}
-            //catch (Exception)
-            //{
-            //    tbConsole.Text += "Error" + "\r\n" + ">";
-            //    tbPromenna1.Text = "";
-            //    tbPromenna2.Text = "";
-            //    operatory.Text = "operátory";
-            //}
-
-
-        }
-        //
 
 
         //Nastane před zavřením formu
@@ -267,32 +205,5 @@ namespace Vyvojaky
                 e.Cancel = true;
             }
         }
-
-
-
-
-
-
-
-
-
-
-        //
-
-        /*TO DO*/
-        /*
-         * sem mi prosim te pis vse, na cem ches pracovat nebo na cem uz pracujes
-         * zatim funguje pridat jen int16 promenne, po pridani se ti vypise do console
-         * 
-         * PS: mel jsem problem s designerem, tak to musime jeste poresit
-         * 
-         * Dan:
-         * -pridelat moznosti console a ">" po konci prikazu (po zadani enteru)
-         * -pridelat moznost pridat jine datove typy
-         * -pridelat bloky pro vizualizaci promennych
-        */
-        /*KONEC TO DO*/
-
-
     }
 }
