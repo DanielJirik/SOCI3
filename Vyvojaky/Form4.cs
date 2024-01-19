@@ -20,6 +20,7 @@ namespace Vyvojaky
             InitializeComponent();
             panelInformaci.Show();
             panelPodminky.Hide();
+            panelSwitch.Hide();
 
             promenne.Setup(panelPracovni);
             podminky.Setup(panelPracovni);
@@ -203,6 +204,103 @@ namespace Vyvojaky
             else
             {
                 e.Cancel = true;
+            }
+        }
+
+        //right-click
+        private void variablesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            panelInformaci.Show();
+            panelPodminky.Hide();
+            panelSwitch.Hide();
+        }
+
+        private void conditionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            panelPodminky.Show();
+            panelInformaci.Hide();
+            panelSwitch.Hide();
+        }
+
+        private void switchToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            panelSwitch.Show();
+            panelInformaci.Hide();
+            panelPodminky.Hide();
+        }
+
+        //pohyb panelů na pracovní ploše
+        private bool dragging;
+        private int xPos, yPos;
+        private void panelInformaci_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (dragging)
+            {
+                this.panelInformaci.Top = e.Y + this.panelInformaci.Top - yPos;
+                this.panelInformaci.Left = e.X + this.panelInformaci.Left - xPos;
+            }
+        }
+
+        private void panelInformaci_MouseUp(object sender, MouseEventArgs e)
+        {
+            dragging = false;
+        }
+
+        private void panelInformaci_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                dragging = true;
+                xPos = e.X;
+                yPos = e.Y;
+            }
+        }
+
+        private void panelPodminky_MouseUp(object sender, MouseEventArgs e)
+        {
+            dragging = false;
+        }
+
+        private void panelPodminky_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (dragging)
+            {
+                this.panelPodminky.Top = e.Y + this.panelPodminky.Top - yPos;
+                this.panelPodminky.Left = e.X + this.panelPodminky.Left - xPos;
+            }
+        }
+
+        private void panelPodminky_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                dragging = true;
+                xPos = e.X;
+                yPos = e.Y;
+            }
+        }
+
+        private void panelSwitch_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                dragging = true;
+                xPos = e.X;
+                yPos = e.Y;
+            }
+        }
+
+        private void panelSwitch_MouseUp(object sender, MouseEventArgs e)
+        {
+            dragging = false;
+        }
+
+        private void panelSwitch_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (dragging)
+            {
+                this.panelSwitch.Top = e.Y + this.panelSwitch.Top - yPos;
+                this.panelSwitch.Left = e.X + this.panelSwitch.Left - xPos;
             }
         }
     }
