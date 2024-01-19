@@ -90,7 +90,7 @@ namespace Vyvojaky
                 }
 
                 if (legitPrikaz)
-                {                    
+                {
                     promenne.VytvoritPromennou(nazevPromenne, hodnotaPromenne, tbConsole);
 
                     if (Promenne.isValid)
@@ -129,7 +129,7 @@ namespace Vyvojaky
         {
             if (lvPromenne.SelectedItems.Count > 0)
             {
-                
+
 
                 ListViewItem item = lvPromenne.SelectedItems[0];
                 string[] itemSplit = item.Text.Split(" = ");
