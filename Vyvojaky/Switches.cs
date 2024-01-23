@@ -58,7 +58,6 @@ namespace Vyvojaky
                 Lably.Add(Text);
                 Moznosti.Add(Moznost);
             }
-            Debug.WriteLine(Moznosti.Count);
         }
 
         public void Kontrola(TextBox console)
@@ -84,7 +83,6 @@ namespace Vyvojaky
             {
                 panelSwitch.Controls.Remove(Moznosti[i]);
                 panelSwitch.Controls.Remove(Lably[i]);
-                
             }
 
             Moznosti.Clear();
