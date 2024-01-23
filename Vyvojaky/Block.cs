@@ -28,5 +28,10 @@ namespace Vyvojaky
             BlockCon blockCon = new BlockCon(prikaz);
         }
 
+        public void BlockSwitch(int pocetMoznosti, int vstupPromenna, List<TextBox> boxy)
+        {
+            BlockSwitches blockSwitch = new BlockSwitches(pocetMoznosti, vstupPromenna, boxy);
+        }
+
     }
 }

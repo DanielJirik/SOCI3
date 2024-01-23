@@ -1,3 +1,4 @@
+using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,9 +25,10 @@ namespace Vyvojaky
 
             promenne.Setup(panelPracovni);
             podminky.Setup(panelPracovni);
+            switches.Setup(panelPracovni);
 
             lvPromenne.HideSelection = false;
-
+            switches.VyskaPaneluPuvodni = panelSwitch.Height;
             MainIsOpen = true;
         }
 
@@ -52,6 +54,9 @@ namespace Vyvojaky
 
         //objekt podminky + obec.promenne
         Podminky podminky = new Podminky();
+
+        //objekt switch
+        Switches switches = new Switches();
 
         //Podminky
         private void tbPodminka_KeyDown(object sender, KeyEventArgs e)
@@ -224,9 +229,32 @@ namespace Vyvojaky
 
         private void switchToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            panelSwitch.Show();
-            panelInformaci.Hide();
-            panelPodminky.Hide();
+            try
+            {
+                switches.MazaniBoxu(panelSwitch);
+                int pocet = 0;
+                string hodnota = "";
+                hodnota = Interaction.InputBox("Zadejte počet, kolik chcete mít možností ve switchi", "Switch");
+
+                if (int.TryParse(hodnota, out pocet))
+                {
+                    switches.pridavaniTextBoxu(pocet, panelSwitch, tbInputVariable);
+                    panelSwitch.Show();
+                    panelInformaci.Hide();
+                    panelPodminky.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("Zadal jste chybný tvar čísla!");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex);
+                panelSwitch.Hide();
+                panelInformaci.Hide();
+                panelPodminky.Hide();
+            }
         }
 
         //pohyb panelů na pracovní ploše
@@ -301,6 +329,14 @@ namespace Vyvojaky
             {
                 this.panelSwitch.Top = e.Y + this.panelSwitch.Top - yPos;
                 this.panelSwitch.Left = e.X + this.panelSwitch.Left - xPos;
+            }
+        }
+
+        private void tbInputVariable_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                switches.Kontrola(tbConsole);
             }
         }
     }

@@ -95,7 +95,7 @@ namespace Vyvojaky
             panelSwitch.Controls.Add(label1);
             panelSwitch.Location = new Point(628, 106);
             panelSwitch.Name = "panelSwitch";
-            panelSwitch.Size = new Size(229, 125);
+            panelSwitch.Size = new Size(229, 107);
             panelSwitch.TabIndex = 6;
             panelSwitch.MouseDown += panelSwitch_MouseDown;
             panelSwitch.MouseMove += panelSwitch_MouseMove;
@@ -116,6 +116,7 @@ namespace Vyvojaky
             tbInputVariable.Name = "tbInputVariable";
             tbInputVariable.Size = new Size(159, 27);
             tbInputVariable.TabIndex = 1;
+            tbInputVariable.KeyDown += tbInputVariable_KeyDown;
             // 
             // label1
             // 
