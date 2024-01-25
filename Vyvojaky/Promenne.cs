@@ -9,6 +9,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms.Design;
 
 namespace Vyvojaky
 {
@@ -61,6 +62,8 @@ namespace Vyvojaky
                 }
                 else if (c == '(' || c == ')' || c == '[' || c == ']' || c == '{' || c == '}')
                 {
+                    seq.Add(arg.Trim());
+                    arg = "";
                     seq.Add(c.ToString());
                 }
                 else
@@ -68,6 +71,7 @@ namespace Vyvojaky
 
             }
             seq.Add(arg.Trim());
+            seq.RemoveAll(s => string.IsNullOrEmpty(s));
             return seq;
         }
 
@@ -105,40 +109,88 @@ namespace Vyvojaky
                 }
             }
 
-            if (b1.X == b1.Y && b2.X == b2.Y && b3.X == b3.Y)
-                return true;
-            return false;
+            return ((b1.X == b1.Y && b2.X == b2.Y && b3.X == b3.Y));
         }
 
 
         //Metoda na zjednodušení tříděného výrazu
-        static List<string> SimplifySequence(List<string> s)
+        static List<string>? SimplifySequence(List<string> s)
         {
+
             List<string> _sequence = new List<string>();
             List<int> openedIndexes = new List<int>();
             List<int> closedIndexes = new List<int>();
 
             //Checking if valid
-            if (!BalancedBrackets(s))
-                return null;
+            if (!BalancedBrackets(s))   return null;
 
-            //Counting indexes of brackets
-            foreach (string x in s)
+            void CountIndexes(List<string> s)
             {
-                if (x == "(" || x == "[" || x == "{")
-                    openedIndexes.Add(s.IndexOf(x));
-                else if (x == ")" || x == "]" || x == "}")
-                    closedIndexes.Add(s.IndexOf(x));
+                openedIndexes.Clear();
+                closedIndexes.Clear();
+
+                //Counting indexes of brackets
+                for (int i = 0; i < s.Count; i++)
+                {
+                    if (s[i] == "(" || s[i] == "[" || s[i] == "{")
+                        openedIndexes.Add(i);
+                    else if (s[i] == ")" || s[i] == "]" || s[i] == "}")
+                        closedIndexes.Add(i);
+                }                
             }
 
+            CountIndexes(s);
+
+            //Level of nesting
+            int iterations = openedIndexes.Count();
+
             //Solving individual brackets
+            for (int i = 0; i < iterations; i++)
+            {
+                _sequence.Clear();
 
+                int endIndex = 0;
+                int checkCount = 0;
 
-            return _sequence;
+                if (openedIndexes.Count > 0 && closedIndexes.Count > 0)
+                {                   
+                    for (int j = openedIndexes[openedIndexes.Count - 1]; j <= closedIndexes[0]; j++)
+                    {
+                        if (s[j] == "(" || s[j] == ")" || s[j] == "[" || s[j] == "]" || s[j] == "{" || s[j] == "}")
+                            checkCount++;
+                    }
+
+                    if (checkCount % 2 != 0)
+                        endIndex = closedIndexes[closedIndexes.Count - 1];
+                    else
+                        endIndex = closedIndexes[0];
+                }
+
+                if ((openedIndexes.Count > 1 && closedIndexes.Count > 1) && (closedIndexes[0] > openedIndexes[0] && closedIndexes[0] < openedIndexes[1]))
+                    endIndex = closedIndexes[closedIndexes.Count - 1];
+
+                for (int j = openedIndexes[openedIndexes.Count - 1] + 1; j < endIndex; j++)
+                {
+                    _sequence.Add(s[j]);
+                }                
+                
+                string temp = SolveSequence(_sequence);
+
+                for (int j = endIndex; j > openedIndexes[openedIndexes.Count - 1] - 1; j--)
+                {
+                    s.RemoveAt(j);
+                }
+
+                s.Insert(openedIndexes[openedIndexes.Count - 1], temp);
+
+                CountIndexes(s);
+            }
+
+            return s;
         }
 
         //Metoda na řešení výrazu
-        public static string SolveSequence(List<string> s)
+        public static string? SolveSequence(List<string> s)
         {
             int value = 0;
             float valueF = 0.0f;
@@ -147,101 +199,106 @@ namespace Vyvojaky
             string output = "";
 
             Type type = Type.Int;
-
-            if (FindVar(s[0], "value") == null)
-            {
-                if (float.TryParse(s[0], out valueF))
-                    type = Type.Float;
-                else if (double.TryParse(s[0], out valueD))
-                    type = Type.Double;
-                else if (int.TryParse(s[0], out value))
-                    type = Type.Int;
-            }
-            else
-            {
-                if (float.TryParse(FindVar(s[0], "value"), out valueF))
-                    type = Type.Float;
-                else if (double.TryParse(FindVar(s[0], "value"), out valueD))
-                    type = Type.Double;
-                else if (int.TryParse(FindVar(s[0], "value"), out value))
-                    type = Type.Int;
-            }
-
-            string opr = "";
-            int turn = 0; // 0 - turn operatora
-
-            for (int i = 1; i < s.Count; i++)
-            {
-                if (turn % 2 == 0)
+            try{
+                if (FindVar(s[0], "value") == null)
                 {
-                    opr = s[i];
-                    turn++;
+                    if (float.TryParse(s[0], out valueF))
+                        type = Type.Float;
+                    else if (double.TryParse(s[0], out valueD))
+                        type = Type.Double;
+                    else if (int.TryParse(s[0], out value))
+                        type = Type.Int;
                 }
                 else
                 {
-                    string arg = "";
-
-                    if (FindVar(s[i], "value") == null)
-                        arg = s[i];
-                    else
-                        arg = FindVar(s[i], "value");
-
-                    switch (opr)
-                    {
-                        case "+":
-                            if (type == Type.Int)
-                                value += int.Parse(arg);
-                            else if (type == Type.Double)
-                                valueD += double.Parse(arg);
-                            else if (type == Type.Float)
-                                valueF += float.Parse(arg);
-                            break;
-                        case "-":
-                            if (type == Type.Int)
-                                value -= int.Parse(arg);
-                            else if (type == Type.Double)
-                                valueD -= double.Parse(arg);
-                            else if (type == Type.Float)
-                                valueF -= float.Parse(arg);
-                            break;
-                        case "*":
-                            if (type == Type.Int)
-                                value *= int.Parse(arg);
-                            else if (type == Type.Double)
-                                valueD *= double.Parse(arg);
-                            else if (type == Type.Float)
-                                valueF *= float.Parse(arg);
-                            break;
-                        case "/":
-                            if (type == Type.Int)
-                                value /= int.Parse(arg);
-                            else if (type == Type.Double)
-                                valueD /= double.Parse(arg);
-                            else if (type == Type.Float)
-                                valueF /= float.Parse(arg);
-                            break;
-                        default:
-                            break;
-                    }
-                    turn++;
+                    if (float.TryParse(FindVar(s[0], "value"), out valueF))
+                        type = Type.Float;
+                    else if (double.TryParse(FindVar(s[0], "value"), out valueD))
+                        type = Type.Double;
+                    else if (int.TryParse(FindVar(s[0], "value"), out value))
+                        type = Type.Int;
                 }
-            }
 
-            switch (type)
-            {
-                case Type.Int:
-                    output = value.ToString();
-                    break;
-                case Type.Float:
-                    output = valueF.ToString();
-                    break;
-                case Type.Double:
-                    output = valueD.ToString();
-                    break;
-                default:
-                    break;
+                string opr = "";
+                int turn = 0; // 0 - turn operatora
+
+                for (int i = 1; i < s.Count; i++)
+                {
+                    if (turn % 2 == 0)
+                    {
+                        opr = s[i];
+                        turn++;
+                    }
+                    else
+                    {
+                        string arg = "";
+
+                        if (FindVar(s[i], "value") == null)
+                            arg = s[i];
+                        else
+                            arg = FindVar(s[i], "value");
+
+                        switch (opr)
+                        {
+                            case "+":
+                                if (type == Type.Int)
+                                    value += int.Parse(arg);
+                                else if (type == Type.Double)
+                                    valueD += double.Parse(arg);
+                                else if (type == Type.Float)
+                                    valueF += float.Parse(arg);
+                                break;
+                            case "-":
+                                if (type == Type.Int)
+                                    value -= int.Parse(arg);
+                                else if (type == Type.Double)
+                                    valueD -= double.Parse(arg);
+                                else if (type == Type.Float)
+                                    valueF -= float.Parse(arg);
+                                break;
+                            case "*":
+                                if (type == Type.Int)
+                                    value *= int.Parse(arg);
+                                else if (type == Type.Double)
+                                    valueD *= double.Parse(arg);
+                                else if (type == Type.Float)
+                                    valueF *= float.Parse(arg);
+                                break;
+                            case "/":
+                                if (type == Type.Int)
+                                    value /= int.Parse(arg);
+                                else if (type == Type.Double)
+                                    valueD /= double.Parse(arg);
+                                else if (type == Type.Float)
+                                    valueF /= float.Parse(arg);
+                                break;
+                            default:
+                                break;
+                        }
+                        turn++;
+                    }
+                }
+
+                switch (type)
+                {
+                    case Type.Int:
+                        output = value.ToString();
+                        break;
+                    case Type.Float:
+                        output = valueF.ToString();
+                        break;
+                    case Type.Double:
+                        output = valueD.ToString();
+                        break;
+                    default:
+                        break;
+                }
+                return output;
             }
-            return output;
+            catch
+            {
+                return null;
+            }
         }
 
 
@@ -258,14 +315,14 @@ namespace Vyvojaky
             Int64 c;
             float d;
             double e;
-            bool f;
-            char g;
+            bool f;            
             int result;
 
             List<string> sequence = new List<string>();
 
             string temp = "";
-            if ((temp = SumString(hodnota)) != null && int.TryParse(temp, out result) == false)
+            bool hasBrackets = hodnota.Contains("(") || hodnota.Contains("[") || hodnota.Contains("{");            
+            if (!hasBrackets && (temp = SumString(hodnota)) != null && int.TryParse(temp, out result) == false)
             {
                 hodnota = temp;
                 StringV.Add(nazev, hodnota);
@@ -289,10 +346,11 @@ namespace Vyvojaky
             {
                 //Třídění výrazu "hodnota"
                 sequence = SplitCommand(hodnota);
-                if (sequence.Contains("(")) { sequence = SimplifySequence(sequence); }
+                sequence = (sequence.Contains("(") || sequence.Contains("[") || sequence.Contains("{")) ? SimplifySequence(sequence) : sequence;
+                //if (sequence.Contains("(") || sequence.Contains("[") || sequence.Contains("{")) { sequence = SimplifySequence(sequence); }
 
                 //Řešení
-                if (sequence.Count > 2) { hodnota = SolveSequence(sequence); }
+                hodnota = SolveSequence(sequence);
 
 
                 if (Int16.TryParse(hodnota, out a))
@@ -366,32 +424,36 @@ namespace Vyvojaky
 
 
         //Summs strings
-        public static string SumString(string hodnota)
+        public static string? SumString(string hodnota)
         {
-            string value = "";
-            bool isString = false;
-
-            List<string> s = new List<string>();
-            s = SplitCommand(hodnota);
-
-            for (int i = 0; i <= s.Count - 1; i++)
+            try
             {
-                if (s[i][0] == '"' && s[i][s[i].Length - 1] == '"')
-                {
-                    value += OverwriteString(s[i]);
-                    isString = true;
-                }
-                else if (FindVar(s[i], "value") != null)
-                {
-                    value += FindVar(s[i], "value");
-                    isString = true;
-                }
-            }
+                string value = "";
+                bool isString = false;
 
-            if (isString)
-                return value;
-            else
-                return null;
+                List<string> s = new List<string>();
+                s = SplitCommand(hodnota);
+
+                for (int i = 0; i <= s.Count - 1; i++)
+                {
+                    if (s[i][0] == '"' && s[i][s[i].Length - 1] == '"')
+                    {
+                        value += OverwriteString(s[i]);
+                        isString = true;
+                    }
+                    else if (FindVar(s[i], "value") != null)
+                    {
+                        value += FindVar(s[i], "value");
+                        isString = true;
+                    }
+                }
+
+                if (isString)
+                    return value;
+            }
+            catch { }
+            
+            return null;
         }
 
         //Checking chars
@@ -405,29 +467,33 @@ namespace Vyvojaky
         //Metoda pro nalezení proměnné v Dictionaries
         public static string FindVar(string key, string returnValue) //Vrátí hodnotu podle key (jako string)
         {
-            if (returnValue == "value")
+            try
             {
-                if (Promenne.Int16V.ContainsKey(key)) return Int16V[key].ToString();
-                else if (Promenne.Int32V.ContainsKey(key)) return Int32V[key].ToString();                
-                else if (Promenne.Int64V.ContainsKey(key)) return Int64V[key].ToString();
-                else if (Promenne.FloatV.ContainsKey(key)) return FloatV[key].ToString();
-                else if (Promenne.DoubleV.ContainsKey(key)) return DoubleV[key].ToString();
-                else if (Promenne.BoolV.ContainsKey(key)) return BoolV[key].ToString();
-                else if (Promenne.StringV.ContainsKey(key)) return StringV[key].ToString();
-                else if (Promenne.CharV.ContainsKey(key)) return CharV[key].ToString();
-            }
+                if (returnValue == "value")
+                {
+                    if (Promenne.Int16V.ContainsKey(key)) return Int16V[key].ToString();
+                    else if (Promenne.Int32V.ContainsKey(key)) return Int32V[key].ToString();
+                    else if (Promenne.Int64V.ContainsKey(key)) return Int64V[key].ToString();
+                    else if (Promenne.FloatV.ContainsKey(key)) return FloatV[key].ToString();
+                    else if (Promenne.DoubleV.ContainsKey(key)) return DoubleV[key].ToString();
+                    else if (Promenne.BoolV.ContainsKey(key)) return BoolV[key].ToString();
+                    else if (Promenne.StringV.ContainsKey(key)) return StringV[key].ToString();
+                    else if (Promenne.CharV.ContainsKey(key)) return CharV[key].ToString();
+                }
 
-            if (returnValue == "type")
-            {
-                if (Int16V.ContainsKey(key)) return "Int16";
-                else if (Int32V.ContainsKey(key)) return "Int32";
-                else if (Int64V.ContainsKey(key)) return "Int64";
-                else if (FloatV.ContainsKey(key)) return "Float";
-                else if (DoubleV.ContainsKey(key)) return "Double";
-                else if (BoolV.ContainsKey(key)) return "Bool";
-                else if (StringV.ContainsKey(key)) return "String";
-                else if (CharV.ContainsKey(key)) return "Char";
+                if (returnValue == "type")
+                {
+                    if (Int16V.ContainsKey(key)) return "Int16";
+                    else if (Int32V.ContainsKey(key)) return "Int32";
+                    else if (Int64V.ContainsKey(key)) return "Int64";
+                    else if (FloatV.ContainsKey(key)) return "Float";
+                    else if (DoubleV.ContainsKey(key)) return "Double";
+                    else if (BoolV.ContainsKey(key)) return "Bool";
+                    else if (StringV.ContainsKey(key)) return "String";
+                    else if (CharV.ContainsKey(key)) return "Char";
+                }
             }
+            catch {}
 
             return null;
         }
