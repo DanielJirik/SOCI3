@@ -77,44 +77,7 @@ namespace Vyvojaky
 
         private void tbPromenna_KeyDown(object sender, KeyEventArgs e)
         {
-            string prikaz = tbPromenna.Text;
 
-            if (e.KeyCode == Keys.Enter && KontrolaNazvu(prikaz.Split("=")[0].Trim()))
-            {
-                try
-                {
-                    Regex.Replace(prikaz, @"\s+", "");
-
-                    nazevPromenne = prikaz.Split("=")[0].Trim();
-                    hodnotaPromenne = prikaz.Split("=")[1].Trim();
-
-                    legitPrikaz = true;
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("Něco je špatně.");
-                }
-
-                if (legitPrikaz)
-                {
-                    promenne.VytvoritPromennou(nazevPromenne, hodnotaPromenne, tbConsole);
-
-                    if (Promenne.isValid)
-                    {
-                        //Prida nazev do pouzitych nazvu
-                        Promenne.usedNames.Add(nazevPromenne);
-
-                        lvPromenne.Items.Add(nazevPromenne + " = " + Promenne.hodnota);
-                    }
-
-                    Promenne.typ = "";
-                    tbPromenna.Text = "";
-                    nazevPromenne = "";
-                    hodnotaPromenne = "";
-
-                    legitPrikaz = false;
-                }
-            }
         }
 
 
@@ -215,6 +178,43 @@ namespace Vyvojaky
         //right-click
         private void variablesToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            string prikaz = Interaction.InputBox("Zadejte proměnnou: \r\n\r\nPříklady: a = 5, b = 3.14, jmeno = Aneta ", "Variables");
+
+            if (KontrolaNazvu(prikaz.Split("=")[0].Trim()))
+            {
+                try
+                {
+                    Regex.Replace(prikaz, @"\s+", "");
+
+                    nazevPromenne = prikaz.Split("=")[0].Trim();
+                    hodnotaPromenne = prikaz.Split("=")[1].Trim();
+
+                    legitPrikaz = true;
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Něco je špatně.");
+                }
+
+                if (legitPrikaz)
+                {
+                    promenne.VytvoritPromennou(nazevPromenne, hodnotaPromenne, tbConsole);
+
+                    if (Promenne.isValid)
+                    {
+                        //Prida nazev do pouzitych nazvu
+                        Promenne.usedNames.Add(nazevPromenne);
+
+                        lvPromenne.Items.Add(nazevPromenne + " = " + Promenne.hodnota);
+                    }
+
+                    Promenne.typ = "";
+                    nazevPromenne = "";
+                    hodnotaPromenne = "";
+
+                    legitPrikaz = false;
+                }
+            }
             panelInformaci.Show();
             panelPodminky.Hide();
             panelSwitch.Hide();

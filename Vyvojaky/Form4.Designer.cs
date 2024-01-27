@@ -48,9 +48,6 @@ namespace Vyvojaky
             tbNajitPromennou = new TextBox();
             lbVytvorene = new Label();
             lvPromenne = new ListView();
-            lbPriklady = new Label();
-            lbPromenna = new Label();
-            tbPromenna = new TextBox();
             panelPodminky = new Panel();
             tbPodminka = new TextBox();
             lbPromenna1 = new Label();
@@ -199,13 +196,10 @@ namespace Vyvojaky
             panelInformaci.Controls.Add(tbNajitPromennou);
             panelInformaci.Controls.Add(lbVytvorene);
             panelInformaci.Controls.Add(lvPromenne);
-            panelInformaci.Controls.Add(lbPriklady);
-            panelInformaci.Controls.Add(lbPromenna);
-            panelInformaci.Controls.Add(tbPromenna);
             panelInformaci.Location = new Point(308, 17);
             panelInformaci.Margin = new Padding(3, 4, 3, 4);
             panelInformaci.Name = "panelInformaci";
-            panelInformaci.Size = new Size(297, 214);
+            panelInformaci.Size = new Size(264, 157);
             panelInformaci.TabIndex = 2;
             panelInformaci.MouseDown += panelInformaci_MouseDown;
             panelInformaci.MouseMove += panelInformaci_MouseMove;
@@ -213,7 +207,7 @@ namespace Vyvojaky
             // 
             // tbNajitPromennou
             // 
-            tbNajitPromennou.Location = new Point(3, 108);
+            tbNajitPromennou.Location = new Point(3, 36);
             tbNajitPromennou.Margin = new Padding(3, 4, 3, 4);
             tbNajitPromennou.Name = "tbNajitPromennou";
             tbNajitPromennou.Size = new Size(197, 27);
@@ -223,7 +217,7 @@ namespace Vyvojaky
             // lbVytvorene
             // 
             lbVytvorene.AutoSize = true;
-            lbVytvorene.Location = new Point(3, 84);
+            lbVytvorene.Location = new Point(3, 12);
             lbVytvorene.Name = "lbVytvorene";
             lbVytvorene.Size = new Size(147, 20);
             lbVytvorene.TabIndex = 12;
@@ -242,41 +236,14 @@ namespace Vyvojaky
             listViewGroup4.Header = "ListViewGroup";
             listViewGroup4.Name = "test3";
             lvPromenne.Groups.AddRange(new ListViewGroup[] { listViewGroup1, listViewGroup2, listViewGroup3, listViewGroup4 });
-            lvPromenne.Location = new Point(3, 143);
+            lvPromenne.Location = new Point(3, 71);
             lvPromenne.Margin = new Padding(3, 4, 3, 4);
             lvPromenne.Name = "lvPromenne";
-            lvPromenne.Size = new Size(281, 53);
+            lvPromenne.Size = new Size(253, 74);
             lvPromenne.TabIndex = 11;
             lvPromenne.UseCompatibleStateImageBehavior = false;
             lvPromenne.View = View.List;
             lvPromenne.Click += lvPromenne_Click;
-            // 
-            // lbPriklady
-            // 
-            lbPriklady.AutoSize = true;
-            lbPriklady.Location = new Point(3, 64);
-            lbPriklady.Name = "lbPriklady";
-            lbPriklady.Size = new Size(273, 20);
-            lbPriklady.TabIndex = 10;
-            lbPriklady.Text = "Příklady: a = 5, b = 3.14, jmeno = Aneta ";
-            // 
-            // lbPromenna
-            // 
-            lbPromenna.AutoSize = true;
-            lbPromenna.Location = new Point(3, 9);
-            lbPromenna.Name = "lbPromenna";
-            lbPromenna.Size = new Size(116, 20);
-            lbPromenna.TabIndex = 9;
-            lbPromenna.Text = "Nová proměnná";
-            // 
-            // tbPromenna
-            // 
-            tbPromenna.Location = new Point(3, 33);
-            tbPromenna.Margin = new Padding(3, 4, 3, 4);
-            tbPromenna.Name = "tbPromenna";
-            tbPromenna.Size = new Size(281, 27);
-            tbPromenna.TabIndex = 8;
-            tbPromenna.KeyDown += tbPromenna_KeyDown;
             // 
             // panelPodminky
             // 
@@ -393,9 +360,6 @@ namespace Vyvojaky
         private TextBox tbConsole;
         private Panel panelPodminky;
         private Label lbPromenna1;
-        private TextBox tbPromenna;
-        private Label lbPriklady;
-        private Label lbPromenna;
         private Label lbVytvorene;
         private ListView lvPromenne;
         private TextBox tbNajitPromennou;
