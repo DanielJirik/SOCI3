@@ -58,18 +58,6 @@ namespace Vyvojaky
         //objekt switch
         Switches switches = new Switches();
 
-        //Podminky
-        private void tbPodminka_KeyDown(object sender, KeyEventArgs e)
-        {
-            string prikaz = tbPodminka.Text;
-
-            if (e.KeyCode == Keys.Enter)
-            {
-                tbConsole.Text += podminky.isTrue(prikaz) + Environment.NewLine + ">"; //vrati false/true
-            }
-        }
-
-
         /*Vytvorereni nove promenne*/
         string nazevPromenne = "";
         string hodnotaPromenne = "";
@@ -222,6 +210,12 @@ namespace Vyvojaky
 
         private void conditionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            string prikaz = Interaction.InputBox("Zadejte podmínku: \r\n\r\n Příklady: a > b", "Conditions");
+
+            
+            
+            tbConsole.Text += podminky.isTrue(prikaz) + Environment.NewLine + ">"; //vrati false/true
+            
             panelPodminky.Show();
             panelInformaci.Hide();
             panelSwitch.Hide();

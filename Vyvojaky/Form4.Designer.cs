@@ -264,7 +264,6 @@ namespace Vyvojaky
             tbPodminka.Name = "tbPodminka";
             tbPodminka.Size = new Size(200, 27);
             tbPodminka.TabIndex = 1;
-            tbPodminka.KeyDown += tbPodminka_KeyDown;
             // 
             // lbPromenna1
             // 
