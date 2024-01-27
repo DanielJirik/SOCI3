@@ -168,41 +168,45 @@ namespace Vyvojaky
         {
             string prikaz = Interaction.InputBox("Zadejte proměnnou: \r\n\r\nPříklady: a = 5, b = 3.14, jmeno = Aneta ", "Variables");
 
-            if (KontrolaNazvu(prikaz.Split("=")[0].Trim()))
+            if (prikaz != "")
             {
-                try
+                if (KontrolaNazvu(prikaz.Split("=")[0].Trim()))
                 {
-                    Regex.Replace(prikaz, @"\s+", "");
-
-                    nazevPromenne = prikaz.Split("=")[0].Trim();
-                    hodnotaPromenne = prikaz.Split("=")[1].Trim();
-
-                    legitPrikaz = true;
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("Něco je špatně.");
-                }
-
-                if (legitPrikaz)
-                {
-                    promenne.VytvoritPromennou(nazevPromenne, hodnotaPromenne, tbConsole);
-
-                    if (Promenne.isValid)
+                    try
                     {
-                        //Prida nazev do pouzitych nazvu
-                        Promenne.usedNames.Add(nazevPromenne);
+                        Regex.Replace(prikaz, @"\s+", "");
 
-                        lvPromenne.Items.Add(nazevPromenne + " = " + Promenne.hodnota);
+                        nazevPromenne = prikaz.Split("=")[0].Trim();
+                        hodnotaPromenne = prikaz.Split("=")[1].Trim();
+
+                        legitPrikaz = true;
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Něco je špatně.");
                     }
 
-                    Promenne.typ = "";
-                    nazevPromenne = "";
-                    hodnotaPromenne = "";
+                    if (legitPrikaz)
+                    {
+                        promenne.VytvoritPromennou(nazevPromenne, hodnotaPromenne, tbConsole);
 
-                    legitPrikaz = false;
+                        if (Promenne.isValid)
+                        {
+                            //Prida nazev do pouzitych nazvu
+                            Promenne.usedNames.Add(nazevPromenne);
+
+                            lvPromenne.Items.Add(nazevPromenne + " = " + Promenne.hodnota);
+                        }
+
+                        Promenne.typ = "";
+                        nazevPromenne = "";
+                        hodnotaPromenne = "";
+
+                        legitPrikaz = false;
+                    }
                 }
             }
+            
             panelInformaci.Show();
             panelPodminky.Hide();
             panelSwitch.Hide();
@@ -211,10 +215,13 @@ namespace Vyvojaky
         private void conditionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string prikaz = Interaction.InputBox("Zadejte podmínku: \r\n\r\n Příklady: a > b", "Conditions");
-
+            if (prikaz != "")
+            {
+                tbConsole.Text += podminky.isTrue(prikaz) + Environment.NewLine + ">"; //vrati false/true
+            }
             
             
-            tbConsole.Text += podminky.isTrue(prikaz) + Environment.NewLine + ">"; //vrati false/true
+            
             
             panelPodminky.Show();
             panelInformaci.Hide();
@@ -229,18 +236,22 @@ namespace Vyvojaky
                 int pocet = 0;
                 string hodnota = "";
                 hodnota = Interaction.InputBox("Zadejte počet, kolik chcete mít možností ve switchi", "Switch");
+                if (hodnota != "")
+                {
+                    if (int.TryParse(hodnota, out pocet))
+                    {
+                        switches.pridavaniTextBoxu(pocet, panelSwitch, tbInputVariable);
+                        panelSwitch.Show();
+                        panelInformaci.Hide();
+                        panelPodminky.Hide();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Zadal jste chybný tvar čísla!");
+                    }
+                }
+                
 
-                if (int.TryParse(hodnota, out pocet))
-                {
-                    switches.pridavaniTextBoxu(pocet, panelSwitch, tbInputVariable);
-                    panelSwitch.Show();
-                    panelInformaci.Hide();
-                    panelPodminky.Hide();
-                }
-                else
-                {
-                    MessageBox.Show("Zadal jste chybný tvar čísla!");
-                }
             }
             catch (Exception ex)
             {
