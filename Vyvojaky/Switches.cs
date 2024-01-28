@@ -61,19 +61,834 @@ namespace Vyvojaky
         }
 
         public void Kontrola(TextBox console)
-        {
-            int vstupniCislo = int.Parse(VstupPromenna.Text);
-            for (int i = 0; i < Moznosti.Count; i++)
+        {   
+            //vstupní proměnné
+            int vstupInt;
+            double vstupDouble;
+            float vstupFloat;
+            bool vstupBool;
+            string vstupString;
+            char vstupChar;
+
+            //proměnné pro boxy
+            int moznostInt;
+            double moznostDouble;
+            float moznostFloat;
+            bool moznostBool;
+            string moznostString;
+            char moznostChar;
+
+            //bool proměnná pro případy, že nenajde cílenou proměnnou nebo se stane i jiná chyba
+            bool check = false; 
+
+            string typVstupu = Promenne.FindVar(VstupPromenna.Text.Trim(), "type");
+            if (typVstupu != null)
             {
-                int box = int.Parse(Moznosti[i].Text);
-                if (vstupniCislo == box)
+                switch (typVstupu)
                 {
-                    console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1);
-                    break;
+                    case "Int16":
+                        vstupInt = int.Parse(Promenne.FindVar(VstupPromenna.Text.Trim(), "value"));
+                        for (int i = 0; i < Moznosti.Count; i++)
+                        {
+                            if (typVstupu == Promenne.FindVar(Moznosti[i].Text.Trim(), "type"))
+                            {
+                                moznostInt = int.Parse(Promenne.FindVar(Moznosti[i].Text.Trim(), "value"));
+                                if (vstupInt == moznostInt)
+                                {
+                                    console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
+                                    break;
+                                }
+                            }
+                            else if (Promenne.FindVar(Moznosti[i].Text.Trim(), "type") == null)
+                            {
+                                if (int.TryParse(Moznosti[i].Text.Trim(), out moznostInt))
+                                {
+                                    if (vstupInt == moznostInt)
+                                    {
+                                        console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
+                                        break;
+                                    }
+                                }
+                                else if (double.TryParse(Moznosti[i].Text.Trim(), out moznostDouble))
+                                {
+                                    if (vstupInt == moznostDouble)
+                                    {
+                                        console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
+                                        break;
+                                    }
+                                }
+                                else if (float.TryParse(Moznosti[i].Text.Trim(), out moznostFloat))
+                                {
+                                    if (vstupInt == moznostFloat)
+                                    {
+                                        console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
+                                        break;
+                                    }
+                                }
+                                else
+                                {
+                                    check = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if (check)
+                        {
+                            MessageBox.Show("Ve switchi byl nalezen jiný typ proměnné než je typ vstupní proměnné!!!");
+                        }
+                        else
+                        {
+                            VytvoreniBloku(VstupPromenna.Text.Trim());
+                        }
+                        break;
+                    case "Int32":
+                        vstupInt = int.Parse(Promenne.FindVar(VstupPromenna.Text.Trim(), "value"));
+                        for (int i = 0; i < Moznosti.Count; i++)
+                        {
+                            if (typVstupu == Promenne.FindVar(Moznosti[i].Text.Trim(), "type"))
+                            {
+                                moznostInt = int.Parse(Promenne.FindVar(Moznosti[i].Text.Trim(), "value"));
+                                if (vstupInt == moznostInt)
+                                {
+                                    console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
+                                    break;
+                                }
+                            }
+                            else if (Promenne.FindVar(Moznosti[i].Text.Trim(), "type") == null)
+                            {
+                                if (int.TryParse(Moznosti[i].Text.Trim(), out moznostInt))
+                                {
+                                    if (vstupInt == moznostInt)
+                                    {
+                                        console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
+                                        break;
+                                    }
+                                }
+                                else if (double.TryParse(Moznosti[i].Text.Trim(), out moznostDouble))
+                                {
+                                    if (vstupInt == moznostDouble)
+                                    {
+                                        console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
+                                        break;
+                                    }
+                                }
+                                else if (float.TryParse(Moznosti[i].Text.Trim(), out moznostFloat))
+                                {
+                                    if (vstupInt == moznostFloat)
+                                    {
+                                        console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
+                                        break;
+                                    }
+                                }
+                                else
+                                {
+                                    check = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if (check)
+                        {
+                            MessageBox.Show("Ve switchi byl nalezen jiný typ proměnné než je typ vstupní proměnné!!!");
+                        }
+                        else
+                        {
+                            VytvoreniBloku(VstupPromenna.Text.Trim());
+                        }
+                        break;
+                    case "Int64":
+                        vstupInt = int.Parse(Promenne.FindVar(VstupPromenna.Text.Trim(), "value"));
+                        for (int i = 0; i < Moznosti.Count; i++)
+                        {
+                            if (typVstupu == Promenne.FindVar(Moznosti[i].Text.Trim(), "type"))
+                            {
+                                moznostInt = int.Parse(Promenne.FindVar(Moznosti[i].Text.Trim(), "value"));
+                                if (vstupInt == moznostInt)
+                                {
+                                    console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
+                                    break;
+                                }
+                            }
+                            else if (Promenne.FindVar(Moznosti[i].Text.Trim(), "type") == null)
+                            {
+                                if (int.TryParse(Moznosti[i].Text.Trim(), out moznostInt))
+                                {
+                                    if (vstupInt == moznostInt)
+                                    {
+                                        console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
+                                        break;
+                                    }
+                                }
+                                else if (double.TryParse(Moznosti[i].Text.Trim(), out moznostDouble))
+                                {
+                                    if (vstupInt == moznostDouble)
+                                    {
+                                        console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
+                                        break;
+                                    }
+                                }
+                                else if (float.TryParse(Moznosti[i].Text.Trim(), out moznostFloat))
+                                {
+                                    if (vstupInt == moznostFloat)
+                                    {
+                                        console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
+                                        break;
+                                    }
+                                }
+                                else
+                                {
+                                    check = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if (check)
+                        {
+                            MessageBox.Show("Ve switchi byl nalezen jiný typ proměnné než je typ vstupní proměnné!!!");
+                        }
+                        else
+                        {
+                            VytvoreniBloku(VstupPromenna.Text.Trim());
+                        }
+                        break;
+                    case "Float":
+                        vstupFloat = float.Parse(Promenne.FindVar(VstupPromenna.Text.Trim(), "value"));
+                        for (int i = 0; i < Moznosti.Count; i++)
+                        {
+                            if (typVstupu == Promenne.FindVar(Moznosti[i].Text.Trim(), "type"))
+                            {
+                                moznostFloat = int.Parse(Promenne.FindVar(Moznosti[i].Text.Trim(), "value"));
+                                if (vstupFloat == moznostFloat)
+                                {
+                                    console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
+                                    break;
+                                }
+                            }
+                            else if (Promenne.FindVar(Moznosti[i].Text.Trim(), "type") == null)
+                            {
+                                if (float.TryParse(Moznosti[i].Text.Trim(), out moznostFloat))
+                                {
+                                    if (vstupFloat == moznostFloat)
+                                    {
+                                        console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
+                                        break;
+                                    }
+                                }
+                                else if (int.TryParse(Moznosti[i].Text.Trim(), out moznostInt))
+                                {
+                                    if (vstupFloat == moznostInt)
+                                    {
+                                        console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
+                                        break;
+                                    }
+                                }
+                                else if (double.TryParse(Moznosti[i].Text.Trim(), out moznostDouble))
+                                {
+                                    if (vstupFloat == moznostFloat)
+                                    {
+                                        console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
+                                        break;
+                                    }
+                                }
+                                else
+                                {
+                                    check = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if (check)
+                        {
+                            MessageBox.Show("Ve switchi byl nalezen jiný typ proměnné než je typ vstupní proměnné!!!");
+                        }
+                        else
+                        {
+                            VytvoreniBloku(VstupPromenna.Text.Trim());
+                        }
+                        break;
+                    case "Double":
+                        vstupDouble = int.Parse(Promenne.FindVar(VstupPromenna.Text.Trim(), "value"));
+                        for (int i = 0; i < Moznosti.Count; i++)
+                        {
+                            if (typVstupu == Promenne.FindVar(Moznosti[i].Text.Trim(), "type"))
+                            {
+                                moznostDouble = double.Parse(Promenne.FindVar(Moznosti[i].Text.Trim(), "value"));
+                                if (vstupDouble == moznostDouble)
+                                {
+                                    console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
+                                    break;
+                                }
+                            }
+                            else if (Promenne.FindVar(Moznosti[i].Text.Trim(), "type") == null)
+                            {
+                                if (double.TryParse(Moznosti[i].Text.Trim(), out moznostDouble))
+                                {
+                                    if (vstupDouble == moznostDouble)
+                                    {
+                                        console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
+                                        break;
+                                    }
+                                }
+                                else if (int.TryParse(Moznosti[i].Text.Trim(), out moznostInt))
+                                {
+                                    if (vstupDouble == moznostInt)
+                                    {
+                                        console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
+                                        break;
+                                    }
+                                }
+                                else if (float.TryParse(Moznosti[i].Text.Trim(), out moznostFloat))
+                                {
+                                    if (vstupDouble == moznostFloat)
+                                    {
+                                        console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
+                                        break;
+                                    }
+                                }
+                                else
+                                {
+                                    check = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if (check)
+                        {
+                            MessageBox.Show("Ve switchi byl nalezen jiný typ proměnné než je typ vstupní proměnné!!!");
+                        }
+                        else
+                        {
+                            VytvoreniBloku(VstupPromenna.Text.Trim());
+                        }
+                        break;
+                    case "Bool":
+                        vstupBool = bool.Parse(Promenne.FindVar(VstupPromenna.Text.Trim(), "value"));
+                        for (int i = 0; i < Moznosti.Count; i++)
+                        {
+                            if (typVstupu == Promenne.FindVar(Moznosti[i].Text.Trim(), "type"))
+                            {
+                                moznostBool = bool.Parse(Promenne.FindVar(Moznosti[i].Text.Trim(), "value"));
+                                if (vstupBool == moznostBool)
+                                {
+                                    console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
+                                    break;
+                                }
+                            }
+                            else if (Promenne.FindVar(Moznosti[i].Text.Trim(), "type") == null)
+                            {
+                                if (bool.TryParse(Moznosti[i].Text.Trim(), out moznostBool))
+                                {
+                                    if (vstupBool == moznostBool)
+                                    {
+                                        console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
+                                        break;
+                                    }
+                                }
+                                else
+                                {
+                                    check = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if (check)
+                        {
+                            MessageBox.Show("Ve switchi byl nalezen jiný typ proměnné než je typ vstupní proměnné!!!");
+                        }
+                        else
+                        {
+                            VytvoreniBloku(VstupPromenna.Text.Trim());
+                        }
+                        break;
+                    case "Char":
+                        vstupChar = char.Parse(Promenne.FindVar(VstupPromenna.Text, "value"));
+                        for (int i = 0; i < Moznosti.Count; i++)
+                        {
+                            if (typVstupu == Promenne.FindVar(Moznosti[i].Text, "type"))
+                            {
+                                moznostChar = char.Parse(Promenne.FindVar(Moznosti[i].Text, "value"));
+                                if (vstupChar == moznostChar)
+                                {
+                                    console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
+                                    break;
+                                }
+                            }
+                            else if (Promenne.FindVar(Moznosti[i].Text, "type") == null)
+                            {
+                                moznostString = Moznosti[i].ToString();
+                                if (char.TryParse(moznostString, out moznostChar))
+                                {
+                                    if (vstupChar == moznostChar)
+                                    {
+                                        console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
+                                        break;
+                                    }
+                                }
+                                else
+                                {
+                                    check = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if (check)
+                        {
+                            MessageBox.Show("Ve switchi byl nalezen jiný typ proměnné než je typ vstupní proměnné!!!");
+                        }
+                        else
+                        {
+                            VytvoreniBloku(VstupPromenna.Text.Trim());
+                        }
+                        break;
+                    case "String":
+                        vstupString = Promenne.FindVar(VstupPromenna.Text, "value");
+                        Debug.WriteLine(vstupString);
+                        for (int i = 0; i < Moznosti.Count; i++)
+                        {
+                            Debug.WriteLine(Moznosti[i].Text);
+                            if (typVstupu == Promenne.FindVar(Moznosti[i].Text, "type"))
+                            {
+                                moznostString = Promenne.FindVar(Moznosti[i].Text, "value");
+                                if (vstupString == moznostString)
+                                {
+                                    console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
+                                    break;
+                                }
+                            }
+                            else 
+                            {
+                                moznostString = Moznosti[i].Text;
+                                if (char.TryParse(moznostString, out moznostChar))
+                                {
+                                    
+                                    if (vstupString == moznostChar.ToString())
+                                    {
+                                        console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
+                                        break;
+                                    }
+                                }
+                                else if (vstupString == moznostString)
+                                {
+                                    console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
+                                    break;
+                                }
+                            }
+                        }
+                        if (check)
+                        {
+                            MessageBox.Show("Ve switchi byl nalezen jiný typ proměnné než je typ vstupní proměnné!!!");
+                        }
+                        else
+                        {
+                            VytvoreniBloku(VstupPromenna.Text.Trim());
+                        }
+                        break;
+                    default:
+                        break;
                 }
             }
+            else
+            {
+                if (int.TryParse(VstupPromenna.Text.Trim(), out vstupInt))
+                {
+                    for (int i = 0; i < Moznosti.Count; i++)
+                    {
+                        if (Promenne.FindVar(Moznosti[i].Text.Trim(), "type") != null)
+                        {
+                            if ("Int16" == Promenne.FindVar(Moznosti[i].Text.Trim(), "type") || "Int32" == Promenne.FindVar(Moznosti[i].Text.Trim(), "type") || "Int64" == Promenne.FindVar(Moznosti[i].Text.Trim(), "type"))
+                            {
+                                moznostInt = int.Parse(Promenne.FindVar(Moznosti[i].Text.Trim(), "value"));
+                                if (vstupInt == moznostInt)
+                                {
+                                    console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
+                                    break;
+                                }
+                            }
+                            else if ("Double" == Promenne.FindVar(Moznosti[i].Text.Trim(), "type"))
+                            {
+                                moznostDouble = double.Parse(Promenne.FindVar(Moznosti[i].Text.Trim(), "value"));
+                                if (vstupInt == moznostDouble)
+                                {
+                                    console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
+                                    break;
+                                }
+                            }
+                            else if ("Float" == Promenne.FindVar(Moznosti[i].Text.Trim(), "type"))
+                            {
+                                moznostFloat = float.Parse(Promenne.FindVar(Moznosti[i].Text.Trim(), "value"));
+                                if (vstupInt == moznostFloat)
+                                {
+                                    console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
+                                    break;
+                                }
+                            }
+                            else
+                            {
+                                check = true;
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            if (int.TryParse(Moznosti[i].Text.Trim(), out moznostInt))
+                            {
+                                if (vstupInt == moznostInt)
+                                {
+                                    console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
+                                    break;
+                                }
+                            }
+                            else if (double.TryParse(Moznosti[i].Text.Trim(), out moznostDouble))
+                            {
+                                if (vstupInt == moznostDouble)
+                                {
+                                    console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
+                                    break;
+                                }
+                            }
+                            else if (float.TryParse(Moznosti[i].Text.Trim(), out moznostFloat))
+                            {
+                                if (vstupInt == moznostFloat)
+                                {
+                                    console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
+                                    break;
+                                }
+                            }
+                            else
+                            {
+                                check = true;
+                                break;
+                            }
+                        }
+                    }
+                    if (check)
+                    {
+                        MessageBox.Show("Ve switchi byl nalezen jiný typ proměnné než je typ vstupní proměnné!!!");
+                    }
+                    else
+                    {
+                        VytvoreniBloku(VstupPromenna.Text.Trim());
+                    }
+                }
+                else if (double.TryParse(VstupPromenna.Text.Trim(), out vstupDouble))
+                {
+                    for (int i = 0; i < Moznosti.Count; i++)
+                    {
+                        if (Promenne.FindVar(Moznosti[i].Text.Trim(), "type") != null)
+                        {
+                            if ("Double" == Promenne.FindVar(Moznosti[i].Text.Trim(), "type"))
+                            {
+                                moznostDouble = double.Parse(Promenne.FindVar(Moznosti[i].Text.Trim(), "value"));
+                                if (vstupDouble == moznostDouble)
+                                {
+                                    console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
+                                    break;
+                                }
+                            }
+                            else if ("Int16" == Promenne.FindVar(Moznosti[i].Text.Trim(), "type") || "Int32" == Promenne.FindVar(Moznosti[i].Text.Trim(), "type") || "Int64" == Promenne.FindVar(Moznosti[i].Text.Trim(), "type"))
+                            {
+                                moznostInt = int.Parse(Promenne.FindVar(Moznosti[i].Text.Trim(), "value"));
+                                if (vstupDouble == moznostInt)
+                                {
+                                    console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
+                                    break;
+                                }
+                            }
+                            else if ("Float" == Promenne.FindVar(Moznosti[i].Text.Trim(), "type"))
+                            {
+                                moznostFloat = float.Parse(Promenne.FindVar(Moznosti[i].Text.Trim(), "value"));
+                                if (vstupDouble == moznostFloat)
+                                {
+                                    console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
+                                    break;
+                                }
+                            }
+                            else
+                            {
+                                check = true;
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            if (int.TryParse(Moznosti[i].Text.Trim(), out moznostInt))
+                            {
+                                if (vstupDouble == moznostInt)
+                                {
+                                    console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
+                                    break;
+                                }
+                            }
+                            else if (double.TryParse(Moznosti[i].Text.Trim(), out moznostDouble))
+                            {
+                                if (vstupDouble == moznostDouble)
+                                {
+                                    console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
+                                    break;
+                                }
+                            }
+                            else if (float.TryParse(Moznosti[i].Text.Trim(), out moznostFloat))
+                            {
+                                if (vstupDouble == moznostFloat)
+                                {
+                                    console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
+                                    break;
+                                }
+                            }
+                            else
+                            {
+                                check = true;
+                                break;
+                            }
+                        }
+                    }
+                    if (check)
+                    {
+                        MessageBox.Show("Ve switchi byl nalezen jiný typ proměnné než je typ vstupní proměnné!!!");
+                    }
+                    else
+                    {
+                        VytvoreniBloku(VstupPromenna.Text.Trim());
+                    }
+                }
+                else if (float.TryParse(VstupPromenna.Text.Trim(), out vstupFloat))
+                {
+                    for (int i = 0; i < Moznosti.Count; i++)
+                    {
+                        if (Promenne.FindVar(Moznosti[i].Text.Trim(), "type") != null)
+                        {
+                            if ("Float" == Promenne.FindVar(Moznosti[i].Text.Trim(), "type"))
+                            {
+                                moznostFloat = float.Parse(Promenne.FindVar(Moznosti[i].Text.Trim(), "value"));
+                                if (vstupFloat == moznostFloat)
+                                {
+                                    console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
+                                    break;
+                                }
+                            }
+                            else if ("Double" == Promenne.FindVar(Moznosti[i].Text.Trim(), "type"))
+                            {
+                                moznostDouble = double.Parse(Promenne.FindVar(Moznosti[i].Text.Trim(), "value"));
+                                if (vstupFloat == moznostDouble)
+                                {
+                                    console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
+                                    break;
+                                }
+                            }
+                            else if ("Int16" == Promenne.FindVar(Moznosti[i].Text.Trim(), "type") || "Int32" == Promenne.FindVar(Moznosti[i].Text.Trim(), "type") || "Int64" == Promenne.FindVar(Moznosti[i].Text.Trim(), "type"))
+                            {
+                                moznostInt = int.Parse(Promenne.FindVar(Moznosti[i].Text.Trim(), "value"));
+                                if (vstupFloat == moznostInt)
+                                {
+                                    console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
+                                    break;
+                                }
+                            }
+                            
+                            else
+                            {
+                                check = true;
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            if (int.TryParse(Moznosti[i].Text.Trim(), out moznostInt))
+                            {
+                                if (vstupFloat == moznostInt)
+                                {
+                                    console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
+                                    break;
+                                }
+                            }
+                            else if (double.TryParse(Moznosti[i].Text.Trim(), out moznostDouble))
+                            {
+                                if (vstupFloat == moznostDouble)
+                                {
+                                    console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
+                                    break;
+                                }
+                            }
+                            else if (float.TryParse(Moznosti[i].Text.Trim(), out moznostFloat))
+                            {
+                                if (vstupFloat == moznostFloat)
+                                {
+                                    console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
+                                    break;
+                                }
+                            }
+                            else
+                            {
+                                check = true;
+                                break;
+                            }
+                        }
+                    }
+                    if (check)
+                    {
+                        MessageBox.Show("Ve switchi byl nalezen jiný typ proměnné než je typ vstupní proměnné!!!");
+                    }
+                    else
+                    {
+                        VytvoreniBloku(VstupPromenna.Text.Trim());
+                    }
+                }
+                else if (bool.TryParse(VstupPromenna.Text.Trim(), out vstupBool))
+                {
+                    for (int i = 0; i < Moznosti.Count; i++)
+                    {
+                        if (Promenne.FindVar(Moznosti[i].Text.Trim(), "type") != null)
+                        {
+                            if ("Bool" == Promenne.FindVar(Moznosti[i].Text.Trim(), "type"))
+                            {
+                                moznostBool = bool.Parse(Promenne.FindVar(Moznosti[i].Text.Trim(), "value"));
+                                if (vstupBool == moznostBool)
+                                {
+                                    console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
+                                    break;
+                                }
+                            }
+                            else
+                            {
+                                check = true;
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            if (bool.TryParse(Moznosti[i].Text.Trim(), out moznostBool))
+                            {
+                                if (vstupBool == moznostBool)
+                                {
+                                    console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
+                                    break;
+                                }
+                            }
+                            else
+                            {
+                                check = true;
+                                break;
+                            }
+                        }
+                    }
+                    if (check)
+                    {
+                        MessageBox.Show("Ve switchi byl nalezen jiný typ proměnné než je typ vstupní proměnné!!!");
+                    }
+                    else
+                    {
+                        VytvoreniBloku(VstupPromenna.Text.Trim());
+                    }
+                }
+                else if (char.TryParse(VstupPromenna.Text.Trim(), out vstupChar))
+                {
+                    for (int i = 0; i < Moznosti.Count; i++)
+                    {
+                        if (Promenne.FindVar(Moznosti[i].Text.Trim(), "type") != null)
+                        {
+                            if ("Char" == Promenne.FindVar(Moznosti[i].Text.Trim(), "type"))
+                            {
+                                moznostChar = char.Parse(Promenne.FindVar(Moznosti[i].Text.Trim(), "value"));
+                                if (vstupChar == moznostChar)
+                                {
+                                    console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
+                                    break;
+                                }
+                            }
+                            else
+                            {
+                                check = true;
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            if (char.TryParse(Moznosti[i].Text, out moznostChar))
+                            {
+                                if (vstupChar == moznostChar)
+                                {
+                                    console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
+                                    break;
+                                }
+                            }
+                            else
+                            {
+                                check = true;
+                                break;
+                            }
+                        }
+                    }
+                    if (check)
+                    {
+                        MessageBox.Show("Ve switchi byl nalezen jiný typ proměnné než je typ vstupní proměnné!!!");
+                    }
+                    else
+                    {
+                        VytvoreniBloku(VstupPromenna.Text);
+                    }
+                }
+                else
+                {
+                    
+                    vstupString = VstupPromenna.Text;
+                    for (int i = 0; i < Moznosti.Count; i++)
+                    {
+                        if (Promenne.FindVar(Moznosti[i].Text, "type") != null)
+                        {
+                            if ("Char" == Promenne.FindVar(Moznosti[i].Text, "type"))
+                            {
+                                moznostChar = char.Parse(Promenne.FindVar(Moznosti[i].Text, "value"));
+                                if (vstupString == moznostChar.ToString())
+                                {
+                                    console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
+                                    break;
+                                }
+                            }
+                            else if (vstupString == Promenne.FindVar(Moznosti[i].Text.ToString(), "value"))
+                            {
+                                console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            if (char.TryParse(Moznosti[i].Text, out moznostChar))
+                            {
+                                if (vstupString == moznostChar.ToString())
+                                {
+                                    console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
+                                    break;
+                                }
+                            }
+                            else if (vstupString == Moznosti[i].Text.ToString())
+                            {
+                                Debug.WriteLine("Zjištěno že nejde převést");
+                                console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
+                                break;
+                            }
+                        }
+                    }
+                    if (check)
+                    {
+                        MessageBox.Show("Ve switchi byl nalezen jiný typ proměnné než je typ vstupní proměnné!!!");
+                    }
+                    else
+                    {
+                        VytvoreniBloku(VstupPromenna.Text.Trim());
+                    }
+                }
+            }
+        }
+
+        public string ZjisteniTypuVDictionary(string moznost) 
+        {
+            moznost = Promenne.FindVar(moznost, "type");
+            return moznost;
+        }
+        public void VytvoreniBloku(string hodnota) 
+        {
             Block block = new Block(Pracovni);
-            block.BlockSwitch(Moznosti.Count, vstupniCislo, Moznosti);
+            block.BlockSwitch(Moznosti.Count, hodnota, Moznosti);
         }
 
         public void MazaniBoxu(Panel panelSwitch)

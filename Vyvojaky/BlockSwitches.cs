@@ -13,7 +13,7 @@ namespace Vyvojaky
         int startPositionX = 20;
         int startPositionY = 20;
 
-        public BlockSwitches(int pocetCasu, int vstupPromenna, List<TextBox> boxy) 
+        public BlockSwitches(int pocetCasu, string vstupPromenna, List<TextBox> boxy) 
         {   
             //picture box
             pb.Width = 120;
