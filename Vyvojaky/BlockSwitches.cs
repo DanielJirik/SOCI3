@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,22 +11,19 @@ namespace Vyvojaky
     {
         public PictureBox pb = new PictureBox();
         public Label lb = new Label();
-        int startPositionX = 20;
-        int startPositionY = 20;
-
+        int startPositionX = 10;
+        int startPositionY = 10;
+        int promSirka = 0;
         public BlockSwitches(int pocetCasu, string vstupPromenna, List<TextBox> boxy) 
         {   
             //picture box
             pb.Width = 120;
             pb.Height = 50;
             pb.BackColor = Color.White;
-            pb.Anchor = AnchorStyles.Top;
-            pb.Anchor = AnchorStyles.Bottom;
-            pb.Anchor = AnchorStyles.Left;
-            pb.Anchor = AnchorStyles.Right;
-
+            promSirka = pb.Width;
             //label + pridani lb do picture boxu
             lb.Text = "Switch(" + vstupPromenna + "):";
+            
             lb.Location = new Point(startPositionX, startPositionY);
             pb.Controls.Add(lb);
 
@@ -34,12 +32,17 @@ namespace Vyvojaky
             {
                 lb = new Label();
                 lb.Text = (i + 1) + ".Case:" + boxy[i].Text;
+                if (promSirka < (promSirka + lb.Text.Length))
+                {
+                    promSirka += lb.Text.Length*2;
+                }
                 startPositionY += 20;
                 pb.Height += 20;
+                pb.Width = promSirka;
+                Debug.WriteLine("Vstup promnná: " + vstupPromenna);
                 lb.Location = new Point(startPositionX, startPositionY);
                 pb.Controls.Add(lb);
             }
-
             pb.Location = new Point(Random.Shared.Next(0, Block.pracPanel.Width - pb.Width), Random.Shared.Next(0, Block.pracPanel.Height - pb.Height));
             Block.pracPanel.Controls.Add(pb);
 

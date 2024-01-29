@@ -874,7 +874,7 @@ namespace Vyvojaky
                     }
                     else
                     {
-                        VytvoreniBloku(VstupPromenna.Text.Trim());
+                        VytvoreniBloku(VstupPromenna.Text);
                     }
                 }
             }
