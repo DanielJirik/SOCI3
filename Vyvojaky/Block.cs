@@ -21,7 +21,7 @@ namespace Vyvojaky
 
         public static int BlockIndex()
         {
-            int index = indexes.Count() > 0 ? indexes.Last() + 1 : 1;
+            int index = indexes.Count() > 0 ? indexes.Last() + 1 : 0;
             indexes.Add(index);
             return index;
         }
