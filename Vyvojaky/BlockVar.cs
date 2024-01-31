@@ -29,6 +29,7 @@ namespace Vyvojaky
             pb.Height = 50;
             pb.Location = new Point(Random.Shared.Next(0, Block.pracPanel.Width - pb.Width), Random.Shared.Next(0, Block.pracPanel.Height - pb.Height));
             pb.BackColor = Color.White;
+            pb.Tag = Block.BlockIndex(); //Vygeneruje novy index pro dany block a nastavi jej jako Tag PictureBoxu
 
             //Drag and Drop event handlers
             pb.MouseDown += new MouseEventHandler(MouseDown);

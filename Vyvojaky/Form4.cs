@@ -206,7 +206,7 @@ namespace Vyvojaky
                     }
                 }
             }
-            
+
             panelInformaci.Show();
             panelPodminky.Hide();
             panelSwitch.Hide();
@@ -219,10 +219,10 @@ namespace Vyvojaky
             {
                 tbConsole.Text += podminky.isTrue(prikaz) + Environment.NewLine + ">"; //vrati false/true
             }
-            
-            
-            
-            
+
+
+
+
             panelPodminky.Show();
             panelInformaci.Hide();
             panelSwitch.Hide();
@@ -250,7 +250,7 @@ namespace Vyvojaky
                         MessageBox.Show("Zadal jste chybný tvar čísla!");
                     }
                 }
-                
+
 
             }
             catch (Exception ex)
@@ -261,7 +261,7 @@ namespace Vyvojaky
                 panelPodminky.Hide();
             }
         }
-
+       
         //pohyb panelů na pracovní ploše
         private bool dragging;
         private int xPos, yPos;
@@ -343,6 +343,16 @@ namespace Vyvojaky
             {
                 switches.Kontrola(tbConsole);
             }
+        }
+
+        private void tbConsole_KeyDown(object sender, KeyEventArgs e)
+        {
+            string indexes = "";
+            foreach (int n in Block.indexes)
+            {
+                indexes += n + ", ";
+            }
+            MessageBox.Show(indexes);
         }
     }
 }

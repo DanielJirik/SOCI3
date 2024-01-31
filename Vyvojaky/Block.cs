@@ -10,6 +10,7 @@ namespace Vyvojaky
     internal class Block
     {
         public static Panel pracPanel;
+        public static List<int> indexes = new List<int>();
 
         public Block(Panel _pracPanel)
         {
@@ -17,6 +18,13 @@ namespace Vyvojaky
         }
 
         //
+
+        public static int BlockIndex()
+        {
+            int index = indexes.Count() > 0 ? indexes.Last() + 1 : 1;
+            indexes.Add(index);
+            return index;
+        }
 
         public void BlockVar(string typ, string nazev, string hodnota)
         {

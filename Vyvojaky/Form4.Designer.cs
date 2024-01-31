@@ -80,8 +80,9 @@ namespace Vyvojaky
             panelPracovni.Controls.Add(panelPodminky);
             panelPracovni.Dock = DockStyle.Fill;
             panelPracovni.Location = new Point(0, 0);
+            panelPracovni.Margin = new Padding(3, 2, 3, 2);
             panelPracovni.Name = "panelPracovni";
-            panelPracovni.Size = new Size(1269, 681);
+            panelPracovni.Size = new Size(1110, 511);
             panelPracovni.TabIndex = 1;
             // 
             // panelSwitch
@@ -90,9 +91,10 @@ namespace Vyvojaky
             panelSwitch.Controls.Add(label2);
             panelSwitch.Controls.Add(tbInputVariable);
             panelSwitch.Controls.Add(label1);
-            panelSwitch.Location = new Point(628, 106);
+            panelSwitch.Location = new Point(550, 80);
+            panelSwitch.Margin = new Padding(3, 2, 3, 2);
             panelSwitch.Name = "panelSwitch";
-            panelSwitch.Size = new Size(229, 107);
+            panelSwitch.Size = new Size(200, 80);
             panelSwitch.TabIndex = 6;
             panelSwitch.MouseDown += panelSwitch_MouseDown;
             panelSwitch.MouseMove += panelSwitch_MouseMove;
@@ -101,26 +103,27 @@ namespace Vyvojaky
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(4, 36);
+            label2.Location = new Point(4, 27);
             label2.Name = "label2";
-            label2.Size = new Size(130, 20);
+            label2.Size = new Size(105, 15);
             label2.TabIndex = 2;
             label2.Text = "Vstupní proměnná";
             // 
             // tbInputVariable
             // 
-            tbInputVariable.Location = new Point(3, 66);
+            tbInputVariable.Location = new Point(3, 50);
+            tbInputVariable.Margin = new Padding(3, 2, 3, 2);
             tbInputVariable.Name = "tbInputVariable";
-            tbInputVariable.Size = new Size(159, 27);
+            tbInputVariable.Size = new Size(140, 23);
             tbInputVariable.TabIndex = 1;
             tbInputVariable.KeyDown += tbInputVariable_KeyDown;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(3, 10);
+            label1.Location = new Point(3, 8);
             label1.Name = "label1";
-            label1.Size = new Size(55, 20);
+            label1.Size = new Size(45, 15);
             label1.TabIndex = 0;
             label1.Text = "Switch:";
             // 
@@ -131,18 +134,16 @@ namespace Vyvojaky
             panelVlastnosti.Controls.Add(lbTypP);
             panelVlastnosti.Controls.Add(lbHodnotaP);
             panelVlastnosti.Controls.Add(lbNazevP);
-            panelVlastnosti.Location = new Point(12, 147);
-            panelVlastnosti.Margin = new Padding(3, 4, 3, 4);
+            panelVlastnosti.Location = new Point(10, 110);
             panelVlastnosti.Name = "panelVlastnosti";
-            panelVlastnosti.Size = new Size(190, 145);
+            panelVlastnosti.Size = new Size(166, 109);
             panelVlastnosti.TabIndex = 5;
             // 
             // btNajitP
             // 
-            btNajitP.Location = new Point(3, 104);
-            btNajitP.Margin = new Padding(3, 4, 3, 4);
+            btNajitP.Location = new Point(3, 78);
             btNajitP.Name = "btNajitP";
-            btNajitP.Size = new Size(110, 31);
+            btNajitP.Size = new Size(96, 23);
             btNajitP.TabIndex = 3;
             btNajitP.Text = "Naj�t na plo�e";
             btNajitP.UseVisualStyleBackColor = true;
@@ -151,27 +152,27 @@ namespace Vyvojaky
             // lbTypP
             // 
             lbTypP.AutoSize = true;
-            lbTypP.Location = new Point(3, 71);
+            lbTypP.Location = new Point(3, 53);
             lbTypP.Name = "lbTypP";
-            lbTypP.Size = new Size(95, 20);
+            lbTypP.Size = new Size(75, 15);
             lbTypP.TabIndex = 2;
             lbTypP.Text = "Datov� typ: ";
             // 
             // lbHodnotaP
             // 
             lbHodnotaP.AutoSize = true;
-            lbHodnotaP.Location = new Point(3, 39);
+            lbHodnotaP.Location = new Point(3, 29);
             lbHodnotaP.Name = "lbHodnotaP";
-            lbHodnotaP.Size = new Size(75, 20);
+            lbHodnotaP.Size = new Size(60, 15);
             lbHodnotaP.TabIndex = 1;
             lbHodnotaP.Text = "Hodnota: ";
             // 
             // lbNazevP
             // 
             lbNazevP.AutoSize = true;
-            lbNazevP.Location = new Point(3, 7);
+            lbNazevP.Location = new Point(3, 5);
             lbNazevP.Name = "lbNazevP";
-            lbNazevP.Size = new Size(63, 20);
+            lbNazevP.Size = new Size(50, 15);
             lbNazevP.TabIndex = 0;
             lbNazevP.Text = "N�zev: ";
             // 
@@ -180,15 +181,17 @@ namespace Vyvojaky
             tbConsole.BackColor = Color.Black;
             tbConsole.Font = new Font("Arial", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             tbConsole.ForeColor = Color.White;
-            tbConsole.Location = new Point(12, 17);
+            tbConsole.Location = new Point(10, 13);
+            tbConsole.Margin = new Padding(3, 2, 3, 2);
             tbConsole.Multiline = true;
             tbConsole.Name = "tbConsole";
             tbConsole.ReadOnly = true;
             tbConsole.ScrollBars = ScrollBars.Vertical;
-            tbConsole.Size = new Size(258, 107);
+            tbConsole.Size = new Size(226, 81);
             tbConsole.TabIndex = 0;
             tbConsole.TabStop = false;
             tbConsole.Text = ">";
+            tbConsole.KeyDown += tbConsole_KeyDown;
             // 
             // panelInformaci
             // 
@@ -196,10 +199,9 @@ namespace Vyvojaky
             panelInformaci.Controls.Add(tbNajitPromennou);
             panelInformaci.Controls.Add(lbVytvorene);
             panelInformaci.Controls.Add(lvPromenne);
-            panelInformaci.Location = new Point(308, 17);
-            panelInformaci.Margin = new Padding(3, 4, 3, 4);
+            panelInformaci.Location = new Point(270, 13);
             panelInformaci.Name = "panelInformaci";
-            panelInformaci.Size = new Size(264, 157);
+            panelInformaci.Size = new Size(231, 118);
             panelInformaci.TabIndex = 2;
             panelInformaci.MouseDown += panelInformaci_MouseDown;
             panelInformaci.MouseMove += panelInformaci_MouseMove;
@@ -207,19 +209,18 @@ namespace Vyvojaky
             // 
             // tbNajitPromennou
             // 
-            tbNajitPromennou.Location = new Point(3, 36);
-            tbNajitPromennou.Margin = new Padding(3, 4, 3, 4);
+            tbNajitPromennou.Location = new Point(3, 27);
             tbNajitPromennou.Name = "tbNajitPromennou";
-            tbNajitPromennou.Size = new Size(197, 27);
+            tbNajitPromennou.Size = new Size(173, 23);
             tbNajitPromennou.TabIndex = 13;
             tbNajitPromennou.TextChanged += tbNajitPromennou_TextChanged;
             // 
             // lbVytvorene
             // 
             lbVytvorene.AutoSize = true;
-            lbVytvorene.Location = new Point(3, 12);
+            lbVytvorene.Location = new Point(3, 9);
             lbVytvorene.Name = "lbVytvorene";
-            lbVytvorene.Size = new Size(147, 20);
+            lbVytvorene.Size = new Size(118, 15);
             lbVytvorene.TabIndex = 12;
             lbVytvorene.Text = "Vytvořené proměnné";
             // 
@@ -236,10 +237,9 @@ namespace Vyvojaky
             listViewGroup4.Header = "ListViewGroup";
             listViewGroup4.Name = "test3";
             lvPromenne.Groups.AddRange(new ListViewGroup[] { listViewGroup1, listViewGroup2, listViewGroup3, listViewGroup4 });
-            lvPromenne.Location = new Point(3, 71);
-            lvPromenne.Margin = new Padding(3, 4, 3, 4);
+            lvPromenne.Location = new Point(3, 53);
             lvPromenne.Name = "lvPromenne";
-            lvPromenne.Size = new Size(253, 74);
+            lvPromenne.Size = new Size(222, 56);
             lvPromenne.TabIndex = 11;
             lvPromenne.UseCompatibleStateImageBehavior = false;
             lvPromenne.View = View.List;
@@ -250,9 +250,10 @@ namespace Vyvojaky
             panelPodminky.BackColor = Color.FromArgb(192, 255, 192);
             panelPodminky.Controls.Add(tbPodminka);
             panelPodminky.Controls.Add(lbPromenna1);
-            panelPodminky.Location = new Point(625, 17);
+            panelPodminky.Location = new Point(547, 13);
+            panelPodminky.Margin = new Padding(3, 2, 3, 2);
             panelPodminky.Name = "panelPodminky";
-            panelPodminky.Size = new Size(230, 71);
+            panelPodminky.Size = new Size(201, 53);
             panelPodminky.TabIndex = 3;
             panelPodminky.MouseDown += panelPodminky_MouseDown;
             panelPodminky.MouseMove += panelPodminky_MouseMove;
@@ -260,17 +261,18 @@ namespace Vyvojaky
             // 
             // tbPodminka
             // 
-            tbPodminka.Location = new Point(3, 35);
+            tbPodminka.Location = new Point(3, 26);
+            tbPodminka.Margin = new Padding(3, 2, 3, 2);
             tbPodminka.Name = "tbPodminka";
-            tbPodminka.Size = new Size(200, 27);
+            tbPodminka.Size = new Size(176, 23);
             tbPodminka.TabIndex = 1;
             // 
             // lbPromenna1
             // 
             lbPromenna1.AutoSize = true;
-            lbPromenna1.Location = new Point(3, 12);
+            lbPromenna1.Location = new Point(3, 9);
             lbPromenna1.Name = "lbPromenna1";
-            lbPromenna1.Size = new Size(73, 20);
+            lbPromenna1.Size = new Size(61, 15);
             lbPromenna1.TabIndex = 0;
             lbPromenna1.Text = "Podmínky";
             // 
@@ -279,63 +281,64 @@ namespace Vyvojaky
             contextMenuStrip1.ImageScalingSize = new Size(20, 20);
             contextMenuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, panelsToolStripMenuItem });
             contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(120, 52);
+            contextMenuStrip1.Size = new Size(109, 48);
             // 
             // fileToolStripMenuItem
             // 
             fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { openToolStripMenuItem, saveToolStripMenuItem });
             fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            fileToolStripMenuItem.Size = new Size(119, 24);
+            fileToolStripMenuItem.Size = new Size(108, 22);
             fileToolStripMenuItem.Text = "File";
             // 
             // openToolStripMenuItem
             // 
             openToolStripMenuItem.Name = "openToolStripMenuItem";
-            openToolStripMenuItem.Size = new Size(128, 26);
+            openToolStripMenuItem.Size = new Size(103, 22);
             openToolStripMenuItem.Text = "Open";
             // 
             // saveToolStripMenuItem
             // 
             saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            saveToolStripMenuItem.Size = new Size(128, 26);
+            saveToolStripMenuItem.Size = new Size(103, 22);
             saveToolStripMenuItem.Text = "Save";
             // 
             // panelsToolStripMenuItem
             // 
             panelsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { variablesToolStripMenuItem, conditionsToolStripMenuItem, switchToolStripMenuItem });
             panelsToolStripMenuItem.Name = "panelsToolStripMenuItem";
-            panelsToolStripMenuItem.Size = new Size(119, 24);
+            panelsToolStripMenuItem.Size = new Size(108, 22);
             panelsToolStripMenuItem.Text = "Panels";
             // 
             // variablesToolStripMenuItem
             // 
             variablesToolStripMenuItem.Name = "variablesToolStripMenuItem";
-            variablesToolStripMenuItem.Size = new Size(163, 26);
+            variablesToolStripMenuItem.Size = new Size(132, 22);
             variablesToolStripMenuItem.Text = "Variables";
             variablesToolStripMenuItem.Click += variablesToolStripMenuItem_Click;
             // 
             // conditionsToolStripMenuItem
             // 
             conditionsToolStripMenuItem.Name = "conditionsToolStripMenuItem";
-            conditionsToolStripMenuItem.Size = new Size(163, 26);
+            conditionsToolStripMenuItem.Size = new Size(132, 22);
             conditionsToolStripMenuItem.Text = "Conditions";
             conditionsToolStripMenuItem.Click += conditionsToolStripMenuItem_Click;
             // 
             // switchToolStripMenuItem
             // 
             switchToolStripMenuItem.Name = "switchToolStripMenuItem";
-            switchToolStripMenuItem.Size = new Size(163, 26);
+            switchToolStripMenuItem.Size = new Size(132, 22);
             switchToolStripMenuItem.Text = "Switch";
             switchToolStripMenuItem.Click += switchToolStripMenuItem_Click;
             // 
             // formHlavniProTvorbu
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(64, 64, 64);
-            ClientSize = new Size(1269, 681);
+            ClientSize = new Size(1110, 511);
             ContextMenuStrip = contextMenuStrip1;
             Controls.Add(panelPracovni);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "formHlavniProTvorbu";
             Text = "Tvorba";
             FormClosing += formHlavniProTvorbu_FormClosing;

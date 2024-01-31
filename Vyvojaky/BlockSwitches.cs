@@ -21,6 +21,8 @@ namespace Vyvojaky
             pb.Height = 50;
             pb.BackColor = Color.White;
             promSirka = pb.Width;
+            pb.Tag = Block.BlockIndex(); //Vygeneruje novy index pro dany block
+
             //label + pridani lb do picture boxu
             lb.Text = "Switch(" + vstupPromenna + "):";
             
