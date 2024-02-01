@@ -17,7 +17,7 @@ namespace Vyvojaky
     public partial class formHlavniProTvorbu : Form
     {
         public formHlavniProTvorbu()
-        {     
+        {
             InitializeComponent();
             panelInformaci.Show();
             panelPodminky.Hide();
@@ -30,7 +30,9 @@ namespace Vyvojaky
             lvPromenne.HideSelection = false;
             switches.VyskaPaneluPuvodni = panelSwitch.Height;
             MainIsOpen = true;
+            menuPanels.Hide();
         }
+
 
 
         ////Přepínání mezi panely
@@ -163,107 +165,6 @@ namespace Vyvojaky
             }
         }
 
-        //right-click
-        private void variablesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            string prikaz = Interaction.InputBox("Zadejte proměnnou: \r\n\r\nPříklady: a = 5, b = 3.14, jmeno = Aneta ", "Variables");
-
-            if (prikaz != "")
-            {
-                if (KontrolaNazvu(prikaz.Split("=")[0].Trim()))
-                {
-                    try
-                    {
-                        Regex.Replace(prikaz, @"\s+", "");
-
-                        nazevPromenne = prikaz.Split("=")[0].Trim();
-                        hodnotaPromenne = prikaz.Split("=")[1].Trim();
-
-                        legitPrikaz = true;
-                    }
-                    catch (Exception)
-                    {
-                        MessageBox.Show("Něco je špatně.");
-                    }
-
-                    if (legitPrikaz)
-                    {
-                        promenne.VytvoritPromennou(nazevPromenne, hodnotaPromenne, tbConsole);
-
-                        if (Promenne.isValid)
-                        {
-                            //Prida nazev do pouzitych nazvu
-                            Promenne.usedNames.Add(nazevPromenne);
-
-                            lvPromenne.Items.Add(nazevPromenne + " = " + Promenne.hodnota);
-                        }
-
-                        Promenne.typ = "";
-                        nazevPromenne = "";
-                        hodnotaPromenne = "";
-
-                        legitPrikaz = false;
-                    }
-                }
-            }
-
-            panelInformaci.Show();
-            panelPodminky.Hide();
-            panelSwitch.Hide();
-        }
-
-        private void conditionsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            string prikaz = Interaction.InputBox("Zadejte podmínku: \r\n\r\n Příklady: a > b", "Conditions");
-            if (prikaz != "")
-            {
-                Block block = new Block(panelPracovni);
-                block.BlockCon(prikaz);
-                tbConsole.Text += Podminky.isTrue(prikaz) + Environment.NewLine + ">"; //vrati false/true
-            }
-
-
-
-
-            panelPodminky.Show();
-            panelInformaci.Hide();
-            panelSwitch.Hide();
-        }
-
-        private void switchToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                switches.MazaniBoxu(panelSwitch);
-                int pocet = 0;
-                string hodnota = "";
-                hodnota = Interaction.InputBox("Zadejte počet, kolik chcete mít možností ve switchi", "Switch");
-                if (hodnota != "")
-                {
-                    if (int.TryParse(hodnota, out pocet))
-                    {
-                        switches.pridavaniTextBoxu(pocet, panelSwitch, tbInputVariable);
-                        panelSwitch.Show();
-                        panelInformaci.Hide();
-                        panelPodminky.Hide();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Zadal jste chybný tvar čísla!");
-                    }
-                }
-
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex);
-                panelSwitch.Hide();
-                panelInformaci.Hide();
-                panelPodminky.Hide();
-            }
-        }
-       
         //pohyb panelů na pracovní ploše
         private bool dragging;
         private int xPos, yPos;
@@ -356,5 +257,167 @@ namespace Vyvojaky
             }
             MessageBox.Show(indexes);
         }
+
+
+        //right-click
+        bool rozhodnuti = false;
+
+        private void panelPracovni_MouseClick(object sender, MouseEventArgs e)
+        {
+            int positionX = e.Location.X;
+            int positionY = e.Location.Y;
+            if (e.Button == MouseButtons.Right)
+            {
+                menuPanels.Location = new Point(positionX, positionY);
+                if (!rozhodnuti && positionX == menuPanels.Location.X && positionY == menuPanels.Location.Y)
+                {
+                    menuPanels.Show();
+                    rozhodnuti = true;
+                }
+                else
+                {
+                    menuPanels.Hide();
+                    rozhodnuti = false;
+                }
+            }
+            else
+            {
+                menuPanels.Hide();
+                rozhodnuti = false;
+            }
+        }
+        private void panelPracovni_MouseDown(object sender, MouseEventArgs e)
+        {
+            int positionX = e.Location.X;
+            int positionY = e.Location.Y;
+            if (e.Button == MouseButtons.Right)
+            {
+                menuPanels.Location = new Point(positionX, positionY);
+                if (!rozhodnuti && positionX == menuPanels.Location.X && positionY == menuPanels.Location.Y)
+                {
+                    menuPanels.Show();
+                    rozhodnuti = true;
+                }
+                else
+                {
+                    menuPanels.Hide();
+                    rozhodnuti = false;
+                }
+            }
+            else
+            {
+                menuPanels.Hide();
+                rozhodnuti = false;
+            }
+        }
+
+        private void menuPanels_Click(object sender, EventArgs e)
+        {
+            menuPanels.Hide();
+        }
+
+        private void menuPanels_MouseLeave(object sender, EventArgs e)
+        {
+            menuPanels.Hide();
+        }
+
+        private void variablesToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            string prikaz = Interaction.InputBox("Zadejte proměnnou: \r\n\r\nPříklady: a = 5, b = 3.14, jmeno = Aneta ", "Variables");
+
+            if (prikaz != "")
+            {
+                if (KontrolaNazvu(prikaz.Split("=")[0].Trim()))
+                {
+                    try
+                    {
+                        Regex.Replace(prikaz, @"\s+", "");
+
+                        nazevPromenne = prikaz.Split("=")[0].Trim();
+                        hodnotaPromenne = prikaz.Split("=")[1].Trim();
+
+                        legitPrikaz = true;
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Něco je špatně.");
+                    }
+
+                    if (legitPrikaz)
+                    {
+                        promenne.VytvoritPromennou(nazevPromenne, hodnotaPromenne, tbConsole);
+
+                        if (Promenne.isValid)
+                        {
+                            //Prida nazev do pouzitych nazvu
+                            Promenne.usedNames.Add(nazevPromenne);
+
+                            lvPromenne.Items.Add(nazevPromenne + " = " + Promenne.hodnota);
+                        }
+
+                        Promenne.typ = "";
+                        nazevPromenne = "";
+                        hodnotaPromenne = "";
+
+                        legitPrikaz = false;
+                    }
+                }
+            }
+
+            panelInformaci.Show();
+            panelPodminky.Hide();
+            panelSwitch.Hide();
+        }
+
+        private void conditionsToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            string prikaz = Interaction.InputBox("Zadejte podmínku: \r\n\r\n Příklady: a > b", "Conditions");
+            if (prikaz != "")
+            {
+                Block block = new Block(panelPracovni);
+                block.BlockCon(prikaz);
+                tbConsole.Text += Podminky.isTrue(prikaz) + Environment.NewLine + ">"; //vrati false/true
+            }
+
+            panelPodminky.Show();
+            panelInformaci.Hide();
+            panelSwitch.Hide();
+        }
+
+        private void switchesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                switches.MazaniBoxu(panelSwitch);
+                int pocet = 0;
+                string hodnota = "";
+                hodnota = Interaction.InputBox("Zadejte počet, kolik chcete mít možností ve switchi", "Switch");
+                if (hodnota != "")
+                {
+                    if (int.TryParse(hodnota, out pocet))
+                    {
+                        switches.pridavaniTextBoxu(pocet, panelSwitch, tbInputVariable);
+                        panelSwitch.Show();
+                        panelInformaci.Hide();
+                        panelPodminky.Hide();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Zadal jste chybný tvar čísla!");
+                    }
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex);
+                panelSwitch.Hide();
+                panelInformaci.Hide();
+                panelPodminky.Hide();
+            }
+        }
+
+
     }
 }
