@@ -316,10 +316,6 @@ namespace Vyvojaky
             menuPanels.Hide();
         }
 
-        private void menuPanels_MouseLeave(object sender, EventArgs e)
-        {
-            menuPanels.Hide();
-        }
 
         private void variablesToolStripMenuItem_Click_1(object sender, EventArgs e)
         {

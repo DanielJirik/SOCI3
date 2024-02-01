@@ -285,7 +285,6 @@ namespace Vyvojaky
             menuPanels.TabIndex = 7;
             menuPanels.Text = "menuStrip1";
             menuPanels.Click += menuPanels_Click;
-            menuPanels.MouseLeave += menuPanels_MouseLeave;
             // 
             // panelsToolStripMenuItem
             // 
