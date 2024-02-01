@@ -20,8 +20,8 @@ namespace Vyvojaky
         //
 
         public static int BlockIndex()
-        {
-            int index = indexes.Count() > 0 ? indexes.Last() + 1 : 0;
+        {            
+            int index = indexes.Count() > 0 ? indexes.Max() + 1 : 0;
             indexes.Add(index);
             return index;
         }
