@@ -13,14 +13,14 @@ namespace Vyvojaky
 {
     internal class Podminky
     {
-        Panel mainPanel;
+        public static Panel mainPanel;
         public void Setup(Panel _mainPanel)
         {
             mainPanel = _mainPanel;
         }
 
 
-        public bool isTrue(string command)
+        public static bool isTrue(string command)
         {
             string opr = "";
             bool cond = false;
@@ -136,9 +136,6 @@ namespace Vyvojaky
             {
                 MessageBox.Show("Něco je špatně.");
             }
-
-            Block block = new Block(mainPanel);
-            block.BlockCon(command);
             //Jakýkoliv jiný případ
             return cond;
         }

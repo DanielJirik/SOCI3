@@ -17,7 +17,7 @@ namespace Vyvojaky
     public partial class formHlavniProTvorbu : Form
     {
         public formHlavniProTvorbu()
-        {
+        {     
             InitializeComponent();
             panelInformaci.Show();
             panelPodminky.Hide();
@@ -217,7 +217,9 @@ namespace Vyvojaky
             string prikaz = Interaction.InputBox("Zadejte podmínku: \r\n\r\n Příklady: a > b", "Conditions");
             if (prikaz != "")
             {
-                tbConsole.Text += podminky.isTrue(prikaz) + Environment.NewLine + ">"; //vrati false/true
+                Block block = new Block(panelPracovni);
+                block.BlockCon(prikaz);
+                tbConsole.Text += Podminky.isTrue(prikaz) + Environment.NewLine + ">"; //vrati false/true
             }
 
 

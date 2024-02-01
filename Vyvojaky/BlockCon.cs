@@ -3,10 +3,14 @@
     internal class BlockCon
     {
         public PictureBox pb = new PictureBox();
-        public Label popis = new Label();
+        public Label popis = new Label();        
+        public bool value;
 
-        public BlockCon(string podminka)
+        public BlockCon(string podminka, bool value)
         {
+            //prirazeni hodnoty
+            this.value = value;
+
             //LB
             popis.ForeColor = Color.Black;
             popis.BackColor = pb.BackColor;
@@ -21,7 +25,7 @@
             pb.Height = 50;
             pb.Location = new Point(Random.Shared.Next(0, Block.pracPanel.Width - pb.Width), Random.Shared.Next(0, Block.pracPanel.Height - pb.Height));
             pb.BackColor = Color.White;
-            pb.Tag = Block.BlockIndex(); //Vygeneruje novy index pro dany block
+            pb.Tag = Block.BlockIndex() + $"/{value}"; //Vygeneruje novy index pro dany block
 
             //Drag and Drop event handlers
             pb.MouseDown += new MouseEventHandler(MouseDown);

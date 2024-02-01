@@ -33,7 +33,7 @@ namespace Vyvojaky
 
         public void BlockCon(string prikaz)
         {
-            BlockCon blockCon = new BlockCon(prikaz);
+            BlockCon blockCon = new BlockCon(prikaz, Podminky.isTrue(prikaz));
         }
 
         public void BlockSwitch(int pocetMoznosti, string vstupPromenna, List<TextBox> boxy)
