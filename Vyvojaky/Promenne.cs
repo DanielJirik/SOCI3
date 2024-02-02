@@ -38,12 +38,71 @@ namespace Vyvojaky
 
         public static string typ = "";
 
-        private Panel mainPanel;
+        public static Panel mainPanel;
 
         public void Setup(Panel _mainPanel)
         {
             mainPanel = _mainPanel;
         }
+
+        //Metoda pro kontrolu duplikatu
+        public static bool KontrolaNazvu(string nazevPromenne)
+        {
+            bool used = false;
+            foreach (string nazev in Promenne.usedNames)
+            {
+                if (nazevPromenne == nazev)
+                    used = true;
+            }
+
+            if (Keywords.Check(nazevPromenne) || used)
+                return false;
+            return true;
+        }
+
+
+        public static void CommandCheck(string prikaz)
+        {
+            string nazevPromenne = "";
+            string hodnotaPromenne = "";
+            bool legitPrikaz = false;
+
+            if (prikaz != "")
+            {
+                if (Promenne.KontrolaNazvu(prikaz.Split("=")[0].Trim()))
+                {
+                    try
+                    {
+                        Regex.Replace(prikaz, @"\s+", "");
+
+                        nazevPromenne = prikaz.Split("=")[0].Trim();
+                        hodnotaPromenne = prikaz.Split("=")[1].Trim();
+
+                        legitPrikaz = true;
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Něco je špatně.");
+                    }
+
+                    if (legitPrikaz)
+                    {
+                        VytvoritPromennou(nazevPromenne, hodnotaPromenne);
+
+                        if (Promenne.isValid)
+                        {
+                            //Prida nazev do pouzitych nazvu
+                            Promenne.usedNames.Add(nazevPromenne);
+
+                            //lvPromenne.Items.Add(nazevPromenne + " = " + Promenne.hodnota);
+                        }
+
+                        typ = "";
+                    }
+                }
+            }
+        }
+
 
         //Metoda na třídění výrazu
         public static List<string> SplitCommand(string command)
@@ -305,7 +364,7 @@ namespace Vyvojaky
         public static bool isValid;
         public static string hodnota = "";
 
-        public void VytvoritPromennou(string nazev, string _hodnota, TextBox tbVystupConsole)
+        public static void VytvoritPromennou(string nazev, string _hodnota)
         {
             isValid = true;
             hodnota = _hodnota;
@@ -326,7 +385,7 @@ namespace Vyvojaky
             {
                 hodnota = temp;
                 StringV.Add(nazev, hodnota);
-                tbVystupConsole.Text += nazev + " = " + StringV[nazev] + Environment.NewLine + ">";
+                //tbVystupConsole.Text += nazev + " = " + StringV[nazev] + Environment.NewLine + ">";
                 typ = "String";
 
                 CreateBlock(nazev, hodnota);
@@ -336,7 +395,7 @@ namespace Vyvojaky
             {
                 hodnota = OverwriteChar(hodnota);
                 CharV.Add(nazev, Convert.ToChar(hodnota));
-                tbVystupConsole.Text += nazev + " = " + CharV[nazev] + Environment.NewLine + ">";
+                //tbVystupConsole.Text += nazev + " = " + CharV[nazev] + Environment.NewLine + ">";
                 typ = "Char";
 
                 CreateBlock(nazev, hodnota);
@@ -356,37 +415,37 @@ namespace Vyvojaky
                 if (Int16.TryParse(hodnota, out a))
                 {
                     Int16V.Add(nazev, a);
-                    tbVystupConsole.Text += nazev + " = " + Int16V[nazev] + Environment.NewLine + ">";
+                    //tbVystupConsole.Text += nazev + " = " + Int16V[nazev] + Environment.NewLine + ">";
                     typ = "Int16";
                 }
                 else if (Int32.TryParse(hodnota, out b))
                 {
                     Int32V.Add(nazev, b);
-                    tbVystupConsole.Text += nazev + " = " + Int32V[nazev] + Environment.NewLine + ">";
+                    //tbVystupConsole.Text += nazev + " = " + Int32V[nazev] + Environment.NewLine + ">";
                     typ = "Int32";
                 }
                 else if (Int64.TryParse(hodnota, out c))
                 {
                     Int64V.Add(nazev, c);
-                    tbVystupConsole.Text += nazev + " = " + Int64V[nazev] + Environment.NewLine + ">";
+                    //tbVystupConsole.Text += nazev + " = " + Int64V[nazev] + Environment.NewLine + ">";
                     typ = "Int64";
                 }
                 else if (float.TryParse(hodnota, out d))
                 {
                     FloatV.Add(nazev, d);
-                    tbVystupConsole.Text += nazev + " = " + FloatV[nazev] + Environment.NewLine + ">";
+                    //tbVystupConsole.Text += nazev + " = " + FloatV[nazev] + Environment.NewLine + ">";
                     typ = "Float";
                 }
                 else if (double.TryParse(hodnota, out e))
                 {
                     DoubleV.Add(nazev, e);
-                    tbVystupConsole.Text += nazev + " = " + DoubleV[nazev] + Environment.NewLine + ">";
+                    //tbVystupConsole.Text += nazev + " = " + DoubleV[nazev] + Environment.NewLine + ">";
                     typ = "Double";
                 }
                 else if (bool.TryParse(hodnota, out f))
                 {
                     BoolV.Add(nazev, f);
-                    tbVystupConsole.Text += nazev + " = " + BoolV[nazev] + Environment.NewLine + ">";
+                    //tbVystupConsole.Text += nazev + " = " + BoolV[nazev] + Environment.NewLine + ">";
                     typ = "Bool";
                 }
                 else
@@ -401,7 +460,7 @@ namespace Vyvojaky
             }
         }
 
-        private void CreateBlock(string nazev, string hodnota)
+        private static void CreateBlock(string nazev, string hodnota)
         {
             //BLOCK
             Block block = new Block(mainPanel);

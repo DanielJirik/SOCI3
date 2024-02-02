@@ -16,6 +16,7 @@ namespace Vyvojaky
 {
     public partial class formHlavniProTvorbu : Form
     {
+
         public formHlavniProTvorbu()
         {
             InitializeComponent();
@@ -33,7 +34,7 @@ namespace Vyvojaky
             menuPanels.Hide();
         }
 
-
+        SequenceController controller = new SequenceController();
 
         ////Přepínání mezi panely
         private void itemVars_Click(object sender, EventArgs e)
@@ -59,11 +60,6 @@ namespace Vyvojaky
 
         //objekt switch
         Switches switches = new Switches();
-
-        /*Vytvorereni nove promenne*/
-        string nazevPromenne = "";
-        string hodnotaPromenne = "";
-        bool legitPrikaz;
 
         private void tbPromenna_KeyDown(object sender, KeyEventArgs e)
         {
@@ -130,22 +126,6 @@ namespace Vyvojaky
                     MessageBox.Show("Něco se nepodařilo.");
                 }
             }
-        }
-
-
-        //Metoda pro kontrolu duplikatu
-        bool KontrolaNazvu(string nazevPromenne)
-        {
-            bool used = false;
-            foreach (string nazev in Promenne.usedNames)
-            {
-                if (nazevPromenne == nazev)
-                    used = true;
-            }
-
-            if (Keywords.Check(nazevPromenne) || used)
-                return false;
-            return true;
         }
 
 
@@ -250,12 +230,14 @@ namespace Vyvojaky
 
         private void tbConsole_KeyDown(object sender, KeyEventArgs e)
         {
-            string indexes = "";
-            foreach (int n in Block.indexes)
-            {
-                indexes += n + ", ";
-            }
-            MessageBox.Show(indexes);
+            //string indexes = "";
+            //foreach (int n in Block.indexes)
+            //{
+            //    indexes += n + ", ";
+            //}
+            //MessageBox.Show(indexes);
+
+            controller.InstructionOrder(panelPracovni);
         }
 
 
@@ -319,46 +301,7 @@ namespace Vyvojaky
 
         private void variablesToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            string prikaz = Interaction.InputBox("Zadejte proměnnou: \r\n\r\nPříklady: a = 5, b = 3.14, jmeno = Aneta ", "Variables");
-
-            if (prikaz != "")
-            {
-                if (KontrolaNazvu(prikaz.Split("=")[0].Trim()))
-                {
-                    try
-                    {
-                        Regex.Replace(prikaz, @"\s+", "");
-
-                        nazevPromenne = prikaz.Split("=")[0].Trim();
-                        hodnotaPromenne = prikaz.Split("=")[1].Trim();
-
-                        legitPrikaz = true;
-                    }
-                    catch (Exception)
-                    {
-                        MessageBox.Show("Něco je špatně.");
-                    }
-
-                    if (legitPrikaz)
-                    {
-                        promenne.VytvoritPromennou(nazevPromenne, hodnotaPromenne, tbConsole);
-
-                        if (Promenne.isValid)
-                        {
-                            //Prida nazev do pouzitych nazvu
-                            Promenne.usedNames.Add(nazevPromenne);
-
-                            lvPromenne.Items.Add(nazevPromenne + " = " + Promenne.hodnota);
-                        }
-
-                        Promenne.typ = "";
-                        nazevPromenne = "";
-                        hodnotaPromenne = "";
-
-                        legitPrikaz = false;
-                    }
-                }
-            }
+            Promenne.CommandCheck(Interaction.InputBox("Zadejte proměnnou: \r\n\r\nPříklady: a = 5, b = 3.14, jmeno = Aneta ", "Variables"));
 
             panelInformaci.Show();
             panelPodminky.Hide();

@@ -8,6 +8,16 @@ namespace Vyvojaky
 {
     internal class SequenceController
     {
-
+        public void InstructionOrder(Panel mainPanel)
+        {
+            //countne vsechny BlockVar instance v mainPanelu
+            int n = 0;
+            foreach (Control item in mainPanel.Controls)
+            {
+                if (item is BlockVar)
+                    n++;
+            }
+            MessageBox.Show(n.ToString());
+        }
     }
 }
