@@ -24,7 +24,7 @@ namespace Vyvojaky
             this.Tag = Block.BlockIndex(); //Vygeneruje novy index pro dany block
 
             //label + pridani lb do picture boxu
-            lbVstup.Text = vstupPromenna;
+            lbVstup.Text = "Switch(" + vstupPromenna + ")";
             for (int i = 0; i < pocetCasu; i++)
             {
                 seznamLabelu.Add(boxy[i].Text);
@@ -39,8 +39,9 @@ namespace Vyvojaky
                 }
             }
             
-            lb.Location = new Point(startPositionX, startPositionY);
-            this.Controls.Add(lb);
+            lbVstup.Location = new Point(startPositionX, startPositionY);
+            lbVstup.Width = delka * 10;
+            this.Controls.Add(lbVstup);
 
             //vytvoreni novych labelu(casy) 
             for (int i = 0; i < pocetCasu; i++)
@@ -54,7 +55,7 @@ namespace Vyvojaky
                 lb.Location = new Point(startPositionX, startPositionY);
                 this.Controls.Add(lb);
             }
-            this.Width = (delka * 7) + (startPositionX * 3);
+            this.Width = (delka * 7) + (startPositionX * 5);
             this.Location = new Point(Random.Shared.Next(0, Block.pracPanel.Width - this.Width), Random.Shared.Next(0, Block.pracPanel.Height - this.Height));
             Block.pracPanel.Controls.Add(this);
 
