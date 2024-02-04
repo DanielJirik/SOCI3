@@ -20,15 +20,16 @@ namespace Vyvojaky
         //
 
         public static int BlockIndex()
-        {            
+        {
             int index = indexes.Count() > 0 ? indexes.Max() + 1 : 0;
-            indexes.Add(index);
+            indexes.Add(index);            
+
             return index;
         }
 
         public void BlockVar(string typ, string nazev, string hodnota)
         {
-            BlockVar blockVar = new BlockVar(typ, nazev, hodnota);
+            BlockVar blockVar = new BlockVar(typ, nazev, hodnota);            
         }
 
         public void BlockCon(string prikaz)
