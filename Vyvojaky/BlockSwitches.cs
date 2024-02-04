@@ -11,40 +11,50 @@ namespace Vyvojaky
     {
         public PictureBox pb = new PictureBox();
         public Label lb = new Label();
+        public Label lbVstup = new Label();
+        public List<string> seznamLabelu = new List<string>();
         int startPositionX = 10;
         int startPositionY = 10;
-        int promSirka = 0;
         public BlockSwitches(int pocetCasu, string vstupPromenna, List<TextBox> boxy) 
         {   
             //picture box
             pb.Width = 120;
             pb.Height = 50;
             pb.BackColor = Color.White;
-            promSirka = pb.Width;
             pb.Tag = Block.BlockIndex(); //Vygeneruje novy index pro dany block
 
             //label + pridani lb do picture boxu
-            lb.Text = "Switch(" + vstupPromenna + "):";
+            lbVstup.Text = vstupPromenna;
+            for (int i = 0; i < pocetCasu; i++)
+            {
+                seznamLabelu.Add(boxy[i].Text);
+            }
+            int delka = 0;
+            seznamLabelu.Add(lbVstup.Text.ToString());
+            for (int i = 0; i < seznamLabelu.Count; i++)
+            {
+                if (delka < seznamLabelu[i].Length)
+                {
+                    delka = seznamLabelu[i].Length;
+                }
+            }
             
-            lb.Location = new Point(startPositionX, startPositionY);
-            pb.Controls.Add(lb);
-
+            lbVstup.Text = "Switch(" + vstupPromenna + "):";
+            lbVstup.Width += delka * 10;
+            lbVstup.Location = new Point(startPositionX, startPositionY);
+            pb.Controls.Add(lbVstup);
             //vytvoreni novych labelu(casy) 
             for (int i = 0; i < pocetCasu; i++)
             {
                 lb = new Label();
                 lb.Text = (i + 1) + ".Case:" + boxy[i].Text;
-                if (promSirka < (promSirka + lb.Text.Length))
-                {
-                    promSirka += lb.Text.Length*2;
-                }
                 startPositionY += 20;
                 pb.Height += 20;
-                pb.Width = promSirka;
-                Debug.WriteLine("Vstup promnná: " + vstupPromenna);
                 lb.Location = new Point(startPositionX, startPositionY);
+                lb.Width += delka * 10;
                 pb.Controls.Add(lb);
             }
+            pb.Width += (delka * 7) + startPositionX;
             pb.Location = new Point(Random.Shared.Next(0, Block.pracPanel.Width - pb.Width), Random.Shared.Next(0, Block.pracPanel.Height - pb.Height));
             Block.pracPanel.Controls.Add(pb);
 

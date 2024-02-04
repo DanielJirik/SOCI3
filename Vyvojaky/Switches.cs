@@ -134,7 +134,7 @@ namespace Vyvojaky
                         }
                         if (check)
                         {
-                            MessageBox.Show("Ve switchi byl nalezen jiný typ proměnné než je typ vstupní proměnné!!!");
+                            MessageBox.Show("Něco se nepovedlo!");
                         }
                         else
                         {
@@ -189,7 +189,7 @@ namespace Vyvojaky
                         }
                         if (check)
                         {
-                            MessageBox.Show("Ve switchi byl nalezen jiný typ proměnné než je typ vstupní proměnné!!!");
+                            MessageBox.Show("Něco se nepovedlo!");
                         }
                         else
                         {
@@ -244,7 +244,7 @@ namespace Vyvojaky
                         }
                         if (check)
                         {
-                            MessageBox.Show("Ve switchi byl nalezen jiný typ proměnné než je typ vstupní proměnné!!!");
+                            MessageBox.Show("Něco se nepovedlo!");
                         }
                         else
                         {
@@ -299,7 +299,7 @@ namespace Vyvojaky
                         }
                         if (check)
                         {
-                            MessageBox.Show("Ve switchi byl nalezen jiný typ proměnné než je typ vstupní proměnné!!!");
+                            MessageBox.Show("Něco se nepovedlo!");
                         }
                         else
                         {
@@ -354,7 +354,7 @@ namespace Vyvojaky
                         }
                         if (check)
                         {
-                            MessageBox.Show("Ve switchi byl nalezen jiný typ proměnné než je typ vstupní proměnné!!!");
+                            MessageBox.Show("Něco se nepovedlo!");
                         }
                         else
                         {
@@ -393,7 +393,7 @@ namespace Vyvojaky
                         }
                         if (check)
                         {
-                            MessageBox.Show("Ve switchi byl nalezen jiný typ proměnné než je typ vstupní proměnné!!!");
+                            MessageBox.Show("Něco se nepovedlo!");
                         }
                         else
                         {
@@ -415,12 +415,22 @@ namespace Vyvojaky
                             }
                             else if (Promenne.FindVar(Moznosti[i].Text, "type") == null)
                             {
+                                
                                 moznostString = Moznosti[i].ToString();
-                                if (char.TryParse(moznostString, out moznostChar))
+                                if (moznostString[0] == char.Parse("'") && moznostString[moznostString.Length - 1] == char.Parse("'"))
                                 {
-                                    if (vstupChar == moznostChar)
+                                    moznostString = Promenne.OverwriteChar(moznostString);
+                                    if (char.TryParse(moznostString, out moznostChar))
                                     {
-                                        console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
+                                        if (vstupChar == moznostChar)
+                                        {
+                                            console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
+                                            break;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        check = true;
                                         break;
                                     }
                                 }
@@ -433,7 +443,7 @@ namespace Vyvojaky
                         }
                         if (check)
                         {
-                            MessageBox.Show("Ve switchi byl nalezen jiný typ proměnné než je typ vstupní proměnné!!!");
+                            MessageBox.Show("Něco se nepovedlo!");
                         }
                         else
                         {
@@ -442,10 +452,8 @@ namespace Vyvojaky
                         break;
                     case "String":
                         vstupString = Promenne.FindVar(VstupPromenna.Text, "value");
-                        Debug.WriteLine(vstupString);
                         for (int i = 0; i < Moznosti.Count; i++)
                         {
-                            Debug.WriteLine(Moznosti[i].Text);
                             if (typVstupu == Promenne.FindVar(Moznosti[i].Text, "type"))
                             {
                                 moznostString = Promenne.FindVar(Moznosti[i].Text, "value");
@@ -458,25 +466,25 @@ namespace Vyvojaky
                             else 
                             {
                                 moznostString = Moznosti[i].Text;
-                                if (char.TryParse(moznostString, out moznostChar))
-                                {
-                                    
-                                    if (vstupString == moznostChar.ToString())
+                                if (moznostString[0] == '"' && moznostString[moznostString.Length - 1] == '"')
+                                {   
+                                    moznostString = Promenne.OverwriteString(moznostString);
+                                    if (vstupString == moznostString)
                                     {
                                         console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
                                         break;
                                     }
                                 }
-                                else if (vstupString == moznostString)
+                                else 
                                 {
-                                    console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
+                                    check = true;
                                     break;
                                 }
                             }
                         }
                         if (check)
                         {
-                            MessageBox.Show("Ve switchi byl nalezen jiný typ proměnné než je typ vstupní proměnné!!!");
+                            MessageBox.Show("Něco se nepovedlo!");
                         }
                         else
                         {
@@ -563,7 +571,7 @@ namespace Vyvojaky
                     }
                     if (check)
                     {
-                        MessageBox.Show("Ve switchi byl nalezen jiný typ proměnné než je typ vstupní proměnné!!!");
+                        MessageBox.Show("Něco se nepovedlo!");
                     }
                     else
                     {
@@ -644,7 +652,7 @@ namespace Vyvojaky
                     }
                     if (check)
                     {
-                        MessageBox.Show("Ve switchi byl nalezen jiný typ proměnné než je typ vstupní proměnné!!!");
+                        MessageBox.Show("Něco se nepovedlo!");
                     }
                     else
                     {
@@ -726,7 +734,7 @@ namespace Vyvojaky
                     }
                     if (check)
                     {
-                        MessageBox.Show("Ve switchi byl nalezen jiný typ proměnné než je typ vstupní proměnné!!!");
+                        MessageBox.Show("Něco se nepovedlo!");
                     }
                     else
                     {
@@ -773,15 +781,16 @@ namespace Vyvojaky
                     }
                     if (check)
                     {
-                        MessageBox.Show("Ve switchi byl nalezen jiný typ proměnné než je typ vstupní proměnné!!!");
+                        MessageBox.Show("Něco se nepovedlo!");
                     }
                     else
                     {
                         VytvoreniBloku(VstupPromenna.Text.Trim());
                     }
                 }
-                else if (char.TryParse(VstupPromenna.Text.Trim(), out vstupChar))
+                else if (VstupPromenna.Text[0] == char.Parse("'") && VstupPromenna.Text[VstupPromenna.Text.Length - 1] == char.Parse("'"))
                 {
+                    char.TryParse(Promenne.OverwriteChar(VstupPromenna.Text), out vstupChar);
                     for (int i = 0; i < Moznosti.Count; i++)
                     {
                         if (Promenne.FindVar(Moznosti[i].Text.Trim(), "type") != null)
@@ -802,9 +811,10 @@ namespace Vyvojaky
                             }
                         }
                         else
-                        {
-                            if (char.TryParse(Moznosti[i].Text, out moznostChar))
+                        {   
+                            if (Moznosti[i].Text[0] == char.Parse("'") && Moznosti[i].Text[Moznosti[i].Text.Length - 1] == char.Parse("'"))
                             {
+                                char.TryParse(Promenne.OverwriteChar(Moznosti[i].Text), out moznostChar);
                                 if (vstupChar == moznostChar)
                                 {
                                     console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
@@ -820,7 +830,7 @@ namespace Vyvojaky
                     }
                     if (check)
                     {
-                        MessageBox.Show("Ve switchi byl nalezen jiný typ proměnné než je typ vstupní proměnné!!!");
+                        MessageBox.Show("Něco se nepovedlo!");
                     }
                     else
                     {
@@ -829,48 +839,47 @@ namespace Vyvojaky
                 }
                 else
                 {
-                    
                     vstupString = VstupPromenna.Text;
-                    for (int i = 0; i < Moznosti.Count; i++)
-                    {
-                        if (Promenne.FindVar(Moznosti[i].Text, "type") != null)
+                    if (vstupString[0] == '"' && vstupString[vstupString.Length - 1] == '"')
+                    {   
+                        vstupString = Promenne.OverwriteString(vstupString);
+                        for (int i = 0; i < Moznosti.Count; i++)
                         {
-                            if ("Char" == Promenne.FindVar(Moznosti[i].Text, "type"))
+                            if (Promenne.FindVar(Moznosti[i].Text, "type") != null)
                             {
-                                moznostChar = char.Parse(Promenne.FindVar(Moznosti[i].Text, "value"));
-                                if (vstupString == moznostChar.ToString())
+                                if (vstupString == Promenne.FindVar(Moznosti[i].Text.ToString(), "value"))
                                 {
                                     console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
                                     break;
                                 }
                             }
-                            else if (vstupString == Promenne.FindVar(Moznosti[i].Text.ToString(), "value"))
+                            else
                             {
-                                console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
-                                break;
-                            }
-                        }
-                        else
-                        {
-                            if (char.TryParse(Moznosti[i].Text, out moznostChar))
-                            {
-                                if (vstupString == moznostChar.ToString())
+                                if (Moznosti[i].Text[0] == '"' && Moznosti[i].Text[Moznosti[i].Text.Length - 1] == '"')
+                                {   
+                                    
+                                    if (vstupString == Promenne.OverwriteString(Moznosti[i].Text.ToString()))
+                                    {
+                                        console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
+                                        break;
+                                    }
+                                }
+                                else
                                 {
-                                    console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
+                                    check = true;
                                     break;
                                 }
-                            }
-                            else if (vstupString == Moznosti[i].Text.ToString())
-                            {
-                                Debug.WriteLine("Zjištěno že nejde převést");
-                                console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
-                                break;
                             }
                         }
                     }
+                    else
+                    {
+                        check = true;
+                    }
+
                     if (check)
                     {
-                        MessageBox.Show("Ve switchi byl nalezen jiný typ proměnné než je typ vstupní proměnné!!!");
+                        MessageBox.Show("Něco se nepovedlo!");
                     }
                     else
                     {
