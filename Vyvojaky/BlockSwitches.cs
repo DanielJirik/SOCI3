@@ -21,7 +21,6 @@ namespace Vyvojaky
             this.Width = 120;
             this.Height = 50;
             this.BackColor = Color.White;
-            promSirka = this.Width;
             this.Tag = Block.BlockIndex(); //Vygeneruje novy index pro dany block
 
             //label + pridani lb do picture boxu
@@ -48,13 +47,14 @@ namespace Vyvojaky
             {
                 lb = new Label();
                 lb.Text = (i + 1) + ".Case:" + boxy[i].Text;
+                lb.Width = delka * 10;
                 startPositionY += 20;
                 this.Height += 20;
-                this.Width = promSirka;
                 Debug.WriteLine("Vstup promnná: " + vstupPromenna);
                 lb.Location = new Point(startPositionX, startPositionY);
                 this.Controls.Add(lb);
             }
+            this.Width = (delka * 7) + (startPositionX * 3);
             this.Location = new Point(Random.Shared.Next(0, Block.pracPanel.Width - this.Width), Random.Shared.Next(0, Block.pracPanel.Height - this.Height));
             Block.pracPanel.Controls.Add(this);
 
