@@ -55,7 +55,7 @@ namespace Vyvojaky
                 lb.Location = new Point(startPositionX, startPositionY);
                 this.Controls.Add(lb);
             }
-            this.Width = (delka * 7) + (startPositionX * 5);
+            this.Width = (delka * 8) + (startPositionX * 5);
             this.Location = new Point(Random.Shared.Next(0, Block.pracPanel.Width - this.Width), Random.Shared.Next(0, Block.pracPanel.Height - this.Height));
             Block.pracPanel.Controls.Add(this);
 
