@@ -475,13 +475,21 @@ namespace Vyvojaky
                     char.TryParse(Promenne.OverwriteChar(VstupPromenna.Text), out vstupChar);
                     for (int i = 0; i < Moznosti.Count; i++)
                     {
-                        if ((char.TryParse(Moznosti[i].Text, out moznostChar) && Moznosti[i].Text[0] == char.Parse("'") && Moznosti[i].Text[Moznosti[i].Text.Length - 1] == char.Parse("'")) || "Char" == Promenne.FindVar(Moznosti[i].Text.Trim(), "type"))
+                        if ((Moznosti[i].Text[0] == char.Parse("'") && Moznosti[i].Text[Moznosti[i].Text.Length - 1] == char.Parse("'")) || "Char" == Promenne.FindVar(Moznosti[i].Text.Trim(), "type"))
+                        {
                             check = false;
+                        }
                         else
+                        {
+                            Debug.WriteLine("skočil");
                             check = true;
+                        }
+                            
                     }
                     if (check)
+                    {
                         MessageBox.Show("Něco se nepovedlo!");
+                    }
                     else
                     {
                         for (int i = 0; i < Moznosti.Count; i++)
@@ -497,9 +505,8 @@ namespace Vyvojaky
                             }
                             else
                             {
-                                moznostString = Moznosti[i].ToString();
-                                moznostString = Promenne.OverwriteChar(moznostString);
-                                char.TryParse(moznostString, out moznostChar);
+                                moznostString = Moznosti[i].Text.ToString();
+                                moznostChar = char.Parse(Promenne.OverwriteChar(moznostString));
                                 if (vstupChar == moznostChar)
                                 {
                                     console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
