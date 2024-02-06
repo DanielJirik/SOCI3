@@ -554,7 +554,6 @@ namespace Vyvojaky
                     }
                     else
                         MessageBox.Show("Něco se nepovedlo!");
-
                 }
             }
         }
