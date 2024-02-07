@@ -26,6 +26,7 @@ namespace Vyvojaky
             promenne.Setup(panelPracovni);
             podminky.Setup(panelPracovni);
             switches.Setup(panelPracovni);
+            cycles.Setup(panelPracovni);
 
             lvPromenne.HideSelection = false;
             switches.VyskaPaneluPuvodni = panelSwitch.Height;
@@ -46,9 +47,6 @@ namespace Vyvojaky
             panelInformaci.Hide();
         }
 
-
-        //
-
         //Objekt pro manipulaci se vsemi promennymi
         Promenne promenne = new Promenne();
 
@@ -57,6 +55,9 @@ namespace Vyvojaky
 
         //objekt switch
         Switches switches = new Switches();
+
+        //object cycles
+        Cycles cycles = new Cycles();
 
         //Nastane před zavřením formu
         public static bool MainIsOpen;
@@ -136,13 +137,6 @@ namespace Vyvojaky
 
         private void tbConsole_KeyDown(object sender, KeyEventArgs e)
         {
-            //string indexes = "";
-            //foreach (int n in Block.indexes)
-            //{
-            //    indexes += n + ", ";
-            //}
-            //MessageBox.Show(indexes);
-
             controller.InstructionOrder(panelPracovni);
         }
 
@@ -208,7 +202,6 @@ namespace Vyvojaky
         private void variablesToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             Promenne.CommandCheck(Interaction.InputBox("Zadejte proměnnou: \r\n\r\nPříklady: a = 5, b = 3.14, jmeno = Aneta ", "Variables"));
-
             panelInformaci.Show();
             panelSwitch.Hide();
         }
@@ -222,7 +215,6 @@ namespace Vyvojaky
                 block.BlockCon(prikaz);
                 tbConsole.Text += Podminky.isTrue(prikaz) + Environment.NewLine + ">"; //vrati false/true
             }
-
             panelInformaci.Hide();
             panelSwitch.Hide();
         }
@@ -248,8 +240,6 @@ namespace Vyvojaky
                         MessageBox.Show("Zadal jste chybný tvar čísla!");
                     }
                 }
-
-
             }
             catch (Exception ex)
             {
@@ -259,6 +249,33 @@ namespace Vyvojaky
             }
         }
 
+        private void forToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string nazev = Interaction.InputBox("Zadejte název proměnné", "Cycle-for");
+            string pocatecniHodnota = Interaction.InputBox("Zadejte počáteční hodnotu", "Cycle-for");
+            string konecnaHodnota = Interaction.InputBox("Zadejte konečnou hodnotu(cyklus bude počítat včetně této hodnoty)", "Cycle-for");
+            string inkrement = Interaction.InputBox("Zadejte inkrement", "Cycle-for");
+            if (cycles.CheckFor(nazev, pocatecniHodnota, konecnaHodnota, inkrement))
+            {
+                cycles.CyclesFor(int.Parse(pocatecniHodnota), int.Parse(konecnaHodnota), int.Parse(inkrement));
+                cycles.CreationOfCycleFor(nazev, pocatecniHodnota, konecnaHodnota, inkrement);
+            }
+            else
+            {
+                MessageBox.Show("Něco je špatně!");
+                
+            }
+            
+        }
 
+        private void whileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void doWhileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

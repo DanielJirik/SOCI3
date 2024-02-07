@@ -51,7 +51,6 @@ namespace Vyvojaky
                 lb.Width = delka * 10;
                 startPositionY += 20;
                 this.Height += 20;
-                Debug.WriteLine("Vstup promnná: " + vstupPromenna);
                 lb.Location = new Point(startPositionX, startPositionY);
                 this.Controls.Add(lb);
             }

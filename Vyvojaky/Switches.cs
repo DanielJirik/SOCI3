@@ -481,7 +481,6 @@ namespace Vyvojaky
                         }
                         else
                         {
-                            Debug.WriteLine("skočil");
                             check = true;
                         }
                             

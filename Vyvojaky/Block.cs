@@ -42,5 +42,9 @@ namespace Vyvojaky
             BlockSwitches blockSwitch = new BlockSwitches(pocetMoznosti, vstupPromenna, boxy);
         }
 
+        public void BlockCycleFor(string nazev, string pocatek, string konec, string inkrement)
+        {
+            BlockCycles blockFor = new BlockCycles(nazev, pocatek, konec, inkrement);
+        }
     }
 }
