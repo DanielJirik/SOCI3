@@ -21,7 +21,6 @@ namespace Vyvojaky
         {
             InitializeComponent();
             panelInformaci.Show();
-            panelPodminky.Hide();
             panelSwitch.Hide();
 
             promenne.Setup(panelPracovni);
@@ -40,12 +39,10 @@ namespace Vyvojaky
         private void itemVars_Click(object sender, EventArgs e)
         {
             panelInformaci.Show();
-            panelPodminky.Hide();
         }
 
         private void itemIfs_Click(object sender, EventArgs e)
         {
-            panelPodminky.Show();
             panelInformaci.Hide();
         }
 
@@ -60,74 +57,6 @@ namespace Vyvojaky
 
         //objekt switch
         Switches switches = new Switches();
-
-        private void tbPromenna_KeyDown(object sender, KeyEventArgs e)
-        {
-
-        }
-
-
-        //Hledani promenne v listu
-        private void tbNajitPromennou_TextChanged(object sender, EventArgs e)
-        {
-            ListViewItem item;
-
-            if ((item = lvPromenne.FindItemWithText(tbNajitPromennou.Text)) != null)
-            {
-                lvPromenne.Items[item.Index].Selected = true;
-                lvPromenne.Select();
-            }
-        }
-
-        //Ovládání panelu vlastností
-        private void lvPromenne_Click(object sender, EventArgs e)
-        {
-            if (lvPromenne.SelectedItems.Count > 0)
-            {
-
-
-                ListViewItem item = lvPromenne.SelectedItems[0];
-                string[] itemSplit = item.Text.Split(" = ");
-
-                lbNazevP.Text = "Název: " + itemSplit[0];
-                lbHodnotaP.Text = "Hodnota: " + itemSplit[1];
-
-                string typP = "";
-                string key = itemSplit[0].Trim();
-
-                typP = Promenne.FindVar(key, "value");
-
-                lbTypP.Text = "Datový typ: " + typP;
-            }
-        }
-
-        //Presune hledany block doleva nahoru
-        private void btNajitP_Click(object sender, EventArgs e)
-        {
-            DialogResult result = MessageBox.Show("Skutečně si přejete přesunout tento block do levého horního rohu plochy?", "Upozornění", MessageBoxButtons.YesNo);
-
-            if (result == DialogResult.Yes)
-            {
-                try
-                {
-                    foreach (PictureBox pb in panelPracovni.Controls)
-                    {
-                        foreach (Label lb in pb.Controls)
-                        {
-                            if (lb.Tag == "popis" && lb.Text.Split(">")[1].Trim().Split("=")[0].Trim() == lbNazevP.Text.Split(":")[1].Trim())
-                            {
-                                pb.Location = new Point(0, 0);
-                            }
-                        }
-                    }
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("Něco se nepodařilo.");
-                }
-            }
-        }
-
 
         //Nastane před zavřením formu
         public static bool MainIsOpen;
@@ -172,29 +101,6 @@ namespace Vyvojaky
             }
         }
 
-        private void panelPodminky_MouseUp(object sender, MouseEventArgs e)
-        {
-            dragging = false;
-        }
-
-        private void panelPodminky_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (dragging)
-            {
-                this.panelPodminky.Top = e.Y + this.panelPodminky.Top - yPos;
-                this.panelPodminky.Left = e.X + this.panelPodminky.Left - xPos;
-            }
-        }
-
-        private void panelPodminky_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-            {
-                dragging = true;
-                xPos = e.X;
-                yPos = e.Y;
-            }
-        }
 
         private void panelSwitch_MouseDown(object sender, MouseEventArgs e)
         {
@@ -304,7 +210,6 @@ namespace Vyvojaky
             Promenne.CommandCheck(Interaction.InputBox("Zadejte proměnnou: \r\n\r\nPříklady: a = 5, b = 3.14, jmeno = Aneta ", "Variables"));
 
             panelInformaci.Show();
-            panelPodminky.Hide();
             panelSwitch.Hide();
         }
 
@@ -318,7 +223,6 @@ namespace Vyvojaky
                 tbConsole.Text += Podminky.isTrue(prikaz) + Environment.NewLine + ">"; //vrati false/true
             }
 
-            panelPodminky.Show();
             panelInformaci.Hide();
             panelSwitch.Hide();
         }
@@ -338,7 +242,6 @@ namespace Vyvojaky
                         switches.pridavaniTextBoxu(pocet, panelSwitch, tbInputVariable);
                         panelSwitch.Show();
                         panelInformaci.Hide();
-                        panelPodminky.Hide();
                     }
                     else
                     {
@@ -353,7 +256,6 @@ namespace Vyvojaky
                 MessageBox.Show("Error: " + ex);
                 panelSwitch.Hide();
                 panelInformaci.Hide();
-                panelPodminky.Hide();
             }
         }
 

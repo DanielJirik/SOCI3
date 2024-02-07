@@ -37,29 +37,23 @@ namespace Vyvojaky
             label2 = new Label();
             tbInputVariable = new TextBox();
             label1 = new Label();
-            panelVlastnosti = new Panel();
-            btNajitP = new Button();
-            lbTypP = new Label();
-            lbHodnotaP = new Label();
-            lbNazevP = new Label();
             tbConsole = new TextBox();
             panelInformaci = new Panel();
             tbNajitPromennou = new TextBox();
             lbVytvorene = new Label();
             lvPromenne = new ListView();
-            panelPodminky = new Panel();
-            tbPodminka = new TextBox();
-            lbPromenna1 = new Label();
             menuPanels = new MenuStrip();
             panelsToolStripMenuItem = new ToolStripMenuItem();
             variablesToolStripMenuItem = new ToolStripMenuItem();
             conditionsToolStripMenuItem = new ToolStripMenuItem();
             switchesToolStripMenuItem = new ToolStripMenuItem();
+            cyclesToolStripMenuItem = new ToolStripMenuItem();
+            forToolStripMenuItem = new ToolStripMenuItem();
+            whileToolStripMenuItem = new ToolStripMenuItem();
+            doWhileToolStripMenuItem = new ToolStripMenuItem();
             panelPracovni.SuspendLayout();
             panelSwitch.SuspendLayout();
-            panelVlastnosti.SuspendLayout();
             panelInformaci.SuspendLayout();
-            panelPodminky.SuspendLayout();
             menuPanels.SuspendLayout();
             SuspendLayout();
             // 
@@ -70,10 +64,8 @@ namespace Vyvojaky
             panelPracovni.AutoScrollMinSize = new Size(2000, 1100);
             panelPracovni.BackColor = Color.Gray;
             panelPracovni.Controls.Add(panelSwitch);
-            panelPracovni.Controls.Add(panelVlastnosti);
             panelPracovni.Controls.Add(tbConsole);
             panelPracovni.Controls.Add(panelInformaci);
-            panelPracovni.Controls.Add(panelPodminky);
             panelPracovni.Controls.Add(menuPanels);
             panelPracovni.Dock = DockStyle.Fill;
             panelPracovni.Location = new Point(0, 0);
@@ -89,7 +81,7 @@ namespace Vyvojaky
             panelSwitch.Controls.Add(label2);
             panelSwitch.Controls.Add(tbInputVariable);
             panelSwitch.Controls.Add(label1);
-            panelSwitch.Location = new Point(629, 107);
+            panelSwitch.Location = new Point(612, 17);
             panelSwitch.Name = "panelSwitch";
             panelSwitch.Size = new Size(229, 107);
             panelSwitch.TabIndex = 6;
@@ -122,57 +114,6 @@ namespace Vyvojaky
             label1.Size = new Size(55, 20);
             label1.TabIndex = 0;
             label1.Text = "Switch:";
-            // 
-            // panelVlastnosti
-            // 
-            panelVlastnosti.BackColor = Color.FromArgb(192, 255, 192);
-            panelVlastnosti.Controls.Add(btNajitP);
-            panelVlastnosti.Controls.Add(lbTypP);
-            panelVlastnosti.Controls.Add(lbHodnotaP);
-            panelVlastnosti.Controls.Add(lbNazevP);
-            panelVlastnosti.Location = new Point(11, 147);
-            panelVlastnosti.Margin = new Padding(3, 4, 3, 4);
-            panelVlastnosti.Name = "panelVlastnosti";
-            panelVlastnosti.Size = new Size(190, 145);
-            panelVlastnosti.TabIndex = 5;
-            // 
-            // btNajitP
-            // 
-            btNajitP.Location = new Point(3, 104);
-            btNajitP.Margin = new Padding(3, 4, 3, 4);
-            btNajitP.Name = "btNajitP";
-            btNajitP.Size = new Size(110, 31);
-            btNajitP.TabIndex = 3;
-            btNajitP.Text = "Naj�t na plo�e";
-            btNajitP.UseVisualStyleBackColor = true;
-            btNajitP.Click += btNajitP_Click;
-            // 
-            // lbTypP
-            // 
-            lbTypP.AutoSize = true;
-            lbTypP.Location = new Point(3, 71);
-            lbTypP.Name = "lbTypP";
-            lbTypP.Size = new Size(95, 20);
-            lbTypP.TabIndex = 2;
-            lbTypP.Text = "Datov� typ: ";
-            // 
-            // lbHodnotaP
-            // 
-            lbHodnotaP.AutoSize = true;
-            lbHodnotaP.Location = new Point(3, 39);
-            lbHodnotaP.Name = "lbHodnotaP";
-            lbHodnotaP.Size = new Size(75, 20);
-            lbHodnotaP.TabIndex = 1;
-            lbHodnotaP.Text = "Hodnota: ";
-            // 
-            // lbNazevP
-            // 
-            lbNazevP.AutoSize = true;
-            lbNazevP.Location = new Point(3, 7);
-            lbNazevP.Name = "lbNazevP";
-            lbNazevP.Size = new Size(63, 20);
-            lbNazevP.TabIndex = 0;
-            lbNazevP.Text = "N�zev: ";
             // 
             // tbConsole
             // 
@@ -212,7 +153,6 @@ namespace Vyvojaky
             tbNajitPromennou.Name = "tbNajitPromennou";
             tbNajitPromennou.Size = new Size(197, 27);
             tbNajitPromennou.TabIndex = 13;
-            tbNajitPromennou.TextChanged += tbNajitPromennou_TextChanged;
             // 
             // lbVytvorene
             // 
@@ -243,36 +183,6 @@ namespace Vyvojaky
             lvPromenne.TabIndex = 11;
             lvPromenne.UseCompatibleStateImageBehavior = false;
             lvPromenne.View = View.List;
-            lvPromenne.Click += lvPromenne_Click;
-            // 
-            // panelPodminky
-            // 
-            panelPodminky.BackColor = Color.FromArgb(192, 255, 192);
-            panelPodminky.Controls.Add(tbPodminka);
-            panelPodminky.Controls.Add(lbPromenna1);
-            panelPodminky.Location = new Point(625, 17);
-            panelPodminky.Name = "panelPodminky";
-            panelPodminky.Size = new Size(230, 71);
-            panelPodminky.TabIndex = 3;
-            panelPodminky.MouseDown += panelPodminky_MouseDown;
-            panelPodminky.MouseMove += panelPodminky_MouseMove;
-            panelPodminky.MouseUp += panelPodminky_MouseUp;
-            // 
-            // tbPodminka
-            // 
-            tbPodminka.Location = new Point(3, 35);
-            tbPodminka.Name = "tbPodminka";
-            tbPodminka.Size = new Size(201, 27);
-            tbPodminka.TabIndex = 1;
-            // 
-            // lbPromenna1
-            // 
-            lbPromenna1.AutoSize = true;
-            lbPromenna1.Location = new Point(3, 12);
-            lbPromenna1.Name = "lbPromenna1";
-            lbPromenna1.Size = new Size(73, 20);
-            lbPromenna1.TabIndex = 0;
-            lbPromenna1.Text = "Podmínky";
             // 
             // menuPanels
             // 
@@ -288,7 +198,7 @@ namespace Vyvojaky
             // 
             // panelsToolStripMenuItem
             // 
-            panelsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { variablesToolStripMenuItem, conditionsToolStripMenuItem, switchesToolStripMenuItem });
+            panelsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { variablesToolStripMenuItem, conditionsToolStripMenuItem, switchesToolStripMenuItem, cyclesToolStripMenuItem });
             panelsToolStripMenuItem.Name = "panelsToolStripMenuItem";
             panelsToolStripMenuItem.Size = new Size(64, 24);
             panelsToolStripMenuItem.Text = "Panels";
@@ -314,6 +224,31 @@ namespace Vyvojaky
             switchesToolStripMenuItem.Text = "Switches";
             switchesToolStripMenuItem.Click += switchesToolStripMenuItem_Click;
             // 
+            // cyclesToolStripMenuItem
+            // 
+            cyclesToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { forToolStripMenuItem, whileToolStripMenuItem, doWhileToolStripMenuItem });
+            cyclesToolStripMenuItem.Name = "cyclesToolStripMenuItem";
+            cyclesToolStripMenuItem.Size = new Size(163, 26);
+            cyclesToolStripMenuItem.Text = "Cycles";
+            // 
+            // forToolStripMenuItem
+            // 
+            forToolStripMenuItem.Name = "forToolStripMenuItem";
+            forToolStripMenuItem.Size = new Size(159, 26);
+            forToolStripMenuItem.Text = "For";
+            // 
+            // whileToolStripMenuItem
+            // 
+            whileToolStripMenuItem.Name = "whileToolStripMenuItem";
+            whileToolStripMenuItem.Size = new Size(159, 26);
+            whileToolStripMenuItem.Text = "While";
+            // 
+            // doWhileToolStripMenuItem
+            // 
+            doWhileToolStripMenuItem.Name = "doWhileToolStripMenuItem";
+            doWhileToolStripMenuItem.Size = new Size(159, 26);
+            doWhileToolStripMenuItem.Text = "Do...While";
+            // 
             // formHlavniProTvorbu
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -329,12 +264,8 @@ namespace Vyvojaky
             panelPracovni.PerformLayout();
             panelSwitch.ResumeLayout(false);
             panelSwitch.PerformLayout();
-            panelVlastnosti.ResumeLayout(false);
-            panelVlastnosti.PerformLayout();
             panelInformaci.ResumeLayout(false);
             panelInformaci.PerformLayout();
-            panelPodminky.ResumeLayout(false);
-            panelPodminky.PerformLayout();
             menuPanels.ResumeLayout(false);
             menuPanels.PerformLayout();
             ResumeLayout(false);
@@ -344,17 +275,9 @@ namespace Vyvojaky
         private Panel panelPracovni;
         private Panel panelInformaci;
         private TextBox tbConsole;
-        private Panel panelPodminky;
-        private Label lbPromenna1;
         private Label lbVytvorene;
         private ListView lvPromenne;
         private TextBox tbNajitPromennou;
-        private Panel panelVlastnosti;
-        private Label lbNazevP;
-        private Label lbHodnotaP;
-        private Label lbTypP;
-        private Button btNajitP;
-        private TextBox tbPodminka;
         private Panel panelSwitch;
         private Label label2;
         private TextBox tbInputVariable;
@@ -364,5 +287,9 @@ namespace Vyvojaky
         private ToolStripMenuItem variablesToolStripMenuItem;
         private ToolStripMenuItem conditionsToolStripMenuItem;
         private ToolStripMenuItem switchesToolStripMenuItem;
+        private ToolStripMenuItem cyclesToolStripMenuItem;
+        private ToolStripMenuItem forToolStripMenuItem;
+        private ToolStripMenuItem whileToolStripMenuItem;
+        private ToolStripMenuItem doWhileToolStripMenuItem;
     }
 }
