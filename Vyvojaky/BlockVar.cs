@@ -12,17 +12,22 @@ namespace Vyvojaky
     {
         //public PictureBox pb = new PictureBox();
         public Label popis = new Label();
+        public string[] accessValue;
 
         public BlockVar(string typ, string nazev, string hodnota)
-        {            
+        {
+            //Reference na value blocku
+            accessValue = new string[] {typ, nazev, hodnota};
+
             //LB
-            popis.ForeColor = Color.Black;
+            popis.ForeColor = Color.Black;            
             popis.BackColor = this.BackColor;
             popis.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point, ((Byte)(0)));
             popis.AutoSize = true;
             popis.Location = new Point(0, 0);
             popis.Text = typ + " > " + nazev + " = " + hodnota;
             popis.Tag = "popis";
+            //popis.Enabled = false;
 
             //PB
             this.Width = popis.Text.Length * 7;
@@ -32,41 +37,13 @@ namespace Vyvojaky
             this.Tag = Block.BlockIndex(); //Vygeneruje novy index pro dany block a nastavi jej jako Tag PictureBoxu
 
             //Drag and Drop event handlers                        
-            this.MouseDown += new MouseEventHandler(OnMouseDown);
-            this.MouseUp += new MouseEventHandler(OnMouseUp);
-            this.MouseMove += new MouseEventHandler(OnMouseMove);
+            this.MouseDown += new MouseEventHandler(Block.OnMouseDown);
+            this.MouseUp += new MouseEventHandler(Block.OnMouseUp);
+            this.MouseMove += new MouseEventHandler(Block.OnMouseMove);
 
             //INIT
             Block.pracPanel.Controls.Add(this);
             this.Controls.Add(popis);
-        }
-
-        //Drag and drop vars
-        private bool dragging;
-        private int xPos, yPos;
-
-        //Drag and Drop methods
-        void OnMouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-            {
-                dragging = true;
-                xPos = e.X; yPos = e.Y;
-            }
-        }
-
-        private void OnMouseUp(object sender, MouseEventArgs e)
-        {
-            dragging = false;
-        }
-
-        private void OnMouseMove(object sender, MouseEventArgs e)
-        {
-            if (dragging)
-            {
-                this.Top = e.Y + this.Top - yPos;
-                this.Left = e.X + this.Left - xPos;
-            }
         }
     }
 }

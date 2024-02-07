@@ -27,42 +27,11 @@ namespace Vyvojaky
             }
             this.Controls.Add(lb);
             this.Location = new Point(Random.Shared.Next(0, Block.pracPanel.Width - this.Width), Random.Shared.Next(0, Block.pracPanel.Height - this.Height));
-            this.MouseDown += new MouseEventHandler(OnMouseDown);
-            this.MouseUp += new MouseEventHandler(OnMouseUp);
-            this.MouseMove += new MouseEventHandler(OnMouseMove);
+            this.MouseDown += new MouseEventHandler(Block.OnMouseDown);
+            this.MouseUp += new MouseEventHandler(Block.OnMouseUp);
+            this.MouseMove += new MouseEventHandler(Block.OnMouseMove);
 
             Block.pracPanel.Controls.Add(this);
         }
-
-
-
-
-        //pohyb bloku
-        private bool dragging;
-        private int xPos, yPos;
-        public void OnMouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-            {
-                dragging = true;
-                xPos = e.X;
-                yPos = e.Y;
-            }
-        }
-
-        private void OnMouseUp(object sender, MouseEventArgs e)
-        {
-            dragging = false;
-        }
-
-        private void OnMouseMove(object sender, MouseEventArgs e)
-        {
-            if (dragging)
-            {
-                this.Top = e.Y + this.Top - yPos;
-                this.Left = e.X + this.Left - xPos;
-            }
-        }
-
     }
 }
