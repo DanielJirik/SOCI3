@@ -270,7 +270,15 @@ namespace Vyvojaky
 
         private void whileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            string condition = Interaction.InputBox("Zadejte podmínku", "Cycle-while");
+            if (cycles.CheckWhileAndDoWhile(condition.Trim()))
+            {
+                MessageBox.Show("Prošlo");
+            }
+            else
+            {
+                MessageBox.Show("Neprošlo");
+            }
         }
 
         private void doWhileToolStripMenuItem_Click(object sender, EventArgs e)
