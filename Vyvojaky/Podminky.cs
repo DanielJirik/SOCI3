@@ -13,11 +13,11 @@ namespace Vyvojaky
 {
     internal class Podminky
     {
-        public static Panel mainPanel;
-        public void Setup(Panel _mainPanel)
-        {
-            mainPanel = _mainPanel;
-        }
+        //public static Panel mainPanel;
+        //public void Setup(Panel _mainPanel)
+        //{
+        //    mainPanel = _mainPanel;
+        //}
 
 
         public static bool isTrue(string command)

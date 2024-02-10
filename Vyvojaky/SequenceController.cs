@@ -8,6 +8,11 @@ namespace Vyvojaky
 {
     internal class SequenceController
     {
+        public static void Start()
+        {
+            BlockStart s = new BlockStart();
+        }
+
         public void InstructionOrder(Panel mainPanel)
         {
             //countne vsechny BlockVar instance v mainPanelu

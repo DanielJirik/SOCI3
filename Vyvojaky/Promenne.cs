@@ -38,12 +38,12 @@ namespace Vyvojaky
 
         public static string typ = "";
 
-        public static Panel mainPanel;
+        //public static Panel mainPanel;
 
-        public void Setup(Panel _mainPanel)
-        {
-            mainPanel = _mainPanel;
-        }
+        //public void Setup(Panel _mainPanel)
+        //{
+        //    mainPanel = _mainPanel;
+        //}
 
         //Metoda pro kontrolu duplikatu
         public static bool KontrolaNazvu(string nazevPromenne)
@@ -463,8 +463,7 @@ namespace Vyvojaky
         private static void CreateBlock(string nazev, string hodnota)
         {
             //BLOCK
-            Block block = new Block(mainPanel);
-            block.BlockVar(typ, nazev, hodnota);
+            Block.BlockVar(typ, nazev, hodnota);
         }
 
         //

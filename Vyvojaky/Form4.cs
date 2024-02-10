@@ -23,10 +23,13 @@ namespace Vyvojaky
             panelInformaci.Show();
             panelSwitch.Hide();
 
-            promenne.Setup(panelPracovni);
-            podminky.Setup(panelPracovni);
-            switches.Setup(panelPracovni);
-            cycles.Setup(panelPracovni);
+            Block.pracPanel = panelPracovni;
+            SequenceController.Start();
+
+            //promenne.Setup(panelPracovni);
+            //podminky.Setup(panelPracovni);
+            //switches.Setup(panelPracovni);
+            //cycles.Setup(panelPracovni);
 
             lvPromenne.HideSelection = false;
             switches.VyskaPaneluPuvodni = panelSwitch.Height;
@@ -34,7 +37,6 @@ namespace Vyvojaky
             menuPanels.Hide();
         }
 
-        SequenceController controller = new SequenceController();
 
         ////Přepínání mezi panely
         private void itemVars_Click(object sender, EventArgs e)
@@ -137,7 +139,7 @@ namespace Vyvojaky
 
         private void tbConsole_KeyDown(object sender, KeyEventArgs e)
         {
-            controller.InstructionOrder(panelPracovni);
+            //controller.InstructionOrder(panelPracovni);
         }
 
 
@@ -211,8 +213,7 @@ namespace Vyvojaky
             string prikaz = Interaction.InputBox("Zadejte podmínku: \r\n\r\n Příklady: a > b", "Conditions");
             if (prikaz != "")
             {
-                Block block = new Block(panelPracovni);
-                block.BlockCon(prikaz);
+                Block.BlockCon(prikaz);
                 tbConsole.Text += Podminky.isTrue(prikaz) + Environment.NewLine + ">"; //vrati false/true
             }
             panelInformaci.Hide();

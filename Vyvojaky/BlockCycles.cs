@@ -8,12 +8,16 @@ namespace Vyvojaky
 {
     internal class BlockCycles : PictureBox
     {
+        public static int index;
+
         public BlockCycles(string nazev, string pocatek, string konecnaHodnota, string inkrement) 
-        { 
+        {
+            //Indexace
+            index = Block.BlockIndex();
+
             this.BackColor = Color.White;
             this.Width = 120;
             this.Height = 50;
-            this.Tag = Block.BlockIndex();
 
             Label lb = new Label();
             lb.ForeColor = Color.Black;
@@ -27,9 +31,15 @@ namespace Vyvojaky
             }
             this.Controls.Add(lb);
             this.Location = new Point(Random.Shared.Next(0, Block.pracPanel.Width - this.Width), Random.Shared.Next(0, Block.pracPanel.Height - this.Height));
+            
+            this.MouseClick += new MouseEventHandler(Block.OnMouseClick);
             this.MouseDown += new MouseEventHandler(Block.OnMouseDown);
             this.MouseUp += new MouseEventHandler(Block.OnMouseUp);
             this.MouseMove += new MouseEventHandler(Block.OnMouseMove);
+
+            //Disable label on hover
+            this.MouseEnter += new EventHandler(Block.DisableControl);
+            this.MouseLeave += new EventHandler(Block.EnableControl);
 
             Block.pracPanel.Controls.Add(this);
         }

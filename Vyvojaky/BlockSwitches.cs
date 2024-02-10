@@ -15,13 +15,17 @@ namespace Vyvojaky
         public List<string> seznamLabelu = new List<string>();
         int startPositionX = 10;
         int startPositionY = 10;
+
+        public static int index;
         public BlockSwitches(int pocetCasu, string vstupPromenna, List<TextBox> boxy)
-        {   
+        {
+            //Indexace
+            index = Block.BlockIndex();
+
             //picture box
             this.Width = 120;
             this.Height = 50;
             this.BackColor = Color.White;
-            this.Tag = Block.BlockIndex(); //Vygeneruje novy index pro dany block
 
             //label + pridani lb do picture boxu
             lbVstup.Text = "Switch(" + vstupPromenna + ")";
@@ -40,7 +44,7 @@ namespace Vyvojaky
             }
             
             lbVstup.Location = new Point(startPositionX, startPositionY);
-            lbVstup.Width = delka * 10;
+            lbVstup.Width = delka * 10;            
             this.Controls.Add(lbVstup);
 
             //vytvoreni novych labelu(casy) 
@@ -58,9 +62,14 @@ namespace Vyvojaky
             this.Location = new Point(Random.Shared.Next(0, Block.pracPanel.Width - this.Width), Random.Shared.Next(0, Block.pracPanel.Height - this.Height));
             Block.pracPanel.Controls.Add(this);
 
+            this.MouseClick += new MouseEventHandler(Block.OnMouseClick);
             this.MouseDown += new MouseEventHandler(Block.OnMouseDown);
             this.MouseUp += new MouseEventHandler(Block.OnMouseUp);
             this.MouseMove += new MouseEventHandler(Block.OnMouseMove);
+
+            //Disable label on hover
+            this.MouseEnter += new EventHandler(Block.DisableControl);
+            this.MouseLeave += new EventHandler(Block.EnableControl);
         }
     }
 }

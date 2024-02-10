@@ -1,4 +1,6 @@
-﻿namespace Vyvojaky
+﻿using System.Reflection;
+
+namespace Vyvojaky
 {
     internal class BlockCon : PictureBox
     {
@@ -6,10 +8,15 @@
         public Label popis = new Label();        
         public bool value;
 
+        public static int index;
+
         public BlockCon(string podminka, bool value)
         {
             //prirazeni hodnoty
             this.value = value;
+
+            //Indexace
+            index = Block.BlockIndex();
 
             //LB
             popis.ForeColor = Color.Black;
@@ -25,9 +32,13 @@
             this.Height = 50;
             this.Location = new Point(Random.Shared.Next(0, Block.pracPanel.Width - this.Width), Random.Shared.Next(0, Block.pracPanel.Height - this.Height));
             this.BackColor = Color.White;
-            this.Tag = Block.BlockIndex(); //Vygeneruje novy index pro dany block
+
+            //Disable label on hover
+            this.MouseEnter += new EventHandler(Block.DisableControl);
+            this.MouseLeave += new EventHandler(Block.EnableControl);
 
             //Drag and Drop event handlers
+            this.MouseClick += new MouseEventHandler(Block.OnMouseClick);
             this.MouseDown += new MouseEventHandler(Block.OnMouseDown);
             this.MouseUp += new MouseEventHandler(Block.OnMouseUp);
             this.MouseMove += new MouseEventHandler(Block.OnMouseMove);

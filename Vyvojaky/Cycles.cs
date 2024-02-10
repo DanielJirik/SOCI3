@@ -73,8 +73,7 @@ namespace Vyvojaky
 
         public void CreationOfCycleFor(string nazev, string pocatek, string konec, string inkrement) 
         {
-            Block block = new Block(Pracovni);
-            block.BlockCycleFor(nazev, pocatek, konec, inkrement);
+            Block.BlockCycleFor(nazev, pocatek, konec, inkrement);
         }
 
         public bool CheckWhileAndDoWhile(string condition)
