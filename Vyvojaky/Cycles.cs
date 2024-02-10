@@ -79,7 +79,7 @@ namespace Vyvojaky
         }
 
         public bool CheckWhileAndDoWhile(string condition)
-        {
+        {   
             string par1 = "";
             string par2 = "";
             string oper = "";
@@ -98,18 +98,19 @@ namespace Vyvojaky
                 {
                     if (!request)
                     {
-                        par1 += condition[i].ToString();
+                        par1 += condition[i].ToString().Trim();
                     }
                     else
                     {
-                        par2 += condition[i].ToString();
+                        par2 += condition[i].ToString().TrimStart();
                     }
                 }
             }
             Debug.WriteLine("par1: " + par1);
             Debug.WriteLine("par2: " + par2);
             Debug.WriteLine("operand: " + oper);
-
+            //par1.Trim();
+            //par2.TrimStart();
 
             if (oper == "")
             {
@@ -123,14 +124,15 @@ namespace Vyvojaky
                     {
                         if ((Promenne.FindVar(par1, "type") == "Int16" || Promenne.FindVar(par1, "type") == "Int32" || Promenne.FindVar(par1, "type") == "Int64" || Promenne.FindVar(par1, "type") == "Float" || Promenne.FindVar(par1, "type") == "Double") && (Promenne.FindVar(par2, "type") == "Int16" || Promenne.FindVar(par2, "type") == "Int32" || Promenne.FindVar(par2, "type") == "Int64" || Promenne.FindVar(par2, "type") == "Float" || Promenne.FindVar(par2, "type") == "Double"))
                         {
-                            if (oper != "==" || oper != "!=" || oper != ">" || oper != "<" || oper != ">=" || oper != "<=")
+                            if (oper != "==" && oper != "!=" && oper != ">" && oper != "<" && oper != ">=" && oper != "<=")
                             {
                                 return false;
                             }
                         }
                         else if ((Promenne.FindVar(par1, "type") == "Bool" && Promenne.FindVar(par2, "type") == "Bool") || (Promenne.FindVar(par1, "type") == "Char" && Promenne.FindVar(par2, "type") == "Char") || (Promenne.FindVar(par1, "type") == "String" && Promenne.FindVar(par2, "type") == "String"))
                         {
-                            if (oper != "==" || oper != "!=")
+                            Debug.WriteLine("string prošel");
+                            if (oper != "==" && oper != "!=")
                             {
                                 return false;
                             }
@@ -149,21 +151,21 @@ namespace Vyvojaky
                 {
                     if ((int.TryParse(par1, out int var0) || double.TryParse(par1, out double var1) || float.TryParse(par1, out float var2)) && (int.TryParse(par2, out int var3) || double.TryParse(par2, out double var4) || float.TryParse(par2, out float var5)))
                     {
-                        if (oper != ">" || oper != "<" || oper != ">=" || oper != "<=" || oper != "==" || oper != "!=")
+                        if (oper != ">" && oper != "<" && oper != ">=" && oper != "<=" && oper != "==" && oper != "!=")
                         {
                             return false;
                         }
                     }
                     else if (bool.TryParse(par1, out bool var6) && bool.TryParse(par2, out bool var7))
                     {
-                        if (oper != "==" || oper != "!=")
+                        if (oper != "==" && oper != "!=")
                         {
                             return false;
                         }
                     }
                     else if ((par1[0].ToString() == "'" && par1[par1.Length - 1].ToString() == "'") && (par2[0].ToString() == "'" && par2[par2.Length - 1].ToString() == "'"))
                     {
-                        if (oper != "==" || oper != "!=")
+                        if (oper != "==" && oper != "!=")
                         {
                             return false;
                         }
@@ -190,13 +192,13 @@ namespace Vyvojaky
         {
             if (Promenne.FindVar(a, "type") == "Int16" || Promenne.FindVar(a, "type") == "Int32" || Promenne.FindVar(a, "type") == "Int64" || Promenne.FindVar(a, "type") == "Float" || Promenne.FindVar(a, "type") == "Double")
             {
-                if (!int.TryParse(b, out int var0) || !float.TryParse(b, out float var1) || !double.TryParse(b, out double var2))
+                if (!int.TryParse(b, out int var0) && !float.TryParse(b, out float var1) && !double.TryParse(b, out double var2))
                 {
                     return false;
                 }
                 else
                 {
-                    if (op != "==" || op != "!=" || op != ">" || op != "<" || op != ">=" || op != "<=")
+                    if (op != "==" && op != "!=" && op != ">" && op != "<" && op != ">=" && op != "<=")
                     {
                         return false;
                     }
@@ -210,7 +212,7 @@ namespace Vyvojaky
                 }
                 else
                 {
-                    if (op != "==" || op != "!=")
+                    if (op != "==" && op != "!=")
                     {
                         return false;
                     }
@@ -224,7 +226,7 @@ namespace Vyvojaky
                 }
                 else
                 {
-                    if (op != "==" || op != "!=")
+                    if (op != "==" && op != "!=")
                     {
                         return false;
                     }
