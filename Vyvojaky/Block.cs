@@ -12,11 +12,6 @@ namespace Vyvojaky
         public static Panel? pracPanel;
         public static List<int> indexes = new List<int>();
 
-        //public Block(Panel _pracPanel)
-        //{
-        //    pracPanel = _pracPanel;
-        //}
-
         //Indexace Blocků
         public static int BlockIndex()
         {

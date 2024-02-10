@@ -26,11 +26,6 @@ namespace Vyvojaky
             Block.pracPanel = panelPracovni;
             SequenceController.Start();
 
-            //promenne.Setup(panelPracovni);
-            //podminky.Setup(panelPracovni);
-            //switches.Setup(panelPracovni);
-            //cycles.Setup(panelPracovni);
-
             lvPromenne.HideSelection = false;
             switches.VyskaPaneluPuvodni = panelSwitch.Height;
             MainIsOpen = true;

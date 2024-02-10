@@ -9,7 +9,6 @@ namespace Vyvojaky
 {
     internal class BlockSwitches : PictureBox
     {
-        //public PictureBox this = new PictureBox();
         public Label lb = new Label();
         public Label lbVstup = new Label();
         public List<string> seznamLabelu = new List<string>();

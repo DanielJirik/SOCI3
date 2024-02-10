@@ -19,7 +19,7 @@ namespace Vyvojaky
             //end
 
             Block.indexes.Add(index);
-            Block.pracPanel.Controls.Add(this); //fix this
+            Block.pracPanel.Controls.Add(this);
         }
     }
 }

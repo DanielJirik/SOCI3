@@ -4,7 +4,6 @@ namespace Vyvojaky
 {
     internal class BlockCon : PictureBox
     {
-        //public PictureBox this = new PictureBox();
         public Label popis = new Label();        
         public bool value;
 
