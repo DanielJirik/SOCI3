@@ -44,5 +44,61 @@ namespace Vyvojaky
 
             Block.pracPanel.Controls.Add(this);
         }
+        
+        public BlockCycles(string condition, string type)
+        {
+            if (type == "While")
+            {
+                this.BackColor = Color.White;
+                this.Width = 120;
+                this.Height = 50;
+                this.Tag = Block.BlockIndex();
+
+                Label lb = new Label();
+                lb.ForeColor = Color.Black;
+                lb.Location = new Point(10, 20);
+                lb.Text = $"While{condition}";
+                lb.Width = lb.Text.Length * 8;
+                if ((lb.Width + lb.Location.X) > this.Width)
+                {
+                    int rozdil = (lb.Width + lb.Location.X) - this.Width;
+                    this.Width += rozdil - (lb.Location.X * 3);
+                }
+                this.Controls.Add(lb);
+                this.Location = new Point(Random.Shared.Next(0, Block.pracPanel.Width - this.Width), Random.Shared.Next(0, Block.pracPanel.Height - this.Height));
+                this.MouseDown += new MouseEventHandler(Block.OnMouseDown);
+                this.MouseUp += new MouseEventHandler(Block.OnMouseUp);
+                this.MouseMove += new MouseEventHandler(Block.OnMouseMove);
+
+                Block.pracPanel.Controls.Add(this);
+            }
+            else
+            {
+                this.BackColor = Color.White;
+                this.Width = 150;
+                this.Height = 50;
+                this.Tag = Block.BlockIndex();
+
+                Label lb = new Label();
+                lb.ForeColor = Color.Black;
+                lb.Location = new Point(10, 20);
+                lb.Text = $"Do-While{condition}";
+                lb.Width = lb.Text.Length * 8;
+                if ((lb.Width + lb.Location.X) > this.Width)
+                {
+                    int rozdil = (lb.Width + lb.Location.X) - this.Width;
+                    this.Width += rozdil - (lb.Location.X * 3);
+                }
+                this.Controls.Add(lb);
+                this.Location = new Point(Random.Shared.Next(0, Block.pracPanel.Width - this.Width), Random.Shared.Next(0, Block.pracPanel.Height - this.Height));
+                this.MouseDown += new MouseEventHandler(Block.OnMouseDown);
+                this.MouseUp += new MouseEventHandler(Block.OnMouseUp);
+                this.MouseMove += new MouseEventHandler(Block.OnMouseMove);
+
+                Block.pracPanel.Controls.Add(this);
+            }
+        }
+
+        
     }
 }
