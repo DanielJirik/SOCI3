@@ -18,10 +18,8 @@ namespace Vyvojaky
             //countne vsechny BlockVar instance v mainPanelu
             int n = 0;
             foreach (Control item in mainPanel.Controls)
-            {
-                if (item is BlockVar)
-                    n++;
-            }
+                n = item is BlockVar ? n++ : n;
+
             MessageBox.Show(n.ToString());
         }
     }
