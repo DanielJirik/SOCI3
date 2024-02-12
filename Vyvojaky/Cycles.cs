@@ -11,7 +11,7 @@ namespace Vyvojaky
     {
 
         Panel Pracovni;
-        List<string> partsOfConditions = new List<string>();
+        string part1, part2, oper;
         public Cycles() 
         { 
             
@@ -78,6 +78,621 @@ namespace Vyvojaky
             block.BlockCycleFor(nazev, pocatek, konec, inkrement);
         }
 
+        public void CreationOfCycleWhile(string part1, string part2, string oper)
+        {
+            Block block = new Block(Pracovni);
+            string condition = $"({part1} {oper} {part2})";
+            block.BlockCycleWhileOrDoWhile(condition, "While");
+        }
+
+        public void CreationOfCycleDoWhile(string part1, string part2, string oper)
+        {
+            Block block = new Block(Pracovni);
+            string condition = $"({part1} {oper} {part2})";
+            block.BlockCycleWhileOrDoWhile(condition, "DoWhile");
+        }
+
+        public void WhileDouble(double par1, double par2, string oper)
+        {
+            switch (oper)
+            {
+                case "==":
+                    if (par1 == par2)
+                    {
+                        while (par1 == par2)
+                        {
+                            MessageBox.Show("Cyklus while zacyklen, funkční");
+                            CreationOfCycleWhile(par1.ToString(), par2.ToString(), oper);
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Podmínka splněna, konec cyklu");
+                        CreationOfCycleWhile(par1.ToString(), par2.ToString(), oper);
+                    }
+                    break;
+                case "!=":
+                    if (par1 != par2)
+                    {
+                        while (par1 != par2)
+                        {
+                            MessageBox.Show("Cyklus while zacyklen, funkční");
+                            CreationOfCycleWhile(par1.ToString(), par2.ToString(), oper);
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Podmínka není pravda, konec cyklu");
+                        CreationOfCycleWhile(par1.ToString(), par2.ToString(), oper);
+                    }
+                    break;
+                case ">":
+                    Debug.WriteLine("SKOČIL");
+                    if (par1 > par2)
+                    {
+                        while (par1 > par2)
+                        {
+                            MessageBox.Show("Cyklus while zacyklen, funkční");
+                            CreationOfCycleWhile(par1.ToString(), par2.ToString(), oper);
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Podmínka není pravda, konec cyklu");
+                        CreationOfCycleWhile(par1.ToString(), par2.ToString(), oper);
+                    }
+                    break;
+                case "<":
+                    if (par1 < par2)
+                    {
+                        while (par1 < par2)
+                        {
+                            MessageBox.Show("Cyklus while zacyklen, funkční");
+                            CreationOfCycleWhile(par1.ToString(), par2.ToString(), oper);
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Podmínka není pravda, konec cyklu");
+                        CreationOfCycleWhile(par1.ToString(), par2.ToString(), oper);
+                    }
+                    break;
+                case ">=":
+                    if (par1 >= par2)
+                    {
+                        while (par1 >= par2)
+                        {
+                            MessageBox.Show("Cyklus while zacyklen, funkční");
+                            CreationOfCycleWhile(par1.ToString(), par2.ToString(), oper);
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Podmínka není pravda, konec cyklu");
+                        CreationOfCycleWhile(par1.ToString(), par2.ToString(), oper);
+                    }
+                    break;
+                case "<=":
+                    if (par1 <= par2)
+                    {
+                        while (par1 <= par2)
+                        {
+                            MessageBox.Show("Cyklus while zacyklen, funkční");
+                            CreationOfCycleWhile(par1.ToString(), par2.ToString(), oper);
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Podmínka není pravda, konec cyklu");
+                        CreationOfCycleWhile(par1.ToString(), par2.ToString(), oper);
+                    }
+                    break;
+                default:
+                    MessageBox.Show("Něco se nepovedlo!");
+                    break;
+            }
+        }
+
+        public void WhileBool(bool par1, bool par2, string oper)
+        {
+            switch (oper)
+            {
+                case "==":
+                    if (par1 == par2)
+                    {
+                        while (par1 == par2)
+                        {
+                            MessageBox.Show("Cyklus while zacyklen, funkční");
+                            CreationOfCycleWhile(par1.ToString(), par2.ToString(), oper);
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Podmínka není pravda, konec cyklu");
+                        CreationOfCycleWhile(par1.ToString(), par2.ToString(), oper);
+                    }
+                    break;
+                case "!=":
+                    if (par1 != par2)
+                    {
+                        while (par1 != par2)
+                        {
+                            MessageBox.Show("Cyklus while zacyklen, funkční");
+                            CreationOfCycleWhile(par1.ToString(), par2.ToString(), oper);
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Podmínka není pravda, konec cyklu");
+                        CreationOfCycleWhile(par1.ToString(), par2.ToString(), oper);
+                    }
+                    break;
+                default:
+                    MessageBox.Show("Něco se nepovedlo!");
+                    break;
+            }
+        }
+
+        public void WhileChar(char par1, char par2, string oper)
+        {
+            switch (oper)
+            {
+                case "==":
+                    if (par1 == par2)
+                    {
+                        while (par1 == par2)
+                        {
+                            MessageBox.Show("Cyklus while zacyklen, funkční");
+                            CreationOfCycleWhile(par1.ToString(), par2.ToString(), oper);
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Podmínka není pravda, konec cyklu");
+                        CreationOfCycleWhile(par1.ToString(), par2.ToString(), oper);
+                    }
+                    break;
+                case "!=":
+                    if (par1 != par2)
+                    {
+                        while (par1 != par2)
+                        {
+                            MessageBox.Show("Cyklus while zacyklen, funkční");
+                            CreationOfCycleWhile(par1.ToString(), par2.ToString(), oper);
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Podmínka není pravda, konec cyklu");
+                        CreationOfCycleWhile(par1.ToString(), par2.ToString(), oper);
+                    }
+                    break;
+                default:
+                    MessageBox.Show("Něco se nepovedlo!");
+                    break;
+            }
+        }
+
+        public void WhileString(string par1, string par2, string oper)
+        {
+            switch (oper)
+            {
+                case "==":
+                    if (par1 == par2)
+                    {
+                        while (par1 == par2)
+                        {
+                            MessageBox.Show("Cyklus while zacyklen, funkční");
+                            CreationOfCycleWhile(par1.ToString(), par2.ToString(), oper);
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Podmínka není pravda, konec cyklu");
+                        CreationOfCycleWhile(par1.ToString(), par2.ToString(), oper);
+                    }
+                    break;
+                case "!=":
+                    if (par1 != par2)
+                    {
+                        while (par1 != par2)
+                        {
+                            MessageBox.Show("Cyklus while zacyklen, funkční");
+                            CreationOfCycleWhile(par1.ToString(), par2.ToString(), oper);
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Podmínka není pravda, konec cyklu");
+                        CreationOfCycleWhile(par1.ToString(), par2.ToString(), oper);
+                    }
+                    break;
+                default:
+                    MessageBox.Show("Něco se nepovedlo!");
+                    break;
+            }
+        }
+
+        public void DoWhileDouble(double par1, double par2, string oper)
+        {
+            switch (oper)
+            {
+                case "==":
+                    if (par1 == par2)
+                    {
+                        while (par1 == par2)
+                        {
+                            MessageBox.Show("Cyklus while zacyklen, funkční");
+                            CreationOfCycleDoWhile(par1.ToString(), par2.ToString(), oper);
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Podmínka není pravda, konec cyklu");
+                        CreationOfCycleDoWhile(par1.ToString(), par2.ToString(), oper);
+                    }
+                    break;
+                case "!=":
+                    if (par1 != par2)
+                    {
+                        while (par1 != par2)
+                        {
+                            MessageBox.Show("Cyklus while zacyklen, funkční");
+                            CreationOfCycleDoWhile(par1.ToString(), par2.ToString(), oper);
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Podmínka není pravda, konec cyklu");
+                        CreationOfCycleDoWhile(par1.ToString(), par2.ToString(), oper);
+                    }
+                    break;
+                case ">":
+                    if (par1 > par2)
+                    {
+                        while (par1 > par2)
+                        {
+                            MessageBox.Show("Cyklus while zacyklen, funkční");
+                            CreationOfCycleDoWhile(par1.ToString(), par2.ToString(), oper);
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Podmínka není pravda, konec cyklu");
+                        CreationOfCycleDoWhile(par1.ToString(), par2.ToString(), oper);
+                    }
+                    break;
+                case "<":
+                    if (par1 < par2)
+                    {
+                        while (par1 < par2)
+                        {
+                            MessageBox.Show("Cyklus while zacyklen, funkční");
+                            CreationOfCycleDoWhile(par1.ToString(), par2.ToString(), oper);
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Podmínka není pravda, konec cyklu");
+                        CreationOfCycleDoWhile(par1.ToString(), par2.ToString(), oper);
+                    }
+                    break;
+                case ">=":
+                    if (par1 >= par2)
+                    {
+                        while (par1 >= par2)
+                        {
+                            MessageBox.Show("Cyklus while zacyklen, funkční");
+                            CreationOfCycleDoWhile(par1.ToString(), par2.ToString(), oper);
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Podmínka není pravda, konec cyklu");
+                        CreationOfCycleDoWhile(par1.ToString(), par2.ToString(), oper);
+                    }
+                    break;
+                case "<=":
+                    if (par1 <= par2)
+                    {
+                        while (par1 <= par2)
+                        {
+                            MessageBox.Show("Cyklus while zacyklen, funkční");
+                            CreationOfCycleDoWhile(par1.ToString(), par2.ToString(), oper);
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Podmínka není pravda, konec cyklu");
+                        CreationOfCycleDoWhile(par1.ToString(), par2.ToString(), oper);
+                    }
+                    break;
+                default:
+                    MessageBox.Show("Něco se nepovedlo!");
+                    break;
+            }
+        }
+
+        public void DoWhileBool(bool par1, bool par2, string oper)
+        {
+            switch (oper)
+            {
+                case "==":
+                    if (par1 == par2)
+                    {
+                        while (par1 == par2)
+                        {
+                            MessageBox.Show("Cyklus while zacyklen, funkční");
+                            CreationOfCycleDoWhile(par1.ToString(), par2.ToString(), oper);
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Podmínka není pravda, konec cyklu");
+                        CreationOfCycleDoWhile(par1.ToString(), par2.ToString(), oper);
+                    }
+                    break;
+                case "!=":
+                    if (par1 != par2)
+                    {
+                        while (par1 != par2)
+                        {
+                            MessageBox.Show("Cyklus while zacyklen, funkční");
+                            CreationOfCycleDoWhile(par1.ToString(), par2.ToString(), oper);
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Podmínka není pravda, konec cyklu");
+                        CreationOfCycleDoWhile(par1.ToString(), par2.ToString(), oper);
+                    }
+                    break;
+                default:
+                    MessageBox.Show("Něco se nepovedlo!");
+                    break;
+            }
+        }
+
+        public void DoWhileChar(char par1, char par2, string oper)
+        {
+            switch (oper)
+            {
+                case "==":
+                    if (par1 == par2)
+                    {
+                        while (par1 == par2)
+                        {
+                            MessageBox.Show("Cyklus while zacyklen, funkční");
+                            CreationOfCycleDoWhile(par1.ToString(), par2.ToString(), oper);
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Podmínka není pravda, konec cyklu");
+                        CreationOfCycleDoWhile(par1.ToString(), par2.ToString(), oper);
+                    }
+                    break;
+                case "!=":
+                    if (par1 != par2)
+                    {
+                        while (par1 != par2)
+                        {
+                            MessageBox.Show("Cyklus while zacyklen, funkční");
+                            CreationOfCycleDoWhile(par1.ToString(), par2.ToString(), oper);
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Podmínka není pravda, konec cyklu");
+                        CreationOfCycleDoWhile(par1.ToString(), par2.ToString(), oper);
+                    }
+                    break;
+                default:
+                    MessageBox.Show("Něco se nepovedlo!");
+                    break;
+            }
+        }
+
+        public void DoWhileString(string par1, string par2, string oper)
+        {
+            switch (oper)
+            {
+                case "==":
+                    if (par1 == par2)
+                    {
+                        while (par1 == par2)
+                        {
+                            MessageBox.Show("Cyklus while zacyklen, funkční");
+                            CreationOfCycleDoWhile(par1.ToString(), par2.ToString(), oper);
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Podmínka není pravda, konec cyklu");
+                        CreationOfCycleDoWhile(par1.ToString(), par2.ToString(), oper);
+                    }
+                    break;
+                case "!=":
+                    if (par1 != par2)
+                    {
+                        while (par1 != par2)
+                        {
+                            MessageBox.Show("Cyklus while zacyklen, funkční");
+                            CreationOfCycleDoWhile(par1.ToString(), par2.ToString(), oper);
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Podmínka není pravda, konec cyklu");
+                        CreationOfCycleDoWhile(par1.ToString(), par2.ToString(), oper);
+                    }
+                    break;
+                default:
+                    MessageBox.Show("Něco se nepovedlo!");
+                    break;
+            }
+        }
+
+        public void CycleWhileAndDoWhile(string type)
+        {
+            if (Promenne.FindVar(part1, "type") != null)
+            {
+                if (Promenne.FindVar(part2, "type") != null)
+                {
+                    if ((Promenne.FindVar(part1, "type") == "Int16" || Promenne.FindVar(part1, "type") == "Int32" || Promenne.FindVar(part1, "type") == "Int64" || Promenne.FindVar(part1, "type") == "Double" || Promenne.FindVar(part1, "type") == "Float") && (Promenne.FindVar(part2, "type") == "Int16" || Promenne.FindVar(part2, "type") == "Int32" || Promenne.FindVar(part2, "type") == "Int64" || Promenne.FindVar(part2, "type") == "Double" || Promenne.FindVar(part2, "type") == "Float"))
+                    {
+                        if (type == "While")
+                            WhileDouble(double.Parse(Promenne.FindVar(part1, "value")), double.Parse(Promenne.FindVar(part2, "value")), oper);
+                        else
+                            DoWhileDouble(double.Parse(Promenne.FindVar(part1, "value")), double.Parse(Promenne.FindVar(part2, "value")), oper);
+                    }
+                    else if (Promenne.FindVar(part1, "type") == "Bool" && Promenne.FindVar(part2, "type") == "Bool")
+                    {
+                        if (type == "While")
+                            WhileBool(bool.Parse(Promenne.FindVar(part1, "value")), bool.Parse(Promenne.FindVar(part2, "value")), oper);
+                        else
+                            DoWhileBool(bool.Parse(Promenne.FindVar(part1, "value")), bool.Parse(Promenne.FindVar(part2, "value")), oper);
+                    }
+                    else if (Promenne.FindVar(part1, "type") == "Char" && Promenne.FindVar(part2, "type") == "Char")
+                    {
+                        if (type == "While")
+                            WhileChar(char.Parse(Promenne.FindVar(part1, "value")), char.Parse(Promenne.FindVar(part2, "value")), oper);
+                        else
+                            DoWhileChar(char.Parse(Promenne.FindVar(part1, "value")), char.Parse(Promenne.FindVar(part2, "value")), oper);
+                    }
+                    else
+                    {
+                        if (type == "While")
+                            WhileString(Promenne.FindVar(part1, "value"), Promenne.FindVar(part2, "value"), oper);
+                        else
+                            DoWhileString(Promenne.FindVar(part1, "value"), Promenne.FindVar(part2, "value"), oper);
+                    }
+                }
+                else
+                {
+                    if ((Promenne.FindVar(part1, "type") == "Int16" || Promenne.FindVar(part1, "type") == "Int32" || Promenne.FindVar(part1, "type") == "Int64" || Promenne.FindVar(part1, "type") == "Double" || Promenne.FindVar(part1, "type") == "Float") && double.TryParse(part2, out double var))
+                    {
+                        if (type == "While")
+                            WhileDouble(double.Parse(Promenne.FindVar(part1, "value")), var, oper);
+                        else
+                            DoWhileDouble(double.Parse(Promenne.FindVar(part1, "value")), var, oper);
+                    }
+                    else if (Promenne.FindVar(part1, "type") == "Bool" && bool.TryParse(part2, out bool var0))
+                    {
+                        if (type == "While")
+                            WhileBool(bool.Parse(Promenne.FindVar(part1, "value")), var0, oper);
+                        else
+                            DoWhileBool(bool.Parse(Promenne.FindVar(part1, "value")), var0, oper);
+                    }
+                    else if (Promenne.FindVar(part1, "type") == "Char" && part2[0] == char.Parse("'") && part2[part2.Length - 1] == char.Parse("'"))
+                    {
+                        if (type == "While")
+                            WhileChar(char.Parse(Promenne.FindVar(part1, "value")), char.Parse(Promenne.OverwriteChar(part2)), oper);
+                        else
+                            DoWhileChar(char.Parse(Promenne.FindVar(part1, "value")), char.Parse(Promenne.OverwriteChar(part2)), oper);
+                    }
+                    else if (Promenne.FindVar(part1, "type") == "String" && part2[0] == '"' && part2[part2.Length - 1] == '"')
+                    {
+                        if (type == "While")
+                            WhileString(Promenne.FindVar(part1, "value"), Promenne.OverwriteString(part2), oper);
+                        else
+                            DoWhileString(Promenne.FindVar(part1, "value"), Promenne.OverwriteChar(part2), oper);
+                    }
+                }
+            }
+            else if (Promenne.FindVar(part2, "type") != null)
+            {
+                if ((Promenne.FindVar(part2, "type") == "Int16" || Promenne.FindVar(part2, "type") == "Int32" || Promenne.FindVar(part2, "type") == "Int64" || Promenne.FindVar(part2, "type") == "Double" || Promenne.FindVar(part2, "type") == "Float") && double.TryParse(part1, out double var))
+                {
+                    if (type == "While")
+                        WhileDouble(double.Parse(Promenne.FindVar(part2, "value")), var, oper);
+                    else
+                        DoWhileDouble(double.Parse(Promenne.FindVar(part2, "value")), var, oper);
+                }
+                else if (Promenne.FindVar(part2, "type") == "Bool" && bool.TryParse(part1, out bool var0))
+                {
+                    if (type == "While")
+                        WhileBool(bool.Parse(Promenne.FindVar(part2, "value")), var0, oper);
+                    else
+                        DoWhileBool(bool.Parse(Promenne.FindVar(part2, "value")), var0, oper);
+                }
+                else if (Promenne.FindVar(part2, "type") == "Char" && part1[0] == char.Parse("'") && part1[part1.Length - 1] == char.Parse("'"))
+                {
+                    if (type == "While")
+                        WhileChar(char.Parse(Promenne.FindVar(part2, "value")), char.Parse(Promenne.OverwriteChar(part1)), oper);
+                    else
+                        DoWhileChar(char.Parse(Promenne.FindVar(part2, "value")), char.Parse(Promenne.OverwriteChar(part1)), oper);
+                }
+                else if (Promenne.FindVar(part2, "type") == "String" && part1[0] == '"' && part1[part1.Length - 1] == '"')
+                {
+                    if (type == "While")
+                        WhileString(Promenne.FindVar(part2, "value"), Promenne.OverwriteString(part1), oper);
+                    else
+                        DoWhileString(Promenne.FindVar(part2, "value"), Promenne.OverwriteString(part1), oper);
+                }
+            }
+            else
+            {
+                
+                if (double.TryParse(part1, out double par1) && double.TryParse(part2, out double par2))
+                {
+
+                    if (type == "While")
+                    {
+                        Debug.WriteLine("SKOČIL");
+                        WhileDouble(par1, par2, oper);
+                    }
+                    else
+                        DoWhileDouble(par1, par2, oper);
+                }
+                else if (bool.TryParse(part1, out bool par1_b) && bool.TryParse(part2, out bool par2_b))
+                {
+                    if (type == "While")
+                        WhileBool(par1_b, par2_b, oper);
+                    else
+                        DoWhileBool(par1_b, par2_b, oper);
+                }
+                else if (part1[0] == char.Parse("'") && part1[part1.Length - 1] == char.Parse("'") && part2[0] == char.Parse("'") && part2[part2.Length - 1] == char.Parse("'"))
+                {
+                    if (type == "While")
+                        WhileChar(char.Parse(Promenne.OverwriteChar(part1)), char.Parse(Promenne.OverwriteChar(part2)), oper);
+                    else
+                        DoWhileChar(char.Parse(Promenne.OverwriteChar(part1)), char.Parse(Promenne.OverwriteChar(part2)), oper);
+                }
+                else if (part1[0] == '"' && part1[part1.Length - 1] == '"' && part2[0] == '"' && part2[part2.Length - 1] == '"')
+                {
+                    if (type == "While")
+                        WhileString(Promenne.OverwriteChar(part1), Promenne.OverwriteChar(part2), oper);
+                    else
+                        DoWhileString(Promenne.OverwriteChar(part1), Promenne.OverwriteChar(part2), oper);
+                }
+            }
+        }
+
         public bool CheckWhileAndDoWhile(string condition)
         {   
             string par1 = "";
@@ -98,21 +713,19 @@ namespace Vyvojaky
                 {
                     if (!request)
                     {
-                        par1 += condition[i].ToString().Trim();
+                        par1 += condition[i].ToString();
                     }
                     else
                     {
-                        par2 += condition[i].ToString().TrimStart();
+                        par2 += condition[i].ToString();
                     }
                 }
             }
-            Debug.WriteLine("par1: " + par1);
-            Debug.WriteLine("par2: " + par2);
-            Debug.WriteLine("operand: " + oper);
-            //par1.Trim();
-            //par2.TrimStart();
+            par1 = par1.Trim();
+            par2 = par2.Trim();
+            oper = oper.Trim();
 
-            if (oper == "")
+            if (oper == "" || oper == "=")
             {
                 return false;
             }
@@ -185,6 +798,9 @@ namespace Vyvojaky
                     }
                 }
             }
+            part1 = par1;
+            part2 = par2;
+            this.oper = oper;
             return true;
         }
 
@@ -236,11 +852,12 @@ namespace Vyvojaky
             {
                 if (!(b[0] == '"' && b[b.Length - 1] == '"'))
                 {
+                    
                     return false;
                 }
                 else
                 {
-                    if (op != "==" || op != "!=")
+                    if (op != "==" && op != "!=")
                     {
                         return false;
                     }

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -47,6 +48,10 @@ namespace Vyvojaky
             BlockCycles blockFor = new BlockCycles(nazev, pocatek, konec, inkrement);
         }
 
+        public void BlockCycleWhileOrDoWhile(string condition, string type)
+        {
+            BlockCycles blockWhileOrDoWhile = new BlockCycles(condition, type);
+        }
 
 
         //Drag and drop vars

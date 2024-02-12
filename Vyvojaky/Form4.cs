@@ -255,35 +255,50 @@ namespace Vyvojaky
             string pocatecniHodnota = Interaction.InputBox("Zadejte počáteční hodnotu", "Cycle-for");
             string konecnaHodnota = Interaction.InputBox("Zadejte konečnou hodnotu(cyklus bude počítat včetně této hodnoty)", "Cycle-for");
             string inkrement = Interaction.InputBox("Zadejte inkrement", "Cycle-for");
-            if (cycles.CheckFor(nazev, pocatecniHodnota, konecnaHodnota, inkrement))
+            if (nazev != "" && pocatecniHodnota != "" && konecnaHodnota != "" && inkrement != "")
             {
-                cycles.CyclesFor(int.Parse(pocatecniHodnota), int.Parse(konecnaHodnota), int.Parse(inkrement));
-                cycles.CreationOfCycleFor(nazev, pocatecniHodnota, konecnaHodnota, inkrement);
+                if (cycles.CheckFor(nazev, pocatecniHodnota, konecnaHodnota, inkrement))
+                {
+                    cycles.CyclesFor(int.Parse(pocatecniHodnota), int.Parse(konecnaHodnota), int.Parse(inkrement));
+                    cycles.CreationOfCycleFor(nazev, pocatecniHodnota, konecnaHodnota, inkrement);
+                }
+                else
+                {
+                    MessageBox.Show("Něco je špatně!");
+                }
             }
-            else
-            {
-                MessageBox.Show("Něco je špatně!");
-                
-            }
-            
         }
 
         private void whileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string condition = Interaction.InputBox("Zadejte podmínku", "Cycle-while");
-            if (cycles.CheckWhileAndDoWhile(condition.Trim()))
+            if (condition != "")
             {
-                MessageBox.Show("Prošlo");
-            }
-            else
-            {
-                MessageBox.Show("Neprošlo");
+                if (cycles.CheckWhileAndDoWhile(condition.Trim()))
+                {
+                    cycles.CycleWhileAndDoWhile("While");
+                }
+                else
+                {
+                    MessageBox.Show("Něco se nepovedlo");
+                }
             }
         }
 
         private void doWhileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            string condition = Interaction.InputBox("Zadejte podmínku", "Cycle-while");
+            if (condition != "")
+            {
+                if (cycles.CheckWhileAndDoWhile(condition.Trim()))
+                {
+                    cycles.CycleWhileAndDoWhile("Do-While");
+                }
+                else
+                {
+                    MessageBox.Show("Něco se nepovedlo");
+                }
+            }
         }
     }
 }
