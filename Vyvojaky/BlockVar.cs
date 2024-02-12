@@ -22,6 +22,7 @@ namespace Vyvojaky
 
             //Indexace
             index = Block.BlockIndex();
+            this.Tag = index;
 
             //LB
             popis.ForeColor = Color.Black;            

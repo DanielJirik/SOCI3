@@ -14,6 +14,7 @@ namespace Vyvojaky
         {
             //Indexace
             index = Block.BlockIndex();
+            this.Tag = index;
 
             this.BackColor = Color.White;
             this.Width = 120;

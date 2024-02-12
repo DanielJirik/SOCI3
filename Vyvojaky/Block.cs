@@ -10,7 +10,7 @@ namespace Vyvojaky
     internal class Block
     {
         public static Panel? pracPanel;
-        public static List<int> indexes = new List<int>();
+        public static List<int> indexes = new List<int>();        
 
         //Indexace Blocků
         public static int BlockIndex()
@@ -98,10 +98,11 @@ namespace Vyvojaky
         //Right-click behaviour
         public static void OnMouseClick(object sender, MouseEventArgs e)
         {
+            PictureBox block = (PictureBox)sender;
             if (e.Button == MouseButtons.Right)
             {
-                //Opens menu
-                MessageBox.Show("test");
+                //Zobrazí index right-clicknutého blocku
+                MessageBox.Show(block.Tag.ToString());
             }
         }
 

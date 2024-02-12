@@ -20,6 +20,7 @@ namespace Vyvojaky
         {
             //Indexace
             index = Block.BlockIndex();
+            this.Tag = index;
 
             //picture box
             this.Width = 120;
