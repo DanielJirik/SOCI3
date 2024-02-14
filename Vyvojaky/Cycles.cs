@@ -79,14 +79,14 @@ namespace Vyvojaky
 
         public void CreationOfCycleWhile(string part1, string part2, string oper)
         {
-            Block block = new Block(Pracovni);
+            Block block = new Block();
             string condition = $"({part1} {oper} {part2})";
             block.BlockCycleWhileOrDoWhile(condition, "While");
         }
 
         public void CreationOfCycleDoWhile(string part1, string part2, string oper)
         {
-            Block block = new Block(Pracovni);
+            Block block = new Block();
             string condition = $"({part1} {oper} {part2})";
             block.BlockCycleWhileOrDoWhile(condition, "DoWhile");
         }
@@ -661,10 +661,7 @@ namespace Vyvojaky
                 {
 
                     if (type == "While")
-                    {
-                        Debug.WriteLine("SKOČIL");
                         WhileDouble(par1, par2, oper);
-                    }
                     else
                         DoWhileDouble(par1, par2, oper);
                 }
@@ -743,7 +740,6 @@ namespace Vyvojaky
                         }
                         else if ((Promenne.FindVar(par1, "type") == "Bool" && Promenne.FindVar(par2, "type") == "Bool") || (Promenne.FindVar(par1, "type") == "Char" && Promenne.FindVar(par2, "type") == "Char") || (Promenne.FindVar(par1, "type") == "String" && Promenne.FindVar(par2, "type") == "String"))
                         {
-                            Debug.WriteLine("string prošel");
                             if (oper != "==" && oper != "!=")
                             {
                                 return false;
