@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Vyvojaky
 {
@@ -17,7 +18,7 @@ namespace Vyvojaky
         public static int BlockIndex()
         {
             int index = indexes.Count() > 0 ? indexes.Max() + 1 : 1;
-            indexes.Add(index);            
+            indexes.Add(index);
 
             return index;
         }
@@ -33,10 +34,10 @@ namespace Vyvojaky
             BlockCon blockCon = new BlockCon(prikaz, Podminky.isTrue(prikaz));
         }
 
-        public static void BlockSwitch(int pocetMoznosti, string vstupPromenna, List<TextBox> boxy)
-        {
-            BlockSwitches blockSwitch = new BlockSwitches(pocetMoznosti, vstupPromenna, boxy);
-        }
+        //public static void BlockSwitch(int pocetMoznosti, string vstupPromenna, List<TextBox> boxy)
+        //{
+        //    BlockSwitches blockSwitch = new BlockSwitches(pocetMoznosti, vstupPromenna, boxy);
+        //}
 
         public static void BlockCycleFor(string nazev, string pocatek, string konec, string inkrement)
         {
@@ -101,15 +102,105 @@ namespace Vyvojaky
 
 
         //Right-click behaviour
+        public static bool swap = false;
+        public static int fromIndex;
+
         public static void OnMouseClick(object sender, MouseEventArgs e)
         {
             PictureBox block = (PictureBox)sender;
-            if (e.Button == MouseButtons.Right)
+            if (e.Button == MouseButtons.Right && !swap)
             {
-                //Zobrazí index right-clicknutého blocku
-                MessageBox.Show(block.Tag.ToString());
+                SwapIndex(Convert.ToInt32(block.Tag));
+                swap = true;
+            }
+            else if (e.Button == MouseButtons.Left && swap)
+            {
+                SwapIndex(Convert.ToInt32(block.Tag));
+                swap = false;
             }
         }
 
+        public static void ResetJoint(int tag)
+        {
+            foreach (Control item in pracPanel.Controls)
+            {
+                if (item is BlockVar && ((BlockVar)item).joint == tag)
+                {
+                    ((BlockVar)item).joint = null;
+                    break;
+                }
+                else if (item is BlockCon && ((BlockCon)item).joint == tag)
+                {
+                    ((BlockCon)item).joint = null;
+                    break;
+                }
+                else if (item is BlockCycles && ((BlockCycles)item).joint == tag)
+                {
+                    ((BlockCycles)item).joint = null;
+                    break;
+                }
+                else if (item is BlockSwitches && ((BlockSwitches)item).joint == tag)
+                {
+                    ((BlockSwitches)item).joint = null;
+                    break;
+                }
+                else if (item is BlockStart && ((BlockStart)item).joint == tag)
+                {
+                    ((BlockStart)item).joint = null;
+                    break;
+                }
+            }
+        }
+
+        public static void SetJoint(int tag)
+        {
+            foreach (Control item in pracPanel.Controls)
+            {
+                if (item is BlockVar && Convert.ToInt16(((BlockVar)item).Tag) == fromIndex)
+                {
+                    ((BlockVar)item).joint = tag;
+                    MessageBox.Show(((BlockVar)item).joint.ToString());
+                    break;
+                }
+                else if (item is BlockCon && Convert.ToInt16(((BlockCon)item).Tag) == fromIndex)
+                {
+                    ((BlockCon)item).joint = tag;
+                    MessageBox.Show(((BlockCon)item).joint.ToString());
+                    break;
+                }
+                else if (item is BlockCycles && Convert.ToInt16(((BlockCycles)item).Tag) == fromIndex)
+                {
+                    ((BlockCycles)item).joint = tag;
+                    MessageBox.Show(((BlockCycles)item).joint.ToString());
+                    break;
+                }
+                else if (item is BlockSwitches && Convert.ToInt16(((BlockSwitches)item).Tag) == fromIndex)
+                {
+                    ((BlockSwitches)item).joint = tag;
+                    MessageBox.Show(((BlockSwitches)item).joint.ToString());
+                    break;
+                }
+                else if (item is BlockStart && Convert.ToInt16(((BlockStart)item).Tag) == fromIndex)
+                {
+                    ((BlockStart)item).joint = tag;
+                    MessageBox.Show(((BlockStart)item).joint.ToString());
+                    break;
+                }
+            }
+        }
+
+        public static void SwapIndex(int tag)
+        {
+            if (!swap)
+            {
+                //Získání hodnoty pro určení počátku
+                fromIndex = tag;               
+            }
+            else if(swap && tag != 0)
+            {
+                ResetJoint(tag);
+                SetJoint(tag);
+            }
+        }
     }
 }

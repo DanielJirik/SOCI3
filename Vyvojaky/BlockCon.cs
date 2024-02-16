@@ -7,7 +7,8 @@ namespace Vyvojaky
         public Label popis = new Label();        
         public bool value;
 
-        public static int index;
+        public int index;
+        public int? joint;
 
         public BlockCon(string podminka, bool value)
         {

@@ -15,7 +15,8 @@ namespace Vyvojaky
         int startPositionX = 10;
         int startPositionY = 10;
 
-        public static int index;
+        public int index;
+        public int? joint;
         public BlockSwitches(int pocetCasu, string vstupPromenna, List<TextBox> boxy)
         {
             //Indexace

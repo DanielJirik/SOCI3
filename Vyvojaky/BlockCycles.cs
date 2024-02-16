@@ -8,7 +8,8 @@ namespace Vyvojaky
 {
     internal class BlockCycles : PictureBox
     {
-        public static int index;
+        public int index;
+        public int? joint;
 
         public BlockCycles(string nazev, string pocatek, string konecnaHodnota, string inkrement) 
         {

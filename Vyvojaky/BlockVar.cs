@@ -13,7 +13,9 @@ namespace Vyvojaky
         public Label popis = new Label();
         public string[] accessValue;
 
-        public static int index;
+        public int index;
+
+        public int? joint;
 
         public BlockVar(string typ, string nazev, string hodnota)
         {
@@ -22,7 +24,7 @@ namespace Vyvojaky
 
             //Indexace
             index = Block.BlockIndex();
-            this.Tag = index;
+            this.Tag = index;            
 
             //LB
             popis.ForeColor = Color.Black;            

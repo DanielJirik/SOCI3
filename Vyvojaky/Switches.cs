@@ -571,7 +571,7 @@ namespace Vyvojaky
         }
         public void VytvoreniBloku(string hodnota) 
         {
-            Block.BlockSwitch(Moznosti.Count, hodnota, Moznosti);
+            //Block.BlockSwitch(Moznosti.Count, hodnota, Moznosti);
         }
 
         public void MazaniBoxu(Panel panelSwitch)
