@@ -34,13 +34,28 @@ namespace Vyvojaky
             }
         }
 
-        public void CyclesFor(int pocatek, int konec, int inkrement) 
+        public void pocitani(Panel main, TextBox console)
+        {
+            
+            List<Control> blocks = new List<Control>();
+            foreach (Control item in main.Controls)
+            {
+                if (item is BlockSwitches)
+                {
+                    BlockSwitches switches = (BlockSwitches)item;
+                    switches.Kontrola(console);
+                    
+                }
+            }
+        }
+
+        public void CyclesFor(int pocatek, int konec, int inkrement, TextBox console) 
         {
             if (pocatek < konec && inkrement > 0)
             {
                 for (int i = pocatek; i <= konec; i += inkrement)
                 {
-                    MessageBox.Show("Index: " + i);
+                    pocitani(Pracovni, console);
                 }
             }
             else if(pocatek < konec && inkrement < 0)

@@ -15,6 +15,7 @@ namespace Vyvojaky
         TextBox Moznost;
         List<TextBox> Moznosti = new List<TextBox>(){ };
         List<Label> Lably = new List<Label>() { };
+        
         Panel Pracovni;
         public int VyskaPaneluPuvodni;
 
@@ -79,7 +80,8 @@ namespace Vyvojaky
             char moznostChar;
 
             //bool proměnná pro případy, že nenajde cílenou proměnnou nebo se stane i jiná chyba
-            bool check = false; 
+            bool check = false;
+
 
             string typVstupu = Promenne.FindVar(VstupPromenna.Text.Trim(), "type");
             if (typVstupu != null)
