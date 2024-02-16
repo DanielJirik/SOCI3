@@ -5,7 +5,6 @@ using System.Linq;
 using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Vyvojaky
 {
@@ -34,10 +33,10 @@ namespace Vyvojaky
             BlockCon blockCon = new BlockCon(prikaz, Podminky.isTrue(prikaz));
         }
 
-        //public static void BlockSwitch(int pocetMoznosti, string vstupPromenna, List<TextBox> boxy)
-        //{
-        //    BlockSwitches blockSwitch = new BlockSwitches(pocetMoznosti, vstupPromenna, boxy);
-        //}
+        public static void BlockSwitch(int pocetMoznosti, string vstupPromenna, List<TextBox> boxy)
+        {
+            BlockSwitches blockSwitch = new BlockSwitches(pocetMoznosti, vstupPromenna, boxy);
+        }
 
         public static void BlockCycleFor(string nazev, string pocatek, string konec, string inkrement)
         {

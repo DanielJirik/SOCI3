@@ -13,7 +13,7 @@ namespace Vyvojaky
         public TextBox VstupPromenna;
         Label Text;
         TextBox Moznost;
-        List<TextBox> Moznosti = new List<TextBox>(){ };
+        List<TextBox> Moznosti = new List<TextBox>();
         List<Label> Lably = new List<Label>() { };
         Panel Pracovni;
         public int VyskaPaneluPuvodni;
@@ -571,7 +571,7 @@ namespace Vyvojaky
         }
         public void VytvoreniBloku(string hodnota) 
         {
-            //Block.BlockSwitch(Moznosti.Count, hodnota, Moznosti);
+            Block.BlockSwitch(Moznosti.Count, hodnota, Moznosti);
         }
 
         public void MazaniBoxu(Panel panelSwitch)
