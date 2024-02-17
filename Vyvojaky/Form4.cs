@@ -130,7 +130,9 @@ namespace Vyvojaky
         {
             if (e.KeyCode == Keys.Enter)
             {
-                switches.Kontrola(tbConsole);
+                switches.FromTextBox();
+                switches.Kontrola(tbConsole, tbInputVariable.Text, switches.variables);
+                switches.Deleted();
             }
         }
 

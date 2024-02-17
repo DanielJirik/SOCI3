@@ -13,9 +13,9 @@ namespace Vyvojaky
         public TextBox VstupPromenna;
         Label Text;
         TextBox Moznost;
-        List<TextBox> Moznosti = new List<TextBox>();
+        public List<TextBox> Moznosti = new List<TextBox>();
         List<Label> Lably = new List<Label>() { };
-        
+        public List<string> variables = new List<string>();
         Panel Pracovni;
         public int VyskaPaneluPuvodni;
 
@@ -27,6 +27,19 @@ namespace Vyvojaky
         public void Setup(Panel _pracpanel)
         {
             Pracovni = _pracpanel;
+        }
+
+        public void FromTextBox()
+        {
+            foreach (TextBox variable in Moznosti)
+            { 
+                variables.Add(variable.Text);
+            }
+        }
+
+        public void Deleted()
+        { 
+            variables.Clear();
         }
 
         public void pridavaniTextBoxu(int pocetBoxu, Panel panelSwitch, TextBox vstupPromenna)
@@ -61,7 +74,7 @@ namespace Vyvojaky
             }
         }
 
-        public void Kontrola(TextBox console)
+        public void Kontrola(TextBox console, string inputVar, List<string> variables)
         {   
             //vstupní proměnné
             int vstupInt;
@@ -83,15 +96,15 @@ namespace Vyvojaky
             bool check = false;
 
 
-            string typVstupu = Promenne.FindVar(VstupPromenna.Text.Trim(), "type");
+            string typVstupu = Promenne.FindVar(inputVar.Trim(), "type");
             if (typVstupu != null)
             {
                 if (typVstupu == "Int16" || typVstupu == "Int32" || typVstupu == "Int64")
                 {
-                    vstupInt = int.Parse(Promenne.FindVar(VstupPromenna.Text.Trim(), "value"));
-                    for (int i = 0; i < Moznosti.Count; i++)
+                    vstupInt = int.Parse(Promenne.FindVar(inputVar.Trim(), "value"));
+                    for (int i = 0; i < variables.Count; i++)
                     {
-                        if (int.TryParse(Moznosti[i].Text, out moznostInt) || "Int16" == Promenne.FindVar(Moznosti[i].Text.Trim(), "type") || "Int32" == Promenne.FindVar(Moznosti[i].Text.Trim(), "type") || "Int64" == Promenne.FindVar(Moznosti[i].Text.Trim(), "type"))
+                        if (int.TryParse(variables[i], out moznostInt) || "Int16" == Promenne.FindVar(variables[i].Trim(), "type") || "Int32" == Promenne.FindVar(variables[i].Trim(), "type") || "Int64" == Promenne.FindVar(variables[i].Trim(), "type"))
                             check = false;
                         else
                             check = true;
@@ -100,11 +113,11 @@ namespace Vyvojaky
                         MessageBox.Show("Něco se nepovedlo!");
                     else
                     {
-                        for (int i = 0; i < Moznosti.Count; i++)
+                        for (int i = 0; i < variables.Count; i++)
                         {
-                            if (Promenne.FindVar(Moznosti[i].Text.Trim(), "value") != null)
+                            if (Promenne.FindVar(variables[i].Trim(), "value") != null)
                             {
-                                moznostInt = int.Parse(Promenne.FindVar(Moznosti[i].Text.Trim(), "value"));
+                                moznostInt = int.Parse(Promenne.FindVar(variables[i].Trim(), "value"));
                                 if (vstupInt == moznostInt)
                                 {
                                     console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
@@ -113,7 +126,7 @@ namespace Vyvojaky
                             }
                             else
                             {
-                                int.TryParse(Moznosti[i].Text.Trim(), out moznostInt);
+                                int.TryParse(variables[i].Trim(), out moznostInt);
                                 if (vstupInt == moznostInt)
                                 {
                                     console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
@@ -121,7 +134,7 @@ namespace Vyvojaky
                                 }
                             }
                         }
-                        VytvoreniBloku(VstupPromenna.Text.Trim());
+                        VytvoreniBloku(inputVar.Trim());
                     }
                 }
                 else
@@ -129,10 +142,10 @@ namespace Vyvojaky
                     switch (typVstupu)
                     {
                         case "Float":
-                            vstupFloat = float.Parse(Promenne.FindVar(VstupPromenna.Text.Trim(), "value"));
-                            for (int i = 0; i < Moznosti.Count; i++)
+                            vstupFloat = float.Parse(Promenne.FindVar(inputVar.Trim(), "value"));
+                            for (int i = 0; i < variables.Count; i++)
                             {
-                                if (float.TryParse(Moznosti[i].Text, out moznostFloat) || "Float" == Promenne.FindVar(Moznosti[i].Text.Trim(), "type"))
+                                if (float.TryParse(variables[i], out moznostFloat) || "Float" == Promenne.FindVar(variables[i].Trim(), "type"))
                                     check = false;
                                 else
                                     check = true;
@@ -141,11 +154,11 @@ namespace Vyvojaky
                                 MessageBox.Show("Něco se nepovedlo!");
                             else
                             {
-                                for (int i = 0; i < Moznosti.Count; i++)
+                                for (int i = 0; i < variables.Count; i++)
                                 {
-                                    if (Promenne.FindVar(Moznosti[i].Text.Trim(), "type") != null)
+                                    if (Promenne.FindVar(variables[i].Trim(), "type") != null)
                                     {
-                                        moznostFloat = float.Parse(Promenne.FindVar(Moznosti[i].Text.Trim(), "value"));
+                                        moznostFloat = float.Parse(Promenne.FindVar(variables[i].Trim(), "value"));
                                         if (vstupFloat == moznostFloat)
                                         {
                                             console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
@@ -154,7 +167,7 @@ namespace Vyvojaky
                                     }
                                     else
                                     {
-                                        float.TryParse(Moznosti[i].Text.Trim(), out moznostFloat);
+                                        float.TryParse(variables[i].Trim(), out moznostFloat);
                                         if (vstupFloat == moznostFloat)
                                         {
                                             console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
@@ -162,14 +175,14 @@ namespace Vyvojaky
                                         }
                                     }
                                 }
-                                VytvoreniBloku(VstupPromenna.Text.Trim());
+                                VytvoreniBloku(inputVar.Trim());
                             }
                             break;
                         case "Double":
-                            vstupDouble = int.Parse(Promenne.FindVar(VstupPromenna.Text.Trim(), "value"));
-                            for (int i = 0; i < Moznosti.Count; i++)
+                            vstupDouble = int.Parse(Promenne.FindVar(inputVar.Trim(), "value"));
+                            for (int i = 0; i < variables.Count; i++)
                             {
-                                if (double.TryParse(Moznosti[i].Text, out moznostDouble) || "Double" == Promenne.FindVar(Moznosti[i].Text.Trim(), "type"))
+                                if (double.TryParse(variables[i], out moznostDouble) || "Double" == Promenne.FindVar(variables[i].Trim(), "type"))
                                     check = false;
                                 else
                                     check = true;
@@ -178,11 +191,11 @@ namespace Vyvojaky
                                 MessageBox.Show("Něco se nepovedlo!");
                             else
                             {
-                                for (int i = 0; i < Moznosti.Count; i++)
+                                for (int i = 0; i < variables.Count; i++)
                                 {
-                                    if (Promenne.FindVar(Moznosti[i].Text.Trim(), "type") != null)
+                                    if (Promenne.FindVar(variables[i].Trim(), "type") != null)
                                     {
-                                        moznostDouble = double.Parse(Promenne.FindVar(Moznosti[i].Text.Trim(), "value"));
+                                        moznostDouble = double.Parse(Promenne.FindVar(variables[i].Trim(), "value"));
                                         if (vstupDouble == moznostDouble)
                                         {
                                             console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
@@ -191,7 +204,7 @@ namespace Vyvojaky
                                     }
                                     else
                                     {
-                                        double.TryParse(Moznosti[i].Text.Trim(), out moznostDouble);
+                                        double.TryParse(variables[i].Trim(), out moznostDouble);
                                         if (vstupDouble == moznostDouble)
                                         {
                                             console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
@@ -199,14 +212,14 @@ namespace Vyvojaky
                                         }
                                     }
                                 }
-                                VytvoreniBloku(VstupPromenna.Text.Trim());
+                                VytvoreniBloku(inputVar.Trim());
                             }
                             break;
                         case "Bool":
-                            vstupBool = bool.Parse(Promenne.FindVar(VstupPromenna.Text.Trim(), "value"));
-                            for (int i = 0; i < Moznosti.Count; i++)
+                            vstupBool = bool.Parse(Promenne.FindVar(inputVar.Trim(), "value"));
+                            for (int i = 0; i < variables.Count; i++)
                             {
-                                if (bool.TryParse(Moznosti[i].Text, out moznostBool) || "Bool" == Promenne.FindVar(Moznosti[i].Text.Trim(), "type"))
+                                if (bool.TryParse(variables[i], out moznostBool) || "Bool" == Promenne.FindVar(variables[i].Trim(), "type"))
                                     check = false;
                                 else
                                     check = true;
@@ -215,11 +228,11 @@ namespace Vyvojaky
                                 MessageBox.Show("Něco se nepovedlo!");
                             else
                             {
-                                for (int i = 0; i < Moznosti.Count; i++)
+                                for (int i = 0; i < variables.Count; i++)
                                 {
-                                    if (Promenne.FindVar(Moznosti[i].Text.Trim(), "type") != null)
+                                    if (Promenne.FindVar(variables[i].Trim(), "type") != null)
                                     {
-                                        moznostBool = bool.Parse(Promenne.FindVar(Moznosti[i].Text.Trim(), "value"));
+                                        moznostBool = bool.Parse(Promenne.FindVar(variables[i].Trim(), "value"));
                                         if (vstupBool == moznostBool)
                                         {
                                             console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
@@ -228,7 +241,7 @@ namespace Vyvojaky
                                     }
                                     else 
                                     {
-                                        bool.TryParse(Moznosti[i].Text.Trim(), out moznostBool);
+                                        bool.TryParse(variables[i].Trim(), out moznostBool);
                                         if (vstupBool == moznostBool)
                                         {
                                             console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
@@ -236,14 +249,14 @@ namespace Vyvojaky
                                         }
                                     }
                                 }
-                                VytvoreniBloku(VstupPromenna.Text.Trim());
+                                VytvoreniBloku(inputVar.Trim());
                             }
                             break;
                         case "Char":
-                            vstupChar = char.Parse(Promenne.FindVar(VstupPromenna.Text, "value"));
-                            for (int i = 0; i < Moznosti.Count; i++)
+                            vstupChar = char.Parse(Promenne.FindVar(inputVar, "value"));
+                            for (int i = 0; i < variables.Count; i++)
                             {
-                                if ((char.TryParse(Moznosti[i].Text, out moznostChar) && Moznosti[i].Text[0] == char.Parse("'") && Moznosti[i].Text[Moznosti[i].Text.Length - 1] == char.Parse("'")) || "Char" == Promenne.FindVar(Moznosti[i].Text.Trim(), "type"))
+                                if ((char.TryParse(variables[i], out moznostChar) && variables[i][0] == char.Parse("'") && variables[i][variables[i].Length - 1] == char.Parse("'")) || "Char" == Promenne.FindVar(variables[i].Trim(), "type"))
                                     check = false;
                                 else
                                     check = true;
@@ -252,11 +265,11 @@ namespace Vyvojaky
                                 MessageBox.Show("Něco se nepovedlo!");
                             else
                             {
-                                for (int i = 0; i < Moznosti.Count; i++)
+                                for (int i = 0; i < variables.Count; i++)
                                 {
-                                    if (Promenne.FindVar(Moznosti[i].Text, "type") != null)
+                                    if (Promenne.FindVar(variables[i], "type") != null)
                                     {
-                                        moznostChar = char.Parse(Promenne.FindVar(Moznosti[i].Text, "value"));
+                                        moznostChar = char.Parse(Promenne.FindVar(variables[i], "value"));
                                         if (vstupChar == moznostChar)
                                         {
                                             console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
@@ -265,7 +278,7 @@ namespace Vyvojaky
                                     }
                                     else
                                     {
-                                        moznostString = Moznosti[i].ToString();
+                                        moznostString = variables[i].ToString();
                                         moznostString = Promenne.OverwriteChar(moznostString);
                                         char.TryParse(moznostString, out moznostChar);
                                         if (vstupChar == moznostChar)
@@ -275,14 +288,14 @@ namespace Vyvojaky
                                         }
                                     }
                                 }
-                                VytvoreniBloku(VstupPromenna.Text.Trim());
+                                VytvoreniBloku(inputVar.Trim());
                             }
                             break;
                         case "String":
-                            vstupString = Promenne.FindVar(VstupPromenna.Text, "value");
-                            for (int i = 0; i < Moznosti.Count; i++)
+                            vstupString = Promenne.FindVar(inputVar, "value");
+                            for (int i = 0; i < variables.Count; i++)
                             {
-                                if ((Moznosti[i].Text[0] == '"' && Moznosti[i].Text[Moznosti[i].Text.Length - 1] == '"' ) || "String" == Promenne.FindVar(Moznosti[i].Text, "type"))
+                                if ((variables[i][0] == '"' && variables[i][variables[i].Length - 1] == '"' ) || "String" == Promenne.FindVar(variables[i], "type"))
                                     check = false;
                                 else
                                     check = true;
@@ -291,11 +304,11 @@ namespace Vyvojaky
                                 MessageBox.Show("Něco se nepovedlo!");
                             else
                             {
-                                for (int i = 0; i < Moznosti.Count; i++)
+                                for (int i = 0; i < variables.Count; i++)
                                 {
-                                    if (Promenne.FindVar(Moznosti[i].Text, "type") != null)
+                                    if (Promenne.FindVar(variables[i], "type") != null)
                                     {
-                                        moznostString = Promenne.FindVar(Moznosti[i].Text, "value");
+                                        moznostString = Promenne.FindVar(variables[i], "value");
                                         if (vstupString == moznostString)
                                         {
                                             console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
@@ -304,7 +317,7 @@ namespace Vyvojaky
                                     }
                                     else
                                     {
-                                        moznostString = Moznosti[i].Text;
+                                        moznostString = variables[i];
                                         moznostString = Promenne.OverwriteString(moznostString);
                                         if (vstupString == moznostString)
                                         {
@@ -313,7 +326,7 @@ namespace Vyvojaky
                                         }
                                     }
                                 }
-                                VytvoreniBloku(VstupPromenna.Text.Trim());
+                                VytvoreniBloku(inputVar.Trim());
                             }
                             break;
                         default:
@@ -324,11 +337,11 @@ namespace Vyvojaky
             }
             else
             {
-                if (int.TryParse(VstupPromenna.Text.Trim(), out vstupInt))
+                if (int.TryParse(inputVar.Trim(), out vstupInt))
                 {
-                    for (int i = 0; i < Moznosti.Count; i++)
+                    for (int i = 0; i < variables.Count; i++)
                     {
-                        if (int.TryParse(Moznosti[i].Text, out moznostInt) || "Int16" == Promenne.FindVar(Moznosti[i].Text.Trim(), "type") || "Int32" == Promenne.FindVar(Moznosti[i].Text.Trim(), "type") || "Int64" == Promenne.FindVar(Moznosti[i].Text.Trim(), "type"))
+                        if (int.TryParse(variables[i], out moznostInt) || "Int16" == Promenne.FindVar(variables[i].Trim(), "type") || "Int32" == Promenne.FindVar(variables[i].Trim(), "type") || "Int64" == Promenne.FindVar(variables[i].Trim(), "type"))
                             check = false;
                         else
                             check = true;
@@ -337,11 +350,11 @@ namespace Vyvojaky
                         MessageBox.Show("Něco se nepovedlo!");
                     else
                     {
-                        for (int i = 0; i < Moznosti.Count; i++)
+                        for (int i = 0; i < variables.Count; i++)
                         {
-                            if (Promenne.FindVar(Moznosti[i].Text.Trim(), "value") != null)
+                            if (Promenne.FindVar(variables[i].Trim(), "value") != null)
                             {
-                                moznostInt = int.Parse(Promenne.FindVar(Moznosti[i].Text.Trim(), "value"));
+                                moznostInt = int.Parse(Promenne.FindVar(variables[i].Trim(), "value"));
                                 if (vstupInt == moznostInt)
                                 {
                                     console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
@@ -350,7 +363,7 @@ namespace Vyvojaky
                             }
                             else
                             {
-                                int.TryParse(Moznosti[i].Text.Trim(), out moznostInt);
+                                int.TryParse(variables[i].Trim(), out moznostInt);
                                 if (vstupInt == moznostInt)
                                 {
                                     console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
@@ -358,14 +371,14 @@ namespace Vyvojaky
                                 }
                             }
                         }
-                        VytvoreniBloku(VstupPromenna.Text.Trim());
+                        VytvoreniBloku(inputVar.Trim());
                     }
                 }
-                else if (double.TryParse(VstupPromenna.Text.Trim(), out vstupDouble))
+                else if (double.TryParse(inputVar.Trim(), out vstupDouble))
                 {
-                    for (int i = 0; i < Moznosti.Count; i++)
+                    for (int i = 0; i < variables.Count; i++)
                     {
-                        if (double.TryParse(Moznosti[i].Text, out moznostDouble) || "Double" == Promenne.FindVar(Moznosti[i].Text.Trim(), "type"))
+                        if (double.TryParse(variables[i], out moznostDouble) || "Double" == Promenne.FindVar(variables[i].Trim(), "type"))
                             check = false;
                         else
                             check = true;
@@ -374,11 +387,11 @@ namespace Vyvojaky
                         MessageBox.Show("Něco se nepovedlo!");
                     else
                     {
-                        for (int i = 0; i < Moznosti.Count; i++)
+                        for (int i = 0; i < variables.Count; i++)
                         {
-                            if (Promenne.FindVar(Moznosti[i].Text.Trim(), "value") != null)
+                            if (Promenne.FindVar(variables[i].Trim(), "value") != null)
                             {
-                                moznostDouble = double.Parse(Promenne.FindVar(Moznosti[i].Text.Trim(), "value"));
+                                moznostDouble = double.Parse(Promenne.FindVar(variables[i].Trim(), "value"));
                                 if (vstupDouble == moznostDouble)
                                 {
                                     console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
@@ -387,7 +400,7 @@ namespace Vyvojaky
                             }
                             else
                             {
-                                double.TryParse(Moznosti[i].Text.Trim(), out moznostDouble);
+                                double.TryParse(variables[i].Trim(), out moznostDouble);
                                 if (vstupDouble == moznostDouble)
                                 {
                                     console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
@@ -395,14 +408,14 @@ namespace Vyvojaky
                                 }
                             }
                         }
-                        VytvoreniBloku(VstupPromenna.Text.Trim());
+                        VytvoreniBloku(inputVar.Trim());
                     }
                 }
-                else if (float.TryParse(VstupPromenna.Text.Trim(), out vstupFloat))
+                else if (float.TryParse(inputVar.Trim(), out vstupFloat))
                 {
-                    for (int i = 0; i < Moznosti.Count; i++)
+                    for (int i = 0; i < variables.Count; i++)
                     {
-                        if (float.TryParse(Moznosti[i].Text, out moznostFloat) || "Float" == Promenne.FindVar(Moznosti[i].Text.Trim(), "type"))
+                        if (float.TryParse(variables[i], out moznostFloat) || "Float" == Promenne.FindVar(variables[i].Trim(), "type"))
                             check = false;
                         else
                             check = true;
@@ -411,11 +424,11 @@ namespace Vyvojaky
                         MessageBox.Show("Něco se nepovedlo!");
                     else
                     {
-                        for (int i = 0; i < Moznosti.Count; i++)
+                        for (int i = 0; i < variables.Count; i++)
                         {
-                            if (Promenne.FindVar(Moznosti[i].Text.Trim(), "type") != null)
+                            if (Promenne.FindVar(variables[i].Trim(), "type") != null)
                             {
-                                moznostFloat = float.Parse(Promenne.FindVar(Moznosti[i].Text.Trim(), "value"));
+                                moznostFloat = float.Parse(Promenne.FindVar(variables[i].Trim(), "value"));
                                 if (vstupFloat == moznostFloat)
                                 {
                                     console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
@@ -424,7 +437,7 @@ namespace Vyvojaky
                             }
                             else
                             {
-                                float.TryParse(Moznosti[i].Text.Trim(), out moznostFloat);
+                                float.TryParse(variables[i].Trim(), out moznostFloat);
                                 if (vstupFloat == moznostFloat)
                                 {
                                     console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
@@ -432,14 +445,14 @@ namespace Vyvojaky
                                 }
                             }
                         }
-                        VytvoreniBloku(VstupPromenna.Text.Trim());
+                        VytvoreniBloku(inputVar.Trim());
                     }
                 }
-                else if (bool.TryParse(VstupPromenna.Text.Trim(), out vstupBool))
+                else if (bool.TryParse(inputVar.Trim(), out vstupBool))
                 {
-                    for (int i = 0; i < Moznosti.Count; i++)
+                    for (int i = 0; i < variables.Count; i++)
                     {
-                        if (bool.TryParse(Moznosti[i].Text, out moznostBool) || "Bool" == Promenne.FindVar(Moznosti[i].Text.Trim(), "type"))
+                        if (bool.TryParse(variables[i], out moznostBool) || "Bool" == Promenne.FindVar(variables[i].Trim(), "type"))
                             check = false;
                         else
                             check = true;
@@ -448,11 +461,11 @@ namespace Vyvojaky
                         MessageBox.Show("Něco se nepovedlo!");
                     else
                     {
-                        for (int i = 0; i < Moznosti.Count; i++)
+                        for (int i = 0; i < variables.Count; i++)
                         {
-                            if (Promenne.FindVar(Moznosti[i].Text.Trim(), "type") != null)
+                            if (Promenne.FindVar(variables[i].Trim(), "type") != null)
                             {
-                                moznostBool = bool.Parse(Promenne.FindVar(Moznosti[i].Text.Trim(), "value"));
+                                moznostBool = bool.Parse(Promenne.FindVar(variables[i].Trim(), "value"));
                                 if (vstupBool == moznostBool)
                                 {
                                     console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
@@ -461,7 +474,7 @@ namespace Vyvojaky
                             }
                             else
                             {
-                                bool.TryParse(Moznosti[i].Text.Trim(), out moznostBool);
+                                bool.TryParse(variables[i].Trim(), out moznostBool);
                                 if (vstupBool == moznostBool)
                                 {
                                     console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
@@ -469,15 +482,15 @@ namespace Vyvojaky
                                 }
                             }
                         }
-                        VytvoreniBloku(VstupPromenna.Text.Trim());
+                        VytvoreniBloku(inputVar.Trim());
                     }
                 }
-                else if (VstupPromenna.Text[0] == char.Parse("'") && VstupPromenna.Text[VstupPromenna.Text.Length - 1] == char.Parse("'"))
+                else if (inputVar[0] == char.Parse("'") && inputVar[inputVar.Length - 1] == char.Parse("'"))
                 {
-                    char.TryParse(Promenne.OverwriteChar(VstupPromenna.Text), out vstupChar);
-                    for (int i = 0; i < Moznosti.Count; i++)
+                    char.TryParse(Promenne.OverwriteChar(inputVar), out vstupChar);
+                    for (int i = 0; i < variables.Count; i++)
                     {
-                        if ((Moznosti[i].Text[0] == char.Parse("'") && Moznosti[i].Text[Moznosti[i].Text.Length - 1] == char.Parse("'")) || "Char" == Promenne.FindVar(Moznosti[i].Text.Trim(), "type"))
+                        if ((variables[i][0] == char.Parse("'") && variables[i][variables[i].Length - 1] == char.Parse("'")) || "Char" == Promenne.FindVar(variables[i].Trim(), "type"))
                         {
                             check = false;
                         }
@@ -493,11 +506,11 @@ namespace Vyvojaky
                     }
                     else
                     {
-                        for (int i = 0; i < Moznosti.Count; i++)
+                        for (int i = 0; i < variables.Count; i++)
                         {
-                            if (Promenne.FindVar(Moznosti[i].Text, "type") != null)
+                            if (Promenne.FindVar(variables[i], "type") != null)
                             {
-                                moznostChar = char.Parse(Promenne.FindVar(Moznosti[i].Text, "value"));
+                                moznostChar = char.Parse(Promenne.FindVar(variables[i], "value"));
                                 if (vstupChar == moznostChar)
                                 {
                                     console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
@@ -506,7 +519,7 @@ namespace Vyvojaky
                             }
                             else
                             {
-                                moznostString = Moznosti[i].Text.ToString();
+                                moznostString = variables[i].ToString();
                                 moznostChar = char.Parse(Promenne.OverwriteChar(moznostString));
                                 if (vstupChar == moznostChar)
                                 {
@@ -515,18 +528,18 @@ namespace Vyvojaky
                                 }
                             }
                         }
-                        VytvoreniBloku(VstupPromenna.Text.Trim());
+                        VytvoreniBloku(inputVar.Trim());
                     }
                 }
                 else
                 {
-                    vstupString = VstupPromenna.Text;
+                    vstupString = inputVar;
                     if (vstupString[0] == '"' && vstupString[vstupString.Length - 1] == '"')
                     {
                         vstupString = Promenne.OverwriteString(vstupString);
-                        for (int i = 0; i < Moznosti.Count; i++)
+                        for (int i = 0; i < variables.Count; i++)
                         {
-                            if ((Moznosti[i].Text[0] == '"' && Moznosti[i].Text[Moznosti[i].Text.Length - 1] == '"') || "String" == Promenne.FindVar(Moznosti[i].Text, "type"))
+                            if ((variables[i][0] == '"' && variables[i][variables[i].Length - 1] == '"') || "String" == Promenne.FindVar(variables[i], "type"))
                                 check = false;
                             else
                                 check = true;
@@ -535,11 +548,11 @@ namespace Vyvojaky
                             MessageBox.Show("Něco se nepovedlo!");
                         else
                         {
-                            for (int i = 0; i < Moznosti.Count; i++)
+                            for (int i = 0; i < variables.Count; i++)
                             {
-                                if (Promenne.FindVar(Moznosti[i].Text, "type") != null)
+                                if (Promenne.FindVar(variables[i], "type") != null)
                                 {
-                                    moznostString = Promenne.FindVar(Moznosti[i].Text, "value");
+                                    moznostString = Promenne.FindVar(variables[i], "value");
                                     if (vstupString == moznostString)
                                     {
                                         console.Text += "\r\n" + ">" + "trueee v casu č." + (i + 1) + "\r\n";
@@ -548,7 +561,7 @@ namespace Vyvojaky
                                 }
                                 else
                                 {
-                                    moznostString = Moznosti[i].Text;
+                                    moznostString = variables[i];
                                     moznostString = Promenne.OverwriteString(moznostString);
                                     if (vstupString == moznostString)
                                     {
@@ -557,7 +570,7 @@ namespace Vyvojaky
                                     }
                                 }
                             }
-                            VytvoreniBloku(VstupPromenna.Text.Trim());
+                            VytvoreniBloku(inputVar.Trim());
                         }
                     }
                     else
@@ -566,24 +579,20 @@ namespace Vyvojaky
             }
         }
 
-        public string ZjisteniTypuVDictionary(string moznost) 
-        {
-            moznost = Promenne.FindVar(moznost, "type");
-            return moznost;
-        }
         public void VytvoreniBloku(string hodnota) 
         {
-            Block.BlockSwitch(Moznosti.Count, hodnota, Moznosti);
+            Block.BlockSwitch(variables.Count, hodnota, variables);
         }
 
         public void MazaniBoxu(Panel panelSwitch)
         {
-            for (int i = 0; i < Moznosti.Count; i++)
+            for (int i = 0; i < variables.Count; i++)
             {
                 panelSwitch.Controls.Remove(Moznosti[i]);
                 panelSwitch.Controls.Remove(Lably[i]);
             }
             Moznosti.Clear();
+            variables.Clear();
             Lably.Clear();
             panelSwitch.Height = VyskaPaneluPuvodni;
         }
