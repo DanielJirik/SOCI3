@@ -42,9 +42,7 @@ namespace Vyvojaky
             {
                 if (item is BlockSwitches)
                 {
-                    List<string> afs = new List<string>();
-                    switches.Kontrola(console, item.vstup, item.hodnoty);
-                    
+                    switches.Kontrola(console, item.vstup, item.hodnoty, false);
                 }
             }
         }

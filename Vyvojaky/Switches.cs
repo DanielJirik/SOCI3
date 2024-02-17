@@ -74,7 +74,7 @@ namespace Vyvojaky
             }
         }
 
-        public void Kontrola(TextBox console, string inputVar, List<string> variables)
+        public void Kontrola(TextBox console, string inputVar, List<string> variables, bool creation)
         {   
             //vstupní proměnné
             int vstupInt;
@@ -134,7 +134,8 @@ namespace Vyvojaky
                                 }
                             }
                         }
-                        VytvoreniBloku(inputVar.Trim());
+                        if (creation)
+                            VytvoreniBloku(inputVar.Trim());
                     }
                 }
                 else
@@ -175,7 +176,8 @@ namespace Vyvojaky
                                         }
                                     }
                                 }
-                                VytvoreniBloku(inputVar.Trim());
+                                if (creation)
+                                    VytvoreniBloku(inputVar.Trim());
                             }
                             break;
                         case "Double":
@@ -212,7 +214,8 @@ namespace Vyvojaky
                                         }
                                     }
                                 }
-                                VytvoreniBloku(inputVar.Trim());
+                                if (creation)
+                                    VytvoreniBloku(inputVar.Trim());
                             }
                             break;
                         case "Bool":
@@ -249,7 +252,8 @@ namespace Vyvojaky
                                         }
                                     }
                                 }
-                                VytvoreniBloku(inputVar.Trim());
+                                if (creation)
+                                    VytvoreniBloku(inputVar.Trim());
                             }
                             break;
                         case "Char":
@@ -288,7 +292,8 @@ namespace Vyvojaky
                                         }
                                     }
                                 }
-                                VytvoreniBloku(inputVar.Trim());
+                                if (creation)
+                                    VytvoreniBloku(inputVar.Trim());
                             }
                             break;
                         case "String":
@@ -326,7 +331,8 @@ namespace Vyvojaky
                                         }
                                     }
                                 }
-                                VytvoreniBloku(inputVar.Trim());
+                                if (creation)
+                                    VytvoreniBloku(inputVar.Trim());
                             }
                             break;
                         default:
@@ -371,7 +377,8 @@ namespace Vyvojaky
                                 }
                             }
                         }
-                        VytvoreniBloku(inputVar.Trim());
+                        if (creation)
+                            VytvoreniBloku(inputVar.Trim());
                     }
                 }
                 else if (double.TryParse(inputVar.Trim(), out vstupDouble))
@@ -408,7 +415,8 @@ namespace Vyvojaky
                                 }
                             }
                         }
-                        VytvoreniBloku(inputVar.Trim());
+                        if (creation)
+                            VytvoreniBloku(inputVar.Trim());
                     }
                 }
                 else if (float.TryParse(inputVar.Trim(), out vstupFloat))
@@ -445,7 +453,8 @@ namespace Vyvojaky
                                 }
                             }
                         }
-                        VytvoreniBloku(inputVar.Trim());
+                        if (creation)
+                            VytvoreniBloku(inputVar.Trim());
                     }
                 }
                 else if (bool.TryParse(inputVar.Trim(), out vstupBool))
@@ -482,7 +491,8 @@ namespace Vyvojaky
                                 }
                             }
                         }
-                        VytvoreniBloku(inputVar.Trim());
+                        if (creation)
+                            VytvoreniBloku(inputVar.Trim());
                     }
                 }
                 else if (inputVar[0] == char.Parse("'") && inputVar[inputVar.Length - 1] == char.Parse("'"))
@@ -528,7 +538,8 @@ namespace Vyvojaky
                                 }
                             }
                         }
-                        VytvoreniBloku(inputVar.Trim());
+                        if (creation)
+                            VytvoreniBloku(inputVar.Trim());
                     }
                 }
                 else
@@ -570,7 +581,8 @@ namespace Vyvojaky
                                     }
                                 }
                             }
-                            VytvoreniBloku(inputVar.Trim());
+                            if (creation)
+                                VytvoreniBloku(inputVar.Trim());
                         }
                     }
                     else

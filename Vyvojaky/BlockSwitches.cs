@@ -14,7 +14,7 @@ namespace Vyvojaky
         public List<string> seznamLabelu;
         int startPositionX = 10;
         int startPositionY = 10;
-        public List<string> hodnoty = new List<string>();
+        public List<string> hodnoty;
         public string vstup;
 
         public int index;
@@ -24,12 +24,10 @@ namespace Vyvojaky
             
             lbVstup = new Label();
             hodnoty = new List<string>() { };
-            vstup = "";
             seznamLabelu = new List<string>();
             for (int i = 0; i < boxy.Count; i++)
             {
                 hodnoty.Add(boxy[i].ToString());
-                Debug.WriteLine("boxy: " + boxy[i]);
             }
             vstup = vstupPromenna;
             
