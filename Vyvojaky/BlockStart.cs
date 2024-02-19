@@ -14,7 +14,7 @@ namespace Vyvojaky
         public int? joint;
         public BlockStart()
         {
-            index = Block.BlockIndex();
+            index = Block.BlockIndex(Block.Type.Start);
             this.Tag = index;            
 
             Image img = Resources.start;            
@@ -31,7 +31,6 @@ namespace Vyvojaky
             this.MouseUp += new MouseEventHandler(Block.OnMouseUp);
             this.MouseMove += new MouseEventHandler(Block.OnMouseMove);
 
-            Block.indexes.Add(index);
             Block.pracPanel.Controls.Add(this);
         }
     }

@@ -25,6 +25,9 @@ namespace Vyvojaky
             String
         }
 
+        //b = 69
+        //a = (3 * b) + (b * 5)
+
         public static Dictionary<string, Int16> Int16V = new Dictionary<string, Int16>();
         public static Dictionary<string, Int32> Int32V = new Dictionary<string, Int32>();
         public static Dictionary<string, Int64> Int64V = new Dictionary<string, Int64>();
@@ -126,8 +129,7 @@ namespace Vyvojaky
                     seq.Add(c.ToString());
                 }
                 else
-                    arg += c;
-
+                    arg += c;                
             }
             seq.Add(arg.Trim());
             seq.RemoveAll(s => string.IsNullOrEmpty(s));

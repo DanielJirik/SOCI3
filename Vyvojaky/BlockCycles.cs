@@ -14,7 +14,7 @@ namespace Vyvojaky
         public BlockCycles(string nazev, string pocatek, string konecnaHodnota, string inkrement) 
         {
             //Indexace
-            index = Block.BlockIndex();
+            index = Block.BlockIndex(Block.Type.Cycle);
             this.Tag = index;
 
             this.BackColor = Color.White;
@@ -53,7 +53,7 @@ namespace Vyvojaky
                 this.BackColor = Color.White;
                 this.Width = 120;
                 this.Height = 50;
-                this.Tag = Block.BlockIndex();
+                this.Tag = index;
 
                 Label lb = new Label();
                 lb.ForeColor = Color.Black;
@@ -78,7 +78,7 @@ namespace Vyvojaky
                 this.BackColor = Color.White;
                 this.Width = 150;
                 this.Height = 50;
-                this.Tag = Block.BlockIndex();
+                this.Tag = index;
 
                 Label lb = new Label();
                 lb.ForeColor = Color.Black;

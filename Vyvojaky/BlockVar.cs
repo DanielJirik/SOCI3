@@ -23,7 +23,7 @@ namespace Vyvojaky
             accessValue = new string[] {typ, nazev, hodnota};
 
             //Indexace
-            index = Block.BlockIndex();
+            index = Block.BlockIndex(Block.Type.Var);
             this.Tag = index;            
 
             //LB

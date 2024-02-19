@@ -11,6 +11,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Vyvojaky
 {
@@ -294,6 +295,23 @@ namespace Vyvojaky
                 {
                     MessageBox.Show("Něco se nepovedlo");
                 }
+            }
+        }
+
+
+        //Lines
+        private void panelPracovni_Paint(object sender, PaintEventArgs e)
+        {
+            Point parentPos, jointPos;
+
+            foreach (Control item in panelPracovni.Controls)
+            {
+                if (item is BlockVar && ((BlockVar)item).joint != null || item is BlockCon && ((BlockCon)item).joint != null ||
+                    item is BlockCycles && ((BlockCycles)item).joint != null || item is BlockSwitches && ((BlockSwitches)item).joint != null
+                    || item is BlockStart && ((BlockStart)item).joint != null)
+                {
+                    
+                }                
             }
         }
     }

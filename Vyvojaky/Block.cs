@@ -10,14 +10,23 @@ namespace Vyvojaky
 {
     internal class Block
     {
+        public enum Type
+        {
+            Switch,
+            Cycle,
+            Con,
+            Start,
+            Var
+        }
+
         public static Panel? pracPanel;
-        public static List<int> indexes = new List<int>();        
+        public static Dictionary<int, Type> indexes= new Dictionary<int, Type>();
 
         //Indexace Blocků
-        public static int BlockIndex()
-        {
-            int index = indexes.Count() > 0 ? indexes.Max() + 1 : 1;
-            indexes.Add(index);
+        public static int BlockIndex(Type type)
+        {            
+            int index = indexes.Count() > 0 ? indexes.Keys.Max() + 1 : 1;
+            indexes.Add(index, type);
 
             return index;
         }

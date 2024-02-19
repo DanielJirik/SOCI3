@@ -16,7 +16,7 @@ namespace Vyvojaky
             this.value = value;
 
             //Indexace
-            index = Block.BlockIndex();
+            index = Block.BlockIndex(Block.Type.Con);
             this.Tag = index;
 
             //LB

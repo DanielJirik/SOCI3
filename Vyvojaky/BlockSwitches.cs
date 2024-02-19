@@ -20,7 +20,7 @@ namespace Vyvojaky
         public BlockSwitches(int pocetCasu, string vstupPromenna, List<TextBox> boxy)
         {
             //Indexace
-            index = Block.BlockIndex();
+            index = Block.BlockIndex(Block.Type.Switch);
             this.Tag = index;
 
             //picture box
