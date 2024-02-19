@@ -31,6 +31,7 @@ namespace Vyvojaky
             switches.VyskaPaneluPuvodni = panelSwitch.Height;
             MainIsOpen = true;
             menuPanels.Hide();
+            
         }
 
 
@@ -56,6 +57,7 @@ namespace Vyvojaky
 
         //object cycles
         Cycles cycles = new Cycles();
+        
 
         //Nastane před zavřením formu
         public static bool MainIsOpen;
@@ -254,10 +256,12 @@ namespace Vyvojaky
             string inkrement = Interaction.InputBox("Zadejte inkrement", "Cycle-for");
             if (nazev != "" && pocatecniHodnota != "" && konecnaHodnota != "" && inkrement != "")
             {
+                cycles.Setup(panelPracovni);
                 if (cycles.CheckFor(nazev, pocatecniHodnota, konecnaHodnota, inkrement))
                 {
-                    cycles.CyclesFor(int.Parse(pocatecniHodnota), int.Parse(konecnaHodnota), int.Parse(inkrement));
+                    cycles.CyclesFor(int.Parse(pocatecniHodnota), int.Parse(konecnaHodnota), int.Parse(inkrement), tbConsole);
                     cycles.CreationOfCycleFor(nazev, pocatecniHodnota, konecnaHodnota, inkrement);
+                    
                 }
                 else
                 {
