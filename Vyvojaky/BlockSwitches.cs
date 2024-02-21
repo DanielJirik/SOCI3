@@ -30,7 +30,7 @@ namespace Vyvojaky
             {
                 hodnoty.Add(boxy[i].Text.ToString());
             }
-            vstup = vstupString;
+            vstup = vstupPromenna;
             Debug.WriteLine("vstup: " + vstup);
             //Indexace
             index = Block.BlockIndex(Block.Type.Switch);
@@ -42,7 +42,7 @@ namespace Vyvojaky
             this.BackColor = Color.White;
 
             //label + pridani lb do picture boxu
-            lbVstup.Text = "Switch(" + vstupString + ")";
+            lbVstup.Text = "Switch(" + vstupPromenna + ")";
             for (int i = 0; i < pocetCasu; i++)
             {
                 seznamLabelu.Add(boxy[i].Text);
