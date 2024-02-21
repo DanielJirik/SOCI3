@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualBasic.Devices;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Security.Policy;
 using System.Text;
@@ -18,6 +19,9 @@ namespace Vyvojaky
             Start,
             Var
         }
+
+        //Joint points
+        
 
         public static Panel? pracPanel;
         public static Dictionary<int, Type> indexes= new Dictionary<int, Type>();
@@ -118,12 +122,12 @@ namespace Vyvojaky
             PictureBox block = (PictureBox)sender;
             if (e.Button == MouseButtons.Right && !swap)
             {
-                SwapIndex(Convert.ToInt32(block.Tag));
+                SwapIndex(Convert.ToInt32(block.Tag), sender);
                 swap = true;
             }
             else if (e.Button == MouseButtons.Left && swap)
             {
-                SwapIndex(Convert.ToInt32(block.Tag));
+                SwapIndex(Convert.ToInt32(block.Tag), sender);
                 swap = false;
             }
         }
@@ -160,6 +164,7 @@ namespace Vyvojaky
             }
         }
 
+
         public static void SetJoint(int tag)
         {
             foreach (Control item in pracPanel.Controls)
@@ -167,45 +172,58 @@ namespace Vyvojaky
                 if (item is BlockVar && Convert.ToInt16(((BlockVar)item).Tag) == fromIndex)
                 {
                     ((BlockVar)item).joint = tag;
-                    MessageBox.Show(((BlockVar)item).joint.ToString());
+                    //MessageBox.Show(((BlockVar)item).joint.ToString());
                     break;
                 }
                 else if (item is BlockCon && Convert.ToInt16(((BlockCon)item).Tag) == fromIndex)
                 {
                     ((BlockCon)item).joint = tag;
-                    MessageBox.Show(((BlockCon)item).joint.ToString());
+                    //MessageBox.Show(((BlockCon)item).joint.ToString());
                     break;
                 }
                 else if (item is BlockCycles && Convert.ToInt16(((BlockCycles)item).Tag) == fromIndex)
                 {
                     ((BlockCycles)item).joint = tag;
-                    MessageBox.Show(((BlockCycles)item).joint.ToString());
+                    //MessageBox.Show(((BlockCycles)item).joint.ToString());
                     break;
                 }
                 else if (item is BlockSwitches && Convert.ToInt16(((BlockSwitches)item).Tag) == fromIndex)
                 {
                     ((BlockSwitches)item).joint = tag;
-                    MessageBox.Show(((BlockSwitches)item).joint.ToString());
+                    //MessageBox.Show(((BlockSwitches)item).joint.ToString());
                     break;
                 }
                 else if (item is BlockStart && Convert.ToInt16(((BlockStart)item).Tag) == fromIndex)
                 {
                     ((BlockStart)item).joint = tag;
-                    MessageBox.Show(((BlockStart)item).joint.ToString());
+                    //MessageBox.Show(((BlockStart)item).joint.ToString());
                     break;
                 }
             }
         }
 
-        public static void SwapIndex(int tag)
+        public static PictureBox fromPic, jointPic;
+        public static Dictionary<PictureBox, PictureBox> drawPoints = new Dictionary<PictureBox, PictureBox>();
+        public static void SwapIndex(int tag, object sender)
         {
             if (!swap)
             {
                 //Získání hodnoty pro určení počátku
-                fromIndex = tag;               
+                fromIndex = tag;
+                fromPic = (PictureBox)sender;
             }
             else if(swap && tag != 0)
             {
+                jointPic = (PictureBox)sender;
+
+                if (!drawPoints.ContainsKey(fromPic))
+                    drawPoints.Add(fromPic, jointPic);
+                else
+                {
+                    drawPoints.Remove(fromPic);
+                    drawPoints.Add(fromPic, jointPic);
+                }
+
                 ResetJoint(tag);
                 SetJoint(tag);
             }

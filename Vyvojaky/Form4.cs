@@ -32,8 +32,17 @@ namespace Vyvojaky
             MainIsOpen = true;
             menuPanels.Hide();
 
+            t.Interval = 20;
+            t.Enabled = true;
+            t.Tick += new EventHandler(TimerTick);
         }
 
+        System.Windows.Forms.Timer t = new System.Windows.Forms.Timer();
+
+        private void TimerTick(object sender, EventArgs e)
+        {
+            panelPracovni.Refresh();
+        }
 
         ////Přepínání mezi panely
         private void itemVars_Click(object sender, EventArgs e)
@@ -309,16 +318,13 @@ namespace Vyvojaky
         //Lines
         private void panelPracovni_Paint(object sender, PaintEventArgs e)
         {
-            Point parentPos, jointPos;
-
-            foreach (Control item in panelPracovni.Controls)
+            foreach (KeyValuePair<PictureBox, PictureBox> pbs in Block.drawPoints)
             {
-                if (item is BlockVar && ((BlockVar)item).joint != null || item is BlockCon && ((BlockCon)item).joint != null ||
-                    item is BlockCycles && ((BlockCycles)item).joint != null || item is BlockSwitches && ((BlockSwitches)item).joint != null
-                    || item is BlockStart && ((BlockStart)item).joint != null)
-                {
-                    
-                }                
+                Point from = new Point(pbs.Key.Left + pbs.Key.Width / 2, pbs.Key.Top + pbs.Key.Width / 2);
+                Point to = new Point(pbs.Value.Left + pbs.Value.Width / 2, pbs.Value.Top + pbs.Value.Width / 2);
+
+                Pen p = new Pen(Color.Red, 3);
+                e.Graphics.DrawLine(p, from, to);
             }
         }
 

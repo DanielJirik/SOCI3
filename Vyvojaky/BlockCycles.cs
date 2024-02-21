@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,7 +10,7 @@ namespace Vyvojaky
     internal class BlockCycles : PictureBox
     {
         public int index;
-        public int? joint;
+        public int? joint;             
 
         public BlockCycles(string nazev, string pocatek, string konecnaHodnota, string inkrement) 
         {
