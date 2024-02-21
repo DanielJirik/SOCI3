@@ -31,7 +31,7 @@ namespace Vyvojaky
             switches.VyskaPaneluPuvodni = panelSwitch.Height;
             MainIsOpen = true;
             menuPanels.Hide();
-            
+
         }
 
 
@@ -57,7 +57,10 @@ namespace Vyvojaky
 
         //object cycles
         Cycles cycles = new Cycles();
-        
+
+        //object process
+        Process process = new Process();
+
 
         //Nastane před zavřením formu
         public static bool MainIsOpen;
@@ -131,7 +134,9 @@ namespace Vyvojaky
         {
             if (e.KeyCode == Keys.Enter)
             {
-                switches.Kontrola(tbConsole);
+                switches.FromTextBox();
+                switches.Kontrola(tbConsole, tbInputVariable.Text, switches.variables, true);
+                switches.Deleted();
             }
         }
 
@@ -261,7 +266,7 @@ namespace Vyvojaky
                 {
                     cycles.CyclesFor(int.Parse(pocatecniHodnota), int.Parse(konecnaHodnota), int.Parse(inkrement), tbConsole);
                     cycles.CreationOfCycleFor(nazev, pocatecniHodnota, konecnaHodnota, inkrement);
-                    
+
                 }
                 else
                 {
@@ -301,8 +306,6 @@ namespace Vyvojaky
                 }
             }
         }
-
-
         //Lines
         private void panelPracovni_Paint(object sender, PaintEventArgs e)
         {
@@ -317,6 +320,12 @@ namespace Vyvojaky
                     
                 }                
             }
+        }
+
+        private void processingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string input = Interaction.InputBox("Zadejte existující proměnnou a výraz k výpočtu\r\nPříklady: a = 5 + 6, jmeno = 'Ahoj' + 'jak se mate'", "Cycle-while");
+            process.Processing(input, true);
         }
     }
 }

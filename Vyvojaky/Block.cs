@@ -42,7 +42,7 @@ namespace Vyvojaky
             BlockCon blockCon = new BlockCon(prikaz, Podminky.isTrue(prikaz));
         }
 
-        public static void BlockSwitch(int pocetMoznosti, string vstupPromenna, List<TextBox> boxy)
+        public static void BlockSwitch(int pocetMoznosti, string vstupPromenna, List<string> boxy)
         {
             BlockSwitches blockSwitch = new BlockSwitches(pocetMoznosti, vstupPromenna, boxy);
         }

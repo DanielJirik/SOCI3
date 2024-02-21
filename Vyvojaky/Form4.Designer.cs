@@ -51,6 +51,7 @@ namespace Vyvojaky
             forToolStripMenuItem = new ToolStripMenuItem();
             whileToolStripMenuItem = new ToolStripMenuItem();
             doWhileToolStripMenuItem = new ToolStripMenuItem();
+            processingToolStripMenuItem = new ToolStripMenuItem();
             panelPracovni.SuspendLayout();
             panelSwitch.SuspendLayout();
             panelInformaci.SuspendLayout();
@@ -201,7 +202,7 @@ namespace Vyvojaky
             // 
             // panelsToolStripMenuItem
             // 
-            panelsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { variablesToolStripMenuItem, conditionsToolStripMenuItem, switchesToolStripMenuItem, cyclesToolStripMenuItem });
+            panelsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { variablesToolStripMenuItem, conditionsToolStripMenuItem, switchesToolStripMenuItem, cyclesToolStripMenuItem, processingToolStripMenuItem });
             panelsToolStripMenuItem.Name = "panelsToolStripMenuItem";
             panelsToolStripMenuItem.Size = new Size(53, 20);
             panelsToolStripMenuItem.Text = "Panels";
@@ -255,6 +256,13 @@ namespace Vyvojaky
             doWhileToolStripMenuItem.Text = "Do...While";
             doWhileToolStripMenuItem.Click += doWhileToolStripMenuItem_Click;
             // 
+            // processingToolStripMenuItem
+            // 
+            processingToolStripMenuItem.Name = "processingToolStripMenuItem";
+            processingToolStripMenuItem.Size = new Size(224, 26);
+            processingToolStripMenuItem.Text = "Processing";
+            processingToolStripMenuItem.Click += processingToolStripMenuItem_Click;
+            // 
             // formHlavniProTvorbu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -298,5 +306,6 @@ namespace Vyvojaky
         private ToolStripMenuItem forToolStripMenuItem;
         private ToolStripMenuItem whileToolStripMenuItem;
         private ToolStripMenuItem doWhileToolStripMenuItem;
+        private ToolStripMenuItem processingToolStripMenuItem;
     }
 }
