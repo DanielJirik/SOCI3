@@ -28,10 +28,10 @@ namespace Vyvojaky
         /// </summary>
         private void InitializeComponent()
         {
-            ListViewGroup listViewGroup9 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
-            ListViewGroup listViewGroup10 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
-            ListViewGroup listViewGroup11 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
-            ListViewGroup listViewGroup12 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
+            ListViewGroup listViewGroup1 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
+            ListViewGroup listViewGroup2 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
+            ListViewGroup listViewGroup3 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
+            ListViewGroup listViewGroup4 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
             panelPracovni = new Panel();
             panelSwitch = new Panel();
             label2 = new Label();
@@ -51,6 +51,7 @@ namespace Vyvojaky
             forToolStripMenuItem = new ToolStripMenuItem();
             whileToolStripMenuItem = new ToolStripMenuItem();
             doWhileToolStripMenuItem = new ToolStripMenuItem();
+            processingToolStripMenuItem = new ToolStripMenuItem();
             panelPracovni.SuspendLayout();
             panelSwitch.SuspendLayout();
             panelInformaci.SuspendLayout();
@@ -167,15 +168,15 @@ namespace Vyvojaky
             // 
             lvPromenne.BorderStyle = BorderStyle.FixedSingle;
             lvPromenne.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            listViewGroup9.Header = "ListViewGroup";
-            listViewGroup9.Name = "test";
-            listViewGroup10.Header = "ListViewGroup";
-            listViewGroup10.Name = "test1";
-            listViewGroup11.Header = "ListViewGroup";
-            listViewGroup11.Name = "test2";
-            listViewGroup12.Header = "ListViewGroup";
-            listViewGroup12.Name = "test3";
-            lvPromenne.Groups.AddRange(new ListViewGroup[] { listViewGroup9, listViewGroup10, listViewGroup11, listViewGroup12 });
+            listViewGroup1.Header = "ListViewGroup";
+            listViewGroup1.Name = "test";
+            listViewGroup2.Header = "ListViewGroup";
+            listViewGroup2.Name = "test1";
+            listViewGroup3.Header = "ListViewGroup";
+            listViewGroup3.Name = "test2";
+            listViewGroup4.Header = "ListViewGroup";
+            listViewGroup4.Name = "test3";
+            lvPromenne.Groups.AddRange(new ListViewGroup[] { listViewGroup1, listViewGroup2, listViewGroup3, listViewGroup4 });
             lvPromenne.Location = new Point(3, 71);
             lvPromenne.Margin = new Padding(3, 4, 3, 4);
             lvPromenne.Name = "lvPromenne";
@@ -198,7 +199,7 @@ namespace Vyvojaky
             // 
             // panelsToolStripMenuItem
             // 
-            panelsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { variablesToolStripMenuItem, conditionsToolStripMenuItem, switchesToolStripMenuItem, cyclesToolStripMenuItem });
+            panelsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { variablesToolStripMenuItem, conditionsToolStripMenuItem, switchesToolStripMenuItem, cyclesToolStripMenuItem, processingToolStripMenuItem });
             panelsToolStripMenuItem.Name = "panelsToolStripMenuItem";
             panelsToolStripMenuItem.Size = new Size(64, 24);
             panelsToolStripMenuItem.Text = "Panels";
@@ -252,6 +253,13 @@ namespace Vyvojaky
             doWhileToolStripMenuItem.Text = "Do...While";
             doWhileToolStripMenuItem.Click += doWhileToolStripMenuItem_Click;
             // 
+            // processingToolStripMenuItem
+            // 
+            processingToolStripMenuItem.Name = "processingToolStripMenuItem";
+            processingToolStripMenuItem.Size = new Size(224, 26);
+            processingToolStripMenuItem.Text = "Processing";
+            processingToolStripMenuItem.Click += processingToolStripMenuItem_Click;
+            // 
             // formHlavniProTvorbu
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -294,5 +302,6 @@ namespace Vyvojaky
         private ToolStripMenuItem forToolStripMenuItem;
         private ToolStripMenuItem whileToolStripMenuItem;
         private ToolStripMenuItem doWhileToolStripMenuItem;
+        private ToolStripMenuItem processingToolStripMenuItem;
     }
 }
