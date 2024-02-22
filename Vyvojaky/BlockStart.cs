@@ -10,11 +10,12 @@ namespace Vyvojaky
     internal class BlockStart : PictureBox
     {
         public static int index;
+        public Block.Type type = Block.Type.Start;
 
         public int? joint;
         public BlockStart()
         {
-            index = Block.BlockIndex(Block.Type.Start);
+            index = Block.BlockIndex(type);
             this.Tag = index;            
 
             Image img = Resources.start;            

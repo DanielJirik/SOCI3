@@ -37,6 +37,8 @@ namespace Vyvojaky
             t.Tick += new EventHandler(TimerTick);
         }
 
+        SequenceController sController = new SequenceController();
+
         System.Windows.Forms.Timer t = new System.Windows.Forms.Timer();
 
         private void TimerTick(object sender, EventArgs e)
@@ -332,6 +334,20 @@ namespace Vyvojaky
         {
             string input = Interaction.InputBox("Zadejte existující proměnnou a výraz k výpočtu\r\nPříklady: a = 5 + 6, jmeno = 'Ahoj' + 'jak se mate'", "Cycle-while");
             process.Processing(input, true);
+        }
+
+        private void btTest_Click(object sender, EventArgs e)
+        {
+            sController.InstructionOrder(panelPracovni);
+
+            string sequence = "";
+
+            foreach (int index in sController.blocksSorted)
+            {
+                sequence += index + ", ";
+            }
+
+            MessageBox.Show(sequence);
         }
     }
 }

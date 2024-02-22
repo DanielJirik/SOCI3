@@ -19,6 +19,8 @@ namespace Vyvojaky
 
         public int index;
         public int? joint;
+        public Block.Type type = Block.Type.Switch;
+
         public BlockSwitches(int pocetCasu, string vstupPromenna, List<string> boxy)
         {
             
@@ -32,7 +34,7 @@ namespace Vyvojaky
             vstup = vstupPromenna;
             
             //Indexace
-            index = Block.BlockIndex(Block.Type.Switch);
+            index = Block.BlockIndex(type);
             this.Tag = index;
 
             //picture box

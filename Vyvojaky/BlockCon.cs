@@ -10,13 +10,15 @@ namespace Vyvojaky
         public int index;
         public int? joint;
 
+        public Block.Type type = Block.Type.Con;
+
         public BlockCon(string podminka, bool value)
         {
             //prirazeni hodnoty
             this.value = value;
 
             //Indexace
-            index = Block.BlockIndex(Block.Type.Con);
+            index = Block.BlockIndex(type);
             this.Tag = index;
 
             //LB

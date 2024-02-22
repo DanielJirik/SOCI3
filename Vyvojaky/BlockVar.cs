@@ -17,13 +17,15 @@ namespace Vyvojaky
 
         public int? joint;
 
+        public Block.Type type = Block.Type.Var;
+
         public BlockVar(string typ, string nazev, string hodnota)
         {
             //Reference na value blocku
             accessValue = new string[] {typ, nazev, hodnota};
 
             //Indexace
-            index = Block.BlockIndex(Block.Type.Var);
+            index = Block.BlockIndex(type);
             this.Tag = index;            
 
             //LB

@@ -17,7 +17,8 @@ namespace Vyvojaky
             Cycle,
             Con,
             Start,
-            Var
+            Var,
+            Process
         }
 
         //Joint points

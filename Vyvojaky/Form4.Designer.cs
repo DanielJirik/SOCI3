@@ -52,6 +52,7 @@ namespace Vyvojaky
             whileToolStripMenuItem = new ToolStripMenuItem();
             doWhileToolStripMenuItem = new ToolStripMenuItem();
             processingToolStripMenuItem = new ToolStripMenuItem();
+            btTest = new Button();
             panelPracovni.SuspendLayout();
             panelSwitch.SuspendLayout();
             panelInformaci.SuspendLayout();
@@ -64,6 +65,7 @@ namespace Vyvojaky
             panelPracovni.AutoScrollMargin = new Size(50, 50);
             panelPracovni.AutoScrollMinSize = new Size(2000, 1100);
             panelPracovni.BackColor = Color.Gray;
+            panelPracovni.Controls.Add(btTest);
             panelPracovni.Controls.Add(panelSwitch);
             panelPracovni.Controls.Add(tbConsole);
             panelPracovni.Controls.Add(panelInformaci);
@@ -259,9 +261,19 @@ namespace Vyvojaky
             // processingToolStripMenuItem
             // 
             processingToolStripMenuItem.Name = "processingToolStripMenuItem";
-            processingToolStripMenuItem.Size = new Size(224, 26);
+            processingToolStripMenuItem.Size = new Size(132, 22);
             processingToolStripMenuItem.Text = "Processing";
             processingToolStripMenuItem.Click += processingToolStripMenuItem_Click;
+            // 
+            // btTest
+            // 
+            btTest.Location = new Point(30, 338);
+            btTest.Name = "btTest";
+            btTest.Size = new Size(64, 64);
+            btTest.TabIndex = 8;
+            btTest.Text = "TEST";
+            btTest.UseVisualStyleBackColor = true;
+            btTest.Click += btTest_Click;
             // 
             // formHlavniProTvorbu
             // 
@@ -307,5 +319,6 @@ namespace Vyvojaky
         private ToolStripMenuItem whileToolStripMenuItem;
         private ToolStripMenuItem doWhileToolStripMenuItem;
         private ToolStripMenuItem processingToolStripMenuItem;
+        private Button btTest;
     }
 }

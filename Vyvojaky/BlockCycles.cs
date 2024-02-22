@@ -10,12 +10,13 @@ namespace Vyvojaky
     internal class BlockCycles : PictureBox
     {
         public int index;
-        public int? joint;             
+        public int? joint;
+        public Block.Type type = Block.Type.Cycle;
 
         public BlockCycles(string nazev, string pocatek, string konecnaHodnota, string inkrement) 
         {
             //Indexace
-            index = Block.BlockIndex(Block.Type.Cycle);
+            index = Block.BlockIndex(type);
             this.Tag = index;
 
             this.BackColor = Color.White;
