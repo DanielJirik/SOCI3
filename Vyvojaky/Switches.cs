@@ -24,10 +24,7 @@ namespace Vyvojaky
             
         }
 
-        public void Setup(Panel _pracpanel)
-        {
-            Pracovni = _pracpanel;
-        }
+        
 
         public void FromTextBox()
         {
@@ -378,7 +375,10 @@ namespace Vyvojaky
                             }
                         }
                         if (creation)
+                        {
                             VytvoreniBloku(inputVar.Trim());
+                        }
+                            
                     }
                 }
                 else if (double.TryParse(inputVar.Trim(), out vstupDouble))

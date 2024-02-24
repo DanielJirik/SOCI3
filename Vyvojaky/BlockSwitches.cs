@@ -66,14 +66,14 @@ namespace Vyvojaky
             for (int i = 0; i < pocetCasu; i++)
             {
                 lb = new Label();
-                lb.Text = (i + 1) + ".Case:" + boxy[i];
+                lb.Text = (i + 1) + ".Case: " + boxy[i];
                 lb.Width = delka * 10;
                 startPositionY += 20;
                 this.Height += 20;
                 lb.Location = new Point(startPositionX, startPositionY);
                 this.Controls.Add(lb);
             }
-            this.Width = (delka * 8) + (startPositionX * 5);
+            this.Width = (delka * 5) + startPositionX;
             this.Location = new Point(Random.Shared.Next(0, Block.pracPanel.Width - this.Width), Random.Shared.Next(0, Block.pracPanel.Height - this.Height));
             Block.pracPanel.Controls.Add(this);
 
