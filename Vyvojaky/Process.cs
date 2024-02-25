@@ -437,7 +437,6 @@ namespace Vyvojaky
 
                     //Řešení
                     hodnota = SolveSequence(sequence);
-                    Debug.WriteLine(hodnota);
 
                     if (Promenne.FindVar(nazev, "type") == "Int16" && Int16.TryParse(hodnota, out a))
                     {
