@@ -55,8 +55,8 @@ namespace Vyvojaky
             for (int i = 0; i < pocetCasu; i++)
             {
                 lb = new Label();
-                lb.Text = (i + 1) + ".Case: " + boxy[i];
-                lb.Width = (lb.Text.Length * 7) + 20;
+                lb.Text = (i + 1) + ".Case: " + boxy[i] + "  ";
+                lb.Width = (lb.Text.Length * 7);
                 startPositionY += 20;
                 this.Height += 20;
                 lb.Location = new Point(startPositionX, startPositionY);
@@ -66,7 +66,7 @@ namespace Vyvojaky
                     delka = lb.Width;
                 }
             }
-            this.Width = delka + 48;
+            this.Width = delka + 20;
             Debug.WriteLine(this.Width);
             this.Location = new Point(Random.Shared.Next(0, Block.pracPanel.Width - this.Width), Random.Shared.Next(0, Block.pracPanel.Height - this.Height));
             Block.pracPanel.Controls.Add(this);
