@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -23,11 +24,11 @@ namespace Vyvojaky
             this.Width = 120;
             this.Height = 50;
             lb = new Label();
-
+            Debug.WriteLine(this.input);
             lb.Location = new Point(10, 20);
             lb.Text = input;
             lb.Width = input.Length * 8;
-            this.Width = lb.Width + 10;
+            this.Width = lb.Width + 40;
 
             this.Controls.Add(lb);
             this.Location = new Point(Random.Shared.Next(0, Block.pracPanel.Width - this.Width), Random.Shared.Next(0, Block.pracPanel.Height - this.Height));

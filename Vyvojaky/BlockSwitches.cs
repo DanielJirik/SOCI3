@@ -44,19 +44,7 @@ namespace Vyvojaky
 
             //label + pridani lb do picture boxu
             lbVstup.Text = "Switch(" + vstupPromenna + ")";
-            //for (int i = 0; i < pocetCasu; i++)
-            //{
-            //    seznamLabelu.Add(boxy[i]);
-            //}
             int delka = 0;
-            //seznamLabelu.Add(vstupPromenna);
-            //for (int i = 0; i < seznamLabelu.Count; i++)
-            //{
-            //    if (delka < seznamLabelu[i].Length-1)
-            //    {
-            //        delka = seznamLabelu[i].Length-1;
-            //    }
-            //}
             
             lbVstup.Location = new Point(startPositionX, startPositionY);
             lbVstup.Width = (lbVstup.Text.Length * 7) + 20;            

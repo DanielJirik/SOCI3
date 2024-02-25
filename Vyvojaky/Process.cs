@@ -41,6 +41,38 @@ namespace Vyvojaky
                         break;
                     }
                 }
+                else if (input[i].ToString() == "-")
+                {
+                    if (input[i + 1].ToString() == "=")
+                    {
+                        operater = "+=";
+                        break;
+                    }
+                }
+                else if (input[i].ToString() == "*")
+                {
+                    if (input[i + 1].ToString() == "=")
+                    {
+                        operater = "*=";
+                        break;
+                    }
+                }
+                else if (input[i].ToString() == "/")
+                {
+                    if (input[i + 1].ToString() == "=")
+                    {
+                        operater = "/=";
+                        break;
+                    }
+                }
+                else if (input[i].ToString() == "%")
+                {
+                    if (input[i + 1].ToString() == "=")
+                    {
+                        operater = "/=";
+                        break;
+                    }
+                }
                 else if (input[i].ToString() == "=")
                 {
                     operater = "=";
@@ -78,10 +110,40 @@ namespace Vyvojaky
 
                             legitPrikaz = true;
                         }
+                        else if (operater == "-=")
+                        {
+                            nazevPromenne = prikaz.Split("-=")[0].Trim();
+                            hodnotaPromenne = prikaz.Split("-=")[1].Trim();
+
+                            legitPrikaz = true;
+                        }
+                        else if (operater == "*=")
+                        {
+                            nazevPromenne = prikaz.Split("*=")[0].Trim();
+                            hodnotaPromenne = prikaz.Split("*=")[1].Trim();
+
+                            legitPrikaz = true;
+                        }
+                        else if (operater == "/=")
+                        {
+                            nazevPromenne = prikaz.Split("/=")[0].Trim();
+                            hodnotaPromenne = prikaz.Split("/=")[1].Trim();
+                            int i = 5;
+                            i %= 5;
+                            Debug.WriteLine(i);
+                            legitPrikaz = true;
+                        }
+                        else if (operater == "%=")
+                        {
+                            nazevPromenne = prikaz.Split("%=")[0].Trim();
+                            hodnotaPromenne = prikaz.Split("%=")[1].Trim();
+                            
+                            legitPrikaz = true;
+                        }
                         else
                         {
-                            nazevPromenne = prikaz.Split("+=")[0].Trim();
-                            hodnotaPromenne = prikaz.Split("+=")[1].Trim();
+                            nazevPromenne = prikaz.Split("=")[0].Trim();
+                            hodnotaPromenne = prikaz.Split("=")[1].Trim();
 
                             legitPrikaz = true;
                         }
@@ -396,6 +458,7 @@ namespace Vyvojaky
                     else
                     {
                         MessageBox.Show("Něco je špatně");
+                        creation = false;
                     }
 
                     if (creation)
@@ -420,6 +483,7 @@ namespace Vyvojaky
                     else
                     {
                         MessageBox.Show("Něco je špatně");
+                        creation = false;
                     }
 
                     if (creation)
@@ -444,6 +508,22 @@ namespace Vyvojaky
                         {
                             Int16V[nazev] += a;
                         }
+                        else if (operater == "-=")
+                        {
+                            Int16V[nazev] -= a;
+                        }
+                        else if (operater == "*=")
+                        {
+                            Int16V[nazev] *= a;
+                        }
+                        else if (operater == "/=")
+                        {
+                            Int16V[nazev] /= a;
+                        }
+                        else if (operater == "%=")
+                        {
+                            Int16V[nazev] %= a;
+                        }
                         else if (operater == "=")
                         {
                             Int16V[nazev] = a;
@@ -451,6 +531,7 @@ namespace Vyvojaky
                         else
                         {
                             MessageBox.Show("Něco je špatně");
+                            creation = false;
                         }
 
                         if (creation)
@@ -464,6 +545,22 @@ namespace Vyvojaky
                         {
                             Int32V[nazev] += b;
                         }
+                        else if (operater == "-=")
+                        {
+                            Int32V[nazev] -= b;
+                        }
+                        else if (operater == "*=")
+                        {
+                            Int32V[nazev] *= b;
+                        }
+                        else if (operater == "/=")
+                        {
+                            Int32V[nazev] /= b;
+                        }
+                        else if (operater == "%=")
+                        {
+                            Int32V[nazev] %= b;
+                        }
                         else if (operater == "=")
                         {
                             Int32V[nazev] = b;
@@ -471,6 +568,7 @@ namespace Vyvojaky
                         else
                         {
                             MessageBox.Show("Něco je špatně");
+                            creation = false;
                         }
 
                         if (creation)
@@ -485,6 +583,22 @@ namespace Vyvojaky
                         {
                             Int64V[nazev] += c;
                         }
+                        else if (operater == "-=")
+                        {
+                            Int64V[nazev] -= c;
+                        }
+                        else if (operater == "*=")
+                        {
+                            Int64V[nazev] *= c;
+                        }
+                        else if (operater == "/=")
+                        {
+                            Int64V[nazev] /= c;
+                        }
+                        else if (operater == "%=")
+                        {
+                            Int64V[nazev] %= c;
+                        }
                         else if (operater == "=")
                         {
                             Int64V[nazev] = c;
@@ -492,6 +606,7 @@ namespace Vyvojaky
                         else
                         {
                             MessageBox.Show("Něco je špatně");
+                            creation = false;
                         }
 
                         if (creation)
@@ -506,6 +621,22 @@ namespace Vyvojaky
                         {
                             FloatV[nazev] += d;
                         }
+                        else if (operater == "-=")
+                        {
+                            FloatV[nazev] -= d;
+                        }
+                        else if (operater == "*=")
+                        {
+                            FloatV[nazev] *= d;
+                        }
+                        else if (operater == "/=")
+                        {
+                            FloatV[nazev] /= d;
+                        }
+                        else if (operater == "%=")
+                        {
+                            FloatV[nazev] %= d;
+                        }
                         else if (operater == "=")
                         {
                             FloatV[nazev] = d;
@@ -513,6 +644,7 @@ namespace Vyvojaky
                         else
                         {
                             MessageBox.Show("Něco je špatně");
+                            creation = false;
                         }
 
                         if (creation)
@@ -526,6 +658,22 @@ namespace Vyvojaky
                         {
                             DoubleV[nazev] += e;
                         }
+                        else if (operater == "-=")
+                        {
+                            DoubleV[nazev] -= e;
+                        }
+                        else if (operater == "*=")
+                        {
+                            DoubleV[nazev] *= e;
+                        }
+                        else if (operater == "/=")
+                        {
+                            DoubleV[nazev] /= e;
+                        }
+                        else if (operater == "%=")
+                        {
+                            DoubleV[nazev] %= e;
+                        }
                         else if (operater == "=")
                         {
                             DoubleV[nazev] = e;
@@ -533,6 +681,7 @@ namespace Vyvojaky
                         else
                         {
                             MessageBox.Show("Něco je špatně");
+                            creation = false;
                         }
 
                         if (creation)
@@ -550,6 +699,7 @@ namespace Vyvojaky
                         else
                         {
                             MessageBox.Show("Něco je špatně");
+                            creation = false;
                         }
 
                         if (creation)
