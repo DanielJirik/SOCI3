@@ -57,7 +57,7 @@ namespace Vyvojaky
             BlockCycles blockFor = new BlockCycles(nazev, pocatek, konec, inkrement);
         }
 
-        public void BlockCycleWhileOrDoWhile(string condition, string type)
+        public static void BlockCycleWhileOrDoWhile(string condition, string type)
         {
             BlockCycles blockWhileOrDoWhile = new BlockCycles(condition, type);
         }
@@ -65,6 +65,11 @@ namespace Vyvojaky
         public static void BlockProcess(string input)
         {
             BlockProcess process = new BlockProcess(input);
+        }
+
+        public static void BlockOutput(string input)
+        { 
+            BlockOutput output = new BlockOutput(input);    
         }
 
         //Disable control method

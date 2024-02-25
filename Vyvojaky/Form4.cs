@@ -72,6 +72,9 @@ namespace Vyvojaky
         //object process
         Process process = new Process();
 
+        //objekt output
+        Output output = new Output();
+
 
         //Nastane před zavřením formu
         public static bool MainIsOpen;
@@ -217,7 +220,7 @@ namespace Vyvojaky
 
         private void variablesToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            Promenne.CommandCheck(Interaction.InputBox("Zadejte proměnnou: \r\n\r\nPříklady: a = 5, b = 3.14, jmeno = Aneta ", "Variables"));
+            Promenne.CommandCheck(Interaction.InputBox("Zadejte proměnnou: \r\n\r\nPříklady: a = 5, b = 3.14, jmeno = \"Aneta\" ", "Variables"));
             panelInformaci.Show();
             panelSwitch.Hide();
         }
@@ -332,7 +335,7 @@ namespace Vyvojaky
 
         private void processingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string input = Interaction.InputBox("Zadejte existující proměnnou a výraz k výpočtu\r\nPříklady: a = 5 + 6, jmeno = 'Ahoj' + 'jak se mate'", "Process");
+            string input = Interaction.InputBox("Zadejte existující proměnnou a výraz k výpočtu\r\nPříklady: a = 5 + 6, jmeno = \"Ahoj \" + \"jak se mate\"", "Process");
             process.Processing(input, true);
         }
 
@@ -348,6 +351,12 @@ namespace Vyvojaky
             }
 
             MessageBox.Show(sequence);
+        }
+
+        private void outputToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string input = Interaction.InputBox("Zadejte výraz, který chcete vytisknout\r\nPříklady: \"ahoj\"; existující proměnná: a", "Output");
+            output.Processing(input, true);
         }
     }
 }

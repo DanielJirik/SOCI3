@@ -1,35 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Vyvojaky
 {
-    internal class BlockProcess : PictureBox
+    internal class BlockOutput : PictureBox
     {
-        public int index;
-        public int? joint;
-        public Block.Type type = Block.Type.Process;
         Label lb;
-        public string input = "";
-        public BlockProcess(string input) 
+        public BlockOutput(string input)
         {   
-            this.input = input;
-            index = Block.BlockIndex(type);
-            this.Tag = index;
-            this.BackColor = Color.White;
-            this.Width = 120;
-            this.Height = 50;
             lb = new Label();
-
+            lb.Text = input + " ";
+            lb.Width = lb.Text.Length * 8;
             lb.Location = new Point(10, 20);
-            lb.Text = input + "  ";
-            lb.Width = (input.Length * 8) + 5;
-            this.Width = lb.Width + 30;
 
+            this.BackColor = Color.White;
+            this.Height = 50;
+            this.Width = lb.Width + 20;
             this.Controls.Add(lb);
+
             this.Location = new Point(Random.Shared.Next(0, Block.pracPanel.Width - this.Width), Random.Shared.Next(0, Block.pracPanel.Height - this.Height));
             Block.pracPanel.Controls.Add(this);
             this.MouseClick += new MouseEventHandler(Block.OnMouseClick);
@@ -40,8 +31,6 @@ namespace Vyvojaky
             //Disable label on hover
             this.MouseEnter += new EventHandler(Block.DisableControl);
             this.MouseLeave += new EventHandler(Block.EnableControl);
-
-            
         }
     }
 }

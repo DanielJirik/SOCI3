@@ -94,16 +94,14 @@ namespace Vyvojaky
 
         public void CreationOfCycleWhile(string part1, string part2, string oper)
         {
-            Block block = new Block();
             string condition = $"({part1} {oper} {part2})";
-            block.BlockCycleWhileOrDoWhile(condition, "While");
+            Block.BlockCycleWhileOrDoWhile(condition, "While");
         }
 
         public void CreationOfCycleDoWhile(string part1, string part2, string oper)
         {
-            Block block = new Block();
             string condition = $"({part1} {oper} {part2})";
-            block.BlockCycleWhileOrDoWhile(condition, "DoWhile");
+            Block.BlockCycleWhileOrDoWhile(condition, "DoWhile");
         }
 
         public void WhileDouble(double par1, double par2, string oper)
