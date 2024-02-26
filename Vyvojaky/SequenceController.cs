@@ -64,9 +64,27 @@ namespace Vyvojaky
             }
         }
 
-        public void IstructionPerformance()
+        public void IstructionPerformance(string prikaz, Block.Type type)
         {
-
+            switch (type)
+            {
+                case Block.Type.Switch:
+                    break;
+                case Block.Type.Cycle:
+                    break;
+                case Block.Type.Con:
+                    Podminky.isTrue(prikaz);
+                    break;
+                case Block.Type.Start:
+                    break;
+                case Block.Type.Var:
+                    Promenne.CommandCheck(prikaz);
+                    break;
+                case Block.Type.Process:
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

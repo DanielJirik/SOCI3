@@ -151,11 +151,6 @@ namespace Vyvojaky
             }
         }
 
-        private void tbConsole_KeyDown(object sender, KeyEventArgs e)
-        {
-            //controller.InstructionOrder(panelPracovni);
-        }
-
 
         //right-click
         bool rozhodnuti = false;
@@ -216,8 +211,12 @@ namespace Vyvojaky
 
 
         private void variablesToolStripMenuItem_Click_1(object sender, EventArgs e)
-        {
-            Promenne.CommandCheck(Interaction.InputBox("Zadejte proměnnou: \r\n\r\nPříklady: a = 5, b = 3.14, jmeno = Aneta ", "Variables"));
+        {           
+            string prikaz = Interaction.InputBox("Zadejte proměnnou: \r\n\r\nPříklady: a = 5, b = 3.14, jmeno = Aneta ", "Variables");
+            string[] values = Promenne.ArtificialVarValues(prikaz);
+            
+            Block.BlockVar(values[0], values[1], prikaz);
+            
             panelInformaci.Show();
             panelSwitch.Hide();
         }
@@ -226,10 +225,8 @@ namespace Vyvojaky
         {
             string prikaz = Interaction.InputBox("Zadejte podmínku: \r\n\r\n Příklady: a > b", "Conditions");
             if (prikaz != "")
-            {
-                Block.BlockCon(prikaz);
-                tbConsole.Text += Podminky.isTrue(prikaz) + Environment.NewLine + ">"; //vrati false/true
-            }
+                Block.BlockCon(prikaz);                
+
             panelInformaci.Hide();
             panelSwitch.Hide();
         }
@@ -336,18 +333,49 @@ namespace Vyvojaky
             process.Processing(input, true);
         }
 
-        private void btTest_Click(object sender, EventArgs e)
+        //Spustí simulaci
+        private void btRun_Click(object sender, EventArgs e)
         {
+            //Sort block indexes
             sController.InstructionOrder(panelPracovni);
+            
+            string prikaz = "";
+            Block.Type type = Block.Type.Start;
+            int iter = 0;
 
-            string sequence = "";
-
-            foreach (int index in sController.blocksSorted)
+            foreach (Control var in panelPracovni.Controls)
             {
-                sequence += index + ", ";
-            }
+                //In case of non-matching tag or if the tag is null, skips an iteration
+                if (var.Tag != null)
+                {
+                    if (var.Tag.ToString() != sController.blocksSorted[iter].ToString())
+                        continue;
+                }
+                else
+                    continue;
 
-            MessageBox.Show(sequence);
+                //Division
+                if (var is BlockVar)
+                {
+                    prikaz = ((BlockVar)var).prikaz;
+                    type = Block.Type.Var;
+                }
+                else if (var is BlockCon)
+                {
+                    prikaz = ((BlockCon)var).podminka;
+                    type = Block.Type.Con;
+                    if (Podminky.isTrue(prikaz))
+                        var.BackColor = Color.Green;
+                    else
+                        var.BackColor = Color.Red;
+                }
+
+                //Perform an instruction
+                sController.IstructionPerformance(prikaz, type);
+                
+                //Incrementing num if iterations
+                iter++;
+            }
         }
     }
 }

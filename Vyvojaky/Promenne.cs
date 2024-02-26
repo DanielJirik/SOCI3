@@ -63,9 +63,33 @@ namespace Vyvojaky
             return true;
         }
 
+        public static string[] ArtificialVarValues(string prikaz)
+        {
+            string nazev = "";
+            string hodnota = "";
+            string[] values = new string[2];
 
+            try
+            {
+                Regex.Replace(prikaz, @"\s+", "");
+
+                nazev = prikaz.Split("=")[0].Trim();
+                hodnota = prikaz.Split("=")[1].Trim();
+                values[0] = nazev;
+                values[1] = hodnota;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Něco je špatně.");
+            }
+
+            return values;
+        }
+
+        public static string _prikaz;
         public static void CommandCheck(string prikaz)
         {
+            _prikaz = prikaz;
             string nazevPromenne = "";
             string hodnotaPromenne = "";
             bool legitPrikaz = false;
@@ -387,20 +411,16 @@ namespace Vyvojaky
             {
                 hodnota = temp;
                 StringV.Add(nazev, hodnota);
-                //tbVystupConsole.Text += nazev + " = " + StringV[nazev] + Environment.NewLine + ">";
                 typ = "String";
 
-                CreateBlock(nazev, hodnota);
                 return;
             }
             else if (CheckIfChar(hodnota))
             {
                 hodnota = OverwriteChar(hodnota);
                 CharV.Add(nazev, Convert.ToChar(hodnota));
-                //tbVystupConsole.Text += nazev + " = " + CharV[nazev] + Environment.NewLine + ">";
                 typ = "Char";
 
-                CreateBlock(nazev, hodnota);
                 return;
             }
             else
@@ -408,7 +428,6 @@ namespace Vyvojaky
                 //Třídění výrazu "hodnota"
                 sequence = SplitCommand(hodnota);
                 sequence = (sequence.Contains("(") || sequence.Contains("[") || sequence.Contains("{")) ? SimplifySequence(sequence) : sequence;
-                //if (sequence.Contains("(") || sequence.Contains("[") || sequence.Contains("{")) { sequence = SimplifySequence(sequence); }
 
                 //Řešení
                 hodnota = SolveSequence(sequence);
@@ -417,37 +436,31 @@ namespace Vyvojaky
                 if (Int16.TryParse(hodnota, out a))
                 {
                     Int16V.Add(nazev, a);
-                    //tbVystupConsole.Text += nazev + " = " + Int16V[nazev] + Environment.NewLine + ">";
                     typ = "Int16";
                 }
                 else if (Int32.TryParse(hodnota, out b))
                 {
                     Int32V.Add(nazev, b);
-                    //tbVystupConsole.Text += nazev + " = " + Int32V[nazev] + Environment.NewLine + ">";
                     typ = "Int32";
                 }
                 else if (Int64.TryParse(hodnota, out c))
                 {
                     Int64V.Add(nazev, c);
-                    //tbVystupConsole.Text += nazev + " = " + Int64V[nazev] + Environment.NewLine + ">";
                     typ = "Int64";
                 }
                 else if (float.TryParse(hodnota, out d))
                 {
                     FloatV.Add(nazev, d);
-                    //tbVystupConsole.Text += nazev + " = " + FloatV[nazev] + Environment.NewLine + ">";
                     typ = "Float";
                 }
                 else if (double.TryParse(hodnota, out e))
                 {
                     DoubleV.Add(nazev, e);
-                    //tbVystupConsole.Text += nazev + " = " + DoubleV[nazev] + Environment.NewLine + ">";
                     typ = "Double";
                 }
                 else if (bool.TryParse(hodnota, out f))
                 {
                     BoolV.Add(nazev, f);
-                    //tbVystupConsole.Text += nazev + " = " + BoolV[nazev] + Environment.NewLine + ">";
                     typ = "Bool";
                 }
                 else
@@ -455,17 +468,13 @@ namespace Vyvojaky
                     isValid = false;
                     MessageBox.Show("Něco je špatně");
                 }
-
-                if (isValid)
-                    CreateBlock(nazev, hodnota);
-
             }
         }
 
         private static void CreateBlock(string nazev, string hodnota)
         {
             //BLOCK
-            Block.BlockVar(typ, nazev, hodnota);
+            Block.BlockVar(nazev, hodnota, _prikaz);
         }
 
         //

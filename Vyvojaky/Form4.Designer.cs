@@ -33,6 +33,7 @@ namespace Vyvojaky
             ListViewGroup listViewGroup3 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
             ListViewGroup listViewGroup4 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
             panelPracovni = new Panel();
+            btRun = new Button();
             panelSwitch = new Panel();
             label2 = new Label();
             tbInputVariable = new TextBox();
@@ -52,7 +53,6 @@ namespace Vyvojaky
             whileToolStripMenuItem = new ToolStripMenuItem();
             doWhileToolStripMenuItem = new ToolStripMenuItem();
             processingToolStripMenuItem = new ToolStripMenuItem();
-            btTest = new Button();
             panelPracovni.SuspendLayout();
             panelSwitch.SuspendLayout();
             panelInformaci.SuspendLayout();
@@ -65,7 +65,7 @@ namespace Vyvojaky
             panelPracovni.AutoScrollMargin = new Size(50, 50);
             panelPracovni.AutoScrollMinSize = new Size(2000, 1100);
             panelPracovni.BackColor = Color.Gray;
-            panelPracovni.Controls.Add(btTest);
+            panelPracovni.Controls.Add(btRun);
             panelPracovni.Controls.Add(panelSwitch);
             panelPracovni.Controls.Add(tbConsole);
             panelPracovni.Controls.Add(panelInformaci);
@@ -79,6 +79,16 @@ namespace Vyvojaky
             panelPracovni.Paint += panelPracovni_Paint;
             panelPracovni.MouseClick += panelPracovni_MouseClick;
             panelPracovni.MouseDown += panelPracovni_MouseDown;
+            // 
+            // btRun
+            // 
+            btRun.Location = new Point(12, 99);
+            btRun.Name = "btRun";
+            btRun.Size = new Size(64, 64);
+            btRun.TabIndex = 9;
+            btRun.Text = "RUN";
+            btRun.UseVisualStyleBackColor = true;
+            btRun.Click += btRun_Click;
             // 
             // panelSwitch
             // 
@@ -137,7 +147,6 @@ namespace Vyvojaky
             tbConsole.TabIndex = 0;
             tbConsole.TabStop = false;
             tbConsole.Text = ">";
-            tbConsole.KeyDown += tbConsole_KeyDown;
             // 
             // panelInformaci
             // 
@@ -265,16 +274,6 @@ namespace Vyvojaky
             processingToolStripMenuItem.Text = "Processing";
             processingToolStripMenuItem.Click += processingToolStripMenuItem_Click;
             // 
-            // btTest
-            // 
-            btTest.Location = new Point(30, 338);
-            btTest.Name = "btTest";
-            btTest.Size = new Size(64, 64);
-            btTest.TabIndex = 8;
-            btTest.Text = "TEST";
-            btTest.UseVisualStyleBackColor = true;
-            btTest.Click += btTest_Click;
-            // 
             // formHlavniProTvorbu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -319,6 +318,6 @@ namespace Vyvojaky
         private ToolStripMenuItem whileToolStripMenuItem;
         private ToolStripMenuItem doWhileToolStripMenuItem;
         private ToolStripMenuItem processingToolStripMenuItem;
-        private Button btTest;
+        private Button btRun;
     }
 }

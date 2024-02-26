@@ -37,14 +37,14 @@ namespace Vyvojaky
         }
 
         //Block instances
-        public static void BlockVar(string typ, string nazev, string hodnota)
+        public static void BlockVar(string nazev, string hodnota, string prikaz)
         {
-            BlockVar blockVar = new BlockVar(typ, nazev, hodnota);            
+            BlockVar blockVar = new BlockVar(nazev, hodnota, prikaz);
         }
 
         public static void BlockCon(string prikaz)
         {
-            BlockCon blockCon = new BlockCon(prikaz, Podminky.isTrue(prikaz));
+            BlockCon blockCon = new BlockCon(prikaz);
         }
 
         public static void BlockSwitch(int pocetMoznosti, string vstupPromenna, List<string> boxy)

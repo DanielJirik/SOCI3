@@ -54,8 +54,10 @@ namespace Vyvojaky
             String
         }
 
+        public static string _prikaz;
         public static void CommandCheck(string prikaz, bool creation)
         {
+            _prikaz = prikaz;
             string nazevPromenne = "";
             string hodnotaPromenne = "";
             bool legitPrikaz = false;
@@ -567,7 +569,7 @@ namespace Vyvojaky
         private static void CreateBlock(string nazev, string hodnota)
         {
             //BLOCK
-            Block.BlockVar(typ, nazev, hodnota);
+            Block.BlockVar(nazev, hodnota, _prikaz);
         }
 
         //
