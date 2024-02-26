@@ -62,6 +62,11 @@ namespace Vyvojaky
             BlockCycles blockWhileOrDoWhile = new BlockCycles(condition, type);
         }
 
+        public static void BlockProcess(string input)
+        {
+            BlockProcess process = new BlockProcess(input);
+        }
+
         //Disable control method
         public static void DisableControl(object sender, EventArgs e)
         {

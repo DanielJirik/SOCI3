@@ -28,11 +28,8 @@ namespace Vyvojaky
             lb.Location = new Point(10, 20);
             lb.Text = $"for(int {nazev} = {pocatek}; {nazev} <= {konecnaHodnota}; {nazev} += {inkrement})";
             lb.Width = lb.Text.Length * 8;
-            if ((lb.Width + lb.Location.X) > this.Width)
-            {
-                int rozdil = (lb.Width + lb.Location.X) - this.Width;
-                this.Width += rozdil - (lb.Location.X * 3);
-            }
+            this.Width = lb.Width + 10;
+
             this.Controls.Add(lb);
             this.Location = new Point(Random.Shared.Next(0, Block.pracPanel.Width - this.Width), Random.Shared.Next(0, Block.pracPanel.Height - this.Height));
             
@@ -62,11 +59,8 @@ namespace Vyvojaky
                 lb.Location = new Point(10, 20);
                 lb.Text = $"While{condition}";
                 lb.Width = lb.Text.Length * 8;
-                if ((lb.Width + lb.Location.X) > this.Width)
-                {
-                    int rozdil = (lb.Width + lb.Location.X) - this.Width;
-                    this.Width += rozdil - (lb.Location.X * 3);
-                }
+                this.Width = lb.Width + 10;
+
                 this.Controls.Add(lb);
                 this.Location = new Point(Random.Shared.Next(0, Block.pracPanel.Width - this.Width), Random.Shared.Next(0, Block.pracPanel.Height - this.Height));
                 this.MouseDown += new MouseEventHandler(Block.OnMouseDown);
@@ -87,11 +81,8 @@ namespace Vyvojaky
                 lb.Location = new Point(10, 20);
                 lb.Text = $"Do-While{condition}";
                 lb.Width = lb.Text.Length * 8;
-                if ((lb.Width + lb.Location.X) > this.Width)
-                {
-                    int rozdil = (lb.Width + lb.Location.X) - this.Width;
-                    this.Width += rozdil - (lb.Location.X * 3);
-                }
+                this.Width = lb.Width + 10;
+
                 this.Controls.Add(lb);
                 this.Location = new Point(Random.Shared.Next(0, Block.pracPanel.Width - this.Width), Random.Shared.Next(0, Block.pracPanel.Height - this.Height));
                 this.MouseDown += new MouseEventHandler(Block.OnMouseDown);

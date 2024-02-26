@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
@@ -17,6 +17,11 @@ namespace Vyvojaky
         { 
             
         }
+        Panel Pracovni;
+        public void Setup(Panel _pracpanel)
+        {
+            Pracovni = _pracpanel;
+        }
 
         public void Processing(string input, bool creation)
         {
@@ -26,7 +31,6 @@ namespace Vyvojaky
         public static string Operater(string input) 
         {   
             string operater = "";
-            string prom = "";
             for (int i = 0; i < input.Length; i++)
             {   
                 if (input[i].ToString() == "+")
@@ -34,6 +38,7 @@ namespace Vyvojaky
                     if (input[i + 1].ToString() == "=")
                     {
                         operater = "+=";
+                        break;
                     }
                 }
                 else if (input[i].ToString() == "=")
@@ -61,17 +66,28 @@ namespace Vyvojaky
             string nazevPromenne = "";
             string hodnotaPromenne = "";
             bool legitPrikaz = false;
-
+            string operater = "";
             if (prikaz != "")
             {
                     try
                     {
                         Regex.Replace(prikaz, @"\s+", "");
+                        operater = Operater(prikaz);
+                        if (operater == "+=")
+                        {
+                            nazevPromenne = prikaz.Split("+=")[0].Trim();
+                            hodnotaPromenne = prikaz.Split("+=")[1].Trim();
 
-                        nazevPromenne = prikaz.Split("=")[0].Trim();
-                        hodnotaPromenne = prikaz.Split("=")[1].Trim();
+                            legitPrikaz = true;
+                        }
+                        else
+                        {
+                            nazevPromenne = prikaz.Split("+=")[0].Trim();
+                            hodnotaPromenne = prikaz.Split("+=")[1].Trim();
 
-                        legitPrikaz = true;
+                            legitPrikaz = true;
+                        }
+                        
                     }
                     catch (Exception)
                     {
@@ -81,17 +97,7 @@ namespace Vyvojaky
                     if (legitPrikaz)
                     {
                         
-                        VytvoritPromennou(nazevPromenne, hodnotaPromenne, Operater(prikaz), creation);
-
-                        if (Promenne.isValid)
-                        {
-                            //Prida nazev do pouzitych nazvu
-                            Promenne.usedNames.Add(nazevPromenne);
-
-                            //lvPromenne.Items.Add(nazevPromenne + " = " + Promenne.hodnota);
-                        }
-
-                        typ = "";
+                        VytvoritPromennou(nazevPromenne, hodnotaPromenne, operater, creation, prikaz);
                     }
                 
             }
@@ -359,11 +365,11 @@ namespace Vyvojaky
         public static bool isValid;
         public static string hodnota = "";
 
-        public static void VytvoritPromennou(string nazev, string _hodnota, string operater, bool creation)
+        public static void VytvoritPromennou(string nazev, string _hodnota, string operater, bool creation, string prikaz)
         {
             isValid = true;
             hodnota = _hodnota;
-
+            
             Int16 a;
             Int32 b;
             Int64 c;
@@ -396,7 +402,7 @@ namespace Vyvojaky
 
                     if (creation)
                     {
-                        CreateBlock(nazev, hodnota);
+                        CreateBlock(prikaz);
                     }
                     
                     return;
@@ -420,7 +426,7 @@ namespace Vyvojaky
 
                     if (creation)
                     {
-                        CreateBlock(nazev, hodnota);
+                        CreateBlock(prikaz);
                     }
                     return;
                 }
@@ -433,6 +439,7 @@ namespace Vyvojaky
 
                     //Řešení
                     hodnota = SolveSequence(sequence);
+                    Debug.WriteLine(hodnota);
 
                     if (Promenne.FindVar(nazev, "type") == "Int16" && Int16.TryParse(hodnota, out a))
                     {
@@ -451,7 +458,7 @@ namespace Vyvojaky
 
                         if (creation)
                         {
-                            CreateBlock(nazev, hodnota);
+                            CreateBlock(prikaz);
                         }
                     }
                     else if (Promenne.FindVar(nazev, "type") == "Int32" && Int32.TryParse(hodnota, out b))
@@ -471,7 +478,7 @@ namespace Vyvojaky
 
                         if (creation)
                         {
-                            CreateBlock(nazev, hodnota);
+                            CreateBlock(prikaz);
                         }
                         
                     }
@@ -492,7 +499,7 @@ namespace Vyvojaky
 
                         if (creation)
                         {
-                            CreateBlock(nazev, hodnota);
+                            CreateBlock(prikaz);
                         }
                         
                     }
@@ -513,7 +520,7 @@ namespace Vyvojaky
 
                         if (creation)
                         {
-                            CreateBlock(nazev, hodnota);
+                            CreateBlock(prikaz);
                         }
                     }
                     else if (double.TryParse(hodnota, out e))
@@ -533,7 +540,7 @@ namespace Vyvojaky
 
                         if (creation)
                         {
-                            CreateBlock(nazev, hodnota);
+                            CreateBlock(prikaz);
                         }
 
                     }
@@ -550,7 +557,7 @@ namespace Vyvojaky
 
                         if (creation)
                         {
-                            CreateBlock(nazev, hodnota);
+                            CreateBlock(prikaz);
                         }
                     }
                     else
@@ -566,10 +573,10 @@ namespace Vyvojaky
             
         }
 
-        private static void CreateBlock(string nazev, string hodnota)
+        private static void CreateBlock(string prikaz)
         {
             //BLOCK
-            Block.BlockVar(nazev, hodnota, _prikaz);
+            Block.BlockProcess(prikaz);
         }
 
         //

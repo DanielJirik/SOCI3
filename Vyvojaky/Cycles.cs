@@ -54,7 +54,8 @@ namespace Vyvojaky
                 Switches switches = new Switches();
                 for (int i = pocatek; i <= konec; i += inkrement)
                 {
-                    pocitani(Pracovni, console, switches);
+                    //pocitani(Pracovni, console, switches);
+                    MessageBox.Show("Index: " + i);
                 }
             }
             else if(pocatek < konec && inkrement < 0)
