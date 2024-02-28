@@ -330,15 +330,16 @@ namespace Vyvojaky
         private void processingToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string input = Interaction.InputBox("Zadejte existující proměnnou a výraz k výpočtu\r\nPříklady: a = 5 + 6, jmeno = 'Ahoj' + 'jak se mate'", "Cycle-while");
-            process.Processing(input, true);
+            Block.BlockProcess(input);
+            //Process.Processing(input);
         }
 
         //Spustí simulaci
         private void btRun_Click(object sender, EventArgs e)
         {
             //Sort block indexes
-            sController.InstructionOrder(panelPracovni);
-            
+            sController.InstructionOrder(panelPracovni);          
+
             string prikaz = "";
             Block.Type type = Block.Type.Start;
             int iter = 0;
@@ -369,6 +370,11 @@ namespace Vyvojaky
                     else
                         var.BackColor = Color.Red;
                 }
+                else if (var is BlockProcess)
+                {
+                    prikaz = ((BlockProcess)var).input;
+                    type = Block.Type.Process;
+                }
 
                 //Perform an instruction
                 sController.IstructionPerformance(prikaz, type);
@@ -376,6 +382,18 @@ namespace Vyvojaky
                 //Incrementing num if iterations
                 iter++;
             }
+
+            //Memory clear at the end
+            Promenne.Int16V.Clear();
+            Promenne.Int32V.Clear();
+            Promenne.Int64V.Clear();
+            Promenne.FloatV.Clear();
+            Promenne.DoubleV.Clear();
+            Promenne.BoolV.Clear();
+            Promenne.StringV.Clear();
+            Promenne.CharV.Clear();
+
+            Promenne.usedNames.Clear();
         }
     }
 }

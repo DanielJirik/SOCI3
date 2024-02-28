@@ -167,6 +167,11 @@ namespace Vyvojaky
                     ((BlockStart)item).joint = null;
                     break;
                 }
+                else if (item is BlockProcess && ((BlockProcess)item).joint == tag)
+                {
+                    ((BlockProcess)item).joint = null;
+                    break;
+                }
             }
         }
 
@@ -178,31 +183,31 @@ namespace Vyvojaky
                 if (item is BlockVar && Convert.ToInt16(((BlockVar)item).Tag) == fromIndex)
                 {
                     ((BlockVar)item).joint = tag;
-                    //MessageBox.Show(((BlockVar)item).joint.ToString());
                     break;
                 }
                 else if (item is BlockCon && Convert.ToInt16(((BlockCon)item).Tag) == fromIndex)
                 {
                     ((BlockCon)item).joint = tag;
-                    //MessageBox.Show(((BlockCon)item).joint.ToString());
                     break;
                 }
                 else if (item is BlockCycles && Convert.ToInt16(((BlockCycles)item).Tag) == fromIndex)
                 {
                     ((BlockCycles)item).joint = tag;
-                    //MessageBox.Show(((BlockCycles)item).joint.ToString());
                     break;
                 }
                 else if (item is BlockSwitches && Convert.ToInt16(((BlockSwitches)item).Tag) == fromIndex)
                 {
                     ((BlockSwitches)item).joint = tag;
-                    //MessageBox.Show(((BlockSwitches)item).joint.ToString());
                     break;
                 }
                 else if (item is BlockStart && Convert.ToInt16(((BlockStart)item).Tag) == fromIndex)
                 {
                     ((BlockStart)item).joint = tag;
-                    //MessageBox.Show(((BlockStart)item).joint.ToString());
+                    break;
+                }
+                else if (item is BlockProcess && Convert.ToInt16(((BlockProcess)item).Tag) == fromIndex)
+                {
+                    ((BlockProcess)item).joint = tag;
                     break;
                 }
             }

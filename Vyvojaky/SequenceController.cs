@@ -58,7 +58,12 @@ namespace Vyvojaky
                     {
                         nextIndex = Convert.ToInt16(((BlockVar)block).joint);
                         break;
-                    } //NOTE: pridat BlockProcess
+                    }
+                    else if (block is BlockProcess && nextIndex == Convert.ToInt16(((BlockProcess)block).Tag))
+                    {
+                        nextIndex = Convert.ToInt16(((BlockProcess)block).joint);
+                        break;
+                    }
                 }
                     blocksSorted.Add(nextIndex);                    
             }
@@ -81,6 +86,7 @@ namespace Vyvojaky
                     Promenne.CommandCheck(prikaz);
                     break;
                 case Block.Type.Process:
+                    Process.CommandCheck(prikaz);
                     break;
                 default:
                     break;
