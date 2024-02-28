@@ -8,6 +8,7 @@ namespace Vyvojaky
         public formUvitaci()
         {
             InitializeComponent();
+            this.BackColor = Color.FromArgb(90, 95, 101);
         }
 
 

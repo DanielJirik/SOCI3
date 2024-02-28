@@ -796,7 +796,6 @@ namespace Vyvojaky
                         
                         if (oper != "==" && oper != "!=")
                         {   
-                            Debug.WriteLine("Uvozovky OK");
                             return false;
                         }
                     }

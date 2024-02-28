@@ -28,10 +28,10 @@ namespace Vyvojaky
         /// </summary>
         private void InitializeComponent()
         {
-            ListViewGroup listViewGroup1 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
-            ListViewGroup listViewGroup2 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
-            ListViewGroup listViewGroup3 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
-            ListViewGroup listViewGroup4 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
+            ListViewGroup listViewGroup5 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
+            ListViewGroup listViewGroup6 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
+            ListViewGroup listViewGroup7 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
+            ListViewGroup listViewGroup8 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
             panelPracovni = new Panel();
             btTest = new Button();
             panelSwitch = new Panel();
@@ -65,7 +65,7 @@ namespace Vyvojaky
             panelPracovni.AutoScroll = true;
             panelPracovni.AutoScrollMargin = new Size(50, 50);
             panelPracovni.AutoScrollMinSize = new Size(2000, 1100);
-            panelPracovni.BackColor = Color.Gray;
+            panelPracovni.BackColor = Color.DimGray;
             panelPracovni.Controls.Add(btTest);
             panelPracovni.Controls.Add(panelSwitch);
             panelPracovni.Controls.Add(tbConsole);
@@ -183,15 +183,15 @@ namespace Vyvojaky
             // 
             lvPromenne.BorderStyle = BorderStyle.FixedSingle;
             lvPromenne.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            listViewGroup1.Header = "ListViewGroup";
-            listViewGroup1.Name = "test";
-            listViewGroup2.Header = "ListViewGroup";
-            listViewGroup2.Name = "test1";
-            listViewGroup3.Header = "ListViewGroup";
-            listViewGroup3.Name = "test2";
-            listViewGroup4.Header = "ListViewGroup";
-            listViewGroup4.Name = "test3";
-            lvPromenne.Groups.AddRange(new ListViewGroup[] { listViewGroup1, listViewGroup2, listViewGroup3, listViewGroup4 });
+            listViewGroup5.Header = "ListViewGroup";
+            listViewGroup5.Name = "test";
+            listViewGroup6.Header = "ListViewGroup";
+            listViewGroup6.Name = "test1";
+            listViewGroup7.Header = "ListViewGroup";
+            listViewGroup7.Name = "test2";
+            listViewGroup8.Header = "ListViewGroup";
+            listViewGroup8.Name = "test3";
+            lvPromenne.Groups.AddRange(new ListViewGroup[] { listViewGroup5, listViewGroup6, listViewGroup7, listViewGroup8 });
             lvPromenne.Location = new Point(3, 71);
             lvPromenne.Margin = new Padding(3, 4, 3, 4);
             lvPromenne.Name = "lvPromenne";
@@ -208,7 +208,7 @@ namespace Vyvojaky
             menuPanels.Location = new Point(335, 384);
             menuPanels.Name = "menuPanels";
             menuPanels.Padding = new Padding(6, 3, 0, 3);
-            menuPanels.Size = new Size(222, 30);
+            menuPanels.Size = new Size(72, 30);
             menuPanels.TabIndex = 7;
             menuPanels.Text = "menuStrip1";
             menuPanels.Click += menuPanels_Click;
@@ -292,6 +292,7 @@ namespace Vyvojaky
             Controls.Add(panelPracovni);
             MainMenuStrip = menuPanels;
             Name = "formHlavniProTvorbu";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Tvorba";
             FormClosing += formHlavniProTvorbu_FormClosing;
             panelPracovni.ResumeLayout(false);
