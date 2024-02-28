@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
@@ -23,9 +23,9 @@ namespace Vyvojaky
             Pracovni = _pracpanel;
         }
 
-        public void Processing(string input, bool creation)
+        public static void Processing(string input)
         {
-            CommandCheck(input, creation);
+            CommandCheck(input);
         }
 
         public static string Operater(string input) 
@@ -91,8 +91,10 @@ namespace Vyvojaky
             String
         }
 
-        public static void CommandCheck(string prikaz, bool creation)
+        public static string _prikaz;
+        public static void CommandCheck(string prikaz)
         {
+            _prikaz = prikaz;
             string nazevPromenne = "";
             string hodnotaPromenne = "";
             bool legitPrikaz = false;
@@ -157,7 +159,7 @@ namespace Vyvojaky
                     if (legitPrikaz)
                     {
                         
-                        VytvoritPromennou(nazevPromenne, hodnotaPromenne, operater, creation, prikaz);
+                        VytvoritPromennou(nazevPromenne, hodnotaPromenne, operater, prikaz);
                     }
                 
             }
@@ -425,7 +427,7 @@ namespace Vyvojaky
         public static bool isValid;
         public static string hodnota = "";
 
-        public static void VytvoritPromennou(string nazev, string _hodnota, string operater, bool creation, string prikaz)
+        public static void VytvoritPromennou(string nazev, string _hodnota, string operater, string prikaz)
         {
             isValid = true;
             hodnota = _hodnota;
@@ -458,14 +460,7 @@ namespace Vyvojaky
                     else
                     {
                         MessageBox.Show("Něco je špatně");
-                        creation = false;
-                    }
-
-                    if (creation)
-                    {
-                        CreateBlock(prikaz);
-                    }
-                    
+                    }                    
                     return;
                 }
                 else if (CheckIfChar(hodnota))
@@ -484,11 +479,6 @@ namespace Vyvojaky
                     {
                         MessageBox.Show("Něco je špatně");
                         creation = false;
-                    }
-
-                    if (creation)
-                    {
-                        CreateBlock(prikaz);
                     }
                     return;
                 }
@@ -533,11 +523,6 @@ namespace Vyvojaky
                             MessageBox.Show("Něco je špatně");
                             creation = false;
                         }
-
-                        if (creation)
-                        {
-                            CreateBlock(prikaz);
-                        }
                     }
                     else if (Promenne.FindVar(nazev, "type") == "Int32" && Int32.TryParse(hodnota, out b))
                     {
@@ -568,14 +553,7 @@ namespace Vyvojaky
                         else
                         {
                             MessageBox.Show("Něco je špatně");
-                            creation = false;
-                        }
-
-                        if (creation)
-                        {
-                            CreateBlock(prikaz);
-                        }
-                        
+                        }                        
                     }
                     else if (Promenne.FindVar(nazev, "type") == "Int64" && Int64.TryParse(hodnota, out c))
                     {
@@ -606,14 +584,7 @@ namespace Vyvojaky
                         else
                         {
                             MessageBox.Show("Něco je špatně");
-                            creation = false;
-                        }
-
-                        if (creation)
-                        {
-                            CreateBlock(prikaz);
-                        }
-                        
+                        }                        
                     }
                     else if (float.TryParse(hodnota, out d))
                     {
@@ -645,11 +616,6 @@ namespace Vyvojaky
                         {
                             MessageBox.Show("Něco je špatně");
                             creation = false;
-                        }
-
-                        if (creation)
-                        {
-                            CreateBlock(prikaz);
                         }
                     }
                     else if (double.TryParse(hodnota, out e))
@@ -683,12 +649,6 @@ namespace Vyvojaky
                             MessageBox.Show("Něco je špatně");
                             creation = false;
                         }
-
-                        if (creation)
-                        {
-                            CreateBlock(prikaz);
-                        }
-
                     }
                     else if (bool.TryParse(hodnota, out f))
                     {
@@ -700,11 +660,6 @@ namespace Vyvojaky
                         {
                             MessageBox.Show("Něco je špatně");
                             creation = false;
-                        }
-
-                        if (creation)
-                        {
-                            CreateBlock(prikaz);
                         }
                     }
                     else
@@ -719,13 +674,6 @@ namespace Vyvojaky
             }
             
         }
-
-        private static void CreateBlock(string prikaz)
-        {
-            //BLOCK
-            Block.BlockProcess(prikaz);
-        }
-
         //
 
         //OverwriteString

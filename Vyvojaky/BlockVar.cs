@@ -12,6 +12,7 @@ namespace Vyvojaky
     {
         public Label popis = new Label();
         public string[] accessValue;
+        public string prikaz;
 
         public int index;
 
@@ -19,10 +20,11 @@ namespace Vyvojaky
 
         public Block.Type type = Block.Type.Var;
 
-        public BlockVar(string typ, string nazev, string hodnota)
+        public BlockVar(string nazev, string hodnota, string prikaz)
         {
             //Reference na value blocku
-            accessValue = new string[] {typ, nazev, hodnota};
+            this.prikaz = prikaz;
+            accessValue = new string[] {nazev, hodnota, prikaz};
 
             //Indexace
             index = Block.BlockIndex(type);
@@ -34,7 +36,7 @@ namespace Vyvojaky
             popis.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point, ((Byte)(0)));
             popis.AutoSize = true;
             popis.Location = new Point(0, 0);
-            popis.Text = typ + " > " + nazev + " = " + hodnota;
+            popis.Text = nazev + " = " + hodnota;
             popis.Tag = "popis";
 
 
