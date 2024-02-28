@@ -478,7 +478,6 @@ namespace Vyvojaky
                     else
                     {
                         MessageBox.Show("Něco je špatně");
-                        creation = false;
                     }
                     return;
                 }
@@ -521,7 +520,6 @@ namespace Vyvojaky
                         else
                         {
                             MessageBox.Show("Něco je špatně");
-                            creation = false;
                         }
                     }
                     else if (Promenne.FindVar(nazev, "type") == "Int32" && Int32.TryParse(hodnota, out b))
@@ -615,7 +613,6 @@ namespace Vyvojaky
                         else
                         {
                             MessageBox.Show("Něco je špatně");
-                            creation = false;
                         }
                     }
                     else if (double.TryParse(hodnota, out e))
@@ -647,7 +644,6 @@ namespace Vyvojaky
                         else
                         {
                             MessageBox.Show("Něco je špatně");
-                            creation = false;
                         }
                     }
                     else if (bool.TryParse(hodnota, out f))
@@ -659,7 +655,6 @@ namespace Vyvojaky
                         else
                         {
                             MessageBox.Show("Něco je špatně");
-                            creation = false;
                         }
                     }
                     else

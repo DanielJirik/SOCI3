@@ -214,12 +214,12 @@ namespace Vyvojaky
 
 
         private void variablesToolStripMenuItem_Click_1(object sender, EventArgs e)
-        {           
+        {
             string prikaz = Interaction.InputBox("Zadejte proměnnou: \r\n\r\nPříklady: a = 5, b = 3.14, jmeno = Aneta ", "Variables");
             string[] values = Promenne.ArtificialVarValues(prikaz);
-            
+
             Block.BlockVar(values[0], values[1], prikaz);
-            
+
             panelInformaci.Show();
             panelSwitch.Hide();
         }
@@ -228,7 +228,7 @@ namespace Vyvojaky
         {
             string prikaz = Interaction.InputBox("Zadejte podmínku: \r\n\r\n Příklady: a > b", "Conditions");
             if (prikaz != "")
-                Block.BlockCon(prikaz);                
+                Block.BlockCon(prikaz);
 
             panelInformaci.Hide();
             panelSwitch.Hide();
@@ -341,7 +341,7 @@ namespace Vyvojaky
         private void btRun_Click(object sender, EventArgs e)
         {
             //Sort block indexes
-            sController.InstructionOrder(panelPracovni);          
+            sController.InstructionOrder(panelPracovni);
 
             string prikaz = "";
             Block.Type type = Block.Type.Start;
@@ -381,7 +381,7 @@ namespace Vyvojaky
 
                 //Perform an instruction
                 sController.IstructionPerformance(prikaz, type);
-                
+
                 //Incrementing num if iterations
                 iter++;
             }
