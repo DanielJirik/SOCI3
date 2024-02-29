@@ -361,12 +361,12 @@ namespace Vyvojaky
                 //Division
                 if (var is BlockVar)
                 {
-                    prikaz = ((BlockVar)var).prikaz;
+                    prikaz = ((BlockVar)var).command;
                     type = Block.Type.Var;
                 }
                 else if (var is BlockCon)
                 {
-                    prikaz = ((BlockCon)var).podminka;
+                    prikaz = ((BlockCon)var).command;
                     type = Block.Type.Con;
                     if (Podminky.isTrue(prikaz))
                         var.BackColor = Color.Green;
@@ -375,8 +375,13 @@ namespace Vyvojaky
                 }
                 else if (var is BlockProcess)
                 {
-                    prikaz = ((BlockProcess)var).input;
+                    prikaz = ((BlockProcess)var).command;
                     type = Block.Type.Process;
+                }
+                else if (var is BlockOutput)
+                {
+                    prikaz = ((BlockOutput)var).command;                    
+                    type = Block.Type.Output;
                 }
 
                 //Perform an instruction
@@ -402,7 +407,8 @@ namespace Vyvojaky
         private void outputToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string input = Interaction.InputBox("Zadejte výraz, který chcete vytisknout\r\nPříklady: \"ahoj\"; existující proměnná: a", "Output");
-            output.Processing(input, true);
+            Block.BlockOutput(input);
+            //output.Processing(input, true);
         }
     }
 }

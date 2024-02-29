@@ -34,39 +34,14 @@ namespace Vyvojaky
             {
                 foreach (Control block in mainPanel.Controls)
                 {
-                    if (block is BlockCon && nextIndex == Convert.ToInt16(((BlockCon)block).Tag))
+                    if (block is IBlock && nextIndex == Convert.ToInt16(block.Tag))
                     {
-                        nextIndex = Convert.ToInt16(((BlockCon)block).joint);
-                        break;
-                    }
-                    else if (block is BlockCycles && nextIndex == Convert.ToInt16(((BlockCycles)block).Tag))
-                    {
-                        nextIndex = Convert.ToInt16(((BlockCycles)block).joint);
-                        break;
-                    }
-                    else if (block is BlockStart && nextIndex == Convert.ToInt16(((BlockStart)block).Tag))
-                    {
-                        nextIndex = Convert.ToInt16(((BlockStart)block).joint);
-                        break;
-                    }
-                    else if (block is BlockSwitches && nextIndex == Convert.ToInt16(((BlockSwitches)block).Tag))
-                    {
-                        nextIndex = Convert.ToInt16(((BlockSwitches)block).joint);
-                        break;
-                    }
-                    else if (block is BlockVar && nextIndex == Convert.ToInt16(((BlockVar)block).Tag))
-                    {
-                        nextIndex = Convert.ToInt16(((BlockVar)block).joint);
-                        break;
-                    }
-                    else if (block is BlockProcess && nextIndex == Convert.ToInt16(((BlockProcess)block).Tag))
-                    {
-                        nextIndex = Convert.ToInt16(((BlockProcess)block).joint);
+                        nextIndex = Convert.ToInt16(((IBlock)block).joint);
                         break;
                     }
                 }
                     blocksSorted.Add(nextIndex);                    
-            }
+            }            
         }
 
         public void IstructionPerformance(string prikaz, Block.Type type)
@@ -87,6 +62,9 @@ namespace Vyvojaky
                     break;
                 case Block.Type.Process:
                     Process.CommandCheck(prikaz);
+                    break;
+                case Block.Type.Output:
+                    Output.Print(prikaz);
                     break;
                 default:
                     break;

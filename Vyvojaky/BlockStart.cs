@@ -7,14 +7,20 @@ using Vyvojaky.Properties;
 
 namespace Vyvojaky
 {
-    internal class BlockStart : PictureBox
+    internal class BlockStart : PictureBox, IBlock
     {
         public static int index;
-        public Block.Type type = Block.Type.Start;
 
-        public int? joint;
+        //Interface properties
+        public string command { get; set; }
+        public int? joint { get; set; }
+        public Block.Type type { get; set; }
+
         public BlockStart()
         {
+            //Set interface property
+            this.type = Block.Type.Start;
+
             index = Block.BlockIndex(type);
             this.Tag = index;            
 
@@ -24,7 +30,7 @@ namespace Vyvojaky
             this.Image = img;
             this.SizeMode = PictureBoxSizeMode.StretchImage;
             
-            this.Location = new Point(Block.pracPanel.Width / 2 - this.Width / 2, Block.pracPanel.Height / 2 - this.Height / 2);
+            this.Location = Block.pracPanel.PointToClient(Cursor.Position);
 
             //Drag and Drop event handlers
             this.MouseClick += new MouseEventHandler(Block.OnMouseClick);

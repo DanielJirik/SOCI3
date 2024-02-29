@@ -18,12 +18,10 @@ namespace Vyvojaky
             Con,
             Start,
             Var,
-            Process
+            Process,
+            Output
         }
-
-        //Joint points
-        
-
+       
         public static Panel? pracPanel;
         public static Dictionary<int, Type> indexes= new Dictionary<int, Type>();
 
@@ -39,37 +37,37 @@ namespace Vyvojaky
         //Block instances
         public static void BlockVar(string nazev, string hodnota, string prikaz)
         {
-            BlockVar blockVar = new BlockVar(nazev, hodnota, prikaz);
+            _ = new BlockVar(nazev, hodnota, prikaz);
         }
 
         public static void BlockCon(string prikaz)
         {
-            BlockCon blockCon = new BlockCon(prikaz);
+            _ = new BlockCon(prikaz);
         }
 
         public static void BlockSwitch(int pocetMoznosti, string vstupPromenna, List<string> boxy)
         {
-            BlockSwitches blockSwitch = new BlockSwitches(pocetMoznosti, vstupPromenna, boxy);
+            _ = new BlockSwitches(pocetMoznosti, vstupPromenna, boxy);
         }
 
         public static void BlockCycleFor(string nazev, string pocatek, string konec, string inkrement)
         {
-            BlockCycles blockFor = new BlockCycles(nazev, pocatek, konec, inkrement);
+            _ = new BlockCycles(nazev, pocatek, konec, inkrement);
         }
 
         public static void BlockCycleWhileOrDoWhile(string condition, string type)
         {
-            BlockCycles blockWhileOrDoWhile = new BlockCycles(condition, type);
+            _ = new BlockCycles(condition, type);
         }
 
         public static void BlockProcess(string input)
         {
-            BlockProcess process = new BlockProcess(input);
+            _ = new BlockProcess(input);
         }
 
         public static void BlockOutput(string input)
         { 
-            BlockOutput output = new BlockOutput(input);    
+            _ = new BlockOutput(input);    
         }
 
         //Disable control method
@@ -147,36 +145,11 @@ namespace Vyvojaky
         {
             foreach (Control item in pracPanel.Controls)
             {
-                if (item is BlockVar && ((BlockVar)item).joint == tag)
+                if (item is IBlock && ((IBlock)item).joint == tag)
                 {
-                    ((BlockVar)item).joint = null;
+                    ((IBlock)item).joint = null;
                     break;
-                }
-                else if (item is BlockCon && ((BlockCon)item).joint == tag)
-                {
-                    ((BlockCon)item).joint = null;
-                    break;
-                }
-                else if (item is BlockCycles && ((BlockCycles)item).joint == tag)
-                {
-                    ((BlockCycles)item).joint = null;
-                    break;
-                }
-                else if (item is BlockSwitches && ((BlockSwitches)item).joint == tag)
-                {
-                    ((BlockSwitches)item).joint = null;
-                    break;
-                }
-                else if (item is BlockStart && ((BlockStart)item).joint == tag)
-                {
-                    ((BlockStart)item).joint = null;
-                    break;
-                }
-                else if (item is BlockProcess && ((BlockProcess)item).joint == tag)
-                {
-                    ((BlockProcess)item).joint = null;
-                    break;
-                }
+                }                
             }
         }
 
@@ -185,36 +158,11 @@ namespace Vyvojaky
         {
             foreach (Control item in pracPanel.Controls)
             {
-                if (item is BlockVar && Convert.ToInt16(((BlockVar)item).Tag) == fromIndex)
+                if (item is IBlock && Convert.ToInt16(item.Tag) == fromIndex)
                 {
-                    ((BlockVar)item).joint = tag;
+                    ((IBlock)item).joint = tag;
                     break;
-                }
-                else if (item is BlockCon && Convert.ToInt16(((BlockCon)item).Tag) == fromIndex)
-                {
-                    ((BlockCon)item).joint = tag;
-                    break;
-                }
-                else if (item is BlockCycles && Convert.ToInt16(((BlockCycles)item).Tag) == fromIndex)
-                {
-                    ((BlockCycles)item).joint = tag;
-                    break;
-                }
-                else if (item is BlockSwitches && Convert.ToInt16(((BlockSwitches)item).Tag) == fromIndex)
-                {
-                    ((BlockSwitches)item).joint = tag;
-                    break;
-                }
-                else if (item is BlockStart && Convert.ToInt16(((BlockStart)item).Tag) == fromIndex)
-                {
-                    ((BlockStart)item).joint = tag;
-                    break;
-                }
-                else if (item is BlockProcess && Convert.ToInt16(((BlockProcess)item).Tag) == fromIndex)
-                {
-                    ((BlockProcess)item).joint = tag;
-                    break;
-                }
+                }                
             }
         }
 

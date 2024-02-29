@@ -39,14 +39,7 @@ namespace Vyvojaky
 
         public static List<string> usedNames = new List<string>();
 
-        public static string typ = "";
-
-        //public static Panel mainPanel;
-
-        //public void Setup(Panel _mainPanel)
-        //{
-        //    mainPanel = _mainPanel;
-        //}
+        public static string typ = "";        
 
         //Metoda pro kontrolu duplikatu
         public static bool KontrolaNazvu(string nazevPromenne)
@@ -470,14 +463,7 @@ namespace Vyvojaky
                 }
             }
         }
-
-        private static void CreateBlock(string nazev, string hodnota)
-        {
-            //BLOCK
-            Block.BlockVar(nazev, hodnota, _prikaz);
-        }
-
-        //
+        
 
         //OverwriteString
         public static string OverwriteString(string _string)

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Vyvojaky
 {
-    internal class BlockSwitches : PictureBox
+    internal class BlockSwitches : PictureBox, IBlock
     {
         public Label lb;
         public Label lbVstup;
@@ -18,12 +18,17 @@ namespace Vyvojaky
         public string vstup;
 
         public int index;
-        public int? joint;
-        public Block.Type type = Block.Type.Switch;
+
+        //Interface properties
+        public string command { get; set; }
+        public int? joint { get; set; }
+        public Block.Type type { get; set; }
 
         public BlockSwitches(int pocetCasu, string vstupPromenna, List<string> boxy)
         {
-            
+            //Set interface property
+            this.type = Block.Type.Switch;
+
             lbVstup = new Label();
             hodnoty = new List<string>() { };
             seznamLabelu = new List<string>();
@@ -68,7 +73,7 @@ namespace Vyvojaky
             }
             this.Width = delka + 20;
             Debug.WriteLine(this.Width);
-            this.Location = new Point(Random.Shared.Next(0, Block.pracPanel.Width - this.Width), Random.Shared.Next(0, Block.pracPanel.Height - this.Height));
+            this.Location = Block.pracPanel.PointToClient(Cursor.Position);
             Block.pracPanel.Controls.Add(this);
 
             this.MouseClick += new MouseEventHandler(Block.OnMouseClick);

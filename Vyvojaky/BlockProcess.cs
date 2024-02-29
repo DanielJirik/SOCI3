@@ -7,16 +7,22 @@ using System.Threading.Tasks;
 
 namespace Vyvojaky
 {
-    internal class BlockProcess : PictureBox
+    internal class BlockProcess : PictureBox, IBlock
     {
         public int index;
-        public int? joint;
-        public Block.Type type = Block.Type.Process;
         Label lb;
-        public string input = "";
+
+        //Interface properties
+        public string command { get; set; }
+        public int? joint { get; set; }
+        public Block.Type type { get; set; }
+
         public BlockProcess(string input) 
-        {   
-            this.input = input;
+        {
+            //Set interface properties
+            this.type = Block.Type.Process;
+            this.command = input;
+
             index = Block.BlockIndex(type);
             this.Tag = index;
             this.BackColor = Color.White;
@@ -30,7 +36,7 @@ namespace Vyvojaky
             this.Width = lb.Width + 30;
 
             this.Controls.Add(lb);
-            this.Location = new Point(Random.Shared.Next(0, Block.pracPanel.Width - this.Width), Random.Shared.Next(0, Block.pracPanel.Height - this.Height));
+            this.Location = Block.pracPanel.PointToClient(Cursor.Position);
             Block.pracPanel.Controls.Add(this);
             this.MouseClick += new MouseEventHandler(Block.OnMouseClick);
             this.MouseDown += new MouseEventHandler(Block.OnMouseDown);

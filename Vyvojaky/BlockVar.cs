@@ -8,30 +8,32 @@ using System.Threading.Tasks;
 
 namespace Vyvojaky
 {
-    internal class BlockVar : PictureBox
+    internal class BlockVar : PictureBox, IBlock
     {
         public Label popis = new Label();
         public string[] accessValue;
-        public string prikaz;
-
         public int index;
 
-        public int? joint;
-
-        public Block.Type type = Block.Type.Var;
+        //Interface properties
+        public string command { get; set; }
+        public int? joint { get; set; }
+        public Block.Type type { get; set; }
 
         public BlockVar(string nazev, string hodnota, string prikaz)
         {
+            //Set interface property
+            this.type = Block.Type.Var;
+
             //Reference na value blocku
-            this.prikaz = prikaz;
-            accessValue = new string[] {nazev, hodnota, prikaz};
+            this.command = prikaz;
+            accessValue = new string[] { nazev, hodnota, prikaz };
 
             //Indexace
             index = Block.BlockIndex(type);
-            this.Tag = index;            
+            this.Tag = index;
 
             //LB
-            popis.ForeColor = Color.Black;            
+            popis.ForeColor = Color.Black;
             popis.BackColor = this.BackColor;
             popis.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point, ((Byte)(0)));
             popis.AutoSize = true;
@@ -43,7 +45,7 @@ namespace Vyvojaky
             //PB
             this.Width = popis.Text.Length * 7;
             this.Height = 50;
-            this.Location = new Point(Random.Shared.Next(0, Block.pracPanel.Width - this.Width), Random.Shared.Next(0, Block.pracPanel.Height - this.Height));
+            this.Location = Block.pracPanel.PointToClient(Cursor.Position);
             this.BackColor = Color.White;
 
             //Disable label on hover

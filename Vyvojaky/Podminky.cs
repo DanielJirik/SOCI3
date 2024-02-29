@@ -13,19 +13,10 @@ namespace Vyvojaky
 {
     internal class Podminky
     {
-        //public static Panel mainPanel;
-        //public void Setup(Panel _mainPanel)
-        //{
-        //    mainPanel = _mainPanel;
-        //}
-
-
         public static bool isTrue(string command)
         {
             string opr = "";
             bool cond = false;
-
-            //př. příkazu: a > b, a == b, a <= b
 
             string a, b;
             List<string> conSequence = new List<string>();

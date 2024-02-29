@@ -2,21 +2,23 @@
 
 namespace Vyvojaky
 {
-    internal class BlockCon : PictureBox
+    internal class BlockCon : PictureBox, IBlock
     {
         public Label popis = new Label();        
         public bool value;
 
         public int index;
-        public int? joint;
-        public string podminka;
 
-        public Block.Type type = Block.Type.Con;
+        //Interface properties
+        public string command { get; set; }
+        public int? joint { get; set; }
+        public Block.Type type { get; set; }
 
         public BlockCon(string podminka)
         {
-            //prirazeni hodnoty
-            this.podminka = podminka; 
+            //Set interface properties
+            this.command = podminka;
+            this.type = Block.Type.Con;
 
             //Indexace
             index = Block.BlockIndex(type);
@@ -34,7 +36,7 @@ namespace Vyvojaky
             //this
             this.Width = popis.Text.Length * 7;
             this.Height = 50;
-            this.Location = new Point(Random.Shared.Next(0, Block.pracPanel.Width - this.Width), Random.Shared.Next(0, Block.pracPanel.Height - this.Height));
+            this.Location = Block.pracPanel.PointToClient(Cursor.Position);
             this.BackColor = Color.White;
 
             //Disable label on hover
