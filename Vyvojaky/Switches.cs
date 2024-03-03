@@ -53,6 +53,7 @@ namespace Vyvojaky
                 //text-label setup
                 Text = new Label();
                 Text.Text = cislo.ToString() + ".případ: ";
+                Text.ForeColor = Color.White;
                 pozVstupPromY += 30;
                 Text.Location = new Point(pozVstupPromX, pozVstupPromY);
                 //input-textbox setup

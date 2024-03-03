@@ -121,7 +121,43 @@
   <data name="start" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\start.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Export1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Export1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="cyklus_for_svetly" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cyklus-for-svetly.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cyklus_for_tmavy" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cyklus-for-tmavy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cyklus_podminka_konec_svetly" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cyklus-podminka-konec-svetly.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cyklus_podminka_konec_tmavy" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cyklus-podminka-konec-tmavy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cyklus_podminka_zacatek_svetly" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cyklus-podminka-zacatek-svetly.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cyklus_podminka_zacatek_tmavy" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cyklus-podminka-zacatek-tmavy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="podminka_svetly" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\podminka-svetly.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="podminka_tmavy" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\podminka-tmavy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="vstup_vystup_svetly" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\vstup-vystup-svetly.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="vstup_vystup_tmavy" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\vstup-vystup-tmavy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="zpracovani_svetly" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\zpracovani-svetly.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="zpracovani_tmavy" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\zpracovani-tmavy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

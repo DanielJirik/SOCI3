@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System;
 using System.Threading.Tasks;
+using Vyvojaky.Properties;
 
 namespace Vyvojaky
 {
@@ -47,8 +48,11 @@ namespace Vyvojaky
             this.Height = 50;
             this.BackColor = Color.White;
 
+            this.SizeMode = PictureBoxSizeMode.StretchImage;
+
             //label + pridani lb do picture boxu
             lbVstup.Text = "Switch(" + vstupPromenna + ")";
+            lbVstup.ForeColor = Color.Black;
             int delka = 0;
             
             lbVstup.Location = new Point(startPositionX, startPositionY);
@@ -61,6 +65,7 @@ namespace Vyvojaky
             {
                 lb = new Label();
                 lb.Text = (i + 1) + ".Case: " + boxy[i] + "  ";
+                lb.ForeColor = Color.Black;
                 lb.Width = (lb.Text.Length * 7);
                 startPositionY += 20;
                 this.Height += 20;
@@ -74,6 +79,7 @@ namespace Vyvojaky
             this.Width = delka + 20;
             Debug.WriteLine(this.Width);
             this.Location = Block.pracPanel.PointToClient(Cursor.Position);
+            this.BackgroundImage = Resources.zpracovani_svetly;
             Block.pracPanel.Controls.Add(this);
 
             this.MouseClick += new MouseEventHandler(Block.OnMouseClick);

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using Vyvojaky.Properties;
 
 namespace Vyvojaky
 {
@@ -47,6 +48,8 @@ namespace Vyvojaky
             this.Height = 50;
             this.Location = Block.pracPanel.PointToClient(Cursor.Position);
             this.BackColor = Color.White;
+            this.BackgroundImage = Resources.vstup_vystup_svetly;
+            this.SizeMode = PictureBoxSizeMode.StretchImage;
 
             //Disable label on hover
             this.MouseEnter += new EventHandler(Block.DisableControl);

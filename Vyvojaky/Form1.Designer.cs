@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             btNovySoubor = new Button();
-            btExistujici = new Button();
             pictureBox1 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -37,28 +36,18 @@
             // btNovySoubor
             // 
             btNovySoubor.Anchor = AnchorStyles.None;
-            btNovySoubor.Location = new Point(208, 244);
+            btNovySoubor.Location = new Point(311, 240);
             btNovySoubor.Name = "btNovySoubor";
             btNovySoubor.Size = new Size(121, 40);
             btNovySoubor.TabIndex = 0;
-            btNovySoubor.Text = "Nový soubor";
+            btNovySoubor.Text = "Start";
             btNovySoubor.UseVisualStyleBackColor = true;
             btNovySoubor.Click += btNovySoubor_Click;
-            // 
-            // btExistujici
-            // 
-            btExistujici.Anchor = AnchorStyles.None;
-            btExistujici.Location = new Point(389, 245);
-            btExistujici.Name = "btExistujici";
-            btExistujici.Size = new Size(143, 40);
-            btExistujici.TabIndex = 1;
-            btExistujici.Text = "Existující soubor";
-            btExistujici.UseVisualStyleBackColor = true;
             // 
             // pictureBox1
             // 
             pictureBox1.Anchor = AnchorStyles.None;
-            pictureBox1.Image = Properties.Resources.Export1;
+            pictureBox1.Image = Properties.Resources.logo;
             pictureBox1.Location = new Point(215, 70);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(324, 124);
@@ -70,10 +59,9 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(0, 192, 192);
+            BackColor = Color.FromArgb(68, 84, 103);
             ClientSize = new Size(800, 451);
             Controls.Add(pictureBox1);
-            Controls.Add(btExistujici);
             Controls.Add(btNovySoubor);
             MaximumSize = new Size(818, 498);
             MinimumSize = new Size(818, 498);
@@ -86,7 +74,6 @@
         #endregion
 
         private Button btNovySoubor;
-        private Button btExistujici;
         private PictureBox pictureBox1;
     }
 }

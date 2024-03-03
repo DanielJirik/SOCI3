@@ -380,7 +380,7 @@ namespace Vyvojaky
                 }
                 else if (var is BlockOutput)
                 {
-                    prikaz = ((BlockOutput)var).command;                    
+                    prikaz = ((BlockOutput)var).command;
                     type = Block.Type.Output;
                 }
 

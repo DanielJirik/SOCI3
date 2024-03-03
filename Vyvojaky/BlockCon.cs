@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using Vyvojaky.Properties;
 
 namespace Vyvojaky
 {
@@ -38,6 +39,8 @@ namespace Vyvojaky
             this.Height = 50;
             this.Location = Block.pracPanel.PointToClient(Cursor.Position);
             this.BackColor = Color.White;
+            this.BackgroundImage = Resources.podminka_svetly;
+            this.SizeMode = PictureBoxSizeMode.StretchImage;
 
             //Disable label on hover
             this.MouseEnter += new EventHandler(Block.DisableControl);

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Vyvojaky.Properties;
 
 namespace Vyvojaky
 {
@@ -28,10 +29,13 @@ namespace Vyvojaky
             this.BackColor = Color.White;
             this.Width = 120;
             this.Height = 50;
+            this.BackgroundImage = Resources.zpracovani_svetly;
+            this.SizeMode = PictureBoxSizeMode.StretchImage;
             lb = new Label();
 
             lb.Location = new Point(10, 20);
             lb.Text = input + "  ";
+            lb.ForeColor = Color.Black;
             lb.Width = (input.Length * 8) + 5;
             this.Width = lb.Width + 30;
 

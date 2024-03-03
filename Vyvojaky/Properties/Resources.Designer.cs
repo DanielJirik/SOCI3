@@ -63,9 +63,89 @@ namespace Vyvojaky.Properties {
         /// <summary>
         ///   Vyhledává lokalizovaný prostředek typu System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Export1 {
+        internal static System.Drawing.Bitmap cyklus_for_svetly {
             get {
-                object obj = ResourceManager.GetObject("Export1", resourceCulture);
+                object obj = ResourceManager.GetObject("cyklus_for_svetly", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Vyhledává lokalizovaný prostředek typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap cyklus_for_tmavy {
+            get {
+                object obj = ResourceManager.GetObject("cyklus_for_tmavy", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Vyhledává lokalizovaný prostředek typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap cyklus_podminka_konec_svetly {
+            get {
+                object obj = ResourceManager.GetObject("cyklus_podminka_konec_svetly", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Vyhledává lokalizovaný prostředek typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap cyklus_podminka_konec_tmavy {
+            get {
+                object obj = ResourceManager.GetObject("cyklus_podminka_konec_tmavy", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Vyhledává lokalizovaný prostředek typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap cyklus_podminka_zacatek_svetly {
+            get {
+                object obj = ResourceManager.GetObject("cyklus_podminka_zacatek_svetly", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Vyhledává lokalizovaný prostředek typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap cyklus_podminka_zacatek_tmavy {
+            get {
+                object obj = ResourceManager.GetObject("cyklus_podminka_zacatek_tmavy", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Vyhledává lokalizovaný prostředek typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap logo {
+            get {
+                object obj = ResourceManager.GetObject("logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Vyhledává lokalizovaný prostředek typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap podminka_svetly {
+            get {
+                object obj = ResourceManager.GetObject("podminka_svetly", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Vyhledává lokalizovaný prostředek typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap podminka_tmavy {
+            get {
+                object obj = ResourceManager.GetObject("podminka_tmavy", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -76,6 +156,46 @@ namespace Vyvojaky.Properties {
         internal static System.Drawing.Bitmap start {
             get {
                 object obj = ResourceManager.GetObject("start", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Vyhledává lokalizovaný prostředek typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap vstup_vystup_svetly {
+            get {
+                object obj = ResourceManager.GetObject("vstup_vystup_svetly", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Vyhledává lokalizovaný prostředek typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap vstup_vystup_tmavy {
+            get {
+                object obj = ResourceManager.GetObject("vstup_vystup_tmavy", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Vyhledává lokalizovaný prostředek typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap zpracovani_svetly {
+            get {
+                object obj = ResourceManager.GetObject("zpracovani_svetly", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Vyhledává lokalizovaný prostředek typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap zpracovani_tmavy {
+            get {
+                object obj = ResourceManager.GetObject("zpracovani_tmavy", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
