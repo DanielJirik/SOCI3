@@ -28,19 +28,23 @@ namespace Vyvojaky
             this.Tag = index;
 
             lb = new Label();
-            lb.Text = input + " ";
             lb.ForeColor = Color.Black;
-            lb.Width = lb.Text.Length * 8;
-            lb.Location = new Point(10, 20);
+            lb.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, ((Byte)(0)));
+            lb.Text = input;
+            lb.Location = new Point(this.Width / 2 - lb.Width / 2 + 5, this.Height / 2 - lb.Height / 2);
+            lb.Parent = this;
+            lb.BackColor = Color.Transparent;
 
-            this.BackColor = Color.White;
-            this.BackgroundImage = Resources.vstup_vystup_svetly;
-            this.SizeMode = PictureBoxSizeMode.StretchImage;
+            this.Width = lb.Text.Length * 10;
+            this.MinimumSize = new Size(50,50);
             this.Height = 50;
-            this.Width = lb.Width + 20;
+            this.Location = Block.pracPanel.PointToClient(Cursor.Position);
+            this.BackColor = Block.pracPanel.BackColor;
+            this.Image = Resources.vstup_vystup_svetly;
+            this.SizeMode = PictureBoxSizeMode.StretchImage;
+            
             this.Controls.Add(lb);
 
-            this.Location = Block.pracPanel.PointToClient(Cursor.Position);
             Block.pracPanel.Controls.Add(this);
             this.MouseClick += new MouseEventHandler(Block.OnMouseClick);
             this.MouseDown += new MouseEventHandler(Block.OnMouseDown);

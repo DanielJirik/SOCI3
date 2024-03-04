@@ -26,18 +26,22 @@ namespace Vyvojaky
 
             index = Block.BlockIndex(type);
             this.Tag = index;
-            this.BackColor = Color.White;
-            this.Width = 120;
-            this.Height = 50;
-            this.BackgroundImage = Resources.zpracovani_svetly;
-            this.SizeMode = PictureBoxSizeMode.StretchImage;
+            
             lb = new Label();
-
-            lb.Location = new Point(10, 20);
-            lb.Text = input + "  ";
             lb.ForeColor = Color.Black;
-            lb.Width = (input.Length * 8) + 5;
-            this.Width = lb.Width + 30;
+            lb.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, ((Byte)(0)));
+            lb.Left = this.Width / 2 - lb.Width / 2;            
+            lb.Text = input;
+            lb.Location = new Point(this.Width / 2 - lb.Width / 2 + 5, this.Height / 2 - lb.Height / 2);
+            lb.Parent = this;
+            lb.BackColor = Color.Transparent;
+
+            this.Width = lb.Text.Length * 10;
+            this.BackColor = Color.White;
+            this.Height = 50;
+            this.Image = Resources.zpracovani_svetly;
+            this.SizeMode = PictureBoxSizeMode.StretchImage;
+            this.BackColor = Block.pracPanel.BackColor;
 
             this.Controls.Add(lb);
             this.Location = Block.pracPanel.PointToClient(Cursor.Position);

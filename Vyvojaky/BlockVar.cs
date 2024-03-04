@@ -35,20 +35,19 @@ namespace Vyvojaky
 
             //LB
             popis.ForeColor = Color.Black;
-            popis.BackColor = this.BackColor;
-            popis.Font = new Font("Arial", 10F, FontStyle.Regular, GraphicsUnit.Point, ((Byte)(0)));
-            popis.AutoSize = true;
-            popis.Location = new Point(0, 0);
-            popis.Text = nazev + " = " + hodnota;
-            popis.Tag = "popis";
+            popis.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, ((Byte)(0)));            
+            popis.Text = nazev + " = " + hodnota;            
+            popis.Location = new Point(this.Width / 2 - popis.Width / 2 + 5, this.Height / 2 - popis.Height / 2);
+            popis.Parent = this;
+            popis.BackColor = Color.Transparent;
 
 
-            //PB
-            this.Width = popis.Text.Length * 7;
+            //PB           
+            this.Width = popis.Text.Length * 10;
             this.Height = 50;
             this.Location = Block.pracPanel.PointToClient(Cursor.Position);
-            this.BackColor = Color.White;
-            this.BackgroundImage = Resources.vstup_vystup_svetly;
+            this.BackColor = Block.pracPanel.BackColor;
+            this.Image = Resources.vstup_vystup_svetly;
             this.SizeMode = PictureBoxSizeMode.StretchImage;
 
             //Disable label on hover
