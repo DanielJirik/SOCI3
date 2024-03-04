@@ -48,7 +48,7 @@ namespace Vyvojaky
             this.Height = 50;
             this.BackColor = Color.White;
 
-            this.SizeMode = PictureBoxSizeMode.StretchImage;
+            
 
             //label + pridani lb do picture boxu
             lbVstup.Text = "Switch(" + vstupPromenna + ")";
@@ -77,9 +77,9 @@ namespace Vyvojaky
                 }
             }
             this.Width = delka + 20;
-            Debug.WriteLine(this.Width);
             this.Location = Block.pracPanel.PointToClient(Cursor.Position);
-            this.BackgroundImage = Resources.zpracovani_svetly;
+            this.Image = Resources.zpracovani_svetly;
+            this.SizeMode = PictureBoxSizeMode.StretchImage;
             Block.pracPanel.Controls.Add(this);
 
             this.MouseClick += new MouseEventHandler(Block.OnMouseClick);

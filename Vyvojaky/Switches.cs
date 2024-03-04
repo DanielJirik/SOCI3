@@ -34,10 +34,6 @@ namespace Vyvojaky
             }
         }
 
-        /*public void Deleted()
-        { 
-            variables.Clear();
-        }*/
 
         public void pridavaniTextBoxu(int pocetBoxu, Panel panelSwitch, TextBox vstupPromenna)
         {

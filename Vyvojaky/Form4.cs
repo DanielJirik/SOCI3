@@ -152,7 +152,6 @@ namespace Vyvojaky
             {
                 switches.FromTextBox();
                 switches.Kontrola(tbConsole, tbInputVariable.Text, switches.variables, true);
-                //switches.Deleted();
             }
         }
 
