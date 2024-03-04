@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -26,9 +27,8 @@ namespace Vyvojaky
             index = Block.BlockIndex(type);
             this.Tag = index;
 
-            this.BackColor = Color.White;
             this.Width = 120;
-            this.Height = 50;
+            this.Height = 60;
             this.Image = Resources.cyklus_for_svetly;
             this.SizeMode = PictureBoxSizeMode.StretchImage;
             this.BackColor = Block.pracPanel.BackColor;
@@ -37,10 +37,10 @@ namespace Vyvojaky
             lb.ForeColor = Color.Black;
             lb.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, ((Byte)(0)));
             lb.BackColor = Color.Transparent;
-            lb.Location = new Point(10, 20);
+            lb.Location = new Point(30, 15);
             lb.Text = $"for(int {nazev} = {pocatek}; {nazev} <= {konecnaHodnota}; {nazev} += {inkrement})";
-            lb.Width = lb.Text.Length * 8;
-            this.Width = lb.Width + 10;
+            lb.Width = lb.Text.Length * 9;
+            this.Width = lb.Width + 50;
 
             this.Controls.Add(lb);
             this.Location = Block.pracPanel.PointToClient(Cursor.Position);
@@ -63,7 +63,7 @@ namespace Vyvojaky
             {
                 this.BackColor = Color.White;
                 this.Width = 120;
-                this.Height = 50;
+                this.Height = 70;
                 this.Tag = index;
                 this.Image = Resources.cyklus_podminka_zacatek_svetly;
                 this.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -72,9 +72,10 @@ namespace Vyvojaky
                 lb.ForeColor = Color.Black;
                 lb.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, ((Byte)(0)));
                 lb.BackColor = Color.Transparent;
-                lb.Location = new Point(10, 20);
+                lb.Location = new Point(10, 30);
                 lb.Text = $"While{condition}";
-                lb.Width = lb.Text.Length * 8;
+                lb.Width = lb.Text.Length * 10;
+                Debug.WriteLine(condition);   
                 this.Width = lb.Width + 10;
 
                 this.Controls.Add(lb);
@@ -89,7 +90,7 @@ namespace Vyvojaky
             {
                 this.BackColor = Color.White;
                 this.Width = 150;
-                this.Height = 50;
+                this.Height = 70;
                 this.Tag = index;
                 this.Image = Resources.cyklus_podminka_konec_svetly;
                 this.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -100,7 +101,7 @@ namespace Vyvojaky
                 lb.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, ((Byte)(0)));
                 lb.BackColor = Color.Transparent;
                 lb.Text = $"Do-While{condition}";
-                lb.Width = lb.Text.Length * 8;
+                lb.Width = lb.Text.Length * 10;
                 this.Width = lb.Width + 10;
 
                 this.Controls.Add(lb);

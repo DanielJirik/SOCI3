@@ -276,7 +276,7 @@ namespace Vyvojaky
                 cycles.Setup(panelPracovni);
                 if (cycles.CheckFor(nazev, pocatecniHodnota, konecnaHodnota, inkrement))
                 {
-                    cycles.CyclesFor(int.Parse(pocatecniHodnota), int.Parse(konecnaHodnota), int.Parse(inkrement), tbConsole);
+                    cycles.CyclesFor(nazev, int.Parse(pocatecniHodnota), int.Parse(konecnaHodnota), int.Parse(inkrement), tbConsole);
                     cycles.CreationOfCycleFor(nazev, pocatecniHodnota, konecnaHodnota, inkrement);
 
                 }

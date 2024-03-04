@@ -24,7 +24,7 @@ namespace Vyvojaky
 
         public bool CheckFor(string nazev, string pocatek, string konec, string inkrement) 
         {
-            if (Promenne.KontrolaNazvu(nazev) && !nazev.Contains("'") && !nazev.Contains('"') && !int.TryParse(nazev, out int var) && !double.TryParse(nazev, out double var0) && !float.TryParse(nazev, out float var1) && int.TryParse(pocatek, out int var2) && int.TryParse(konec, out int var3) && int.TryParse(inkrement, out int var4)) 
+            if (!nazev.Contains("'") && !nazev.Contains('"') && !int.TryParse(nazev, out int var) && !double.TryParse(nazev, out double var0) && !float.TryParse(nazev, out float var1) && int.TryParse(pocatek, out int var2) && int.TryParse(konec, out int var3) && int.TryParse(inkrement, out int var4)) 
             {
                 return true;
             }
@@ -47,39 +47,45 @@ namespace Vyvojaky
             }
         }
 
-        public void CyclesFor(int pocatek, int konec, int inkrement, TextBox console) 
+        public void CyclesFor(string nazev, int pocatek, int konec, int inkrement, TextBox console) 
         {
-            if (pocatek < konec && inkrement > 0)
-            {   
-                Switches switches = new Switches();
+            if (pocatek < konec && inkrement > 0 && Promenne.FindVar(nazev, "type") == null)
+            {
+                Promenne.Int64V.Add(nazev, pocatek);
                 for (int i = pocatek; i <= konec; i += inkrement)
                 {
-                    //pocitani(Pracovni, console, switches);
-                    MessageBox.Show("Index: " + i);
+                    Promenne.Int64V[nazev] = i;
                 }
+                Promenne.Int64V.Remove(nazev);
             }
-            else if(pocatek < konec && inkrement < 0)
+            else if(pocatek < konec && inkrement < 0 && Promenne.FindVar(nazev, "type") == null)
             {
+                Promenne.Int64V.Add(nazev, pocatek);
                 for (int i = pocatek; i <= konec; i += inkrement)
                 {
-                    MessageBox.Show("Index: " + i);
+                    Promenne.Int64V[nazev] = i;
                     break;
                 }
+                Promenne.Int64V.Remove(nazev);
             }
-            else if (pocatek > konec && inkrement < 0)
+            else if (pocatek > konec && inkrement < 0 && Promenne.FindVar(nazev, "type") == null)
             {
+                Promenne.Int64V.Add(nazev, pocatek);
                 for (int i = pocatek; i >= konec; i += inkrement)
                 {
-                    MessageBox.Show("Index: " + i);
+                    Promenne.Int64V[nazev] = i;
                 }
+                Promenne.Int64V.Remove(nazev);
             }
-            else if (pocatek > konec && inkrement > 0)
+            else if (pocatek > konec && inkrement > 0 && Promenne.FindVar(nazev, "type") == null)
             {
+                Promenne.Int64V.Add(nazev, pocatek);
                 for (int i = pocatek; i >= konec; i += inkrement)
                 {
-                    MessageBox.Show("Index: " + i);
+                    Promenne.Int64V[nazev] = i;
                     break;
                 }
+                Promenne.Int64V.Remove(nazev);
             }
             else
             {
