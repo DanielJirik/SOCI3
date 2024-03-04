@@ -34,10 +34,10 @@ namespace Vyvojaky
             }
         }
 
-        public void Deleted()
+        /*public void Deleted()
         { 
             variables.Clear();
-        }
+        }*/
 
         public void pridavaniTextBoxu(int pocetBoxu, Panel panelSwitch, TextBox vstupPromenna)
         {
@@ -607,6 +607,9 @@ namespace Vyvojaky
             Moznosti.Clear();
             variables.Clear();
             Lably.Clear();
+            Debug.WriteLine(Moznosti.Count);
+            Debug.WriteLine(Lably.Count);
+            Debug.WriteLine(variables.Count);
             panelSwitch.Height = VyskaPaneluPuvodni;
         }
     }
