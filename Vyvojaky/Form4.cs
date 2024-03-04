@@ -23,7 +23,7 @@ namespace Vyvojaky
             InitializeComponent();
             panelInformaci.Show();
             panelSwitch.Hide();
-
+            workMenu.Visible = false;
             Block.pracPanel = panelPracovni;
             SequenceController.Start();
 
@@ -157,10 +157,9 @@ namespace Vyvojaky
 
 
         //right-click
-        bool rozhodnuti = false;
-
         private void panelPracovni_MouseClick(object sender, MouseEventArgs e)
         {
+            bool rozhodnuti = false;
             int positionX = e.Location.X;
             int positionY = e.Location.Y;
             if (e.Button == MouseButtons.Right)
@@ -183,8 +182,10 @@ namespace Vyvojaky
                 rozhodnuti = false;
             }
         }
+
         private void panelPracovni_MouseDown(object sender, MouseEventArgs e)
         {
+            bool rozhodnuti = false;
             int positionX = e.Location.X;
             int positionY = e.Location.Y;
             if (e.Button == MouseButtons.Right)
@@ -205,6 +206,30 @@ namespace Vyvojaky
             {
                 menuPanels.Hide();
                 rozhodnuti = false;
+            }
+        }
+
+        //přepínání mezi pracovní plochou a překladačem c#
+        bool ques = false;
+        private void workMenu_Click(object sender, EventArgs e)
+        {
+            if (ques)
+            {
+                ques = false;
+                panelsToolStripMenuItem.Visible = true;
+                cSharpMenu.Visible = true;
+                workMenu.Visible = false;
+            }
+        }
+
+        private void cSharpMenu_Click(object sender, EventArgs e)
+        {
+            if (!ques)
+            {
+                ques = true;
+                workMenu.Visible = true;
+                panelsToolStripMenuItem.Visible = false;
+                cSharpMenu.Visible = false;
             }
         }
 
