@@ -23,7 +23,6 @@ namespace Vyvojaky
             InitializeComponent();
             panelInformaci.Show();
             panelSwitch.Hide();
-            workMenu.Visible = false;
             Block.pracPanel = panelPracovni;
             SequenceController.Start();
 
@@ -167,6 +166,7 @@ namespace Vyvojaky
                 menuPanels.Location = new Point(positionX, positionY);
                 if (!rozhodnuti && positionX == menuPanels.Location.X && positionY == menuPanels.Location.Y)
                 {
+                    Debug.WriteLine("svitim");
                     menuPanels.Show();
                     rozhodnuti = true;
                 }
@@ -193,6 +193,7 @@ namespace Vyvojaky
                 menuPanels.Location = new Point(positionX, positionY);
                 if (!rozhodnuti && positionX == menuPanels.Location.X && positionY == menuPanels.Location.Y)
                 {
+                    Debug.WriteLine("svitim");
                     menuPanels.Show();
                     rozhodnuti = true;
                 }
@@ -209,28 +210,21 @@ namespace Vyvojaky
             }
         }
 
-        //přepínání mezi pracovní plochou a překladačem c#
-        bool ques = false;
-        private void workMenu_Click(object sender, EventArgs e)
+        //prekladac 
+        private void prekladacTb_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            if (ques)
+            if (e.Button == MouseButtons.Left)
             {
-                ques = false;
-                panelsToolStripMenuItem.Visible = true;
-                cSharpMenu.Visible = true;
-                workMenu.Visible = false;
+                panelPracovni.Visible = true;
             }
-        }
 
+        }
+        //prepinani pracovni plochy a prekladace
         private void cSharpMenu_Click(object sender, EventArgs e)
         {
-            if (!ques)
-            {
-                ques = true;
-                workMenu.Visible = true;
-                panelsToolStripMenuItem.Visible = false;
-                cSharpMenu.Visible = false;
-            }
+            panelPracovni.Visible = false;
+            prekladacTb.Visible = true;
+            menuPanels.Visible = false;
         }
 
         private void menuPanels_Click(object sender, EventArgs e)

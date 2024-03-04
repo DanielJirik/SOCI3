@@ -32,6 +32,7 @@ namespace Vyvojaky
             ListViewGroup listViewGroup2 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
             ListViewGroup listViewGroup3 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
             ListViewGroup listViewGroup4 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
+            prekladacTb = new TextBox();
             panelPracovni = new Panel();
             btRun = new Button();
             panelSwitch = new Panel();
@@ -54,13 +55,23 @@ namespace Vyvojaky
             doWhileToolStripMenuItem = new ToolStripMenuItem();
             processingToolStripMenuItem = new ToolStripMenuItem();
             outputToolStripMenuItem = new ToolStripMenuItem();
-            workMenu = new ToolStripMenuItem();
             cSharpMenu = new ToolStripMenuItem();
             panelPracovni.SuspendLayout();
             panelSwitch.SuspendLayout();
             panelInformaci.SuspendLayout();
             menuPanels.SuspendLayout();
             SuspendLayout();
+            // 
+            // prekladacTb
+            // 
+            prekladacTb.BackColor = Color.FromArgb(68, 84, 103);
+            prekladacTb.Dock = DockStyle.Fill;
+            prekladacTb.Location = new Point(0, 0);
+            prekladacTb.Multiline = true;
+            prekladacTb.Name = "prekladacTb";
+            prekladacTb.Size = new Size(1269, 681);
+            prekladacTb.TabIndex = 10;
+            prekladacTb.MouseDoubleClick += prekladacTb_MouseDoubleClick;
             // 
             // panelPracovni
             // 
@@ -77,20 +88,18 @@ namespace Vyvojaky
             panelPracovni.Location = new Point(0, 0);
             panelPracovni.Name = "panelPracovni";
             panelPracovni.Size = new Size(1269, 681);
-            panelPracovni.TabIndex = 1;
-            panelPracovni.Paint += panelPracovni_Paint;
+            panelPracovni.TabIndex = 11;
             panelPracovni.MouseClick += panelPracovni_MouseClick;
             panelPracovni.MouseDown += panelPracovni_MouseDown;
             // 
             // btRun
             // 
-            btRun.Location = new Point(11, 99);
+            btRun.Location = new Point(11, 130);
             btRun.Name = "btRun";
             btRun.Size = new Size(64, 64);
             btRun.TabIndex = 9;
             btRun.Text = "RUN";
             btRun.UseVisualStyleBackColor = true;
-            btRun.Click += btRun_Click;
             // 
             // panelSwitch
             // 
@@ -102,9 +111,6 @@ namespace Vyvojaky
             panelSwitch.Name = "panelSwitch";
             panelSwitch.Size = new Size(229, 107);
             panelSwitch.TabIndex = 6;
-            panelSwitch.MouseDown += panelSwitch_MouseDown;
-            panelSwitch.MouseMove += panelSwitch_MouseMove;
-            panelSwitch.MouseUp += panelSwitch_MouseUp;
             // 
             // label2
             // 
@@ -122,7 +128,6 @@ namespace Vyvojaky
             tbInputVariable.Name = "tbInputVariable";
             tbInputVariable.Size = new Size(159, 27);
             tbInputVariable.TabIndex = 1;
-            tbInputVariable.KeyDown += tbInputVariable_KeyDown;
             // 
             // label1
             // 
@@ -160,9 +165,6 @@ namespace Vyvojaky
             panelInformaci.Name = "panelInformaci";
             panelInformaci.Size = new Size(264, 157);
             panelInformaci.TabIndex = 2;
-            panelInformaci.MouseDown += panelInformaci_MouseDown;
-            panelInformaci.MouseMove += panelInformaci_MouseMove;
-            panelInformaci.MouseUp += panelInformaci_MouseUp;
             // 
             // tbNajitPromennou
             // 
@@ -207,14 +209,13 @@ namespace Vyvojaky
             // 
             menuPanels.Dock = DockStyle.None;
             menuPanels.ImageScalingSize = new Size(20, 20);
-            menuPanels.Items.AddRange(new ToolStripItem[] { panelsToolStripMenuItem, workMenu, cSharpMenu });
+            menuPanels.Items.AddRange(new ToolStripItem[] { panelsToolStripMenuItem, cSharpMenu });
             menuPanels.Location = new Point(335, 384);
             menuPanels.Name = "menuPanels";
             menuPanels.Padding = new Padding(6, 3, 0, 3);
-            menuPanels.Size = new Size(320, 30);
+            menuPanels.Size = new Size(263, 30);
             menuPanels.TabIndex = 7;
             menuPanels.Text = "menuStrip1";
-            menuPanels.Click += menuPanels_Click;
             // 
             // panelsToolStripMenuItem
             // 
@@ -226,29 +227,26 @@ namespace Vyvojaky
             // variablesToolStripMenuItem
             // 
             variablesToolStripMenuItem.Name = "variablesToolStripMenuItem";
-            variablesToolStripMenuItem.Size = new Size(224, 26);
+            variablesToolStripMenuItem.Size = new Size(163, 26);
             variablesToolStripMenuItem.Text = "Variables";
-            variablesToolStripMenuItem.Click += variablesToolStripMenuItem_Click_1;
             // 
             // conditionsToolStripMenuItem
             // 
             conditionsToolStripMenuItem.Name = "conditionsToolStripMenuItem";
-            conditionsToolStripMenuItem.Size = new Size(224, 26);
+            conditionsToolStripMenuItem.Size = new Size(163, 26);
             conditionsToolStripMenuItem.Text = "Conditions";
-            conditionsToolStripMenuItem.Click += conditionsToolStripMenuItem_Click_1;
             // 
             // switchesToolStripMenuItem
             // 
             switchesToolStripMenuItem.Name = "switchesToolStripMenuItem";
-            switchesToolStripMenuItem.Size = new Size(224, 26);
+            switchesToolStripMenuItem.Size = new Size(163, 26);
             switchesToolStripMenuItem.Text = "Switches";
-            switchesToolStripMenuItem.Click += switchesToolStripMenuItem_Click;
             // 
             // cyclesToolStripMenuItem
             // 
             cyclesToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { forToolStripMenuItem, whileToolStripMenuItem, doWhileToolStripMenuItem });
             cyclesToolStripMenuItem.Name = "cyclesToolStripMenuItem";
-            cyclesToolStripMenuItem.Size = new Size(224, 26);
+            cyclesToolStripMenuItem.Size = new Size(163, 26);
             cyclesToolStripMenuItem.Text = "Cycles";
             // 
             // forToolStripMenuItem
@@ -256,42 +254,30 @@ namespace Vyvojaky
             forToolStripMenuItem.Name = "forToolStripMenuItem";
             forToolStripMenuItem.Size = new Size(159, 26);
             forToolStripMenuItem.Text = "For";
-            forToolStripMenuItem.Click += forToolStripMenuItem_Click;
             // 
             // whileToolStripMenuItem
             // 
             whileToolStripMenuItem.Name = "whileToolStripMenuItem";
             whileToolStripMenuItem.Size = new Size(159, 26);
             whileToolStripMenuItem.Text = "While";
-            whileToolStripMenuItem.Click += whileToolStripMenuItem_Click;
             // 
             // doWhileToolStripMenuItem
             // 
             doWhileToolStripMenuItem.Name = "doWhileToolStripMenuItem";
             doWhileToolStripMenuItem.Size = new Size(159, 26);
             doWhileToolStripMenuItem.Text = "Do...While";
-            doWhileToolStripMenuItem.Click += doWhileToolStripMenuItem_Click;
             // 
             // processingToolStripMenuItem
             // 
             processingToolStripMenuItem.Name = "processingToolStripMenuItem";
-            processingToolStripMenuItem.Size = new Size(224, 26);
+            processingToolStripMenuItem.Size = new Size(163, 26);
             processingToolStripMenuItem.Text = "Processing";
-            processingToolStripMenuItem.Click += processingToolStripMenuItem_Click;
             // 
             // outputToolStripMenuItem
             // 
             outputToolStripMenuItem.Name = "outputToolStripMenuItem";
-            outputToolStripMenuItem.Size = new Size(224, 26);
+            outputToolStripMenuItem.Size = new Size(163, 26);
             outputToolStripMenuItem.Text = "Output";
-            outputToolStripMenuItem.Click += outputToolStripMenuItem_Click;
-            // 
-            // workMenu
-            // 
-            workMenu.Name = "workMenu";
-            workMenu.Size = new Size(57, 24);
-            workMenu.Text = "Work";
-            workMenu.Click += workMenu_Click;
             // 
             // cSharpMenu
             // 
@@ -307,7 +293,7 @@ namespace Vyvojaky
             BackColor = Color.FromArgb(68, 84, 103);
             ClientSize = new Size(1269, 681);
             Controls.Add(panelPracovni);
-            MainMenuStrip = menuPanels;
+            Controls.Add(prekladacTb);
             Name = "formHlavniProTvorbu";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Tvorba";
@@ -322,19 +308,23 @@ namespace Vyvojaky
             menuPanels.ResumeLayout(false);
             menuPanels.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+
+        private TextBox prekladacTb;
         private Panel panelPracovni;
-        private Panel panelInformaci;
-        private TextBox tbConsole;
-        private Label lbVytvorene;
-        private ListView lvPromenne;
-        private TextBox tbNajitPromennou;
+        private Button btRun;
         private Panel panelSwitch;
         private Label label2;
         private TextBox tbInputVariable;
         private Label label1;
+        private TextBox tbConsole;
+        private Panel panelInformaci;
+        private TextBox tbNajitPromennou;
+        private Label lbVytvorene;
+        private ListView lvPromenne;
         private MenuStrip menuPanels;
         private ToolStripMenuItem panelsToolStripMenuItem;
         private ToolStripMenuItem variablesToolStripMenuItem;
@@ -345,9 +335,7 @@ namespace Vyvojaky
         private ToolStripMenuItem whileToolStripMenuItem;
         private ToolStripMenuItem doWhileToolStripMenuItem;
         private ToolStripMenuItem processingToolStripMenuItem;
-        private Button btRun;
         private ToolStripMenuItem outputToolStripMenuItem;
-        private ToolStripMenuItem workMenu;
         private ToolStripMenuItem cSharpMenu;
     }
 }
