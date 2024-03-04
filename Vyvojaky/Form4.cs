@@ -35,6 +35,8 @@ namespace Vyvojaky
             t.Interval = 20;
             t.Enabled = true;
             t.Tick += new EventHandler(TimerTick);
+
+            this.KeyPreview = true;
         }
 
         SequenceController sController = new SequenceController();
@@ -409,6 +411,12 @@ namespace Vyvojaky
             string input = Interaction.InputBox("Zadejte výraz, který chcete vytisknout\r\nPříklady: \"ahoj\"; existující proměnná: a", "Output");
             Block.BlockOutput(input);
             //output.Processing(input, true);
+        }
+
+        private void formHlavniProTvorbu_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (Block.markedBlock != null && e.KeyCode == Keys.Delete)
+                Block.DeleteBlock(Block.markedBlock);
         }
     }
 }

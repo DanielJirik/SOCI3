@@ -1,13 +1,4 @@
-﻿using Microsoft.VisualBasic.Devices;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Vyvojaky
+﻿namespace Vyvojaky
 {
     internal class Block
     {
@@ -32,6 +23,42 @@ namespace Vyvojaky
             indexes.Add(index, type);
 
             return index;
+        }
+
+        //Delete block
+        public static IBlock markedBlock;
+        public static void DeleteBlock(IBlock block)
+        {
+            if (block.type == Block.Type.Var)
+            {
+                string key = ((BlockVar)block).accessValue[0];
+                if (Promenne.Int16V.ContainsKey(key))
+                    Promenne.Int16V.Remove(key);
+                if (Promenne.Int32V.ContainsKey(key))
+                    Promenne.Int32V.Remove(key);
+                if (Promenne.Int64V.ContainsKey(key))
+                    Promenne.Int64V.Remove(key);
+                if (Promenne.FloatV.ContainsKey(key))
+                    Promenne.FloatV.Remove(key);
+                if (Promenne.DoubleV.ContainsKey(key))
+                    Promenne.DoubleV.Remove(key);
+                if (Promenne.BoolV.ContainsKey(key))
+                    Promenne.BoolV.Remove(key);
+                if (Promenne.StringV.ContainsKey(key))
+                    Promenne.StringV.Remove(key);
+                if (Promenne.CharV.ContainsKey(key))
+                    Promenne.CharV.Remove(key);
+
+                Promenne.usedNames.Remove(key);
+            }            
+
+            //Dispose
+            ((PictureBox)block).Dispose();
+
+            //Remove from drawPoints
+            drawPoints.Remove((PictureBox)block);
+            var item = drawPoints.First(kvp => kvp.Value == (PictureBox)block);
+            drawPoints.Remove(item.Key);
         }
 
         //Block instances
@@ -128,6 +155,7 @@ namespace Vyvojaky
 
         public static void OnMouseClick(object sender, MouseEventArgs e)
         {
+            //Joint control
             PictureBox block = (PictureBox)sender;
             if (e.Button == MouseButtons.Right && !swap)
             {
@@ -139,6 +167,10 @@ namespace Vyvojaky
                 SwapIndex(Convert.ToInt32(block.Tag), sender);
                 swap = false;
             }
+
+            //Block marking
+            if (e.Button == MouseButtons.Left)
+                markedBlock = (IBlock)sender;
         }
 
         public static void ResetJoint(int tag)
