@@ -21,12 +21,10 @@ namespace Vyvojaky
         public formHlavniProTvorbu()
         {
             InitializeComponent();
-            panelInformaci.Show();
             panelSwitch.Hide();
             Block.pracPanel = panelPracovni;
             SequenceController.Start();
 
-            lvPromenne.HideSelection = false;
             switches.VyskaPaneluPuvodni = panelSwitch.Height;
             MainIsOpen = true;
             menuPanels.Hide();
@@ -48,15 +46,7 @@ namespace Vyvojaky
         }
 
         ////Přepínání mezi panely
-        private void itemVars_Click(object sender, EventArgs e)
-        {
-            panelInformaci.Show();
-        }
-
-        private void itemIfs_Click(object sender, EventArgs e)
-        {
-            panelInformaci.Hide();
-        }
+        
 
         //Objekt pro manipulaci se vsemi promennymi
         Promenne promenne = new Promenne();
@@ -96,29 +86,6 @@ namespace Vyvojaky
         //pohyb panelů na pracovní ploše
         private bool dragging;
         private int xPos, yPos;
-        private void panelInformaci_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (dragging)
-            {
-                this.panelInformaci.Top = e.Y + this.panelInformaci.Top - yPos;
-                this.panelInformaci.Left = e.X + this.panelInformaci.Left - xPos;
-            }
-        }
-
-        private void panelInformaci_MouseUp(object sender, MouseEventArgs e)
-        {
-            dragging = false;
-        }
-
-        private void panelInformaci_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-            {
-                dragging = true;
-                xPos = e.X;
-                yPos = e.Y;
-            }
-        }
 
         private void panelSwitch_MouseDown(object sender, MouseEventArgs e)
         {
@@ -241,7 +208,6 @@ namespace Vyvojaky
 
             Block.BlockVar(values[0], values[1], prikaz);
 
-            panelInformaci.Show();
             panelSwitch.Hide();
         }
 
@@ -251,7 +217,6 @@ namespace Vyvojaky
             if (prikaz != "")
                 Block.BlockCon(prikaz);
 
-            panelInformaci.Hide();
             panelSwitch.Hide();
         }
 
@@ -269,7 +234,6 @@ namespace Vyvojaky
                     {
                         switches.pridavaniTextBoxu(pocet, panelSwitch, tbInputVariable);
                         panelSwitch.Show();
-                        panelInformaci.Hide();
                     }
                     else
                     {
@@ -281,7 +245,6 @@ namespace Vyvojaky
             {
                 MessageBox.Show("Error: " + ex);
                 panelSwitch.Hide();
-                panelInformaci.Hide();
             }
         }
 

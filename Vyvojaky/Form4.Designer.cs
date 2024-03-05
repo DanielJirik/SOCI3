@@ -28,10 +28,6 @@ namespace Vyvojaky
         /// </summary>
         private void InitializeComponent()
         {
-            ListViewGroup listViewGroup9 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
-            ListViewGroup listViewGroup10 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
-            ListViewGroup listViewGroup11 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
-            ListViewGroup listViewGroup12 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
             prekladacTb = new TextBox();
             panelPracovni = new Panel();
             btRun = new Button();
@@ -40,10 +36,6 @@ namespace Vyvojaky
             tbInputVariable = new TextBox();
             label1 = new Label();
             tbConsole = new TextBox();
-            panelInformaci = new Panel();
-            tbNajitPromennou = new TextBox();
-            lbVytvorene = new Label();
-            lvPromenne = new ListView();
             menuPanels = new MenuStrip();
             panelsToolStripMenuItem = new ToolStripMenuItem();
             variablesToolStripMenuItem = new ToolStripMenuItem();
@@ -58,7 +50,6 @@ namespace Vyvojaky
             cSharpMenu = new ToolStripMenuItem();
             panelPracovni.SuspendLayout();
             panelSwitch.SuspendLayout();
-            panelInformaci.SuspendLayout();
             menuPanels.SuspendLayout();
             SuspendLayout();
             // 
@@ -82,7 +73,6 @@ namespace Vyvojaky
             panelPracovni.Controls.Add(btRun);
             panelPracovni.Controls.Add(panelSwitch);
             panelPracovni.Controls.Add(tbConsole);
-            panelPracovni.Controls.Add(panelInformaci);
             panelPracovni.Controls.Add(menuPanels);
             panelPracovni.Dock = DockStyle.Fill;
             panelPracovni.Location = new Point(0, 0);
@@ -109,7 +99,7 @@ namespace Vyvojaky
             panelSwitch.Controls.Add(label2);
             panelSwitch.Controls.Add(tbInputVariable);
             panelSwitch.Controls.Add(label1);
-            panelSwitch.Location = new Point(613, 17);
+            panelSwitch.Location = new Point(325, 17);
             panelSwitch.Name = "panelSwitch";
             panelSwitch.Size = new Size(229, 107);
             panelSwitch.TabIndex = 6;
@@ -159,57 +149,6 @@ namespace Vyvojaky
             tbConsole.TabIndex = 0;
             tbConsole.TabStop = false;
             tbConsole.Text = ">";
-            // 
-            // panelInformaci
-            // 
-            panelInformaci.BackColor = Color.FromArgb(43, 54, 82);
-            panelInformaci.Controls.Add(tbNajitPromennou);
-            panelInformaci.Controls.Add(lbVytvorene);
-            panelInformaci.Controls.Add(lvPromenne);
-            panelInformaci.Location = new Point(309, 17);
-            panelInformaci.Margin = new Padding(3, 4, 3, 4);
-            panelInformaci.Name = "panelInformaci";
-            panelInformaci.Size = new Size(264, 157);
-            panelInformaci.TabIndex = 2;
-            // 
-            // tbNajitPromennou
-            // 
-            tbNajitPromennou.Location = new Point(3, 36);
-            tbNajitPromennou.Margin = new Padding(3, 4, 3, 4);
-            tbNajitPromennou.Name = "tbNajitPromennou";
-            tbNajitPromennou.Size = new Size(197, 27);
-            tbNajitPromennou.TabIndex = 13;
-            // 
-            // lbVytvorene
-            // 
-            lbVytvorene.AutoSize = true;
-            lbVytvorene.ForeColor = Color.White;
-            lbVytvorene.Location = new Point(3, 12);
-            lbVytvorene.Name = "lbVytvorene";
-            lbVytvorene.Size = new Size(147, 20);
-            lbVytvorene.TabIndex = 12;
-            lbVytvorene.Text = "Vytvořené proměnné";
-            // 
-            // lvPromenne
-            // 
-            lvPromenne.BorderStyle = BorderStyle.FixedSingle;
-            lvPromenne.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            listViewGroup9.Header = "ListViewGroup";
-            listViewGroup9.Name = "test";
-            listViewGroup10.Header = "ListViewGroup";
-            listViewGroup10.Name = "test1";
-            listViewGroup11.Header = "ListViewGroup";
-            listViewGroup11.Name = "test2";
-            listViewGroup12.Header = "ListViewGroup";
-            listViewGroup12.Name = "test3";
-            lvPromenne.Groups.AddRange(new ListViewGroup[] { listViewGroup9, listViewGroup10, listViewGroup11, listViewGroup12 });
-            lvPromenne.Location = new Point(3, 71);
-            lvPromenne.Margin = new Padding(3, 4, 3, 4);
-            lvPromenne.Name = "lvPromenne";
-            lvPromenne.Size = new Size(253, 74);
-            lvPromenne.TabIndex = 11;
-            lvPromenne.UseCompatibleStateImageBehavior = false;
-            lvPromenne.View = View.List;
             // 
             // menuPanels
             // 
@@ -317,8 +256,6 @@ namespace Vyvojaky
             panelPracovni.PerformLayout();
             panelSwitch.ResumeLayout(false);
             panelSwitch.PerformLayout();
-            panelInformaci.ResumeLayout(false);
-            panelInformaci.PerformLayout();
             menuPanels.ResumeLayout(false);
             menuPanels.PerformLayout();
             ResumeLayout(false);
@@ -335,10 +272,6 @@ namespace Vyvojaky
         private TextBox tbInputVariable;
         private Label label1;
         private TextBox tbConsole;
-        private Panel panelInformaci;
-        private TextBox tbNajitPromennou;
-        private Label lbVytvorene;
-        private ListView lvPromenne;
         private MenuStrip menuPanels;
         private ToolStripMenuItem panelsToolStripMenuItem;
         private ToolStripMenuItem variablesToolStripMenuItem;
