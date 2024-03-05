@@ -120,7 +120,6 @@ namespace Vyvojaky
             }
         }
 
-
         private void panelSwitch_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -220,11 +219,14 @@ namespace Vyvojaky
 
         }
         //prepinani pracovni plochy a prekladace
-        private void cSharpMenu_Click(object sender, EventArgs e)
+        private async void cSharpMenu_Click(object sender, EventArgs e)
         {
             panelPracovni.Visible = false;
             prekladacTb.Visible = true;
             menuPanels.Visible = false;
+            MessageBox.Show("start pauzy");
+            await Task.Delay(4000);
+            MessageBox.Show("konec pauzy");
         }
 
         private void menuPanels_Click(object sender, EventArgs e)
@@ -232,8 +234,7 @@ namespace Vyvojaky
             menuPanels.Hide();
         }
 
-
-        private void variablesToolStripMenuItem_Click_1(object sender, EventArgs e)
+        private void variablesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string prikaz = Interaction.InputBox("Zadejte proměnnou: \r\n\r\nPříklady: a = 5, b = 3.14, jmeno = Aneta ", "Variables");
             string[] values = Promenne.ArtificialVarValues(prikaz);
@@ -244,7 +245,7 @@ namespace Vyvojaky
             panelSwitch.Hide();
         }
 
-        private void conditionsToolStripMenuItem_Click_1(object sender, EventArgs e)
+        private void conditionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string prikaz = Interaction.InputBox("Zadejte podmínku: \r\n\r\n Příklady: a > b", "Conditions");
             if (prikaz != "")
@@ -357,6 +358,13 @@ namespace Vyvojaky
             //Process.Processing(input);
         }
 
+        private void outputToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string input = Interaction.InputBox("Zadejte výraz, který chcete vytisknout\r\nPříklady: \"ahoj\"; existující proměnná: a", "Output");
+            Block.BlockOutput(input);
+            //output.Processing(input, true);
+        }
+
         //Spustí simulaci
         private void btRun_Click(object sender, EventArgs e)
         {
@@ -424,17 +432,13 @@ namespace Vyvojaky
             Promenne.usedNames.Clear();
         }
 
-        private void outputToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            string input = Interaction.InputBox("Zadejte výraz, který chcete vytisknout\r\nPříklady: \"ahoj\"; existující proměnná: a", "Output");
-            Block.BlockOutput(input);
-            //output.Processing(input, true);
-        }
 
         private void formHlavniProTvorbu_KeyDown(object sender, KeyEventArgs e)
         {
             if (Block.markedBlock != null && e.KeyCode == Keys.Delete)
                 Block.DeleteBlock(Block.markedBlock);
         }
+
+
     }
 }

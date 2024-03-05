@@ -28,10 +28,10 @@ namespace Vyvojaky
         /// </summary>
         private void InitializeComponent()
         {
-            ListViewGroup listViewGroup1 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
-            ListViewGroup listViewGroup2 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
-            ListViewGroup listViewGroup3 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
-            ListViewGroup listViewGroup4 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
+            ListViewGroup listViewGroup9 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
+            ListViewGroup listViewGroup10 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
+            ListViewGroup listViewGroup11 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
+            ListViewGroup listViewGroup12 = new ListViewGroup("ListViewGroup", HorizontalAlignment.Left);
             prekladacTb = new TextBox();
             panelPracovni = new Panel();
             btRun = new Button();
@@ -89,6 +89,7 @@ namespace Vyvojaky
             panelPracovni.Name = "panelPracovni";
             panelPracovni.Size = new Size(1269, 681);
             panelPracovni.TabIndex = 11;
+            panelPracovni.Paint += panelPracovni_Paint;
             panelPracovni.MouseClick += panelPracovni_MouseClick;
             panelPracovni.MouseDown += panelPracovni_MouseDown;
             // 
@@ -100,6 +101,7 @@ namespace Vyvojaky
             btRun.TabIndex = 9;
             btRun.Text = "RUN";
             btRun.UseVisualStyleBackColor = true;
+            btRun.Click += btRun_Click;
             // 
             // panelSwitch
             // 
@@ -111,6 +113,9 @@ namespace Vyvojaky
             panelSwitch.Name = "panelSwitch";
             panelSwitch.Size = new Size(229, 107);
             panelSwitch.TabIndex = 6;
+            panelSwitch.MouseDown += panelSwitch_MouseDown;
+            panelSwitch.MouseMove += panelSwitch_MouseMove;
+            panelSwitch.MouseUp += panelSwitch_MouseUp;
             // 
             // label2
             // 
@@ -128,6 +133,7 @@ namespace Vyvojaky
             tbInputVariable.Name = "tbInputVariable";
             tbInputVariable.Size = new Size(159, 27);
             tbInputVariable.TabIndex = 1;
+            tbInputVariable.KeyDown += tbInputVariable_KeyDown;
             // 
             // label1
             // 
@@ -188,15 +194,15 @@ namespace Vyvojaky
             // 
             lvPromenne.BorderStyle = BorderStyle.FixedSingle;
             lvPromenne.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            listViewGroup1.Header = "ListViewGroup";
-            listViewGroup1.Name = "test";
-            listViewGroup2.Header = "ListViewGroup";
-            listViewGroup2.Name = "test1";
-            listViewGroup3.Header = "ListViewGroup";
-            listViewGroup3.Name = "test2";
-            listViewGroup4.Header = "ListViewGroup";
-            listViewGroup4.Name = "test3";
-            lvPromenne.Groups.AddRange(new ListViewGroup[] { listViewGroup1, listViewGroup2, listViewGroup3, listViewGroup4 });
+            listViewGroup9.Header = "ListViewGroup";
+            listViewGroup9.Name = "test";
+            listViewGroup10.Header = "ListViewGroup";
+            listViewGroup10.Name = "test1";
+            listViewGroup11.Header = "ListViewGroup";
+            listViewGroup11.Name = "test2";
+            listViewGroup12.Header = "ListViewGroup";
+            listViewGroup12.Name = "test3";
+            lvPromenne.Groups.AddRange(new ListViewGroup[] { listViewGroup9, listViewGroup10, listViewGroup11, listViewGroup12 });
             lvPromenne.Location = new Point(3, 71);
             lvPromenne.Margin = new Padding(3, 4, 3, 4);
             lvPromenne.Name = "lvPromenne";
@@ -213,7 +219,7 @@ namespace Vyvojaky
             menuPanels.Location = new Point(335, 384);
             menuPanels.Name = "menuPanels";
             menuPanels.Padding = new Padding(6, 3, 0, 3);
-            menuPanels.Size = new Size(263, 30);
+            menuPanels.Size = new Size(113, 30);
             menuPanels.TabIndex = 7;
             menuPanels.Text = "menuStrip1";
             // 
@@ -229,18 +235,21 @@ namespace Vyvojaky
             variablesToolStripMenuItem.Name = "variablesToolStripMenuItem";
             variablesToolStripMenuItem.Size = new Size(163, 26);
             variablesToolStripMenuItem.Text = "Variables";
+            variablesToolStripMenuItem.Click += variablesToolStripMenuItem_Click;
             // 
             // conditionsToolStripMenuItem
             // 
             conditionsToolStripMenuItem.Name = "conditionsToolStripMenuItem";
             conditionsToolStripMenuItem.Size = new Size(163, 26);
             conditionsToolStripMenuItem.Text = "Conditions";
+            conditionsToolStripMenuItem.Click += conditionsToolStripMenuItem_Click;
             // 
             // switchesToolStripMenuItem
             // 
             switchesToolStripMenuItem.Name = "switchesToolStripMenuItem";
             switchesToolStripMenuItem.Size = new Size(163, 26);
             switchesToolStripMenuItem.Text = "Switches";
+            switchesToolStripMenuItem.Click += switchesToolStripMenuItem_Click;
             // 
             // cyclesToolStripMenuItem
             // 
@@ -254,30 +263,35 @@ namespace Vyvojaky
             forToolStripMenuItem.Name = "forToolStripMenuItem";
             forToolStripMenuItem.Size = new Size(159, 26);
             forToolStripMenuItem.Text = "For";
+            forToolStripMenuItem.Click += forToolStripMenuItem_Click;
             // 
             // whileToolStripMenuItem
             // 
             whileToolStripMenuItem.Name = "whileToolStripMenuItem";
             whileToolStripMenuItem.Size = new Size(159, 26);
             whileToolStripMenuItem.Text = "While";
+            whileToolStripMenuItem.Click += whileToolStripMenuItem_Click;
             // 
             // doWhileToolStripMenuItem
             // 
             doWhileToolStripMenuItem.Name = "doWhileToolStripMenuItem";
             doWhileToolStripMenuItem.Size = new Size(159, 26);
             doWhileToolStripMenuItem.Text = "Do...While";
+            doWhileToolStripMenuItem.Click += doWhileToolStripMenuItem_Click;
             // 
             // processingToolStripMenuItem
             // 
             processingToolStripMenuItem.Name = "processingToolStripMenuItem";
             processingToolStripMenuItem.Size = new Size(163, 26);
             processingToolStripMenuItem.Text = "Processing";
+            processingToolStripMenuItem.Click += processingToolStripMenuItem_Click;
             // 
             // outputToolStripMenuItem
             // 
             outputToolStripMenuItem.Name = "outputToolStripMenuItem";
             outputToolStripMenuItem.Size = new Size(163, 26);
             outputToolStripMenuItem.Text = "Output";
+            outputToolStripMenuItem.Click += outputToolStripMenuItem_Click;
             // 
             // cSharpMenu
             // 
