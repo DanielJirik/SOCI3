@@ -10,7 +10,7 @@ namespace Vyvojaky
 {
     internal class BlockOutput : PictureBox, IBlock
     {
-        Label lb;
+        public Label lb;
         public static int index;
 
         //Interface properties

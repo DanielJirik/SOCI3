@@ -89,6 +89,10 @@ namespace Vyvojaky
             //bool proměnná pro případy, že nenajde cílenou proměnnou nebo se stane i jiná chyba
             bool check = false;
 
+            for (int i = 0; i < Moznosti.Count; i++)
+            {
+                variables.Add(Moznosti[i].Text.ToString());
+            }
 
             string typVstupu = Promenne.FindVar(inputVar.Trim(), "type");
             if (typVstupu != null)
@@ -98,7 +102,7 @@ namespace Vyvojaky
                     vstupInt = int.Parse(Promenne.FindVar(inputVar.Trim(), "value"));
                     for (int i = 0; i < variables.Count; i++)
                     {
-                        if (int.TryParse(variables[i], out moznostInt) || "Int16" == Promenne.FindVar(variables[i].Trim(), "type") || "Int32" == Promenne.FindVar(variables[i].Trim(), "type") || "Int64" == Promenne.FindVar(variables[i].Trim(), "type"))
+                        if (int.TryParse(variables[i].Trim(), out moznostInt) || "Int16" == Promenne.FindVar(variables[i].Trim(), "type") || "Int32" == Promenne.FindVar(variables[i].Trim(), "type") || "Int64" == Promenne.FindVar(variables[i].Trim(), "type"))
                             check = false;
                         else
                             check = true;

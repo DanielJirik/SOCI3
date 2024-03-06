@@ -18,6 +18,7 @@ namespace Vyvojaky
         public int? joint { get; set; }
         public Block.Type type { get; set; }
         public string name;
+        public Label lb;
 
         public BlockCycles(string nazev, string pocatek, string konecnaHodnota, string inkrement) 
         {
@@ -34,7 +35,7 @@ namespace Vyvojaky
             this.SizeMode = PictureBoxSizeMode.StretchImage;
             this.BackColor = Block.pracPanel.BackColor;
             
-            Label lb = new Label();
+            lb = new Label();
             lb.ForeColor = Color.Black;
             lb.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, ((Byte)(0)));
             lb.BackColor = Color.Transparent;
@@ -70,7 +71,7 @@ namespace Vyvojaky
                 this.Image = Resources.cyklus_podminka_zacatek_svetly;
                 this.SizeMode = PictureBoxSizeMode.StretchImage;
                 this.BackColor = Block.pracPanel.BackColor;
-                Label lb = new Label();
+                lb = new Label();
                 lb.ForeColor = Color.Black;
                 lb.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, ((Byte)(0)));
                 lb.BackColor = Color.Transparent;
@@ -98,7 +99,7 @@ namespace Vyvojaky
                 this.Image = Resources.cyklus_podminka_konec_svetly;
                 this.SizeMode = PictureBoxSizeMode.StretchImage;
                 this.BackColor = Block.pracPanel.BackColor;
-                Label lb = new Label();
+                lb = new Label();
                 lb.ForeColor = Color.Black;
                 lb.Location = new Point(10, 20);
                 lb.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, ((Byte)(0)));

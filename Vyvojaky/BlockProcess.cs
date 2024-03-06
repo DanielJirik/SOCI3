@@ -11,7 +11,7 @@ namespace Vyvojaky
     internal class BlockProcess : PictureBox, IBlock
     {
         public int index;
-        Label lb;
+        public Label lb;
 
         //Interface properties
         public string command { get; set; }
