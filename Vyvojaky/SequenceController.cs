@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -42,6 +43,136 @@ namespace Vyvojaky
                 }
                     blocksSorted.Add(nextIndex);                    
             }            
+        }
+
+        //Run a part of the sequence (parameters as block indexes)
+        public void PartSequence(int startIndex, int endIndex)
+        {
+            //Sort block indexes
+            InstructionOrder(Block.pracPanel);
+
+            //Border indexes
+            startIndex = blocksSorted.IndexOf(startIndex);
+            endIndex = blocksSorted.IndexOf(endIndex);
+
+            string prikaz = "";
+            Block.Type type = Block.Type.Start;
+            int iter = startIndex;
+
+            foreach (Control var in Block.pracPanel.Controls)
+            {
+                //In case of non-matching tag or if the tag is null, skips an iteration
+                if (var.Tag != null)
+                {
+                    if (var.Tag.ToString() != blocksSorted[iter].ToString())
+                        continue;
+                }
+                else
+                    continue;
+
+                //Division
+                if (var is BlockVar)
+                {
+                    prikaz = ((BlockVar)var).command;
+                    type = Block.Type.Var;
+                }
+                else if (var is BlockCon)
+                {
+                    prikaz = ((BlockCon)var).command;
+                    type = Block.Type.Con;
+                    if (Podminky.isTrue(prikaz))
+                        var.BackColor = Color.Green;
+                    else
+                        var.BackColor = Color.Red;
+                }
+                else if (var is BlockProcess)
+                {
+                    prikaz = ((BlockProcess)var).command;
+                    type = Block.Type.Process;
+                }
+                else if (var is BlockOutput)
+                {
+                    prikaz = ((BlockOutput)var).command;
+                    type = Block.Type.Output;
+                }
+
+                //Perform an instruction
+                IstructionPerformance(prikaz, type);
+
+                //Check if end
+                if (iter == endIndex)
+                    break;
+
+                //Incrementing num if iterations
+                iter++;                
+            }
+        }
+
+        //Run the whole sequence
+        public void RunSequence()
+        {
+            //Sort block indexes
+            InstructionOrder(Block.pracPanel);
+
+            string prikaz = "";
+            Block.Type type = Block.Type.Start;
+            int iter = 0;
+
+            foreach (Control var in Block.pracPanel.Controls)
+            {
+                //In case of non-matching tag or if the tag is null, skips an iteration
+                if (var.Tag != null)
+                {
+                    if (var.Tag.ToString() != blocksSorted[iter].ToString())
+                        continue;
+                }
+                else
+                    continue;
+
+                //Division
+                if (var is BlockVar)
+                {
+                    prikaz = ((BlockVar)var).command;
+                    type = Block.Type.Var;
+                }
+                else if (var is BlockCon)
+                {
+                    prikaz = ((BlockCon)var).command;
+                    type = Block.Type.Con;
+                    if (Podminky.isTrue(prikaz))
+                        var.BackColor = Color.Green;
+                    else
+                        var.BackColor = Color.Red;
+                }
+                else if (var is BlockProcess)
+                {
+                    prikaz = ((BlockProcess)var).command;
+                    type = Block.Type.Process;
+                }
+                else if (var is BlockOutput)
+                {
+                    prikaz = ((BlockOutput)var).command;
+                    type = Block.Type.Output;
+                }
+
+                //Perform an instruction
+                IstructionPerformance(prikaz, type);
+
+                //Incrementing num if iterations
+                iter++;
+            }
+
+            //Memory clear at the end
+            Promenne.Int16V.Clear();
+            Promenne.Int32V.Clear();
+            Promenne.Int64V.Clear();
+            Promenne.FloatV.Clear();
+            Promenne.DoubleV.Clear();
+            Promenne.BoolV.Clear();
+            Promenne.StringV.Clear();
+            Promenne.CharV.Clear();
+
+            Promenne.usedNames.Clear();
         }
 
         public void IstructionPerformance(string prikaz, Block.Type type)
