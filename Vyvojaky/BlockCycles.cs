@@ -45,22 +45,19 @@ namespace Vyvojaky
             this.Width = lb.Width + 50;
 
             this.Controls.Add(lb);
-            this.Location = Block.pracPanel.PointToClient(Cursor.Position);
-            
-            this.MouseClick += new MouseEventHandler(Block.OnMouseClick);
-            this.MouseDown += new MouseEventHandler(Block.OnMouseDown);
-            this.MouseUp += new MouseEventHandler(Block.OnMouseUp);
-            this.MouseMove += new MouseEventHandler(Block.OnMouseMove);
-
-            //Disable label on hover
-            this.MouseEnter += new EventHandler(Block.DisableControl);
-            this.MouseLeave += new EventHandler(Block.EnableControl);
+            CommonElement();
 
             Block.pracPanel.Controls.Add(this);
         }
         
         public BlockCycles(string condition, string type)
         {
+            //Set interface property
+            this.type = Block.Type.Cycle;
+            //Indexace
+            index = Block.BlockIndex(this.type);
+            this.Tag = index;
+
             if (type == "While")
             {
                 name = "While";
@@ -82,10 +79,7 @@ namespace Vyvojaky
                 this.Width = lb.Width + 10;
 
                 this.Controls.Add(lb);
-                this.Location = new Point(Random.Shared.Next(0, Block.pracPanel.Width - this.Width), Random.Shared.Next(0, Block.pracPanel.Height - this.Height));
-                this.MouseDown += new MouseEventHandler(Block.OnMouseDown);
-                this.MouseUp += new MouseEventHandler(Block.OnMouseUp);
-                this.MouseMove += new MouseEventHandler(Block.OnMouseMove);
+                CommonElement();
 
                 Block.pracPanel.Controls.Add(this);
             }
@@ -109,15 +103,24 @@ namespace Vyvojaky
                 this.Width = lb.Width + 10;
 
                 this.Controls.Add(lb);
-                this.Location = new Point(Random.Shared.Next(0, Block.pracPanel.Width - this.Width), Random.Shared.Next(0, Block.pracPanel.Height - this.Height));
-                this.MouseDown += new MouseEventHandler(Block.OnMouseDown);
-                this.MouseUp += new MouseEventHandler(Block.OnMouseUp);
-                this.MouseMove += new MouseEventHandler(Block.OnMouseMove);
+                CommonElement();
 
                 Block.pracPanel.Controls.Add(this);
             }
         }
 
+        private void CommonElement()
+        { 
+            this.Location = Block.pracPanel.PointToClient(Cursor.Position);
+                this.MouseClick += new MouseEventHandler(Block.OnMouseClick);
+                this.MouseDown += new MouseEventHandler(Block.OnMouseDown);
+                this.MouseUp += new MouseEventHandler(Block.OnMouseUp);
+                this.MouseMove += new MouseEventHandler(Block.OnMouseMove);
+
+                //Disable label on hover
+                this.MouseEnter += new EventHandler(Block.DisableControl);
+                this.MouseLeave += new EventHandler(Block.EnableControl);
+        }
         
     }
 }

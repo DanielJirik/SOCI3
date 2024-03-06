@@ -27,8 +27,9 @@ namespace Vyvojaky
             Start
         }
 
-        public void ImagesForBlocks(Panel panel, List<int> orders, bool change) 
+        public static void ImagesForBlocks(Panel panel, List<int> orders, bool change) 
         {
+            //SequenceController.blocksSorted;
             int index = 0;
             if (change)
             {
@@ -150,7 +151,7 @@ namespace Vyvojaky
             }
         }
 
-        public void Steps(Control block, bool next)
+        public static void Steps(Control block, bool next)
         {
             if (next)
             {

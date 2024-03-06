@@ -15,7 +15,7 @@ namespace Vyvojaky
         }
 
         //Sorted blocks list
-        public List<int> blocksSorted = new List<int>();
+        public static List<int> blocksSorted = new List<int>();
 
         //Seřazení blocků
         public void InstructionOrder(Panel mainPanel)
@@ -54,7 +54,7 @@ namespace Vyvojaky
             //Border indexes
             startIndex = blocksSorted.IndexOf(startIndex);
             endIndex = blocksSorted.IndexOf(endIndex);
-
+            
             string prikaz = "";
             Block.Type type = Block.Type.Start;
             int iter = startIndex;
@@ -98,7 +98,7 @@ namespace Vyvojaky
 
                 //Perform an instruction
                 IstructionPerformance(prikaz, type);
-
+                
                 //Check if end
                 if (iter == endIndex)
                     break;
@@ -109,7 +109,7 @@ namespace Vyvojaky
         }
 
         //Run the whole sequence
-        public void RunSequence()
+        public async void RunSequence()
         {
             //Sort block indexes
             InstructionOrder(Block.pracPanel);
@@ -118,6 +118,8 @@ namespace Vyvojaky
             Block.Type type = Block.Type.Start;
             int iter = 0;
 
+            //Animace - přepnutí na tmavý režim
+            Animation.ImagesForBlocks(Block.pracPanel, blocksSorted, true);
             foreach (Control var in Block.pracPanel.Controls)
             {
                 //In case of non-matching tag or if the tag is null, skips an iteration
@@ -129,6 +131,9 @@ namespace Vyvojaky
                 else
                     continue;
 
+                //Změna barvy textu v momentě, kdy běží sekvence + čekání vteřinu
+                Animation.Steps(var, true);
+                await Task.Delay(1000);
                 //Division
                 if (var is BlockVar)
                 {
@@ -157,11 +162,15 @@ namespace Vyvojaky
 
                 //Perform an instruction
                 IstructionPerformance(prikaz, type);
+                //Změna barvy do původní podoby + pauza na půl vteřiny
+                Animation.Steps(var, false);
+                await Task.Delay(500);
 
                 //Incrementing num if iterations
                 iter++;
             }
-
+            //vrátí obrázky do světlé podoby
+            Animation.ImagesForBlocks(Block.pracPanel, blocksSorted, false);
             //Memory clear at the end
             Promenne.Int16V.Clear();
             Promenne.Int32V.Clear();
