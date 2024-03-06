@@ -331,7 +331,7 @@ namespace Vyvojaky
         }
 
         //Spustí simulaci
-        private async void btRun_Click(object sender, EventArgs e)
+        private void btRun_Click(object sender, EventArgs e)
         {
             //Sort block indexes
             sController.InstructionOrder(panelPracovni);
@@ -339,7 +339,7 @@ namespace Vyvojaky
             string prikaz = "";
             Block.Type type = Block.Type.Start;
             int iter = 0;
-            animation.ImagesForBlocks(panelPracovni, sController.blocksSorted, true);
+
             foreach (Control var in panelPracovni.Controls)
             {
                 //In case of non-matching tag or if the tag is null, skips an iteration
@@ -356,13 +356,11 @@ namespace Vyvojaky
                 {
                     prikaz = ((BlockVar)var).command;
                     type = Block.Type.Var;
-                    animation.Steps(var, true);
                 }
                 else if (var is BlockCon)
                 {
                     prikaz = ((BlockCon)var).command;
                     type = Block.Type.Con;
-                    animation.Steps(var, true);
                     if (Podminky.isTrue(prikaz))
                         var.BackColor = Color.Green;
                     else
@@ -372,25 +370,20 @@ namespace Vyvojaky
                 {
                     prikaz = ((BlockProcess)var).command;
                     type = Block.Type.Process;
-                    animation.Steps(var, true);
                 }
                 else if (var is BlockOutput)
                 {
                     prikaz = ((BlockOutput)var).command;
                     type = Block.Type.Output;
-                    animation.Steps(var, true);
                 }
-                
+
                 //Perform an instruction
                 sController.IstructionPerformance(prikaz, type);
-                await Task.Delay(1000);
-                animation.Steps(var, false);
-                await Task.Delay(500);
 
                 //Incrementing num if iterations
                 iter++;
             }
-            animation.ImagesForBlocks(panelPracovni, sController.blocksSorted, false);
+
             //Memory clear at the end
             Promenne.Int16V.Clear();
             Promenne.Int32V.Clear();

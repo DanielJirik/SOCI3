@@ -29,7 +29,7 @@
         public static IBlock markedBlock;
         public static void DeleteBlock(IBlock block)
         {
-            if (block.type == Block.Type.Var)
+            if (block.type == Block.Type.Var && ((BlockVar)block).accessValue[0] != null)
             {
                 string key = ((BlockVar)block).accessValue[0];
                 if (Promenne.Int16V.ContainsKey(key))
@@ -56,9 +56,13 @@
             ((PictureBox)block).Dispose();
 
             //Remove from drawPoints
-            drawPoints.Remove((PictureBox)block);
-            var item = drawPoints.First(kvp => kvp.Value == (PictureBox)block);
-            drawPoints.Remove(item.Key);
+            try
+            {
+                drawPoints.Remove((PictureBox)block);
+                var item = drawPoints.First(kvp => kvp.Value == (PictureBox)block);
+                drawPoints.Remove(item.Key);
+            }
+            catch (Exception){}
         }
 
         //Block instances
@@ -223,6 +227,6 @@
                 ResetJoint(tag);
                 SetJoint(tag);
             }
-        }
+        }        
     }
 }
