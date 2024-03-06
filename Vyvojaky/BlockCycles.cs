@@ -17,12 +17,13 @@ namespace Vyvojaky
         public string command { get; set; }
         public int? joint { get; set; }
         public Block.Type type { get; set; }
+        public string name;
 
         public BlockCycles(string nazev, string pocatek, string konecnaHodnota, string inkrement) 
         {
             //Set interface property
             this.type = Block.Type.Cycle;
-
+            name = "For";
             //Indexace
             index = Block.BlockIndex(type);
             this.Tag = index;
@@ -61,6 +62,7 @@ namespace Vyvojaky
         {
             if (type == "While")
             {
+                name = "While";
                 this.BackColor = Color.White;
                 this.Width = 120;
                 this.Height = 70;
@@ -88,6 +90,7 @@ namespace Vyvojaky
             }
             else
             {
+                name = "Do-while";
                 this.BackColor = Color.White;
                 this.Width = 150;
                 this.Height = 70;

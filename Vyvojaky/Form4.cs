@@ -66,6 +66,8 @@ namespace Vyvojaky
         //objekt output
         Output output = new Output();
 
+        //animation
+        Animation animation = new Animation();
 
         //Nastane před zavřením formu
         public static bool MainIsOpen;
@@ -337,7 +339,8 @@ namespace Vyvojaky
             string prikaz = "";
             Block.Type type = Block.Type.Start;
             int iter = 0;
-
+            animation.ImagesForBlocks(panelPracovni, sController.blocksSorted, true);
+            //animation.Delays(3000);
             foreach (Control var in panelPracovni.Controls)
             {
                 //In case of non-matching tag or if the tag is null, skips an iteration
