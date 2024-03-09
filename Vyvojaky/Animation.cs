@@ -27,6 +27,7 @@ namespace Vyvojaky
             Start
         }
 
+        //funkce na změnu obrázku a textu daného bloku v sekvenci
         public static void ImagesForBlocks(Panel panel, List<int> orders, bool change) 
         {
             //SequenceController.blocksSorted;
@@ -151,6 +152,7 @@ namespace Vyvojaky
             }
         }
 
+        //změna barvy textu během sekvence(krok po kroku mění text bloku)
         public static void Steps(Control block, bool next)
         {
             if (next)

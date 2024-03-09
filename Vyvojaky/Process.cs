@@ -23,11 +23,13 @@ namespace Vyvojaky
             Pracovni = _pracpanel;
         }
 
+        //obecná metoda pro vyhodnocení
         public static void Processing(string input)
         {
             CommandCheck(input);
         }
 
+        //zjištění operátoru pro další zpracování
         public static string Operater(string input) 
         {   
             string operater = "";
@@ -92,6 +94,8 @@ namespace Vyvojaky
         }
 
         public static string _prikaz;
+
+        //kontrola komandu
         public static void CommandCheck(string prikaz)
         {
             _prikaz = prikaz;
@@ -427,6 +431,7 @@ namespace Vyvojaky
         public static bool isValid;
         public static string hodnota = "";
 
+        //samotné vyhodnocení
         public static void VytvoritPromennou(string nazev, string _hodnota, string operater, string prikaz)
         {
             isValid = true;

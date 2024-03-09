@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 namespace Vyvojaky
 {
     internal class Switches
-    {
+    {   
+        //glob. proměnné
         public Panel PanelSwitch;
         public TextBox VstupPromenna;
         Label Text;
@@ -34,7 +35,7 @@ namespace Vyvojaky
             }
         }
 
-
+        //rozšíření panelu o počet casu, který uživatel zadal
         public void pridavaniTextBoxu(int pocetBoxu, Panel panelSwitch, TextBox vstupPromenna)
         {
             
@@ -68,6 +69,7 @@ namespace Vyvojaky
             }
         }
 
+        //funkce pro vyhodnocení switche
         public void Kontrola(TextBox console, string inputVar, List<string> variables, bool creation)
         {   
             //vstupní proměnné
@@ -597,6 +599,7 @@ namespace Vyvojaky
             Block.BlockSwitch(variables.Count, hodnota, variables);
         }
 
+        //přemazávání možností a listů
         public void MazaniBoxu(Panel panelSwitch)
         {
             for (int i = 0; i < variables.Count; i++)

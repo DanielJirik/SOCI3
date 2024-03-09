@@ -19,7 +19,9 @@ namespace Vyvojaky
         public Block.Type type { get; set; }
         public string name;
         public Label lb;
+        public List<Block> listOfBlocks;
 
+        //konstruktor pro cyklus-for
         public BlockCycles(string nazev, string pocatek, string konecnaHodnota, string inkrement) 
         {
             //Set interface property
@@ -29,12 +31,17 @@ namespace Vyvojaky
             index = Block.BlockIndex(type);
             this.Tag = index;
 
+            //nastavení bloku cyklu-for
             this.Width = 120;
             this.Height = 60;
             this.Image = Resources.cyklus_for_svetly;
             this.SizeMode = PictureBoxSizeMode.StretchImage;
             this.BackColor = Block.pracPanel.BackColor;
             
+            //vytvoření nového listu 
+            listOfBlocks = new List<Block>();
+
+            //nastavení textu v cyklu
             lb = new Label();
             lb.ForeColor = Color.Black;
             lb.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, ((Byte)(0)));
@@ -42,14 +49,21 @@ namespace Vyvojaky
             lb.Location = new Point(30, 15);
             lb.Text = $"for(int {nazev} = {pocatek}; {nazev} <= {konecnaHodnota}; {nazev} += {inkrement})";
             lb.Width = lb.Text.Length * 9;
+
+            //změna velikosti bloku na základě textu v lablu
             this.Width = lb.Width + 50;
 
+            //přidání labelu do bloku
             this.Controls.Add(lb);
+
+            //přidání běžných možností pro blok
             CommonElement();
 
+            //přidání bloku do pracovního panelu
             Block.pracPanel.Controls.Add(this);
         }
         
+        //konstruktor pro cyklus while a Do-while
         public BlockCycles(string condition, string type)
         {
             //Set interface property
@@ -58,9 +72,13 @@ namespace Vyvojaky
             index = Block.BlockIndex(this.type);
             this.Tag = index;
 
+            //rozhodnutí jestli se má vytvořit cyklus while nebo Do-while
             if (type == "While")
-            {
+            {   
+                //jméno pro daný cyklus
                 name = "While";
+
+                //nastavení picture-boxu
                 this.BackColor = Color.White;
                 this.Width = 120;
                 this.Height = 70;
@@ -68,6 +86,8 @@ namespace Vyvojaky
                 this.Image = Resources.cyklus_podminka_zacatek_svetly;
                 this.SizeMode = PictureBoxSizeMode.StretchImage;
                 this.BackColor = Block.pracPanel.BackColor;
+
+                //vytvoření a nastavení textu cyklu while
                 lb = new Label();
                 lb.ForeColor = Color.Black;
                 lb.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, ((Byte)(0)));
@@ -75,17 +95,25 @@ namespace Vyvojaky
                 lb.Location = new Point(10, 30);
                 lb.Text = $"While{condition}";
                 lb.Width = lb.Text.Length * 10;
-                Debug.WriteLine(condition);   
+
+                //změna velikosti bloku na základě labelu
                 this.Width = lb.Width + 10;
 
+                //přidání labelu do bloku
                 this.Controls.Add(lb);
+
+                //přidání běžných možností pro blok
                 CommonElement();
 
+                //přidání bloku do pracovního panelu
                 Block.pracPanel.Controls.Add(this);
             }
             else
             {
+                //jméno pro daný cyklus
                 name = "Do-while";
+
+                //nastavení bloku
                 this.BackColor = Color.White;
                 this.Width = 150;
                 this.Height = 70;
@@ -93,6 +121,8 @@ namespace Vyvojaky
                 this.Image = Resources.cyklus_podminka_konec_svetly;
                 this.SizeMode = PictureBoxSizeMode.StretchImage;
                 this.BackColor = Block.pracPanel.BackColor;
+
+                //vytvoření nového labelu a jeho nastavení
                 lb = new Label();
                 lb.ForeColor = Color.Black;
                 lb.Location = new Point(10, 20);
@@ -100,26 +130,33 @@ namespace Vyvojaky
                 lb.BackColor = Color.Transparent;
                 lb.Text = $"Do-While{condition}";
                 lb.Width = lb.Text.Length * 10;
+
+                //změna velikosti bloku na základě velikosti labelu
                 this.Width = lb.Width + 10;
 
+                //přidání labelu do bloku
                 this.Controls.Add(lb);
+
+                //přidání běžných možností pro blok
                 CommonElement();
 
+                //přidání bloku do pracovního panelu
                 Block.pracPanel.Controls.Add(this);
             }
         }
 
+        //běžné možnosti bloků
         private void CommonElement()
         { 
             this.Location = Block.pracPanel.PointToClient(Cursor.Position);
-                this.MouseClick += new MouseEventHandler(Block.OnMouseClick);
-                this.MouseDown += new MouseEventHandler(Block.OnMouseDown);
-                this.MouseUp += new MouseEventHandler(Block.OnMouseUp);
-                this.MouseMove += new MouseEventHandler(Block.OnMouseMove);
+            this.MouseClick += new MouseEventHandler(Block.OnMouseClick);
+            this.MouseDown += new MouseEventHandler(Block.OnMouseDown);
+            this.MouseUp += new MouseEventHandler(Block.OnMouseUp);
+            this.MouseMove += new MouseEventHandler(Block.OnMouseMove);
 
-                //Disable label on hover
-                this.MouseEnter += new EventHandler(Block.DisableControl);
-                this.MouseLeave += new EventHandler(Block.EnableControl);
+            //Disable label on hover
+            this.MouseEnter += new EventHandler(Block.DisableControl);
+            this.MouseLeave += new EventHandler(Block.EnableControl);
         }
         
     }
