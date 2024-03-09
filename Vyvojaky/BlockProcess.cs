@@ -27,6 +27,7 @@ namespace Vyvojaky
             index = Block.BlockIndex(type);
             this.Tag = index;
             
+            //vytvoření nového labelu a jeho vlastnosti
             lb = new Label();
             lb.ForeColor = Color.Black;
             lb.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, ((Byte)(0)));
@@ -36,6 +37,7 @@ namespace Vyvojaky
             lb.Parent = this;
             lb.BackColor = Color.Transparent;
 
+            //nastavení picture-boxu
             this.Width = lb.Text.Length * 10;
             this.BackColor = Color.White;
             this.Height = 50;
@@ -43,9 +45,11 @@ namespace Vyvojaky
             this.SizeMode = PictureBoxSizeMode.StretchImage;
             this.BackColor = Block.pracPanel.BackColor;
 
+            //přidání labelu do picture-boxu
             this.Controls.Add(lb);
+
+            //nastavení základních vlastností picture-boxu
             this.Location = Block.pracPanel.PointToClient(Cursor.Position);
-            Block.pracPanel.Controls.Add(this);
             this.MouseClick += new MouseEventHandler(Block.OnMouseClick);
             this.MouseDown += new MouseEventHandler(Block.OnMouseDown);
             this.MouseUp += new MouseEventHandler(Block.OnMouseUp);
@@ -55,7 +59,8 @@ namespace Vyvojaky
             this.MouseEnter += new EventHandler(Block.DisableControl);
             this.MouseLeave += new EventHandler(Block.EnableControl);
 
-            
+            //přidání picture-boxu do pracovního panelu
+            Block.pracPanel.Controls.Add(this);
         }
     }
 }

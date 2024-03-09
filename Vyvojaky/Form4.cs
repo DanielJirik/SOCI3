@@ -118,7 +118,9 @@ namespace Vyvojaky
             if (e.KeyCode == Keys.Enter)
             {
                 switches.FromTextBox();
-                switches.Kontrola(tbConsole, tbInputVariable.Text, switches.variables, true);
+                switches.MoznostiToVariables();
+                switches.VytvoreniBloku(tbInputVariable.Text);
+                //switches.Kontrola(tbConsole, tbInputVariable.Text, switches.variables, true);
             }
         }
 

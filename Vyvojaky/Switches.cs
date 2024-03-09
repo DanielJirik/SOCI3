@@ -594,6 +594,14 @@ namespace Vyvojaky
             }
         }
 
+        public void MoznostiToVariables() 
+        {
+            for (int i = 0; i < Moznosti.Count; i++)
+            {
+                variables.Add(Moznosti[i].Text.ToString());
+            }
+        }
+
         public void VytvoreniBloku(string hodnota) 
         {
             Block.BlockSwitch(variables.Count, hodnota, variables);
