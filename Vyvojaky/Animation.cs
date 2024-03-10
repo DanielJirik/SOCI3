@@ -16,17 +16,6 @@ namespace Vyvojaky
             
         }
 
-        public enum Type 
-        { 
-            Var, 
-            Con, 
-            Switch,
-            Cycle,
-            Process, 
-            Output,
-            Start
-        }
-
         //funkce na změnu obrázku a textu daného bloku v sekvenci
         public static void ImagesForBlocks(Panel panel, List<int> orders, bool change) 
         {
@@ -84,9 +73,23 @@ namespace Vyvojaky
                                 ((BlockOutput)block).lb.ForeColor = Color.White;
                                 ((BlockOutput)block).Image = Resources.vstup_vystup_tmavy;
                             }
-                            else if (block is BlockStart)
+                            else if (block is BlockCycleEnd)
                             {
-
+                                if (((BlockCycleEnd)block).name == "End-for")
+                                {
+                                    ((BlockCycleEnd)block).lb.ForeColor = Color.White;
+                                    ((BlockCycleEnd)block).Image = Resources.cyklus_for_tmavy;
+                                }
+                                else if (((BlockCycleEnd)block).name == "End-while")
+                                {
+                                    ((BlockCycleEnd)block).lb.ForeColor = Color.White;
+                                    ((BlockCycleEnd)block).lb.Image = Resources.cyklus_podminka_zacatek_tmavy;
+                                }
+                                else if (((BlockCycleEnd)block).name == "End-do-while")
+                                {
+                                    ((BlockCycleEnd)block).lb.ForeColor = Color.White;
+                                    ((BlockCycleEnd)block).Image = Resources.cyklus_podminka_konec_tmavy;
+                                }
                             }
                         }
                         index++;
@@ -145,6 +148,24 @@ namespace Vyvojaky
                                 ((BlockOutput)block).lb.ForeColor = Color.Black;
                                 ((BlockOutput)block).Image = Resources.vstup_vystup_svetly;
                             }
+                            else if (block is BlockCycleEnd)
+                            {
+                                if (((BlockCycleEnd)block).name == "End-for")
+                                {
+                                    ((BlockCycleEnd)block).lb.ForeColor = Color.Black;
+                                    ((BlockCycleEnd)block).Image = Resources.cyklus_for_svetly;
+                                }
+                                else if (((BlockCycleEnd)block).name == "End-while")
+                                {
+                                    ((BlockCycleEnd)block).lb.ForeColor = Color.Black;
+                                    ((BlockCycleEnd)block).Image = Resources.cyklus_podminka_zacatek_svetly;
+                                }
+                                else if (((BlockCycleEnd)block).name == "End-do-while")
+                                {
+                                    ((BlockCycleEnd)block).lb.ForeColor = Color.Black;
+                                    ((BlockCycleEnd)block).Image = Resources.cyklus_podminka_konec_svetly;
+                                }
+                            }
                         }
                         index++;
                     }
@@ -182,6 +203,10 @@ namespace Vyvojaky
                 {
                     ((BlockOutput)block).lb.ForeColor = Color.Orange;
                 }
+                else if (block is BlockCycleEnd)
+                {
+                    ((BlockCycleEnd)block).lb.ForeColor = Color.Orange;
+                }
             }
             else
             {
@@ -209,6 +234,10 @@ namespace Vyvojaky
                 else if (block is BlockOutput)
                 {
                     ((BlockOutput)block).lb.ForeColor = Color.White;
+                }
+                else if (block is BlockCycleEnd)
+                {
+                    ((BlockCycleEnd)block).lb.ForeColor = Color.White;
                 }
             }
             

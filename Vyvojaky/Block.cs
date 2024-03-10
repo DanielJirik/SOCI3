@@ -10,7 +10,8 @@
             Start,
             Var,
             Process,
-            Output
+            Output,
+            EndCycle
         }
        
         public static Panel? pracPanel;
@@ -99,6 +100,11 @@
         public static void BlockOutput(string input)
         { 
             _ = new BlockOutput(input);    
+        }
+
+        public static void BlockCycleEnd(string name)
+        { 
+            _ = new BlockCycleEnd(name);
         }
 
         //Disable control method

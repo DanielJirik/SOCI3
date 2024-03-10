@@ -48,6 +48,9 @@ namespace Vyvojaky
             processingToolStripMenuItem = new ToolStripMenuItem();
             outputToolStripMenuItem = new ToolStripMenuItem();
             cSharpMenu = new ToolStripMenuItem();
+            endForMenu = new ToolStripMenuItem();
+            endWhileMenu = new ToolStripMenuItem();
+            endDoWhileMenu = new ToolStripMenuItem();
             panelPracovni.SuspendLayout();
             panelSwitch.SuspendLayout();
             menuPanels.SuspendLayout();
@@ -158,7 +161,7 @@ namespace Vyvojaky
             menuPanels.Location = new Point(335, 384);
             menuPanels.Name = "menuPanels";
             menuPanels.Padding = new Padding(6, 3, 0, 3);
-            menuPanels.Size = new Size(113, 30);
+            menuPanels.Size = new Size(263, 30);
             menuPanels.TabIndex = 7;
             menuPanels.Text = "menuStrip1";
             // 
@@ -172,63 +175,63 @@ namespace Vyvojaky
             // variablesToolStripMenuItem
             // 
             variablesToolStripMenuItem.Name = "variablesToolStripMenuItem";
-            variablesToolStripMenuItem.Size = new Size(163, 26);
+            variablesToolStripMenuItem.Size = new Size(224, 26);
             variablesToolStripMenuItem.Text = "Variables";
             variablesToolStripMenuItem.Click += variablesToolStripMenuItem_Click;
             // 
             // conditionsToolStripMenuItem
             // 
             conditionsToolStripMenuItem.Name = "conditionsToolStripMenuItem";
-            conditionsToolStripMenuItem.Size = new Size(163, 26);
+            conditionsToolStripMenuItem.Size = new Size(224, 26);
             conditionsToolStripMenuItem.Text = "Conditions";
             conditionsToolStripMenuItem.Click += conditionsToolStripMenuItem_Click;
             // 
             // switchesToolStripMenuItem
             // 
             switchesToolStripMenuItem.Name = "switchesToolStripMenuItem";
-            switchesToolStripMenuItem.Size = new Size(163, 26);
+            switchesToolStripMenuItem.Size = new Size(224, 26);
             switchesToolStripMenuItem.Text = "Switches";
             switchesToolStripMenuItem.Click += switchesToolStripMenuItem_Click;
             // 
             // cyclesToolStripMenuItem
             // 
-            cyclesToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { forToolStripMenuItem, whileToolStripMenuItem, doWhileToolStripMenuItem });
+            cyclesToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { forToolStripMenuItem, whileToolStripMenuItem, doWhileToolStripMenuItem, endForMenu, endWhileMenu, endDoWhileMenu });
             cyclesToolStripMenuItem.Name = "cyclesToolStripMenuItem";
-            cyclesToolStripMenuItem.Size = new Size(163, 26);
+            cyclesToolStripMenuItem.Size = new Size(224, 26);
             cyclesToolStripMenuItem.Text = "Cycles";
             // 
             // forToolStripMenuItem
             // 
             forToolStripMenuItem.Name = "forToolStripMenuItem";
-            forToolStripMenuItem.Size = new Size(159, 26);
+            forToolStripMenuItem.Size = new Size(224, 26);
             forToolStripMenuItem.Text = "For";
             forToolStripMenuItem.Click += forToolStripMenuItem_Click;
             // 
             // whileToolStripMenuItem
             // 
             whileToolStripMenuItem.Name = "whileToolStripMenuItem";
-            whileToolStripMenuItem.Size = new Size(159, 26);
+            whileToolStripMenuItem.Size = new Size(224, 26);
             whileToolStripMenuItem.Text = "While";
             whileToolStripMenuItem.Click += whileToolStripMenuItem_Click;
             // 
             // doWhileToolStripMenuItem
             // 
             doWhileToolStripMenuItem.Name = "doWhileToolStripMenuItem";
-            doWhileToolStripMenuItem.Size = new Size(159, 26);
+            doWhileToolStripMenuItem.Size = new Size(224, 26);
             doWhileToolStripMenuItem.Text = "Do...While";
             doWhileToolStripMenuItem.Click += doWhileToolStripMenuItem_Click;
             // 
             // processingToolStripMenuItem
             // 
             processingToolStripMenuItem.Name = "processingToolStripMenuItem";
-            processingToolStripMenuItem.Size = new Size(163, 26);
+            processingToolStripMenuItem.Size = new Size(224, 26);
             processingToolStripMenuItem.Text = "Processing";
             processingToolStripMenuItem.Click += processingToolStripMenuItem_Click;
             // 
             // outputToolStripMenuItem
             // 
             outputToolStripMenuItem.Name = "outputToolStripMenuItem";
-            outputToolStripMenuItem.Size = new Size(163, 26);
+            outputToolStripMenuItem.Size = new Size(224, 26);
             outputToolStripMenuItem.Text = "Output";
             outputToolStripMenuItem.Click += outputToolStripMenuItem_Click;
             // 
@@ -238,6 +241,27 @@ namespace Vyvojaky
             cSharpMenu.Size = new Size(41, 24);
             cSharpMenu.Text = "C#";
             cSharpMenu.Click += cSharpMenu_Click;
+            // 
+            // endForMenu
+            // 
+            endForMenu.Name = "endForMenu";
+            endForMenu.Size = new Size(224, 26);
+            endForMenu.Text = "End-for";
+            endForMenu.Click += endForMenu_Click;
+            // 
+            // endWhileMenu
+            // 
+            endWhileMenu.Name = "endWhileMenu";
+            endWhileMenu.Size = new Size(224, 26);
+            endWhileMenu.Text = "End-while";
+            endWhileMenu.Click += endWhileMenu_Click;
+            // 
+            // endDoWhileMenu
+            // 
+            endDoWhileMenu.Name = "endDoWhileMenu";
+            endDoWhileMenu.Size = new Size(224, 26);
+            endDoWhileMenu.Text = "End-Do...While";
+            endDoWhileMenu.Click += endDoWhileMenu_Click;
             // 
             // formHlavniProTvorbu
             // 
@@ -284,5 +308,8 @@ namespace Vyvojaky
         private ToolStripMenuItem processingToolStripMenuItem;
         private ToolStripMenuItem outputToolStripMenuItem;
         private ToolStripMenuItem cSharpMenu;
+        private ToolStripMenuItem endForMenu;
+        private ToolStripMenuItem endWhileMenu;
+        private ToolStripMenuItem endDoWhileMenu;
     }
 }

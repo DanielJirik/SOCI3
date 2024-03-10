@@ -134,9 +134,6 @@ namespace Vyvojaky
                         {
                             nazevPromenne = prikaz.Split("/=")[0].Trim();
                             hodnotaPromenne = prikaz.Split("/=")[1].Trim();
-                            int i = 5;
-                            i %= 5;
-                            Debug.WriteLine(i);
                             legitPrikaz = true;
                         }
                         else if (operater == "%=")
