@@ -108,7 +108,7 @@ namespace Vyvojaky
             (par1, par2, oper) = Separation(condition);
             if (par1 != "" && par2 != "" && oper != "")
             {
-                string cond = $"({par1} {oper} {par2})";
+                string cond = $"{par1} {oper} {par2}";
                 Block.BlockCycleWhileOrDoWhile(cond, "While");
             }
             else
@@ -124,7 +124,7 @@ namespace Vyvojaky
             (par1, par2, oper) = Separation(condition);
             if (par1 != "" && par2 != "" && oper != "")
             {
-                string cond = $"({par1} {oper} {par2})";
+                string cond = $"{par1} {oper} {par2}";
                 Block.BlockCycleWhileOrDoWhile(cond, "DoWhile");
             }
             else
@@ -369,8 +369,10 @@ namespace Vyvojaky
             }
         }
 
-        public static void CycleWhileAndDoWhile(string type, int startIndex, int endIndex)
+        public static void CycleWhileAndDoWhile(string type, string condition, int startIndex, int endIndex)
         {
+            string part1, part2, Oper;
+            (part1, part2, Oper) = Separation(condition);
             if (Promenne.FindVar(part1, "type") != null)
             {
                 if (Promenne.FindVar(part2, "type") != null)
@@ -408,6 +410,7 @@ namespace Vyvojaky
                 {
                     if ((Promenne.FindVar(part1, "type") == "Int16" || Promenne.FindVar(part1, "type") == "Int32" || Promenne.FindVar(part1, "type") == "Int64" || Promenne.FindVar(part1, "type") == "Double" || Promenne.FindVar(part1, "type") == "Float") && double.TryParse(part2, out double var))
                     {
+                        Debug.WriteLine("While volani");
                         if (type == "While")
                             WhileDouble(double.Parse(Promenne.FindVar(part1, "value")), var, Oper, startIndex, endIndex);
                         else

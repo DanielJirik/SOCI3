@@ -89,7 +89,6 @@ namespace Vyvojaky
                 {
                     prikaz = ((BlockProcess)var).command;
                     type = Block.Type.Process;
-                    Debug.WriteLine("Dostal se na proces");
                 }
                 else if (var is BlockOutput)
                 {
@@ -176,7 +175,7 @@ namespace Vyvojaky
                             {
                                 if (Cycles.CheckWhileAndDoWhile(((BlockCycles)var).condition))
                                 {
-                                    Cycles.CycleWhileAndDoWhile("While", Convert.ToInt32(var.Tag), Convert.ToInt32(item.Tag));
+                                    Cycles.CycleWhileAndDoWhile("While", ((BlockCycles)var).condition, Convert.ToInt32(var.Tag), Convert.ToInt32(item.Tag));
                                     break;
                                 }
                             }
@@ -184,7 +183,7 @@ namespace Vyvojaky
                             {
                                 if (Cycles.CheckWhileAndDoWhile(((BlockCycles)var).condition))
                                 {
-                                    Cycles.CycleWhileAndDoWhile("Do-while", Convert.ToInt32(var.Tag), Convert.ToInt32(item.Tag));
+                                    Cycles.CycleWhileAndDoWhile("Do-while", ((BlockCycles)var).condition, Convert.ToInt32(var.Tag), Convert.ToInt32(item.Tag));
                                     break;
                                 }
                             }

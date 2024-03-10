@@ -107,7 +107,7 @@ namespace Vyvojaky
                 lb.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, ((Byte)(0)));
                 lb.BackColor = Color.Transparent;
                 lb.Location = new Point(10, 30);
-                lb.Text = $"While{condition}";
+                lb.Text = $"While({condition})";
                 lb.Width = lb.Text.Length * 10;
 
                 //změna velikosti bloku na základě labelu
@@ -142,7 +142,7 @@ namespace Vyvojaky
                 lb.Location = new Point(10, 20);
                 lb.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, ((Byte)(0)));
                 lb.BackColor = Color.Transparent;
-                lb.Text = $"Do-While{condition}";
+                lb.Text = $"Do-While({condition})";
                 lb.Width = lb.Text.Length * 10;
 
                 //změna velikosti bloku na základě velikosti labelu
