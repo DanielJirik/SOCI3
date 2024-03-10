@@ -166,16 +166,17 @@ namespace Vyvojaky
                     {
                         if (item is BlockCycleEnd)
                         {
+                            iter = Convert.ToInt32(item.Tag) - 1;
                             if (((BlockCycles)var).name == "For" && ((BlockCycleEnd)item).name == "End-for")
                             {
-                                Cycles.CyclesFor(((BlockCycles)var).Nazev, int.Parse(((BlockCycles)var).Pocatek), int.Parse(((BlockCycles)var).KonecnaHodnota), int.Parse(((BlockCycles)var).Inkrement), Convert.ToInt32(var.Tag), Convert.ToInt32(item.Tag));
+                                Cycles.CyclesFor(((BlockCycles)var).Nazev, int.Parse(((BlockCycles)var).Pocatek), int.Parse(((BlockCycles)var).KonecnaHodnota), int.Parse(((BlockCycles)var).Inkrement), Convert.ToInt32(((IBlock)var).joint), Convert.ToInt32(item.Tag));
                                 break;
                             }
                             else if (((BlockCycles)var).name == "While" && ((BlockCycleEnd)item).name == "End-while")
                             {
                                 if (Cycles.CheckWhileAndDoWhile(((BlockCycles)var).condition))
                                 {
-                                    Cycles.CycleWhileAndDoWhile("While", ((BlockCycles)var).condition, Convert.ToInt32(var.Tag), Convert.ToInt32(item.Tag));
+                                    Cycles.CycleWhileAndDoWhile("While", ((BlockCycles)var).condition, Convert.ToInt32(((IBlock)var).joint), Convert.ToInt32(item.Tag));
                                     break;
                                 }
                             }
@@ -183,7 +184,7 @@ namespace Vyvojaky
                             {
                                 if (Cycles.CheckWhileAndDoWhile(((BlockCycles)var).condition))
                                 {
-                                    Cycles.CycleWhileAndDoWhile("Do-while", ((BlockCycles)var).condition, Convert.ToInt32(var.Tag), Convert.ToInt32(item.Tag));
+                                    Cycles.CycleWhileAndDoWhile("Do-while", ((BlockCycles)var).condition, Convert.ToInt32(((IBlock)var).joint), Convert.ToInt32(item.Tag));
                                     break;
                                 }
                             }
