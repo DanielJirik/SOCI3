@@ -46,7 +46,7 @@ namespace Vyvojaky
         }
 
         ////Přepínání mezi panely
-        
+
 
         //Objekt pro manipulaci se vsemi promennymi
         Promenne promenne = new Promenne();
@@ -305,6 +305,22 @@ namespace Vyvojaky
                 }
             }
         }
+
+        private void endForMenu_Click(object sender, EventArgs e)
+        {
+            Block.BlockCycleEnd("For");
+        }
+
+        private void endWhileMenu_Click(object sender, EventArgs e)
+        {
+            Block.BlockCycleEnd("While");
+        }
+
+        private void endDoWhileMenu_Click(object sender, EventArgs e)
+        {
+            Block.BlockCycleEnd("Do-while");
+        }
+
         //Lines
         private void panelPracovni_Paint(object sender, PaintEventArgs e)
         {
@@ -344,7 +360,5 @@ namespace Vyvojaky
             if (Block.markedBlock != null && e.KeyCode == Keys.Delete)
                 Block.DeleteBlock(Block.markedBlock);
         }
-
-
     }
 }
