@@ -104,7 +104,7 @@ namespace Vyvojaky
                     break;
 
                 //Incrementing num if iterations
-                iter++;                
+                iter++;
             }
         }
 
