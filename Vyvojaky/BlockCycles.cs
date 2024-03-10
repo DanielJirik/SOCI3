@@ -19,7 +19,15 @@ namespace Vyvojaky
         public Block.Type type { get; set; }
         public string name;
         public Label lb;
-        public List<Block> listOfBlocks;
+
+        //proměnné cyklu for
+        public string Nazev;
+        public string Pocatek;
+        public string KonecnaHodnota;
+        public string Inkrement;
+
+        //proměnné cyklu while a do-while
+        public string condition;
 
         //konstruktor pro cyklus-for
         public BlockCycles(string nazev, string pocatek, string konecnaHodnota, string inkrement) 
@@ -38,8 +46,11 @@ namespace Vyvojaky
             this.SizeMode = PictureBoxSizeMode.StretchImage;
             this.BackColor = Block.pracPanel.BackColor;
             
-            //vytvoření nového listu 
-            listOfBlocks = new List<Block>();
+            //předání hodnot
+            Nazev = nazev;
+            Pocatek = pocatek;
+            KonecnaHodnota = konecnaHodnota;
+            Inkrement = inkrement;
 
             //nastavení textu v cyklu
             lb = new Label();
@@ -71,6 +82,9 @@ namespace Vyvojaky
             //Indexace
             index = Block.BlockIndex(this.type);
             this.Tag = index;
+
+            //podmínka přidána do proměnné pro blok pro další zpracování
+            this.condition = condition;
 
             //rozhodnutí jestli se má vytvořit cyklus while nebo Do-while
             if (type == "While")

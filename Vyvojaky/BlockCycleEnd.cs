@@ -31,7 +31,7 @@ namespace Vyvojaky
             if (types == "For")
             {
                 //nastavení bloku end-for
-                name = "For";
+                name = "End-for";
                 this.Width = 150;
                 this.Height = 60;
                 this.Image = Resources.cyklus_for_svetly;
@@ -59,7 +59,7 @@ namespace Vyvojaky
             else if (types == "While")
             {
                 //jméno pro daný end-while
-                name = "While";
+                name = "End-while";
 
                 //nastavení picture-boxu
                 this.BackColor = Color.White;
@@ -91,7 +91,7 @@ namespace Vyvojaky
             else
             {
                 //jméno pro daný cyklus
-                name = "Do-while";
+                name = "End-do-while";
 
                 //nastavení bloku
                 this.BackColor = Color.White;

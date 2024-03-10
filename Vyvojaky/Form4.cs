@@ -261,11 +261,9 @@ namespace Vyvojaky
             if (nazev != "" && pocatecniHodnota != "" && konecnaHodnota != "" && inkrement != "")
             {
                 cycles.Setup(panelPracovni);
-                if (cycles.CheckFor(nazev, pocatecniHodnota, konecnaHodnota, inkrement))
-                {
-                    cycles.CyclesFor(nazev, int.Parse(pocatecniHodnota), int.Parse(konecnaHodnota), int.Parse(inkrement), tbConsole);
-                    cycles.CreationOfCycleFor(nazev, pocatecniHodnota, konecnaHodnota, inkrement);
-
+                if (Cycles.CheckFor(nazev, pocatecniHodnota, konecnaHodnota, inkrement))
+                {   
+                    Cycles.CreationOfCycleFor(nazev, pocatecniHodnota, konecnaHodnota, inkrement);
                 }
                 else
                 {
@@ -279,9 +277,11 @@ namespace Vyvojaky
             string condition = Interaction.InputBox("Zadejte podmínku", "Cycle-while");
             if (condition != "")
             {
-                if (cycles.CheckWhileAndDoWhile(condition.Trim()))
+                string par1, par2, oper;
+                (par1, par2, oper) = Cycles.Separation(condition);
+                if (par1 != "" && par2 != "" && oper != "")
                 {
-                    cycles.CycleWhileAndDoWhile("While");
+                    Cycles.CreationOfCycleWhile(condition);
                 }
                 else
                 {
@@ -295,9 +295,11 @@ namespace Vyvojaky
             string condition = Interaction.InputBox("Zadejte podmínku", "Cycle-while");
             if (condition != "")
             {
-                if (cycles.CheckWhileAndDoWhile(condition.Trim()))
+                string par1, par2, oper;
+                (par1, par2, oper) = Cycles.Separation(condition);
+                if (par1 != "" && par2 != "" && oper != "")
                 {
-                    cycles.CycleWhileAndDoWhile("Do-While");
+                    Cycles.CreationOfCycleDoWhile(condition);
                 }
                 else
                 {

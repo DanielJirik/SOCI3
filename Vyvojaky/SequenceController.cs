@@ -18,7 +18,7 @@ namespace Vyvojaky
         public static List<int> blocksSorted = new List<int>();
 
         //Seřazení blocků
-        public void InstructionOrder(Panel mainPanel)
+        public static void InstructionOrder(Panel mainPanel)
         {
             //Reset pořadí
             blocksSorted.Clear();
@@ -46,7 +46,7 @@ namespace Vyvojaky
         }
 
         //Run a part of the sequence (parameters as block indexes)
-        public void PartSequence(int startIndex, int endIndex)
+        public static void PartSequence(int startIndex, int endIndex)
         {
             //Sort block indexes
             InstructionOrder(Block.pracPanel);
@@ -89,6 +89,7 @@ namespace Vyvojaky
                 {
                     prikaz = ((BlockProcess)var).command;
                     type = Block.Type.Process;
+                    Debug.WriteLine("Dostal se na proces");
                 }
                 else if (var is BlockOutput)
                 {
@@ -158,6 +159,37 @@ namespace Vyvojaky
                 {
                     prikaz = ((BlockOutput)var).command;
                     type = Block.Type.Output;
+                    
+                }
+                else if (var is BlockCycles)
+                {
+                    foreach (Control item in Block.pracPanel.Controls)
+                    {
+                        if (item is BlockCycleEnd)
+                        {
+                            if (((BlockCycles)var).name == "For" && ((BlockCycleEnd)item).name == "End-for")
+                            {
+                                Cycles.CyclesFor(((BlockCycles)var).Nazev, int.Parse(((BlockCycles)var).Pocatek), int.Parse(((BlockCycles)var).KonecnaHodnota), int.Parse(((BlockCycles)var).Inkrement), Convert.ToInt32(var.Tag), Convert.ToInt32(item.Tag));
+                                break;
+                            }
+                            else if (((BlockCycles)var).name == "While" && ((BlockCycleEnd)item).name == "End-while")
+                            {
+                                if (Cycles.CheckWhileAndDoWhile(((BlockCycles)var).condition))
+                                {
+                                    Cycles.CycleWhileAndDoWhile("While", Convert.ToInt32(var.Tag), Convert.ToInt32(item.Tag));
+                                    break;
+                                }
+                            }
+                            else if (((BlockCycles)var).name == "Do-while" && ((BlockCycleEnd)item).name == "End-do-while")
+                            {
+                                if (Cycles.CheckWhileAndDoWhile(((BlockCycles)var).condition))
+                                {
+                                    Cycles.CycleWhileAndDoWhile("Do-while", Convert.ToInt32(var.Tag), Convert.ToInt32(item.Tag));
+                                    break;
+                                }
+                            }
+                        }
+                    }
                 }
 
                 //Perform an instruction
@@ -184,7 +216,7 @@ namespace Vyvojaky
             Promenne.usedNames.Clear();
         }
 
-        public void IstructionPerformance(string prikaz, Block.Type type)
+        public static void IstructionPerformance(string prikaz, Block.Type type)
         {
             switch (type)
             {
