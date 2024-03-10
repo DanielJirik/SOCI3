@@ -136,7 +136,6 @@ namespace Vyvojaky
                 menuPanels.Location = new Point(positionX, positionY);
                 if (!rozhodnuti && positionX == menuPanels.Location.X && positionY == menuPanels.Location.Y)
                 {
-                    Debug.WriteLine("svitim");
                     menuPanels.Show();
                     rozhodnuti = true;
                 }
@@ -187,6 +186,7 @@ namespace Vyvojaky
             {
                 panelPracovni.Visible = true;
             }
+            menuPanels.Hide();
 
         }
         //prepinani pracovni plochy a prekladace
@@ -195,9 +195,6 @@ namespace Vyvojaky
             panelPracovni.Visible = false;
             prekladacTb.Visible = true;
             menuPanels.Visible = false;
-            MessageBox.Show("start pauzy");
-            await Task.Delay(4000);
-            MessageBox.Show("konec pauzy");
         }
 
         private void menuPanels_Click(object sender, EventArgs e)
@@ -213,6 +210,7 @@ namespace Vyvojaky
             Block.BlockVar(values[0], values[1], prikaz);
 
             panelSwitch.Hide();
+            menuPanels.Hide();
         }
 
         private void conditionsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -222,6 +220,7 @@ namespace Vyvojaky
                 Block.BlockCon(prikaz);
 
             panelSwitch.Hide();
+            menuPanels.Hide();
         }
 
         private void switchesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -238,6 +237,7 @@ namespace Vyvojaky
                     {
                         switches.pridavaniTextBoxu(pocet, panelSwitch, tbInputVariable);
                         panelSwitch.Show();
+                        menuPanels.Hide();
                     }
                     else
                     {
@@ -264,6 +264,7 @@ namespace Vyvojaky
                 if (Cycles.CheckFor(nazev, pocatecniHodnota, konecnaHodnota, inkrement))
                 {   
                     Cycles.CreationOfCycleFor(nazev, pocatecniHodnota, konecnaHodnota, inkrement);
+                    menuPanels.Hide();
                 }
                 else
                 {
@@ -282,6 +283,7 @@ namespace Vyvojaky
                 if (par1 != "" && par2 != "" && oper != "")
                 {
                     Cycles.CreationOfCycleWhile(condition);
+                    menuPanels.Hide();
                 }
                 else
                 {
@@ -300,6 +302,7 @@ namespace Vyvojaky
                 if (par1 != "" && par2 != "" && oper != "")
                 {
                     Cycles.CreationOfCycleDoWhile(condition);
+                    menuPanels.Hide();
                 }
                 else
                 {
@@ -311,16 +314,19 @@ namespace Vyvojaky
         private void endForMenu_Click(object sender, EventArgs e)
         {
             Block.BlockCycleEnd("For");
+            menuPanels.Hide();
         }
 
         private void endWhileMenu_Click(object sender, EventArgs e)
         {
             Block.BlockCycleEnd("While");
+            menuPanels.Hide();
         }
 
         private void endDoWhileMenu_Click(object sender, EventArgs e)
         {
             Block.BlockCycleEnd("Do-while");
+            menuPanels.Hide();
         }
 
         //Lines
@@ -340,19 +346,20 @@ namespace Vyvojaky
         {
             string input = Interaction.InputBox("Zadejte existující proměnnou a výraz k výpočtu\r\nPříklady: a = 5 + 6, jmeno = 'Ahoj' + 'jak se mate'", "Cycle-while");
             Block.BlockProcess(input);
-            //Process.Processing(input);
+            menuPanels.Hide();
         }
 
         private void outputToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string input = Interaction.InputBox("Zadejte výraz, který chcete vytisknout\r\nPříklady: \"ahoj\"; existující proměnná: a", "Output");
             Block.BlockOutput(input);
-            //output.Processing(input, true);
+            menuPanels.Hide();
         }
 
         //Spustí simulaci
         private void btRun_Click(object sender, EventArgs e)
         {
+            menuPanels.Hide();
             sController.RunSequence();
         }
 
