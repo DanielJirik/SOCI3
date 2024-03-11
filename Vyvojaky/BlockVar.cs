@@ -19,6 +19,7 @@ namespace Vyvojaky
         public string command { get; set; }
         public int? joint { get; set; }
         public Block.Type type { get; set; }
+        public string GenCode() { return ""; }
 
         public BlockVar(string nazev, string hodnota, string prikaz)
         {
