@@ -10,6 +10,9 @@ namespace Vyvojaky
     {
         int? joint { get; set; }
         string command { get; set; }
-        Block.Type type { get; set; }        
+        Block.Type type { get; set; }
+
+        public string GenCode()
+        { return ""; }
     }
 }

@@ -18,6 +18,8 @@ namespace Vyvojaky
         public int? joint { get; set; }
         public Block.Type type { get; set; }
 
+        public string GenCode() { return ""; }
+
         public BlockProcess(string input) 
         {
             //Set interface properties
