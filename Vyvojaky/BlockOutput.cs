@@ -17,7 +17,10 @@ namespace Vyvojaky
         public string command { get; set; }
         public int? joint { get; set; }
         public Block.Type type { get; set; }
-        public string GenCode() { return ""; }
+        public string GenCode()
+        {
+            return $"Console.WriteLine({command});" + Environment.NewLine;
+        }
 
         public BlockOutput(string input)
         {

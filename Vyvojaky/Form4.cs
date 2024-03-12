@@ -25,6 +25,10 @@ namespace Vyvojaky
             Block.pracPanel = panelPracovni;
             SequenceController.Start();
 
+            prekladacTb.ReadOnly = false;
+            prekladacTb.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, ((Byte)(0)));
+            prekladacTb.ForeColor = Color.White;
+
             switches.VyskaPaneluPuvodni = panelSwitch.Height;
             MainIsOpen = true;
             menuPanels.Hide();
@@ -192,6 +196,8 @@ namespace Vyvojaky
         //prepinani pracovni plochy a prekladace
         private async void cSharpMenu_Click(object sender, EventArgs e)
         {
+            prekladacTb.Text = CodeGenerator.Generate();
+
             panelPracovni.Visible = false;
             prekladacTb.Visible = true;
             menuPanels.Visible = false;
@@ -360,7 +366,9 @@ namespace Vyvojaky
         private void btRun_Click(object sender, EventArgs e)
         {
             menuPanels.Hide();
-            sController.RunSequence();
+            
+            //Runs a sequence with default start index of 1 and endIndex of 0
+            SequenceController.RunSequence(1, 0);
         }
 
 

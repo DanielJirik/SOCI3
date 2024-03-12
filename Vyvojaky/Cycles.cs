@@ -55,7 +55,7 @@ namespace Vyvojaky
                 for (int i = pocatek; i <= konec; i += inkrement)
                 {
                     Promenne.Int64V[nazev] = i;
-                    SequenceController.PartSequence(startIndex, endIndex);
+                    SequenceController.RunSequence(startIndex, endIndex);
                 }
                 Promenne.Int64V.Remove(nazev);
             }
@@ -65,7 +65,7 @@ namespace Vyvojaky
                 for (int i = pocatek; i <= konec; i += inkrement)
                 {
                     Promenne.Int64V[nazev] = i;
-                    SequenceController.PartSequence(startIndex, endIndex);
+                    SequenceController.RunSequence(startIndex, endIndex);
                     break;
                 }
                 Promenne.Int64V.Remove(nazev);
@@ -76,7 +76,7 @@ namespace Vyvojaky
                 for (int i = pocatek; i >= konec; i += inkrement)
                 {
                     Promenne.Int64V[nazev] = i;
-                    SequenceController.PartSequence(startIndex, endIndex);
+                    SequenceController.RunSequence(startIndex, endIndex);
                 }
                 Promenne.Int64V.Remove(nazev);
             }
@@ -86,7 +86,7 @@ namespace Vyvojaky
                 for (int i = pocatek; i >= konec; i += inkrement)
                 {
                     Promenne.Int64V[nazev] = i;
-                    SequenceController.PartSequence(startIndex, endIndex);
+                    SequenceController.RunSequence(startIndex, endIndex);
                     break;
                 }
                 Promenne.Int64V.Remove(nazev);
@@ -140,37 +140,37 @@ namespace Vyvojaky
                 case "==":
                     while (par1 == par2)
                     {
-                        SequenceController.PartSequence(startIndex, endIndex); 
+                        SequenceController.RunSequence(startIndex, endIndex); 
                     }
                     break;
                 case "!=":
                     while (par1 != par2)
                     {
-                        SequenceController.PartSequence(startIndex, endIndex);
+                        SequenceController.RunSequence(startIndex, endIndex);
                     }
                     break;
                 case ">":
                     while (par1 > par2)
                     {
-                        SequenceController.PartSequence(startIndex, endIndex);
+                        SequenceController.RunSequence(startIndex, endIndex);
                     }
                     break;
                 case "<":
                     while (par1 < par2)
                     {
-                        SequenceController.PartSequence(startIndex, endIndex);
+                        SequenceController.RunSequence(startIndex, endIndex);
                     }
                     break;
                 case ">=":
                     while (par1 >= par2)
                     {
-                        SequenceController.PartSequence(startIndex, endIndex);
+                        SequenceController.RunSequence(startIndex, endIndex);
                     }
                     break;
                 case "<=":
                     while (par1 <= par2)
                     {
-                        SequenceController.PartSequence(startIndex, endIndex);
+                        SequenceController.RunSequence(startIndex, endIndex);
                     }
                     break;
                 default:
@@ -186,13 +186,13 @@ namespace Vyvojaky
                 case "==":
                     while (par1 == par2)
                     {
-                        SequenceController.PartSequence(startIndex, endIndex);
+                        SequenceController.RunSequence(startIndex, endIndex);
                     }
                     break;
                 case "!=":
                     while (par1 != par2)
                     {
-                        SequenceController.PartSequence(startIndex, endIndex);
+                        SequenceController.RunSequence(startIndex, endIndex);
                     }
                     break;
                 default:
@@ -208,13 +208,13 @@ namespace Vyvojaky
                 case "==":
                     while (par1 == par2)
                     {
-                        SequenceController.PartSequence(startIndex, endIndex);
+                        SequenceController.RunSequence(startIndex, endIndex);
                     }
                     break;
                 case "!=":
                     while (par1 != par2)
                     {
-                        SequenceController.PartSequence(startIndex, endIndex);
+                        SequenceController.RunSequence(startIndex, endIndex);
                     }
                     break;
                 default:
@@ -230,13 +230,13 @@ namespace Vyvojaky
                 case "==":
                     while (par1 == par2)
                     {
-                        SequenceController.PartSequence(startIndex, endIndex);
+                        SequenceController.RunSequence(startIndex, endIndex);
                     }
                     break;
                 case "!=":
                     while (par1 != par2)
                     {
-                        SequenceController.PartSequence(startIndex, endIndex);
+                        SequenceController.RunSequence(startIndex, endIndex);
                     }
                     break;
                 default:
@@ -252,42 +252,42 @@ namespace Vyvojaky
                 case "==":
                     do
                     {
-                        SequenceController.PartSequence(startIndex, endIndex);
+                        SequenceController.RunSequence(startIndex, endIndex);
                     }
                     while (par1 == par2);
                     break;
                 case "!=":
                     do
                     {
-                        SequenceController.PartSequence(startIndex, endIndex);
+                        SequenceController.RunSequence(startIndex, endIndex);
                     }
                     while (par1 != par2);
                     break;
                 case ">":
                     do
                     {
-                        SequenceController.PartSequence(startIndex, endIndex);
+                        SequenceController.RunSequence(startIndex, endIndex);
                     }
                     while (par1 > par2);
                     break;
                 case "<":
                     do
                     {
-                        SequenceController.PartSequence(startIndex, endIndex);
+                        SequenceController.RunSequence(startIndex, endIndex);
                     }
                     while (par1 < par2);
                     break;
                 case ">=":
                     do
                     {
-                        SequenceController.PartSequence(startIndex, endIndex);
+                        SequenceController.RunSequence(startIndex, endIndex);
                     }
                     while (par1 >= par2);
                     break;
                 case "<=":
                     do
                     {
-                        SequenceController.PartSequence(startIndex, endIndex);
+                        SequenceController.RunSequence(startIndex, endIndex);
                     }
                     while (par1 <= par2);
                     break;
@@ -304,14 +304,14 @@ namespace Vyvojaky
                 case "==":
                     do
                     {
-                        SequenceController.PartSequence(startIndex, endIndex);
+                        SequenceController.RunSequence(startIndex, endIndex);
                     }
                     while (par1 == par2);
                     break;
                 case "!=":
                     do
                     {
-                        SequenceController.PartSequence(startIndex, endIndex);
+                        SequenceController.RunSequence(startIndex, endIndex);
                     }
                     while (par1 != par2);
                     break;
@@ -328,14 +328,14 @@ namespace Vyvojaky
                 case "==":
                     do
                     {
-                        SequenceController.PartSequence(startIndex, endIndex);
+                        SequenceController.RunSequence(startIndex, endIndex);
                     }
                     while (par1 == par2);
                     break;
                 case "!=":
                     do
                     {
-                        SequenceController.PartSequence(startIndex, endIndex);
+                        SequenceController.RunSequence(startIndex, endIndex);
                     }
                     while (par1 != par2);
                     break;
@@ -352,14 +352,14 @@ namespace Vyvojaky
                 case "==":
                     do
                     {
-                        SequenceController.PartSequence(startIndex, endIndex);
+                        SequenceController.RunSequence(startIndex, endIndex);
                     }
                     while (par1 == par2);
                     break;
                 case "!=":
                     do
                     {
-                        SequenceController.PartSequence(startIndex, endIndex);
+                        SequenceController.RunSequence(startIndex, endIndex);
                     }
                     while (par1 != par2);
                     break;

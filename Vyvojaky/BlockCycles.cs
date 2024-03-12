@@ -17,7 +17,20 @@ namespace Vyvojaky
         public string command { get; set; }
         public int? joint { get; set; }
         public Block.Type type { get; set; }
-        public string GenCode() { return ""; }
+        public string GenCode()
+        {
+            if (name == "For")
+                return $"for (int {Nazev} = {Pocatek}; {Nazev} <= {KonecnaHodnota}; {Nazev} += {Inkrement})" + Environment.NewLine + "{" + Environment.NewLine;
+            else if (name == "While")
+                return $"while (int {Nazev} = {Pocatek}; {Nazev} <= {KonecnaHodnota}; {Nazev} += {Inkrement})" + Environment.NewLine + "{" + Environment.NewLine;
+            else if (name == "Do-while")
+            {
+                CodeGenerator.lastCond = $"while (int {Nazev} = {Pocatek}; {Nazev} <= {KonecnaHodnota}; {Nazev} += {Inkrement});" + Environment.NewLine;
+                return $"do" + Environment.NewLine + "{" + Environment.NewLine;
+            }
+
+            return "";
+        }
 
         public string name;
         public Label lb;

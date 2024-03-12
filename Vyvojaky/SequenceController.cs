@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,206 +15,112 @@ namespace Vyvojaky
             BlockStart s = new BlockStart();
         }
 
-        //Sorted blocks list
-        public static List<int> blocksSorted = new List<int>();
-
-        //Seřazení blocků
-        public static void InstructionOrder(Panel mainPanel)
+        public static async void RunSequence(int index, int endIndex)
         {
-            //Reset pořadí
-            blocksSorted.Clear();
+            int? passIndex;
 
-            //
-            int numOfIterations = Block.indexes.Count - 1;
-            int nextIndex = 1;            
+            string prikaz = "";
+            Block.Type type = Block.Type.Start;
 
-            //Přidání indexu BlockStart
-            blocksSorted.Add(nextIndex);
-
-            //Identifikace indexů ostatních blocků
-            for (int i = 0; i < numOfIterations; i++)
+            foreach (Control var in Block.pracPanel.Controls)
             {
-                foreach (Control block in mainPanel.Controls)
+                if (var is IBlock && Convert.ToInt16(var.Tag) == index)
                 {
-                    if (block is IBlock && nextIndex == Convert.ToInt16(block.Tag))
+                    //Sets next index to a joint of the present one
+                    passIndex = Convert.ToInt16(((IBlock)var).joint);
+
+                    //Změna barvy textu v momentě, kdy běží sekvence + čekání vteřinu
+                    Animation.Steps(var, true);
+                    await Task.Delay(1000);
+
+                    //Block division
+                    if (var is BlockVar)
                     {
-                        nextIndex = Convert.ToInt16(((IBlock)block).joint);
-                        break;
+                        prikaz = ((BlockVar)var).command;
+                        type = Block.Type.Var;
                     }
-                }
-                    blocksSorted.Add(nextIndex);                    
-            }            
-        }
-
-        //Run a part of the sequence (parameters as block indexes)
-        public static void PartSequence(int startIndex, int endIndex)
-        {
-            //Sort block indexes
-            InstructionOrder(Block.pracPanel);
-
-            //Border indexes
-            startIndex = blocksSorted.IndexOf(startIndex);
-            endIndex = blocksSorted.IndexOf(endIndex);
-            
-            string prikaz = "";
-            Block.Type type = Block.Type.Start;
-            int iter = startIndex;
-
-            foreach (Control var in Block.pracPanel.Controls)
-            {
-                //In case of non-matching tag or if the tag is null, skips an iteration
-                if (var.Tag != null)
-                {
-                    if (var.Tag.ToString() != blocksSorted[iter].ToString())
-                        continue;
-                }
-                else
-                    continue;
-
-                //Division
-                if (var is BlockVar)
-                {
-                    prikaz = ((BlockVar)var).command;
-                    type = Block.Type.Var;
-                }
-                else if (var is BlockCon)
-                {
-                    prikaz = ((BlockCon)var).command;
-                    type = Block.Type.Con;
-                    if (Podminky.isTrue(prikaz))
-                        var.BackColor = Color.Green;
-                    else
-                        var.BackColor = Color.Red;
-                }
-                else if (var is BlockProcess)
-                {
-                    prikaz = ((BlockProcess)var).command;
-                    type = Block.Type.Process;
-                }
-                else if (var is BlockOutput)
-                {
-                    prikaz = ((BlockOutput)var).command;
-                    type = Block.Type.Output;
-                }
-
-                //Perform an instruction
-                IstructionPerformance(prikaz, type);
-                
-                //Check if end
-                if (iter == endIndex)
-                    break;
-
-                //Incrementing num if iterations
-                iter++;
-            }
-        }
-
-        //Run the whole sequence
-        public async void RunSequence()
-        {
-            //Sort block indexes
-            InstructionOrder(Block.pracPanel);
-
-            string prikaz = "";
-            Block.Type type = Block.Type.Start;
-            int iter = 0;
-
-            //Animace - přepnutí na tmavý režim
-            Animation.ImagesForBlocks(Block.pracPanel, blocksSorted, true);
-            foreach (Control var in Block.pracPanel.Controls)
-            {
-                //In case of non-matching tag or if the tag is null, skips an iteration
-                if (var.Tag != null)
-                {
-                    if (var.Tag.ToString() != blocksSorted[iter].ToString())
-                        continue;
-                }
-                else
-                    continue;
-
-                //Změna barvy textu v momentě, kdy běží sekvence + čekání vteřinu
-                Animation.Steps(var, true);
-                await Task.Delay(1000);
-                //Division
-                if (var is BlockVar)
-                {
-                    prikaz = ((BlockVar)var).command;
-                    type = Block.Type.Var;
-                }
-                else if (var is BlockCon)
-                {
-                    prikaz = ((BlockCon)var).command;
-                    type = Block.Type.Con;
-                    if (Podminky.isTrue(prikaz))
-                        var.BackColor = Color.Green;
-                    else
-                        var.BackColor = Color.Red;
-                }
-                else if (var is BlockProcess)
-                {
-                    prikaz = ((BlockProcess)var).command;
-                    type = Block.Type.Process;
-                }
-                else if (var is BlockOutput)
-                {
-                    prikaz = ((BlockOutput)var).command;
-                    type = Block.Type.Output;
-                    
-                }
-                else if (var is BlockCycles)
-                {
-                    foreach (Control item in Block.pracPanel.Controls)
+                    else if (var is BlockCon)
                     {
-                        if (item is BlockCycleEnd)
+                        prikaz = ((BlockCon)var).command;
+                        type = Block.Type.Con;
+                        if (Podminky.isTrue(prikaz))
+                            var.BackColor = Color.Green;
+                        else
+                            var.BackColor = Color.Red;
+                    }
+                    else if (var is BlockProcess)
+                    {
+                        prikaz = ((BlockProcess)var).command;
+                        type = Block.Type.Process;
+                    }
+                    else if (var is BlockOutput)
+                    {
+                        prikaz = ((BlockOutput)var).command;
+                        type = Block.Type.Output;
+
+                    }
+                    else if (var is BlockCycles)
+                    {
+                        foreach (Control item in Block.pracPanel.Controls)
                         {
-                            iter = Convert.ToInt32(item.Tag) - 1;
-                            if (((BlockCycles)var).name == "For" && ((BlockCycleEnd)item).name == "End-for")
+                            if (item is BlockCycleEnd)
                             {
-                                Cycles.CyclesFor(((BlockCycles)var).Nazev, int.Parse(((BlockCycles)var).Pocatek), int.Parse(((BlockCycles)var).KonecnaHodnota), int.Parse(((BlockCycles)var).Inkrement), Convert.ToInt32(((IBlock)var).joint), Convert.ToInt32(item.Tag));
-                                break;
-                            }
-                            else if (((BlockCycles)var).name == "While" && ((BlockCycleEnd)item).name == "End-while")
-                            {
-                                if (Cycles.CheckWhileAndDoWhile(((BlockCycles)var).condition))
+                                //Sets next index to a joint of the present one
+                                passIndex = Convert.ToInt32(item.Tag);
+
+                                if (((BlockCycles)var).name == "For" && ((BlockCycleEnd)item).name == "End-for")
                                 {
-                                    Cycles.CycleWhileAndDoWhile("While", ((BlockCycles)var).condition, Convert.ToInt32(((IBlock)var).joint), Convert.ToInt32(item.Tag));
+                                    Cycles.CyclesFor(((BlockCycles)var).Nazev, int.Parse(((BlockCycles)var).Pocatek), int.Parse(((BlockCycles)var).KonecnaHodnota), int.Parse(((BlockCycles)var).Inkrement), Convert.ToInt32(((IBlock)var).joint), Convert.ToInt32(item.Tag));
                                     break;
                                 }
-                            }
-                            else if (((BlockCycles)var).name == "Do-while" && ((BlockCycleEnd)item).name == "End-do-while")
-                            {
-                                if (Cycles.CheckWhileAndDoWhile(((BlockCycles)var).condition))
+                                else if (((BlockCycles)var).name == "While" && ((BlockCycleEnd)item).name == "End-while")
                                 {
-                                    Cycles.CycleWhileAndDoWhile("Do-while", ((BlockCycles)var).condition, Convert.ToInt32(((IBlock)var).joint), Convert.ToInt32(item.Tag));
-                                    break;
+                                    if (Cycles.CheckWhileAndDoWhile(((BlockCycles)var).condition))
+                                    {
+                                        Cycles.CycleWhileAndDoWhile("While", ((BlockCycles)var).condition, Convert.ToInt32(((IBlock)var).joint), Convert.ToInt32(item.Tag));
+                                        break;
+                                    }
+                                }
+                                else if (((BlockCycles)var).name == "Do-while" && ((BlockCycleEnd)item).name == "End-do-while")
+                                {
+                                    if (Cycles.CheckWhileAndDoWhile(((BlockCycles)var).condition))
+                                    {
+                                        Cycles.CycleWhileAndDoWhile("Do-while", ((BlockCycles)var).condition, Convert.ToInt32(((IBlock)var).joint), Convert.ToInt32(item.Tag));
+                                        break;
+                                    }
                                 }
                             }
                         }
                     }
+
+                    //Perform an instruction
+                    IstructionPerformance(prikaz, type);
+
+                    //Změna barvy do původní podoby + pauza na půl vteřiny
+                    Animation.Steps(var, false);
+                    await Task.Delay(500);
+
+
+                    if(passIndex == 0) //Erases memory only if RunSequence has reaches the joint
+                    {
+                        //Memory clear
+                        Promenne.Int16V.Clear();
+                        Promenne.Int32V.Clear();
+                        Promenne.Int64V.Clear();
+                        Promenne.FloatV.Clear();
+                        Promenne.DoubleV.Clear();
+                        Promenne.BoolV.Clear();
+                        Promenne.StringV.Clear();
+                        Promenne.CharV.Clear();
+
+                        Promenne.usedNames.Clear();
+                    }
+                    else if (passIndex != endIndex) //Run a recursive function with a new given index and break the present one
+                        RunSequence(Convert.ToInt16(passIndex), endIndex);
+
+                    break;
                 }
-
-                //Perform an instruction
-                IstructionPerformance(prikaz, type);
-                //Změna barvy do původní podoby + pauza na půl vteřiny
-                Animation.Steps(var, false);
-                await Task.Delay(500);
-
-                //Incrementing num if iterations
-                iter++;
             }
-            //vrátí obrázky do světlé podoby
-            Animation.ImagesForBlocks(Block.pracPanel, blocksSorted, false);
-            //Memory clear at the end
-            Promenne.Int16V.Clear();
-            Promenne.Int32V.Clear();
-            Promenne.Int64V.Clear();
-            Promenne.FloatV.Clear();
-            Promenne.DoubleV.Clear();
-            Promenne.BoolV.Clear();
-            Promenne.StringV.Clear();
-            Promenne.CharV.Clear();
-
-            Promenne.usedNames.Clear();
         }
 
         public static void IstructionPerformance(string prikaz, Block.Type type)

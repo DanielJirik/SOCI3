@@ -15,7 +15,15 @@ namespace Vyvojaky
         public string command { get; set; }
         public int? joint { get; set; }
         public Block.Type type { get; set; }
-        public string GenCode() { return ""; }
+        public string GenCode()
+        {
+            if (name == "End-for" || name == "End-while")
+                return "}" + Environment.NewLine;
+            else if (name == "End-do-while")
+                return "}" + Environment.NewLine +CodeGenerator.lastCond;
+
+            return "";
+        }
 
         public string name;
         public Label lb;

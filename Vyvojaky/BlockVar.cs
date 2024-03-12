@@ -19,7 +19,14 @@ namespace Vyvojaky
         public string command { get; set; }
         public int? joint { get; set; }
         public Block.Type type { get; set; }
-        public string GenCode() { return ""; }
+        public string GenCode()
+        {
+            //Get data type
+            Promenne.CommandCheck(command);
+            string dataType = Promenne.FindVar(command.Split("=")[0].Trim(), "type");
+
+            return $"{dataType} {command};" + Environment.NewLine;
+        }
 
         public BlockVar(string nazev, string hodnota, string prikaz)
         {

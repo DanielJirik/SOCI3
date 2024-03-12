@@ -12,7 +12,6 @@ namespace Vyvojaky
         string command { get; set; }
         Block.Type type { get; set; }
 
-        public string GenCode()
-        { return ""; }
+        public string GenCode();
     }
 }
