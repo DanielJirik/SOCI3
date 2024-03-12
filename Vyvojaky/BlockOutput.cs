@@ -19,7 +19,7 @@ namespace Vyvojaky
         public Block.Type type { get; set; }
         public string GenCode()
         {
-            return $"Console.WriteLine({command});" + Environment.NewLine;
+            return $"Console.WriteLine({command});";
         }
 
         public BlockOutput(string input)

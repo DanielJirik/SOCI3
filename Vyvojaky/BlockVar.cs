@@ -25,7 +25,7 @@ namespace Vyvojaky
             Promenne.CommandCheck(command);
             string dataType = Promenne.FindVar(command.Split("=")[0].Trim(), "type");
 
-            return $"{dataType} {command};" + Environment.NewLine;
+            return $"{dataType} {command};";
         }
 
         public BlockVar(string nazev, string hodnota, string prikaz)

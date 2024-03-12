@@ -17,18 +17,14 @@ namespace Vyvojaky
         }
 
         //funkce na změnu obrázku a textu daného bloku v sekvenci
-        public static void ImagesForBlocks(Panel panel, List<int> orders, bool change) 
-        {
-            //SequenceController.blocksSorted;
-            int index = 0;
+        public static void ImagesForBlocks(bool change) 
+        {            
             if (change)
             {
-                foreach (Control block in panel.Controls)
+                foreach (Control block in Block.pracPanel.Controls)
                 {
                     if (block.Tag != null)
                     {
-                        if (block.Tag.ToString() == orders[index].ToString())
-                        {
                             if (block is BlockVar)
                             {
                                 ((BlockVar)block).popis.ForeColor = Color.White;
@@ -90,20 +86,16 @@ namespace Vyvojaky
                                     ((BlockCycleEnd)block).lb.ForeColor = Color.White;
                                     ((BlockCycleEnd)block).Image = Resources.cyklus_podminka_konec_tmavy;
                                 }
-                            }
                         }
-                        index++;
                     }
                 }
             }
             else
             {
-                foreach (Control block in panel.Controls)
+                foreach (Control block in Block.pracPanel.Controls)
                 {
                     if (block.Tag != null)
                     {
-                        if (block.Tag.ToString() == orders[index].ToString())
-                        {
                             if (block is BlockVar)
                             {
                                 ((BlockVar)block).popis.ForeColor = Color.Black;
@@ -166,8 +158,6 @@ namespace Vyvojaky
                                     ((BlockCycleEnd)block).Image = Resources.cyklus_podminka_konec_svetly;
                                 }
                             }
-                        }
-                        index++;
                     }
                 }
             }

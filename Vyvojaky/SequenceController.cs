@@ -22,12 +22,15 @@ namespace Vyvojaky
             string prikaz = "";
             Block.Type type = Block.Type.Start;
 
+            Animation.ImagesForBlocks(true);
+            
             foreach (Control var in Block.pracPanel.Controls)
             {
                 if (var is IBlock && Convert.ToInt16(var.Tag) == index)
                 {
                     //Sets next index to a joint of the present one
                     passIndex = Convert.ToInt16(((IBlock)var).joint);
+
 
                     //Změna barvy textu v momentě, kdy běží sekvence + čekání vteřinu
                     Animation.Steps(var, true);
@@ -96,6 +99,7 @@ namespace Vyvojaky
                     //Perform an instruction
                     IstructionPerformance(prikaz, type);
 
+
                     //Změna barvy do původní podoby + pauza na půl vteřiny
                     Animation.Steps(var, false);
                     await Task.Delay(500);
@@ -114,6 +118,8 @@ namespace Vyvojaky
                         Promenne.CharV.Clear();
 
                         Promenne.usedNames.Clear();
+
+                        Animation.ImagesForBlocks(false);
                     }
                     else if (passIndex != endIndex) //Run a recursive function with a new given index and break the present one
                         RunSequence(Convert.ToInt16(passIndex), endIndex);

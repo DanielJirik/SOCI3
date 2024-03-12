@@ -18,9 +18,9 @@ namespace Vyvojaky
         public string GenCode()
         {
             if (name == "End-for" || name == "End-while")
-                return "}" + Environment.NewLine;
+                return "}";
             else if (name == "End-do-while")
-                return "}" + Environment.NewLine +CodeGenerator.lastCond;
+                return "}" + CodeGenerator.lastCond;
 
             return "";
         }

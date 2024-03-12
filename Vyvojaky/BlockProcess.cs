@@ -20,7 +20,7 @@ namespace Vyvojaky
 
         public string GenCode()
         {
-            return $"{command};" + Environment.NewLine;
+            return $"{command};";
         }
 
         public BlockProcess(string input) 

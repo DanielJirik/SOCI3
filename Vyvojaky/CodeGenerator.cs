@@ -10,11 +10,36 @@ namespace Vyvojaky
     {
         public static string code;
 
-        public static string lastCond = "";
+        public static string lastCond = "";        
         
+        public static string Format(string _code)
+        {
+            int numTabs = 0;
+            string formated = "";
+
+            foreach (char c in _code)
+            {
+                formated += c;
+
+                if (c == '{')
+                    numTabs++;                    
+                else if (c == '}')
+                    numTabs--;
+
+                if (c == '{' || c == '}' || c == ';')
+                {
+                    formated += "\r\n";
+                    for (int i = 0; i < numTabs; i++)
+                        formated += "\t";
+                }
+            }
+
+            return formated;
+        }
+
         public static string Generate()
         {
-            code = "using System;\r\n \r\npublic class Program\r\n{\r\n\tpublic static void Main(string[] args)\r\n{\r\n\t";
+            code = "using System;public class Program{public static void Main(string[] args){";
 
 
             foreach (Control c in Block.pracPanel.Controls)
@@ -35,9 +60,9 @@ namespace Vyvojaky
 
             Promenne.usedNames.Clear();
 
-            code += "\r\n}\r\n}";
+            code += "}}";
 
-            return code;
+            return Format(code);
         }
     }
 }

@@ -20,13 +20,13 @@ namespace Vyvojaky
         public string GenCode()
         {
             if (name == "For")
-                return $"for (int {Nazev} = {Pocatek}; {Nazev} <= {KonecnaHodnota}; {Nazev} += {Inkrement})" + Environment.NewLine + "{" + Environment.NewLine;
+                return $"for (int {Nazev} = {Pocatek}; {Nazev} <= {KonecnaHodnota}; {Nazev} += {Inkrement})" + "{";
             else if (name == "While")
-                return $"while (int {Nazev} = {Pocatek}; {Nazev} <= {KonecnaHodnota}; {Nazev} += {Inkrement})" + Environment.NewLine + "{" + Environment.NewLine;
+                return $"while (int {Nazev} = {Pocatek}; {Nazev} <= {KonecnaHodnota}; {Nazev} += {Inkrement})" + "{";
             else if (name == "Do-while")
             {
-                CodeGenerator.lastCond = $"while (int {Nazev} = {Pocatek}; {Nazev} <= {KonecnaHodnota}; {Nazev} += {Inkrement});" + Environment.NewLine;
-                return $"do" + Environment.NewLine + "{" + Environment.NewLine;
+                CodeGenerator.lastCond = $"while (int {Nazev} = {Pocatek}; {Nazev} <= {KonecnaHodnota}; {Nazev} += {Inkrement});";
+                return $"do" + "{";
             }
 
             return "";
