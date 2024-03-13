@@ -340,8 +340,8 @@ namespace Vyvojaky
         {
             foreach (KeyValuePair<(PictureBox, int), PictureBox> pbs in Block.drawPoints)
             {
-                Point from = new Point(pbs.Key.Item1.Left + pbs.Key.Item1.Width / 2, pbs.Key.Item1.Top + pbs.Key.Item1.Width / 2);
-                Point to = new Point(pbs.Value.Left + pbs.Value.Width / 2, pbs.Value.Top + pbs.Value.Width / 2);
+                Point from = new Point(pbs.Key.Item1.Left + pbs.Key.Item1.Width / 2, pbs.Key.Item1.Top + pbs.Key.Item1.Height / 2);
+                Point to = new Point(pbs.Value.Left + pbs.Value.Width / 2, pbs.Value.Top + pbs.Value.Height / 2);
 
                 Color lineColor;
                 if (pbs.Key.Item2 == 1)
