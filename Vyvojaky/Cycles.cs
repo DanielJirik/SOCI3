@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -86,6 +87,7 @@ namespace Vyvojaky
                 for (int i = pocatek; i >= konec; i += inkrement)
                 {
                     Promenne.Int64V[nazev] = i;
+                    
                     SequenceController.RunSequence(startIndex, endIndex);
                     break;
                 }
@@ -133,65 +135,129 @@ namespace Vyvojaky
             }
         }
 
-        public static void WhileDouble(double par1, double par2, string oper, int startIndex, int endIndex)
+        public static (double, double) CheckDouble(double par1, double par2, string part1, string part2)
+        {
+            if (Promenne.FindVar(part1.ToString(), "type") != null)
+            {
+                par1 = double.Parse(Promenne.FindVar(part1.ToString(), "value"));
+            }
+            if (Promenne.FindVar(part1.ToString(), "type") != null)
+            {
+                par2 = double.Parse(Promenne.FindVar(part1.ToString(), "value"));
+            }
+
+            return (par1, par2);
+        }
+
+        public static (bool, bool) CheckBool(bool par1, bool par2, string part1, string part2)
+        {
+            if (Promenne.FindVar(part1.ToString(), "type") != null)
+            {
+                par1 = bool.Parse(Promenne.FindVar(part1.ToString(), "value"));
+            }
+            if (Promenne.FindVar(part1.ToString(), "type") != null)
+            {
+                par2 = bool.Parse(Promenne.FindVar(part1.ToString(), "value"));
+            }
+
+            return (par1, par2);
+        }
+
+        public static (char, char) CheckChar(char par1, char par2, string part1, string part2)
+        {
+            if (Promenne.FindVar(part1.ToString(), "type") != null)
+            {
+                par1 = char.Parse(Promenne.FindVar(part1.ToString(), "value"));
+            }
+            if (Promenne.FindVar(part1.ToString(), "type") != null)
+            {
+                par2 = char.Parse(Promenne.FindVar(part1.ToString(), "value"));
+            }
+
+            return (par1, par2);
+        }
+
+        public static (string, string) CheckString(string par1, string par2, string part1, string part2)
+        {
+            if (Promenne.FindVar(part1.ToString(), "type") != null)
+            {
+                par1 = (Promenne.FindVar(part1.ToString(), "value"));
+            }
+            if (Promenne.FindVar(part1.ToString(), "type") != null)
+            {
+                par2 = (Promenne.FindVar(part1.ToString(), "value"));
+            }
+
+            return (par1, par2);
+        }
+
+        public static void WhileDouble(double par1, double par2, string oper, int startIndex, int endIndex, string part1, string part2)
         {
             switch (oper)
             {
                 case "==":
                     while (par1 == par2)
                     {
+                        (par1, par2) = CheckDouble(par1, par2, part1, part2);
                         SequenceController.RunSequence(startIndex, endIndex); 
                     }
                     break;
                 case "!=":
                     while (par1 != par2)
                     {
+                        (par1, par2) = CheckDouble(par1, par2, part1, part2);
                         SequenceController.RunSequence(startIndex, endIndex);
                     }
                     break;
                 case ">":
                     while (par1 > par2)
                     {
+                        (par1, par2) = CheckDouble(par1, par2, part1, part2);
                         SequenceController.RunSequence(startIndex, endIndex);
                     }
                     break;
                 case "<":
                     while (par1 < par2)
                     {
+                        (par1, par2) = CheckDouble(par1, par2, part1, part2);
                         SequenceController.RunSequence(startIndex, endIndex);
                     }
                     break;
                 case ">=":
                     while (par1 >= par2)
                     {
+                        (par1, par2) = CheckDouble(par1, par2, part1, part2);
                         SequenceController.RunSequence(startIndex, endIndex);
                     }
                     break;
                 case "<=":
                     while (par1 <= par2)
                     {
+                        (par1, par2) = CheckDouble(par1, par2, part1, part2);
                         SequenceController.RunSequence(startIndex, endIndex);
                     }
                     break;
                 default:
-                    MessageBox.Show("Něco se nepovedlo!");
+                    //MessageBox.Show("Něco se nepovedlo!");
                     break;
             }
         }
 
-        public static void WhileBool(bool par1, bool par2, string oper, int startIndex, int endIndex)
+        public static void WhileBool(bool par1, bool par2, string oper, int startIndex, int endIndex, string part1, string part2)
         {
             switch (oper)
             {
                 case "==":
                     while (par1 == par2)
                     {
+                        (par1, par2) = CheckBool(par1, par2, part1, part2);
                         SequenceController.RunSequence(startIndex, endIndex);
                     }
                     break;
                 case "!=":
                     while (par1 != par2)
                     {
+                        (par1, par2) = CheckBool(par1, par2, part1, part2);
                         SequenceController.RunSequence(startIndex, endIndex);
                     }
                     break;
@@ -201,19 +267,21 @@ namespace Vyvojaky
             }
         }
 
-        public static void WhileChar(char par1, char par2, string oper, int startIndex, int endIndex)
+        public static void WhileChar(char par1, char par2, string oper, int startIndex, int endIndex, string part1, string part2)
         {
             switch (oper)
             {
                 case "==":
                     while (par1 == par2)
                     {
+                        (par1, par2) = CheckChar(par1, par2, part1, part2);
                         SequenceController.RunSequence(startIndex, endIndex);
                     }
                     break;
                 case "!=":
                     while (par1 != par2)
                     {
+                        (par1, par2) = CheckChar(par1, par2, part1, part2);
                         SequenceController.RunSequence(startIndex, endIndex);
                     }
                     break;
@@ -223,19 +291,21 @@ namespace Vyvojaky
             }
         }
 
-        public static void WhileString(string par1, string par2, string oper, int startIndex, int endIndex)
+        public static void WhileString(string par1, string par2, string oper, int startIndex, int endIndex, string part1, string part2)
         {
             switch (oper)
             {
                 case "==":
                     while (par1 == par2)
                     {
+                        (par1, par2) = CheckString(par1, par2, part1, part2);
                         SequenceController.RunSequence(startIndex, endIndex);
                     }
                     break;
                 case "!=":
                     while (par1 != par2)
                     {
+                        (par1, par2) = CheckString(par1, par2, part1, part2);
                         SequenceController.RunSequence(startIndex, endIndex);
                     }
                     break;
@@ -245,7 +315,7 @@ namespace Vyvojaky
             }
         }
 
-        public static void DoWhileDouble(double par1, double par2, string oper, int startIndex, int endIndex)
+        public static void DoWhileDouble(double par1, double par2, string oper, int startIndex, int endIndex, string part1, string part2)
         {
             switch (oper)
             {
@@ -297,7 +367,7 @@ namespace Vyvojaky
             }
         }
 
-        public static void DoWhileBool(bool par1, bool par2, string oper, int startIndex, int endIndex)
+        public static void DoWhileBool(bool par1, bool par2, string oper, int startIndex, int endIndex, string part1, string part2)
         {
             switch (oper)
             {
@@ -321,7 +391,7 @@ namespace Vyvojaky
             }
         }
 
-        public static void DoWhileChar(char par1, char par2, string oper, int startIndex, int endIndex)
+        public static void DoWhileChar(char par1, char par2, string oper, int startIndex, int endIndex, string part1, string part2)
         {
             switch (oper)
             {
@@ -345,7 +415,7 @@ namespace Vyvojaky
             }
         }
 
-        public static void DoWhileString(string par1, string par2, string oper, int startIndex, int endIndex)
+        public static void DoWhileString(string par1, string par2, string oper, int startIndex, int endIndex, string part1, string part2)
         {
             switch (oper)
             {
@@ -380,62 +450,61 @@ namespace Vyvojaky
                     if ((Promenne.FindVar(part1, "type") == "Int16" || Promenne.FindVar(part1, "type") == "Int32" || Promenne.FindVar(part1, "type") == "Int64" || Promenne.FindVar(part1, "type") == "Double" || Promenne.FindVar(part1, "type") == "Float") && (Promenne.FindVar(part2, "type") == "Int16" || Promenne.FindVar(part2, "type") == "Int32" || Promenne.FindVar(part2, "type") == "Int64" || Promenne.FindVar(part2, "type") == "Double" || Promenne.FindVar(part2, "type") == "Float"))
                     {
                         if (type == "While")
-                            WhileDouble(double.Parse(Promenne.FindVar(part1, "value")), double.Parse(Promenne.FindVar(part2, "value")), Oper, startIndex, endIndex);
+                            WhileDouble(double.Parse(Promenne.FindVar(part1, "value")), double.Parse(Promenne.FindVar(part2, "value")), Oper, startIndex, endIndex, part1, part2);
                         else
-                            DoWhileDouble(double.Parse(Promenne.FindVar(part1, "value")), double.Parse(Promenne.FindVar(part2, "value")), Oper, startIndex, endIndex);
+                            DoWhileDouble(double.Parse(Promenne.FindVar(part1, "value")), double.Parse(Promenne.FindVar(part2, "value")), Oper, startIndex, endIndex, part1, part2);
                     }
                     else if (Promenne.FindVar(part1, "type") == "Bool" && Promenne.FindVar(part2, "type") == "Bool")
                     {
                         if (type == "While")
-                            WhileBool(bool.Parse(Promenne.FindVar(part1, "value")), bool.Parse(Promenne.FindVar(part2, "value")), Oper, startIndex, endIndex);
+                            WhileBool(bool.Parse(Promenne.FindVar(part1, "value")), bool.Parse(Promenne.FindVar(part2, "value")), Oper, startIndex, endIndex, part1, part2);
                         else
-                            DoWhileBool(bool.Parse(Promenne.FindVar(part1, "value")), bool.Parse(Promenne.FindVar(part2, "value")), Oper, startIndex, endIndex);
+                            DoWhileBool(bool.Parse(Promenne.FindVar(part1, "value")), bool.Parse(Promenne.FindVar(part2, "value")), Oper, startIndex, endIndex, part1, part2);
                     }
                     else if (Promenne.FindVar(part1, "type") == "Char" && Promenne.FindVar(part2, "type") == "Char")
                     {
                         if (type == "While")
-                            WhileChar(char.Parse(Promenne.FindVar(part1, "value")), char.Parse(Promenne.FindVar(part2, "value")), Oper, startIndex, endIndex);
+                            WhileChar(char.Parse(Promenne.FindVar(part1, "value")), char.Parse(Promenne.FindVar(part2, "value")), Oper, startIndex, endIndex, part1, part2);
                         else
-                            DoWhileChar(char.Parse(Promenne.FindVar(part1, "value")), char.Parse(Promenne.FindVar(part2, "value")), Oper, startIndex, endIndex);
+                            DoWhileChar(char.Parse(Promenne.FindVar(part1, "value")), char.Parse(Promenne.FindVar(part2, "value")), Oper, startIndex, endIndex, part1, part2);
                     }
                     else
                     {
                         if (type == "While")
-                            WhileString(Promenne.FindVar(part1, "value"), Promenne.FindVar(part2, "value"), Oper, startIndex, endIndex);
+                            WhileString(Promenne.FindVar(part1, "value"), Promenne.FindVar(part2, "value"), Oper, startIndex, endIndex, part1, part2);
                         else
-                            DoWhileString(Promenne.FindVar(part1, "value"), Promenne.FindVar(part2, "value"), Oper, startIndex, endIndex);
+                            DoWhileString(Promenne.FindVar(part1, "value"), Promenne.FindVar(part2, "value"), Oper, startIndex, endIndex, part1, part2);
                     }
                 }
                 else
                 {
                     if ((Promenne.FindVar(part1, "type") == "Int16" || Promenne.FindVar(part1, "type") == "Int32" || Promenne.FindVar(part1, "type") == "Int64" || Promenne.FindVar(part1, "type") == "Double" || Promenne.FindVar(part1, "type") == "Float") && double.TryParse(part2, out double var))
                     {
-                        Debug.WriteLine("While volani");
                         if (type == "While")
-                            WhileDouble(double.Parse(Promenne.FindVar(part1, "value")), var, Oper, startIndex, endIndex);
+                            WhileDouble(double.Parse(Promenne.FindVar(part1, "value")), var, Oper, startIndex, endIndex, part1, part2);
                         else
-                            DoWhileDouble(double.Parse(Promenne.FindVar(part1, "value")), var, Oper, startIndex, endIndex);
+                            DoWhileDouble(double.Parse(Promenne.FindVar(part1, "value")), var, Oper, startIndex, endIndex, part1, part2);
                     }
                     else if (Promenne.FindVar(part1, "type") == "Bool" && bool.TryParse(part2, out bool var0))
                     {
                         if (type == "While")
-                            WhileBool(bool.Parse(Promenne.FindVar(part1, "value")), var0, Oper, startIndex, endIndex);
+                            WhileBool(bool.Parse(Promenne.FindVar(part1, "value")), var0, Oper, startIndex, endIndex, part1, part2);
                         else
-                            DoWhileBool(bool.Parse(Promenne.FindVar(part1, "value")), var0, Oper, startIndex, endIndex);
+                            DoWhileBool(bool.Parse(Promenne.FindVar(part1, "value")), var0, Oper, startIndex, endIndex, part1, part2);
                     }
                     else if (Promenne.FindVar(part1, "type") == "Char" && part2[0] == char.Parse("'") && part2[part2.Length - 1] == char.Parse("'"))
                     {
                         if (type == "While")
-                            WhileChar(char.Parse(Promenne.FindVar(part1, "value")), char.Parse(Promenne.OverwriteChar(part2)), Oper, startIndex, endIndex);
+                            WhileChar(char.Parse(Promenne.FindVar(part1, "value")), char.Parse(Promenne.OverwriteChar(part2)), Oper, startIndex, endIndex, part1, part2);
                         else
-                            DoWhileChar(char.Parse(Promenne.FindVar(part1, "value")), char.Parse(Promenne.OverwriteChar(part2)), Oper, startIndex, endIndex);
+                            DoWhileChar(char.Parse(Promenne.FindVar(part1, "value")), char.Parse(Promenne.OverwriteChar(part2)), Oper, startIndex, endIndex, part1, part2);
                     }
                     else if (Promenne.FindVar(part1, "type") == "String" && part2[0] == '"' && part2[part2.Length - 1] == '"')
                     {
                         if (type == "While")
-                            WhileString(Promenne.FindVar(part1, "value"), Promenne.OverwriteString(part2), Oper, startIndex, endIndex);
+                            WhileString(Promenne.FindVar(part1, "value"), Promenne.OverwriteString(part2), Oper, startIndex, endIndex, part1, part2);
                         else
-                            DoWhileString(Promenne.FindVar(part1, "value"), Promenne.OverwriteChar(part2), Oper, startIndex, endIndex);
+                            DoWhileString(Promenne.FindVar(part1, "value"), Promenne.OverwriteChar(part2), Oper, startIndex, endIndex, part1, part2);
                     }
                 }
             }
@@ -444,30 +513,30 @@ namespace Vyvojaky
                 if ((Promenne.FindVar(part2, "type") == "Int16" || Promenne.FindVar(part2, "type") == "Int32" || Promenne.FindVar(part2, "type") == "Int64" || Promenne.FindVar(part2, "type") == "Double" || Promenne.FindVar(part2, "type") == "Float") && double.TryParse(part1, out double var))
                 {
                     if (type == "While")
-                        WhileDouble(double.Parse(Promenne.FindVar(part2, "value")), var, Oper, startIndex, endIndex);
+                        WhileDouble(double.Parse(Promenne.FindVar(part2, "value")), var, Oper, startIndex, endIndex, part1, part2);
                     else
-                        DoWhileDouble(double.Parse(Promenne.FindVar(part2, "value")), var, Oper, startIndex, endIndex);
+                        DoWhileDouble(double.Parse(Promenne.FindVar(part2, "value")), var, Oper, startIndex, endIndex, part1, part2);
                 }
                 else if (Promenne.FindVar(part2, "type") == "Bool" && bool.TryParse(part1, out bool var0))
                 {
                     if (type == "While")
-                        WhileBool(bool.Parse(Promenne.FindVar(part2, "value")), var0, Oper, startIndex, endIndex);
+                        WhileBool(bool.Parse(Promenne.FindVar(part2, "value")), var0, Oper, startIndex, endIndex, part1, part2);
                     else
-                        DoWhileBool(bool.Parse(Promenne.FindVar(part2, "value")), var0, Oper, startIndex, endIndex);
+                        DoWhileBool(bool.Parse(Promenne.FindVar(part2, "value")), var0, Oper, startIndex, endIndex, part1, part2);
                 }
                 else if (Promenne.FindVar(part2, "type") == "Char" && part1[0] == char.Parse("'") && part1[part1.Length - 1] == char.Parse("'"))
                 {
                     if (type == "While")
-                        WhileChar(char.Parse(Promenne.FindVar(part2, "value")), char.Parse(Promenne.OverwriteChar(part1)), Oper, startIndex, endIndex);
+                        WhileChar(char.Parse(Promenne.FindVar(part2, "value")), char.Parse(Promenne.OverwriteChar(part1)), Oper, startIndex, endIndex, part1, part2);
                     else
-                        DoWhileChar(char.Parse(Promenne.FindVar(part2, "value")), char.Parse(Promenne.OverwriteChar(part1)), Oper, startIndex, endIndex);
+                        DoWhileChar(char.Parse(Promenne.FindVar(part2, "value")), char.Parse(Promenne.OverwriteChar(part1)), Oper, startIndex, endIndex, part1, part2);
                 }
                 else if (Promenne.FindVar(part2, "type") == "String" && part1[0] == '"' && part1[part1.Length - 1] == '"')
                 {
                     if (type == "While")
-                        WhileString(Promenne.FindVar(part2, "value"), Promenne.OverwriteString(part1), Oper, startIndex, endIndex);
+                        WhileString(Promenne.FindVar(part2, "value"), Promenne.OverwriteString(part1), Oper, startIndex, endIndex, part1, part2);
                     else
-                        DoWhileString(Promenne.FindVar(part2, "value"), Promenne.OverwriteString(part1), Oper, startIndex, endIndex);
+                        DoWhileString(Promenne.FindVar(part2, "value"), Promenne.OverwriteString(part1), Oper, startIndex, endIndex, part1, part2);
                 }
             }
             else
@@ -477,30 +546,30 @@ namespace Vyvojaky
                 {
 
                     if (type == "While")
-                        WhileDouble(par1, par2, Oper, startIndex, endIndex);
+                        WhileDouble(par1, par2, Oper, startIndex, endIndex, part1, part2);
                     else
-                        DoWhileDouble(par1, par2, Oper, startIndex, endIndex);
+                        DoWhileDouble(par1, par2, Oper, startIndex, endIndex, part1, part2);
                 }
                 else if (bool.TryParse(part1, out bool par1_b) && bool.TryParse(part2, out bool par2_b))
                 {
                     if (type == "While")
-                        WhileBool(par1_b, par2_b, Oper, startIndex, endIndex);
+                        WhileBool(par1_b, par2_b, Oper, startIndex, endIndex, part1, part2);
                     else
-                        DoWhileBool(par1_b, par2_b, Oper, startIndex, endIndex);
+                        DoWhileBool(par1_b, par2_b, Oper, startIndex, endIndex, part1, part2);
                 }
                 else if (part1[0] == char.Parse("'") && part1[part1.Length - 1] == char.Parse("'") && part2[0] == char.Parse("'") && part2[part2.Length - 1] == char.Parse("'"))
                 {
                     if (type == "While")
-                        WhileChar(char.Parse(Promenne.OverwriteChar(part1)), char.Parse(Promenne.OverwriteChar(part2)), Oper, startIndex, endIndex);
+                        WhileChar(char.Parse(Promenne.OverwriteChar(part1)), char.Parse(Promenne.OverwriteChar(part2)), Oper, startIndex, endIndex, part1, part2);
                     else
-                        DoWhileChar(char.Parse(Promenne.OverwriteChar(part1)), char.Parse(Promenne.OverwriteChar(part2)), Oper, startIndex, endIndex);
+                        DoWhileChar(char.Parse(Promenne.OverwriteChar(part1)), char.Parse(Promenne.OverwriteChar(part2)), Oper, startIndex, endIndex, part1, part2);
                 }
                 else if (part1[0] == '"' && part1[part1.Length - 1] == '"' && part2[0] == '"' && part2[part2.Length - 1] == '"')
                 {
                     if (type == "While")
-                        WhileString(Promenne.OverwriteChar(part1), Promenne.OverwriteChar(part2), Oper, startIndex, endIndex);
+                        WhileString(Promenne.OverwriteChar(part1), Promenne.OverwriteChar(part2), Oper, startIndex, endIndex, part1, part2);
                     else
-                        DoWhileString(Promenne.OverwriteChar(part1), Promenne.OverwriteChar(part2), Oper, startIndex, endIndex);
+                        DoWhileString(Promenne.OverwriteChar(part1), Promenne.OverwriteChar(part2), Oper, startIndex, endIndex, part1, part2);
                 }
             }
         }

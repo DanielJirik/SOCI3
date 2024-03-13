@@ -166,7 +166,6 @@ namespace Vyvojaky
                 menuPanels.Location = new Point(positionX, positionY);
                 if (!rozhodnuti && positionX == menuPanels.Location.X && positionY == menuPanels.Location.Y)
                 {
-                    Debug.WriteLine("svitim");
                     menuPanels.Show();
                     rozhodnuti = true;
                 }
