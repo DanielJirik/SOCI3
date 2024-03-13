@@ -41,11 +41,34 @@ namespace Vyvojaky
         {
             code = "using System;public class Program{public static void Main(string[] args){";
 
+            int nextIndex = 1;
+            int comeBackIndex = 0;
 
             foreach (Control c in Block.pracPanel.Controls)
             {
-                if (c is IBlock)
+                if (c is BlockIfEnd && (int)(c.Tag) == nextIndex)
+                {
+                    foreach (Control c2 in Block.pracPanel.Controls)
+                    {
+                        if (c2 is IBlock && (int)c2.Tag == comeBackIndex)
+                        {
+                            if (c2 is BlockCon)
+                            {
+                                code += "}else{";
+                                nextIndex = (int)((IBlock)c2).joint.Y;
+                            }
+                        }
+                    }
+                }
+                else if (c is IBlock && (int)(c.Tag) == nextIndex)
+                {
                     code += ((IBlock)c).GenCode();
+
+                    if (c is BlockCon)
+                        comeBackIndex = (int)c.Tag;
+
+                    nextIndex = (int)((IBlock)c).joint.X;
+                }
             }
 
             //Memory clear

@@ -35,15 +35,9 @@ namespace Vyvojaky
                         prikaz = ((BlockCon)var).command;
                         type = Block.Type.Con;
                         if (Podminky.isTrue(prikaz))
-                        {
-                            //var.BackColor = Color.Green;
                             passIndex = Convert.ToInt16(((IBlock)var).joint.X);
-                        }
                         else
-                        {
-                            //var.BackColor = Color.Red;
                             passIndex = Convert.ToInt16(((IBlock)var).joint.Y);
-                        }
                     }
                     else
                     {

@@ -19,7 +19,7 @@ namespace Vyvojaky
         public Block.Type type { get; set; }
         public string GenCode()
         {            
-            return "}else{";
+            return "";
         }
 
         public Label lb;
