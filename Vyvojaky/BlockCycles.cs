@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,17 +16,17 @@ namespace Vyvojaky
 
         //Interface properties
         public string command { get; set; }
-        public int? joint { get; set; }
+        public Vector2 joint { get; set; }
         public Block.Type type { get; set; }
         public string GenCode()
         {
             if (name == "For")
                 return $"for (int {Nazev} = {Pocatek}; {Nazev} <= {KonecnaHodnota}; {Nazev} += {Inkrement})" + "{";
             else if (name == "While")
-                return $"while (int {Nazev} = {Pocatek}; {Nazev} <= {KonecnaHodnota}; {Nazev} += {Inkrement})" + "{";
+                return $"while ({condition})" + "{";
             else if (name == "Do-while")
             {
-                CodeGenerator.lastCond = $"while (int {Nazev} = {Pocatek}; {Nazev} <= {KonecnaHodnota}; {Nazev} += {Inkrement});";
+                CodeGenerator.lastCond = $"while ({condition});";
                 return $"do" + "{";
             }
 

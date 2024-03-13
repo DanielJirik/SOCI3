@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using Vyvojaky.Properties;
@@ -15,7 +16,7 @@ namespace Vyvojaky
 
         //Interface properties
         public string command { get; set; }
-        public int? joint { get; set; }
+        public Vector2 joint { get; set; }
         public Block.Type type { get; set; }
         public string GenCode()
         {

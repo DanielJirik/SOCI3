@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Numerics;
+using System.Reflection;
 using Vyvojaky.Properties;
 
 namespace Vyvojaky
@@ -10,15 +11,23 @@ namespace Vyvojaky
 
         public int index;
 
+        public int[] keyHolder;
+
         //Interface properties
         public string command { get; set; }
-        public int? joint { get; set; }
+        public Vector2 joint { get; set; }
         public Block.Type type { get; set; }
 
-        public string GenCode() { return ""; }
+        public string GenCode()
+        {
+            return $"if ({command})" + "{";
+        }
 
         public BlockCon(string podminka)
         {
+            //KeyHolder
+            keyHolder = new int[] {1, 0}; //1 - True, 0 - False
+
             //Set interface properties
             this.command = podminka;
             this.type = Block.Type.Con;

@@ -2,59 +2,58 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
-using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using Vyvojaky.Properties;
 
 namespace Vyvojaky
 {
-    internal class BlockProcess : PictureBox, IBlock
+    internal class BlockIfEnd : PictureBox, IBlock
     {
         public int index;
-        public Label lb;
 
         //Interface properties
         public string command { get; set; }
         public Vector2 joint { get; set; }
         public Block.Type type { get; set; }
-
         public string GenCode()
-        {
-            return $"{command};";
+        {            
+            return "}else{";
         }
 
-        public BlockProcess(string input) 
-        {
-            //Set interface properties
-            this.type = Block.Type.Process;
-            this.command = input;
+        public Label lb;
 
+        public BlockIfEnd()
+        {
+            //Set interface property
+            this.type = Block.Type.EndIf;
+
+            //Indexace
             index = Block.BlockIndex(type);
             this.Tag = index;
-            
-            //vytvoření nového labelu a jeho vlastnosti
-            lb = new Label();
-            lb.ForeColor = Color.Black;
-            lb.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, ((Byte)(0)));
-            lb.Left = this.Width / 2 - lb.Width / 2;            
-            lb.Text = input;
-            lb.Location = new Point(this.Width / 2 - lb.Width / 2 + 5, this.Height / 2 - lb.Height / 2);
-            lb.Parent = this;
-            lb.BackColor = Color.Transparent;
 
-            //nastavení picture-boxu
-            this.Width = lb.Text.Length * 10;
+            //nastavení bloku
             this.BackColor = Color.White;
-            this.Height = 50;
-            this.Image = Resources.zpracovani_svetly;
+            this.Width = 170;
+            this.Height = 70;
+            this.Tag = index;
+            this.Image = Resources.cyklus_podminka_konec_svetly;
             this.SizeMode = PictureBoxSizeMode.StretchImage;
             this.BackColor = Block.pracPanel.BackColor;
 
-            //přidání labelu do picture-boxu
+            //vytvoření nového labelu a jeho nastavení
+            lb = new Label();
+            lb.ForeColor = Color.Black;
+            lb.Location = new Point(10, 20);
+            lb.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, ((Byte)(0)));
+            lb.BackColor = Color.Transparent;
+            lb.Text = $"End-If";
+            lb.Width = lb.Text.Length * 11;
+
+            //přidání labelu do bloku
             this.Controls.Add(lb);
 
-            //nastavení základních vlastností picture-boxu
             this.Location = Block.pracPanel.PointToClient(Cursor.Position);
             this.MouseClick += new MouseEventHandler(Block.OnMouseClick);
             this.MouseDown += new MouseEventHandler(Block.OnMouseDown);
@@ -65,7 +64,7 @@ namespace Vyvojaky
             this.MouseEnter += new EventHandler(Block.DisableControl);
             this.MouseLeave += new EventHandler(Block.EnableControl);
 
-            //přidání picture-boxu do pracovního panelu
+            //přidání bloku do pracovního panelu
             Block.pracPanel.Controls.Add(this);
         }
     }

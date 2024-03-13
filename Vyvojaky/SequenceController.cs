@@ -29,7 +29,26 @@ namespace Vyvojaky
                 if (var is IBlock && Convert.ToInt16(var.Tag) == index)
                 {
                     //Sets next index to a joint of the present one
-                    passIndex = Convert.ToInt16(((IBlock)var).joint);
+                    if (var is BlockCon)
+                    {
+                        //If is BlockCon set nextIndex based on output of the condition
+                        prikaz = ((BlockCon)var).command;
+                        type = Block.Type.Con;
+                        if (Podminky.isTrue(prikaz))
+                        {
+                            //var.BackColor = Color.Green;
+                            passIndex = Convert.ToInt16(((IBlock)var).joint.X);
+                        }
+                        else
+                        {
+                            //var.BackColor = Color.Red;
+                            passIndex = Convert.ToInt16(((IBlock)var).joint.Y);
+                        }
+                    }
+                    else
+                    {
+                        passIndex = Convert.ToInt16(((IBlock)var).joint.X);
+                    }
 
 
                     //Změna barvy textu v momentě, kdy běží sekvence + čekání vteřinu
@@ -41,16 +60,7 @@ namespace Vyvojaky
                     {
                         prikaz = ((BlockVar)var).command;
                         type = Block.Type.Var;
-                    }
-                    else if (var is BlockCon)
-                    {
-                        prikaz = ((BlockCon)var).command;
-                        type = Block.Type.Con;
-                        if (Podminky.isTrue(prikaz))
-                            var.BackColor = Color.Green;
-                        else
-                            var.BackColor = Color.Red;
-                    }
+                    }                    
                     else if (var is BlockProcess)
                     {
                         prikaz = ((BlockProcess)var).command;
@@ -73,14 +83,14 @@ namespace Vyvojaky
 
                                 if (((BlockCycles)var).name == "For" && ((BlockCycleEnd)item).name == "End-for")
                                 {
-                                    Cycles.CyclesFor(((BlockCycles)var).Nazev, int.Parse(((BlockCycles)var).Pocatek), int.Parse(((BlockCycles)var).KonecnaHodnota), int.Parse(((BlockCycles)var).Inkrement), Convert.ToInt32(((IBlock)var).joint), Convert.ToInt32(item.Tag));
+                                    Cycles.CyclesFor(((BlockCycles)var).Nazev, int.Parse(((BlockCycles)var).Pocatek), int.Parse(((BlockCycles)var).KonecnaHodnota), int.Parse(((BlockCycles)var).Inkrement), Convert.ToInt32(((IBlock)var).joint.X), Convert.ToInt32(item.Tag));
                                     break;
                                 }
                                 else if (((BlockCycles)var).name == "While" && ((BlockCycleEnd)item).name == "End-while")
                                 {
                                     if (Cycles.CheckWhileAndDoWhile(((BlockCycles)var).condition))
                                     {
-                                        Cycles.CycleWhileAndDoWhile("While", ((BlockCycles)var).condition, Convert.ToInt32(((IBlock)var).joint), Convert.ToInt32(item.Tag));
+                                        Cycles.CycleWhileAndDoWhile("While", ((BlockCycles)var).condition, Convert.ToInt32(((IBlock)var).joint.X), Convert.ToInt32(item.Tag));
                                         break;
                                     }
                                 }
@@ -88,7 +98,7 @@ namespace Vyvojaky
                                 {
                                     if (Cycles.CheckWhileAndDoWhile(((BlockCycles)var).condition))
                                     {
-                                        Cycles.CycleWhileAndDoWhile("Do-while", ((BlockCycles)var).condition, Convert.ToInt32(((IBlock)var).joint), Convert.ToInt32(item.Tag));
+                                        Cycles.CycleWhileAndDoWhile("Do-while", ((BlockCycles)var).condition, Convert.ToInt32(((IBlock)var).joint.X), Convert.ToInt32(item.Tag));
                                         break;
                                     }
                                 }

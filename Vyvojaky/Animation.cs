@@ -87,6 +87,11 @@ namespace Vyvojaky
                                     ((BlockCycleEnd)block).Image = Resources.cyklus_podminka_konec_tmavy;
                                 }
                         }
+                        else if (block is BlockIfEnd)
+                        {
+                            ((BlockIfEnd)block).lb.ForeColor = Color.White;
+                            ((BlockIfEnd)block).Image = Resources.cyklus_podminka_konec_tmavy;
+                        }
                     }
                 }
             }
@@ -158,6 +163,11 @@ namespace Vyvojaky
                                     ((BlockCycleEnd)block).Image = Resources.cyklus_podminka_konec_svetly;
                                 }
                             }
+                        else if (block is BlockIfEnd)
+                        {
+                            ((BlockIfEnd)block).lb.ForeColor = Color.Black;
+                            ((BlockIfEnd)block).Image = Resources.cyklus_podminka_konec_svetly;
+                        }
                     }
                 }
             }
@@ -197,6 +207,10 @@ namespace Vyvojaky
                 {
                     ((BlockCycleEnd)block).lb.ForeColor = Color.Orange;
                 }
+                else if (block is BlockIfEnd)
+                {
+                    ((BlockIfEnd)block).lb.ForeColor = Color.Orange;
+                }
             }
             else
             {
@@ -228,6 +242,10 @@ namespace Vyvojaky
                 else if (block is BlockCycleEnd)
                 {
                     ((BlockCycleEnd)block).lb.ForeColor = Color.White;
+                }
+                else if (block is BlockIfEnd)
+                {
+                    ((BlockIfEnd)block).lb.ForeColor = Color.White;
                 }
             }
             

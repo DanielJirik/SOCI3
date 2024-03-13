@@ -60,7 +60,7 @@ namespace Vyvojaky
 
             Promenne.usedNames.Clear();
 
-            code += "}}";
+            code += "}}}";
 
             return Format(code);
         }

@@ -5,6 +5,7 @@ using System.Linq;
 using System;
 using System.Threading.Tasks;
 using Vyvojaky.Properties;
+using System.Numerics;
 
 namespace Vyvojaky
 {
@@ -22,7 +23,7 @@ namespace Vyvojaky
 
         //Interface properties
         public string command { get; set; }
-        public int? joint { get; set; }
+        public Vector2 joint { get; set; }
         public Block.Type type { get; set; }
         public string GenCode() { return ""; }
 

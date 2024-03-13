@@ -1,4 +1,6 @@
-﻿namespace Vyvojaky
+﻿using System.Numerics;
+
+namespace Vyvojaky
 {
     internal class Block
     {
@@ -11,7 +13,8 @@
             Var,
             Process,
             Output,
-            EndCycle
+            EndCycle,
+            EndIf
         }
        
         public static Panel? pracPanel;
@@ -59,7 +62,7 @@
             //Remove from drawPoints
             try
             {
-                drawPoints.Remove((PictureBox)block);
+                drawPoints.Remove(((PictureBox)block, 0));
                 var item = drawPoints.First(kvp => kvp.Value == (PictureBox)block);
                 drawPoints.Remove(item.Key);
             }
@@ -105,6 +108,11 @@
         public static void BlockCycleEnd(string name)
         { 
             _ = new BlockCycleEnd(name);
+        }
+
+        public static void BlockIfEnd()
+        {
+            _ = new BlockIfEnd();
         }
 
         //Disable control method
@@ -187,9 +195,9 @@
         {
             foreach (Control item in pracPanel.Controls)
             {
-                if (item is IBlock && ((IBlock)item).joint == tag)
+                if (item is IBlock && ((IBlock)item).joint.X == tag && !(item is BlockCon))
                 {
-                    ((IBlock)item).joint = null;
+                    ((IBlock)item).joint = new Vector2(0, 0);
                     break;
                 }                
             }
@@ -202,32 +210,52 @@
             {
                 if (item is IBlock && Convert.ToInt16(item.Tag) == fromIndex)
                 {
-                    ((IBlock)item).joint = tag;
+                    if (item is BlockCon)
+                    {
+                        if (drawPoints.ContainsKey(((PictureBox)fromBlock, ((BlockCon)fromBlock).keyHolder[0])))
+                            ((IBlock)item).joint = new Vector2(((IBlock)item).joint.X, tag);
+                        else
+                            ((IBlock)item).joint = new Vector2(tag, tag);
+                    }
+                    else
+                        ((IBlock)item).joint = new Vector2(tag, tag);
                     break;
                 }                
             }
         }
 
-        public static PictureBox fromPic, jointPic;
-        public static Dictionary<PictureBox, PictureBox> drawPoints = new Dictionary<PictureBox, PictureBox>();
+        public static PictureBox jointPic;
+        public static IBlock fromBlock;        
+
+        public static Dictionary<(PictureBox, int), PictureBox> drawPoints = new Dictionary<(PictureBox, int), PictureBox>();
         public static void SwapIndex(int tag, object sender)
         {
             if (!swap)
             {
                 //Získání hodnoty pro určení počátku
                 fromIndex = tag;
-                fromPic = (PictureBox)sender;
+                fromBlock = (IBlock)sender;                
             }
             else if(swap && tag != 0)
             {
                 jointPic = (PictureBox)sender;
 
-                if (!drawPoints.ContainsKey(fromPic))
-                    drawPoints.Add(fromPic, jointPic);
+                if (!drawPoints.ContainsKey(((PictureBox)fromBlock, 0)))
+                    drawPoints.Add(((PictureBox)fromBlock, 0), jointPic);
                 else
                 {
-                    drawPoints.Remove(fromPic);
-                    drawPoints.Add(fromPic, jointPic);
+                    if (fromBlock is BlockCon)
+                    {
+                        if (drawPoints.ContainsKey(((PictureBox)fromBlock, ((BlockCon)fromBlock).keyHolder[0])))
+                            drawPoints.Add(((PictureBox)fromBlock, ((BlockCon)fromBlock).keyHolder[1]), jointPic);
+                        else
+                            drawPoints.Add(((PictureBox)fromBlock, ((BlockCon)fromBlock).keyHolder[0]), jointPic);
+                    }
+                    else
+                    {
+                        drawPoints.Remove(((PictureBox)fromBlock, 0));
+                        drawPoints.Add(((PictureBox)fromBlock, 0), jointPic);
+                    }
                 }
 
                 ResetJoint(tag);

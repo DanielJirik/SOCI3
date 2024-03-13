@@ -268,7 +268,7 @@ namespace Vyvojaky
             {
                 cycles.Setup(panelPracovni);
                 if (Cycles.CheckFor(nazev, pocatecniHodnota, konecnaHodnota, inkrement))
-                {   
+                {
                     Cycles.CreationOfCycleFor(nazev, pocatecniHodnota, konecnaHodnota, inkrement);
                     menuPanels.Hide();
                 }
@@ -338,12 +338,18 @@ namespace Vyvojaky
         //Lines
         private void panelPracovni_Paint(object sender, PaintEventArgs e)
         {
-            foreach (KeyValuePair<PictureBox, PictureBox> pbs in Block.drawPoints)
+            foreach (KeyValuePair<(PictureBox, int), PictureBox> pbs in Block.drawPoints)
             {
-                Point from = new Point(pbs.Key.Left + pbs.Key.Width / 2, pbs.Key.Top + pbs.Key.Width / 2);
+                Point from = new Point(pbs.Key.Item1.Left + pbs.Key.Item1.Width / 2, pbs.Key.Item1.Top + pbs.Key.Item1.Width / 2);
                 Point to = new Point(pbs.Value.Left + pbs.Value.Width / 2, pbs.Value.Top + pbs.Value.Width / 2);
 
-                Pen p = new Pen(Color.Red, 3);
+                Color lineColor;
+                if (pbs.Key.Item2 == 1)
+                    lineColor = Color.Red;
+                else
+                    lineColor = Color.Blue;
+
+                Pen p = new Pen(lineColor, 3);
                 e.Graphics.DrawLine(p, from, to);
             }
         }
@@ -366,7 +372,7 @@ namespace Vyvojaky
         private void btRun_Click(object sender, EventArgs e)
         {
             menuPanels.Hide();
-            
+
             //Runs a sequence with default start index of 1 and endIndex of 0
             SequenceController.RunSequence(1, 0);
         }
@@ -376,6 +382,12 @@ namespace Vyvojaky
         {
             if (Block.markedBlock != null && e.KeyCode == Keys.Delete)
                 Block.DeleteBlock(Block.markedBlock);
+        }
+
+        private void endConditionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            menuPanels.Hide();
+            Block.BlockIfEnd();
         }
     }
 }
