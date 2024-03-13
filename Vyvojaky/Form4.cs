@@ -347,7 +347,7 @@ namespace Vyvojaky
                 if (pbs.Key.Item2 == 1)
                     lineColor = Color.Red;
                 else
-                    lineColor = Color.Blue;
+                    lineColor = Color.Orange;
 
                 Pen p = new Pen(lineColor, 3);
                 e.Graphics.DrawLine(p, from, to);

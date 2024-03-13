@@ -82,8 +82,12 @@ namespace Vyvojaky
             Promenne.CharV.Clear();
 
             Promenne.usedNames.Clear();
-
-            code += "}}}";
+            foreach (Control b in Block.pracPanel.Controls)
+            {
+                if (b is BlockCon)
+                    code += "}";
+            }
+            code += "}}";
 
             return Format(code);
         }
