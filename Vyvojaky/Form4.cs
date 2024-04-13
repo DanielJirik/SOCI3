@@ -355,7 +355,7 @@ namespace Vyvojaky
 
         private void processingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string input = Interaction.InputBox("Zadejte existující proměnnou a výraz k výpočtu\r\nPříklady: a = 5 + 6, jmeno = 'Ahoj' + 'jak se mate'", "Cycle-while");
+            string input = Interaction.InputBox("Zadejte existující proměnnou a výraz k výpočtu\r\nPříklady: a = 5 + 6, jmeno = 'Ahoj' + 'jak se mate'", "Process");
             Block.BlockProcess(input);
             menuPanels.Hide();
         }
