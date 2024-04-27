@@ -752,3 +752,15 @@ namespace Vyvojaky
         }
     }
 }
+
+/*
+    todo:
+    1.oprava cyklu, funkce pro kontrolování proměnných v cyklech while a dowhile
+    2.start,stop,reset tlačítka na volně pohyblivém panelu na pracovní ploše
+    3.nabídka na right-click bude na horní liště
+    4.pokus o úpravu c# překladače, lepší vzhled kódu
+    5.animace - vylepšení blok po bloku animace, zrušení animace s tlačítky stop a reset
+    6.reset - vypne celou sekvenci
+    7.stop - stopne celou sekvenci včetně animace do doby než uživatel bude chtít znovu pokračovat nebo ukončit sekvenci
+    
+ */
