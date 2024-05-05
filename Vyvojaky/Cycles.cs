@@ -135,18 +135,20 @@ namespace Vyvojaky
             }
         }
 
-        public static (double, double) CheckDouble(double par1, double par2, string part1, string part2)
+        public static (double, double) CheckDouble(string part1, string part2, double value1, double value2)
         {
             if (Promenne.FindVar(part1.ToString(), "type") != null)
             {
-                par1 = double.Parse(Promenne.FindVar(part1.ToString(), "value"));
+                value1 = double.Parse(Promenne.FindVar(part1.ToString(), "value"));
             }
             if (Promenne.FindVar(part1.ToString(), "type") != null)
             {
-                par2 = double.Parse(Promenne.FindVar(part1.ToString(), "value"));
+                value2 = double.Parse(Promenne.FindVar(part1.ToString(), "value"));
             }
+            Debug.WriteLine("value1: " + Promenne.FindVar(part1.ToString(), "value"));
+            Debug.WriteLine("value2: " + Promenne.FindVar(part2.ToString(), "value"));
 
-            return (par1, par2);
+            return (value1, value2);
         }
 
         public static (bool, bool) CheckBool(bool par1, bool par2, string part1, string part2)
@@ -191,50 +193,65 @@ namespace Vyvojaky
             return (par1, par2);
         }
 
-        public static void WhileDouble(double par1, double par2, string oper, int startIndex, int endIndex, string part1, string part2)
+        public static (string, string) ExistingValues(string existValue1, string existValue2, string dataType)
+        {
+            string value1 = null;
+            string value2 = null;
+            if (existValue1 != null)
+            {
+                value1 = Promenne.FindVar(existValue1, "value");
+            }
+            if (existValue2 != null)
+            {
+                value2 = Promenne.FindVar(existValue2, "value");
+            }
+            return (Promenne.FindVar(value1, "value"), Promenne.FindVar(value2, "value"));
+        }
+
+        public static void WhileDouble(double par1, double par2, string oper, int startIndex, int endIndex, string existNameV1, string existNameV2)
         {
             switch (oper)
             {
                 case "==":
                     while (par1 == par2)
                     {
-                        (par1, par2) = CheckDouble(par1, par2, part1, part2);
-                        SequenceController.RunSequence(startIndex, endIndex); 
+                        SequenceController.RunSequence(startIndex, endIndex);
+                        (par1, par2) = CheckDouble(existNameV1, existNameV2, par1, par2);
                     }
                     break;
                 case "!=":
                     while (par1 != par2)
                     {
-                        (par1, par2) = CheckDouble(par1, par2, part1, part2);
                         SequenceController.RunSequence(startIndex, endIndex);
+                        (par1, par2) = CheckDouble(existNameV1, existNameV2, par1, par2);
                     }
                     break;
                 case ">":
                     while (par1 > par2)
                     {
-                        (par1, par2) = CheckDouble(par1, par2, part1, part2);
                         SequenceController.RunSequence(startIndex, endIndex);
+                        (par1, par2) = CheckDouble(existNameV1, existNameV2, par1, par2);
                     }
                     break;
                 case "<":
                     while (par1 < par2)
                     {
-                        (par1, par2) = CheckDouble(par1, par2, part1, part2);
                         SequenceController.RunSequence(startIndex, endIndex);
+                        (par1, par2) = CheckDouble(existNameV1, existNameV2, par1, par2);
                     }
                     break;
                 case ">=":
                     while (par1 >= par2)
                     {
-                        (par1, par2) = CheckDouble(par1, par2, part1, part2);
                         SequenceController.RunSequence(startIndex, endIndex);
+                        (par1, par2) = CheckDouble(existNameV1, existNameV2, par1, par2);
                     }
                     break;
                 case "<=":
                     while (par1 <= par2)
                     {
-                        (par1, par2) = CheckDouble(par1, par2, part1, part2);
                         SequenceController.RunSequence(startIndex, endIndex);
+                        (par1, par2) = CheckDouble(existNameV1, existNameV2, par1, par2);
                     }
                     break;
                 default:

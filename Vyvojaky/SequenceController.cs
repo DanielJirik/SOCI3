@@ -15,7 +15,7 @@ namespace Vyvojaky
             BlockStart s = new BlockStart();
         }
 
-        public static async void RunSequence(int index, int endIndex)
+        public static void RunSequence(int index, int endIndex)
         {
             int? passIndex;
 
@@ -47,7 +47,7 @@ namespace Vyvojaky
 
                     //Změna barvy textu v momentě, kdy běží sekvence + čekání vteřinu
                     Animation.Steps(var, true);
-                    await Task.Delay(1000);
+                    //await Task.Delay(1000);
 
                     //Block division
                     if (var is BlockVar)
@@ -106,7 +106,7 @@ namespace Vyvojaky
 
                     //Změna barvy do původní podoby + pauza na půl vteřiny
                     Animation.Steps(var, false);
-                    await Task.Delay(500);
+                    //await Task.Delay(500);
 
 
                     if(passIndex == 0) //Erases memory only if RunSequence has reaches the joint

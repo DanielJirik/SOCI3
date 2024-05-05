@@ -36,36 +36,34 @@ namespace Vyvojaky
             tbInputVariable = new TextBox();
             label1 = new Label();
             tbConsole = new TextBox();
-            menuPanels = new MenuStrip();
-            panelsToolStripMenuItem = new ToolStripMenuItem();
-            variablesToolStripMenuItem = new ToolStripMenuItem();
-            conditionsToolStripMenuItem = new ToolStripMenuItem();
-            switchesToolStripMenuItem = new ToolStripMenuItem();
-            cyclesToolStripMenuItem = new ToolStripMenuItem();
-            forToolStripMenuItem = new ToolStripMenuItem();
-            whileToolStripMenuItem = new ToolStripMenuItem();
-            doWhileToolStripMenuItem = new ToolStripMenuItem();
-            endForMenu = new ToolStripMenuItem();
-            endWhileMenu = new ToolStripMenuItem();
-            endDoWhileMenu = new ToolStripMenuItem();
-            processingToolStripMenuItem = new ToolStripMenuItem();
-            outputToolStripMenuItem = new ToolStripMenuItem();
-            cSharpMenu = new ToolStripMenuItem();
-            endConditionToolStripMenuItem = new ToolStripMenuItem();
+            menu = new MenuStrip();
+            blocksToolStripMenuItem = new ToolStripMenuItem();
+            variablesItem = new ToolStripMenuItem();
+            conditionsItem = new ToolStripMenuItem();
+            endConditionsItem = new ToolStripMenuItem();
+            cyclesToolStripMenuItem1 = new ToolStripMenuItem();
+            forItem = new ToolStripMenuItem();
+            whileItem = new ToolStripMenuItem();
+            doWhileItem = new ToolStripMenuItem();
+            endForItem = new ToolStripMenuItem();
+            endWhileItem = new ToolStripMenuItem();
+            endDoWhileItem = new ToolStripMenuItem();
+            processingItem = new ToolStripMenuItem();
+            outputItem = new ToolStripMenuItem();
+            translatorItem = new ToolStripMenuItem();
             panelPracovni.SuspendLayout();
             panelSwitch.SuspendLayout();
-            menuPanels.SuspendLayout();
+            menu.SuspendLayout();
             SuspendLayout();
             // 
             // prekladacTb
             // 
             prekladacTb.BackColor = Color.FromArgb(68, 84, 103);
             prekladacTb.Dock = DockStyle.Fill;
-            prekladacTb.Location = new Point(0, 0);
-            prekladacTb.Margin = new Padding(3, 2, 3, 2);
+            prekladacTb.Location = new Point(0, 28);
             prekladacTb.Multiline = true;
             prekladacTb.Name = "prekladacTb";
-            prekladacTb.Size = new Size(1110, 511);
+            prekladacTb.Size = new Size(1269, 653);
             prekladacTb.TabIndex = 10;
             prekladacTb.MouseDoubleClick += prekladacTb_MouseDoubleClick;
             // 
@@ -78,23 +76,18 @@ namespace Vyvojaky
             panelPracovni.Controls.Add(btRun);
             panelPracovni.Controls.Add(panelSwitch);
             panelPracovni.Controls.Add(tbConsole);
-            panelPracovni.Controls.Add(menuPanels);
             panelPracovni.Dock = DockStyle.Fill;
-            panelPracovni.Location = new Point(0, 0);
-            panelPracovni.Margin = new Padding(3, 2, 3, 2);
+            panelPracovni.Location = new Point(0, 28);
             panelPracovni.Name = "panelPracovni";
-            panelPracovni.Size = new Size(1110, 511);
+            panelPracovni.Size = new Size(1269, 653);
             panelPracovni.TabIndex = 11;
             panelPracovni.Paint += panelPracovni_Paint;
-            panelPracovni.MouseClick += panelPracovni_MouseClick;
-            panelPracovni.MouseDown += panelPracovni_MouseDown;
             // 
             // btRun
             // 
-            btRun.Location = new Point(10, 98);
-            btRun.Margin = new Padding(3, 2, 3, 2);
+            btRun.Location = new Point(11, 131);
             btRun.Name = "btRun";
-            btRun.Size = new Size(56, 48);
+            btRun.Size = new Size(64, 64);
             btRun.TabIndex = 9;
             btRun.Text = "RUN";
             btRun.UseVisualStyleBackColor = true;
@@ -106,10 +99,9 @@ namespace Vyvojaky
             panelSwitch.Controls.Add(label2);
             panelSwitch.Controls.Add(tbInputVariable);
             panelSwitch.Controls.Add(label1);
-            panelSwitch.Location = new Point(284, 13);
-            panelSwitch.Margin = new Padding(3, 2, 3, 2);
+            panelSwitch.Location = new Point(325, 17);
             panelSwitch.Name = "panelSwitch";
-            panelSwitch.Size = new Size(200, 80);
+            panelSwitch.Size = new Size(229, 107);
             panelSwitch.TabIndex = 6;
             panelSwitch.MouseDown += panelSwitch_MouseDown;
             panelSwitch.MouseMove += panelSwitch_MouseMove;
@@ -119,18 +111,17 @@ namespace Vyvojaky
             // 
             label2.AutoSize = true;
             label2.ForeColor = Color.White;
-            label2.Location = new Point(4, 27);
+            label2.Location = new Point(5, 36);
             label2.Name = "label2";
-            label2.Size = new Size(105, 15);
+            label2.Size = new Size(130, 20);
             label2.TabIndex = 2;
             label2.Text = "Vstupní proměnná";
             // 
             // tbInputVariable
             // 
-            tbInputVariable.Location = new Point(3, 50);
-            tbInputVariable.Margin = new Padding(3, 2, 3, 2);
+            tbInputVariable.Location = new Point(3, 67);
             tbInputVariable.Name = "tbInputVariable";
-            tbInputVariable.Size = new Size(140, 23);
+            tbInputVariable.Size = new Size(159, 27);
             tbInputVariable.TabIndex = 1;
             tbInputVariable.KeyDown += tbInputVariable_KeyDown;
             // 
@@ -138,9 +129,9 @@ namespace Vyvojaky
             // 
             label1.AutoSize = true;
             label1.ForeColor = Color.White;
-            label1.Location = new Point(3, 8);
+            label1.Location = new Point(3, 11);
             label1.Name = "label1";
-            label1.Size = new Size(45, 15);
+            label1.Size = new Size(55, 20);
             label1.TabIndex = 0;
             label1.Text = "Switch:";
             // 
@@ -149,143 +140,134 @@ namespace Vyvojaky
             tbConsole.BackColor = Color.Black;
             tbConsole.Font = new Font("Arial", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             tbConsole.ForeColor = Color.White;
-            tbConsole.Location = new Point(10, 13);
-            tbConsole.Margin = new Padding(3, 2, 3, 2);
+            tbConsole.Location = new Point(11, 17);
             tbConsole.Multiline = true;
             tbConsole.Name = "tbConsole";
             tbConsole.ReadOnly = true;
             tbConsole.ScrollBars = ScrollBars.Vertical;
-            tbConsole.Size = new Size(226, 81);
+            tbConsole.Size = new Size(258, 107);
             tbConsole.TabIndex = 0;
             tbConsole.TabStop = false;
             tbConsole.Text = ">";
             // 
-            // menuPanels
+            // menu
             // 
-            menuPanels.Dock = DockStyle.None;
-            menuPanels.ImageScalingSize = new Size(20, 20);
-            menuPanels.Items.AddRange(new ToolStripItem[] { panelsToolStripMenuItem, cSharpMenu });
-            menuPanels.Location = new Point(293, 288);
-            menuPanels.Name = "menuPanels";
-            menuPanels.Padding = new Padding(5, 2, 0, 2);
-            menuPanels.Size = new Size(214, 24);
-            menuPanels.TabIndex = 7;
-            menuPanels.Text = "menuStrip1";
+            menu.BackColor = Color.Silver;
+            menu.ImageScalingSize = new Size(20, 20);
+            menu.Items.AddRange(new ToolStripItem[] { blocksToolStripMenuItem, translatorItem });
+            menu.Location = new Point(0, 0);
+            menu.Name = "menu";
+            menu.Size = new Size(1269, 28);
+            menu.TabIndex = 12;
+            menu.Text = "menuStrip1";
             // 
-            // panelsToolStripMenuItem
+            // blocksToolStripMenuItem
             // 
-            panelsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { variablesToolStripMenuItem, conditionsToolStripMenuItem, endConditionToolStripMenuItem, switchesToolStripMenuItem, cyclesToolStripMenuItem, processingToolStripMenuItem, outputToolStripMenuItem });
-            panelsToolStripMenuItem.Name = "panelsToolStripMenuItem";
-            panelsToolStripMenuItem.Size = new Size(53, 20);
-            panelsToolStripMenuItem.Text = "Panels";
+            blocksToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { variablesItem, conditionsItem, endConditionsItem, cyclesToolStripMenuItem1, processingItem, outputItem });
+            blocksToolStripMenuItem.Name = "blocksToolStripMenuItem";
+            blocksToolStripMenuItem.Size = new Size(65, 24);
+            blocksToolStripMenuItem.Text = "Blocks";
             // 
-            // variablesToolStripMenuItem
+            // variablesItem
             // 
-            variablesToolStripMenuItem.Name = "variablesToolStripMenuItem";
-            variablesToolStripMenuItem.Size = new Size(180, 22);
-            variablesToolStripMenuItem.Text = "Variables";
-            variablesToolStripMenuItem.Click += variablesToolStripMenuItem_Click;
+            variablesItem.Name = "variablesItem";
+            variablesItem.Size = new Size(192, 26);
+            variablesItem.Text = "Variables";
+            variablesItem.Click += variablesItem_Click;
             // 
-            // conditionsToolStripMenuItem
+            // conditionsItem
             // 
-            conditionsToolStripMenuItem.Name = "conditionsToolStripMenuItem";
-            conditionsToolStripMenuItem.Size = new Size(180, 22);
-            conditionsToolStripMenuItem.Text = "Conditions";
-            conditionsToolStripMenuItem.Click += conditionsToolStripMenuItem_Click;
+            conditionsItem.Name = "conditionsItem";
+            conditionsItem.Size = new Size(192, 26);
+            conditionsItem.Text = "Conditions";
+            conditionsItem.Click += conditionsItem_Click;
             // 
-            // switchesToolStripMenuItem
+            // endConditionsItem
             // 
-            switchesToolStripMenuItem.Name = "switchesToolStripMenuItem";
-            switchesToolStripMenuItem.Size = new Size(180, 22);
-            switchesToolStripMenuItem.Text = "Switches";
-            switchesToolStripMenuItem.Click += switchesToolStripMenuItem_Click;
+            endConditionsItem.Name = "endConditionsItem";
+            endConditionsItem.Size = new Size(192, 26);
+            endConditionsItem.Text = "End-conditions";
+            endConditionsItem.Click += endConditionsItem_Click;
             // 
-            // cyclesToolStripMenuItem
+            // cyclesToolStripMenuItem1
             // 
-            cyclesToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { forToolStripMenuItem, whileToolStripMenuItem, doWhileToolStripMenuItem, endForMenu, endWhileMenu, endDoWhileMenu });
-            cyclesToolStripMenuItem.Name = "cyclesToolStripMenuItem";
-            cyclesToolStripMenuItem.Size = new Size(180, 22);
-            cyclesToolStripMenuItem.Text = "Cycles";
+            cyclesToolStripMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { forItem, whileItem, doWhileItem, endForItem, endWhileItem, endDoWhileItem });
+            cyclesToolStripMenuItem1.Name = "cyclesToolStripMenuItem1";
+            cyclesToolStripMenuItem1.Size = new Size(192, 26);
+            cyclesToolStripMenuItem1.Text = "Cycles";
             // 
-            // forToolStripMenuItem
+            // forItem
             // 
-            forToolStripMenuItem.Name = "forToolStripMenuItem";
-            forToolStripMenuItem.Size = new Size(153, 22);
-            forToolStripMenuItem.Text = "For";
-            forToolStripMenuItem.Click += forToolStripMenuItem_Click;
+            forItem.Name = "forItem";
+            forItem.Size = new Size(176, 26);
+            forItem.Text = "For";
+            forItem.Click += forItem_Click;
             // 
-            // whileToolStripMenuItem
+            // whileItem
             // 
-            whileToolStripMenuItem.Name = "whileToolStripMenuItem";
-            whileToolStripMenuItem.Size = new Size(153, 22);
-            whileToolStripMenuItem.Text = "While";
-            whileToolStripMenuItem.Click += whileToolStripMenuItem_Click;
+            whileItem.Name = "whileItem";
+            whileItem.Size = new Size(176, 26);
+            whileItem.Text = "While";
+            whileItem.Click += whileItem_Click;
             // 
-            // doWhileToolStripMenuItem
+            // doWhileItem
             // 
-            doWhileToolStripMenuItem.Name = "doWhileToolStripMenuItem";
-            doWhileToolStripMenuItem.Size = new Size(153, 22);
-            doWhileToolStripMenuItem.Text = "Do...While";
-            doWhileToolStripMenuItem.Click += doWhileToolStripMenuItem_Click;
+            doWhileItem.Name = "doWhileItem";
+            doWhileItem.Size = new Size(176, 26);
+            doWhileItem.Text = "DoWhile";
+            doWhileItem.Click += doWhileItem_Click;
             // 
-            // endForMenu
+            // endForItem
             // 
-            endForMenu.Name = "endForMenu";
-            endForMenu.Size = new Size(153, 22);
-            endForMenu.Text = "End-for";
-            endForMenu.Click += endForMenu_Click;
+            endForItem.Name = "endForItem";
+            endForItem.Size = new Size(176, 26);
+            endForItem.Text = "End-for";
+            endForItem.Click += endForItem_Click;
             // 
-            // endWhileMenu
+            // endWhileItem
             // 
-            endWhileMenu.Name = "endWhileMenu";
-            endWhileMenu.Size = new Size(153, 22);
-            endWhileMenu.Text = "End-while";
-            endWhileMenu.Click += endWhileMenu_Click;
+            endWhileItem.Name = "endWhileItem";
+            endWhileItem.Size = new Size(176, 26);
+            endWhileItem.Text = "End-while";
+            endWhileItem.Click += endWhileItem_Click;
             // 
-            // endDoWhileMenu
+            // endDoWhileItem
             // 
-            endDoWhileMenu.Name = "endDoWhileMenu";
-            endDoWhileMenu.Size = new Size(153, 22);
-            endDoWhileMenu.Text = "End-Do...While";
-            endDoWhileMenu.Click += endDoWhileMenu_Click;
+            endDoWhileItem.Name = "endDoWhileItem";
+            endDoWhileItem.Size = new Size(176, 26);
+            endDoWhileItem.Text = "End-dowhile";
+            endDoWhileItem.Click += endDoWhileItem_Click;
             // 
-            // processingToolStripMenuItem
+            // processingItem
             // 
-            processingToolStripMenuItem.Name = "processingToolStripMenuItem";
-            processingToolStripMenuItem.Size = new Size(180, 22);
-            processingToolStripMenuItem.Text = "Processing";
-            processingToolStripMenuItem.Click += processingToolStripMenuItem_Click;
+            processingItem.Name = "processingItem";
+            processingItem.Size = new Size(192, 26);
+            processingItem.Text = "Processing";
+            processingItem.Click += processingItem_Click;
             // 
-            // outputToolStripMenuItem
+            // outputItem
             // 
-            outputToolStripMenuItem.Name = "outputToolStripMenuItem";
-            outputToolStripMenuItem.Size = new Size(180, 22);
-            outputToolStripMenuItem.Text = "Output";
-            outputToolStripMenuItem.Click += outputToolStripMenuItem_Click;
+            outputItem.Name = "outputItem";
+            outputItem.Size = new Size(192, 26);
+            outputItem.Text = "Output";
+            outputItem.Click += outputItem_Click;
             // 
-            // cSharpMenu
+            // translatorItem
             // 
-            cSharpMenu.Name = "cSharpMenu";
-            cSharpMenu.Size = new Size(34, 20);
-            cSharpMenu.Text = "C#";
-            cSharpMenu.Click += cSharpMenu_Click;
-            // 
-            // endConditionToolStripMenuItem
-            // 
-            endConditionToolStripMenuItem.Name = "endConditionToolStripMenuItem";
-            endConditionToolStripMenuItem.Size = new Size(180, 22);
-            endConditionToolStripMenuItem.Text = "End Condition";
-            endConditionToolStripMenuItem.Click += endConditionToolStripMenuItem_Click;
+            translatorItem.Name = "translatorItem";
+            translatorItem.Size = new Size(41, 24);
+            translatorItem.Text = "C#";
+            translatorItem.Click += translatorItem_Click;
             // 
             // formHlavniProTvorbu
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(68, 84, 103);
-            ClientSize = new Size(1110, 511);
+            ClientSize = new Size(1269, 681);
             Controls.Add(panelPracovni);
             Controls.Add(prekladacTb);
-            Margin = new Padding(3, 2, 3, 2);
+            Controls.Add(menu);
             Name = "formHlavniProTvorbu";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Tvorba";
@@ -295,8 +277,8 @@ namespace Vyvojaky
             panelPracovni.PerformLayout();
             panelSwitch.ResumeLayout(false);
             panelSwitch.PerformLayout();
-            menuPanels.ResumeLayout(false);
-            menuPanels.PerformLayout();
+            menu.ResumeLayout(false);
+            menu.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -311,21 +293,20 @@ namespace Vyvojaky
         private TextBox tbInputVariable;
         private Label label1;
         private TextBox tbConsole;
-        private MenuStrip menuPanels;
-        private ToolStripMenuItem panelsToolStripMenuItem;
-        private ToolStripMenuItem variablesToolStripMenuItem;
-        private ToolStripMenuItem conditionsToolStripMenuItem;
-        private ToolStripMenuItem switchesToolStripMenuItem;
-        private ToolStripMenuItem cyclesToolStripMenuItem;
-        private ToolStripMenuItem forToolStripMenuItem;
-        private ToolStripMenuItem whileToolStripMenuItem;
-        private ToolStripMenuItem doWhileToolStripMenuItem;
-        private ToolStripMenuItem processingToolStripMenuItem;
-        private ToolStripMenuItem outputToolStripMenuItem;
-        private ToolStripMenuItem cSharpMenu;
-        private ToolStripMenuItem endForMenu;
-        private ToolStripMenuItem endWhileMenu;
-        private ToolStripMenuItem endDoWhileMenu;
-        private ToolStripMenuItem endConditionToolStripMenuItem;
+        private MenuStrip menu;
+        private ToolStripMenuItem blocksToolStripMenuItem;
+        private ToolStripMenuItem variablesItem;
+        private ToolStripMenuItem conditionsItem;
+        private ToolStripMenuItem endConditionsItem;
+        private ToolStripMenuItem cyclesToolStripMenuItem1;
+        private ToolStripMenuItem forItem;
+        private ToolStripMenuItem whileItem;
+        private ToolStripMenuItem doWhileItem;
+        private ToolStripMenuItem endForItem;
+        private ToolStripMenuItem endWhileItem;
+        private ToolStripMenuItem endDoWhileItem;
+        private ToolStripMenuItem processingItem;
+        private ToolStripMenuItem outputItem;
+        private ToolStripMenuItem translatorItem;
     }
 }
