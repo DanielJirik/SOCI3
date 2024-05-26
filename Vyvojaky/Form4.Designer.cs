@@ -35,7 +35,6 @@ namespace Vyvojaky
             label2 = new Label();
             tbInputVariable = new TextBox();
             label1 = new Label();
-            tbConsole = new TextBox();
             menu = new MenuStrip();
             blocksToolStripMenuItem = new ToolStripMenuItem();
             variablesItem = new ToolStripMenuItem();
@@ -75,7 +74,6 @@ namespace Vyvojaky
             panelPracovni.BackColor = Color.FromArgb(68, 84, 103);
             panelPracovni.Controls.Add(btRun);
             panelPracovni.Controls.Add(panelSwitch);
-            panelPracovni.Controls.Add(tbConsole);
             panelPracovni.Dock = DockStyle.Fill;
             panelPracovni.Location = new Point(0, 28);
             panelPracovni.Name = "panelPracovni";
@@ -85,7 +83,7 @@ namespace Vyvojaky
             // 
             // btRun
             // 
-            btRun.Location = new Point(11, 131);
+            btRun.Location = new Point(12, 9);
             btRun.Name = "btRun";
             btRun.Size = new Size(64, 64);
             btRun.TabIndex = 9;
@@ -99,7 +97,7 @@ namespace Vyvojaky
             panelSwitch.Controls.Add(label2);
             panelSwitch.Controls.Add(tbInputVariable);
             panelSwitch.Controls.Add(label1);
-            panelSwitch.Location = new Point(325, 17);
+            panelSwitch.Location = new Point(166, 9);
             panelSwitch.Name = "panelSwitch";
             panelSwitch.Size = new Size(229, 107);
             panelSwitch.TabIndex = 6;
@@ -134,21 +132,6 @@ namespace Vyvojaky
             label1.Size = new Size(55, 20);
             label1.TabIndex = 0;
             label1.Text = "Switch:";
-            // 
-            // tbConsole
-            // 
-            tbConsole.BackColor = Color.Black;
-            tbConsole.Font = new Font("Arial", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            tbConsole.ForeColor = Color.White;
-            tbConsole.Location = new Point(11, 17);
-            tbConsole.Multiline = true;
-            tbConsole.Name = "tbConsole";
-            tbConsole.ReadOnly = true;
-            tbConsole.ScrollBars = ScrollBars.Vertical;
-            tbConsole.Size = new Size(258, 107);
-            tbConsole.TabIndex = 0;
-            tbConsole.TabStop = false;
-            tbConsole.Text = ">";
             // 
             // menu
             // 
@@ -270,11 +253,10 @@ namespace Vyvojaky
             Controls.Add(menu);
             Name = "formHlavniProTvorbu";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Tvorba";
+            Text = "Workspace";
             FormClosing += formHlavniProTvorbu_FormClosing;
             KeyDown += formHlavniProTvorbu_KeyDown;
             panelPracovni.ResumeLayout(false);
-            panelPracovni.PerformLayout();
             panelSwitch.ResumeLayout(false);
             panelSwitch.PerformLayout();
             menu.ResumeLayout(false);
@@ -292,7 +274,6 @@ namespace Vyvojaky
         private Label label2;
         private TextBox tbInputVariable;
         private Label label1;
-        private TextBox tbConsole;
         private MenuStrip menu;
         private ToolStripMenuItem blocksToolStripMenuItem;
         private ToolStripMenuItem variablesItem;

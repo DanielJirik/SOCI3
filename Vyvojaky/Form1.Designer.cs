@@ -66,7 +66,7 @@
             MaximumSize = new Size(818, 498);
             MinimumSize = new Size(818, 498);
             Name = "formUvitaci";
-            Text = "Vyvojaky - uvitaci";
+            Text = "Welcome";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
