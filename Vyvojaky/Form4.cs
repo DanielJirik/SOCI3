@@ -247,6 +247,7 @@ namespace Vyvojaky
         {
             //Runs a sequence with default start index of 1 and endIndex of 0
             SequenceController.RunSequence(1, 0);
+            prekladacTb.Text = CodeGenerator.Generate();
         }
 
 
